@@ -9,7 +9,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchSpeeds() {
       try {
-        const res = await axios.get("https://api.openf1.org/v1/car_data?session_key=latest&limit=100");
+        const res = await axios.get("https://api.openf1.org/v1/drivers");
         const formatted = res.data.map((item) => ({
           date: new Date(item.date).toLocaleTimeString(),
           speed: item.speed,
@@ -25,7 +25,7 @@ export default function Dashboard() {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <PilotList />
-      <Charts data={speedData} />
+     
     </div>
   );
 }
