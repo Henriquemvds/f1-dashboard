@@ -2,10 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 60px;
+  padding: 0px 60px;
   background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
   color: #f1f1f1;
   font-family: 'Poppins', sans-serif;
+  margin: 0;
 }
 
 .navbar-logo {
@@ -50,4 +51,9 @@
 .navbar-social a:hover {
   color: #e50914;
   transform: scale(1.2);
+}
+
+.car {
+    width: 150px;
+    height: auto;
 }
