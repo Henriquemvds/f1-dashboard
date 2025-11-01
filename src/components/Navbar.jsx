@@ -1,5 +1,5 @@
-import "../styles/NavBar.css";
-import car from '../images/car.png';
+import "../styles/Navbar.css";
+import car from "../images/car.png";
 
 export default function Navbar() {
   return (
