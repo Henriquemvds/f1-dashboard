@@ -1,5 +1,5 @@
 import PilotList from "../components/PilotList";
-import Charts from "../components/Charts";
+import Navbar from '../components/NavBar';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -24,7 +24,8 @@ export default function Dashboard() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <PilotList />
+      <Navbar />
+    <PilotList />
      
     </div>
   );
