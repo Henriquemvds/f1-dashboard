@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../styles/Pilots.css"; // importa o CSS externo
+import NotRegistered from "../images/pilot-not-registered.png";
 
-export default function PilotList() {
+export default function Pilots() {
   const [pilots, setPilots] = useState([]);
 
   useEffect(() => {
     async function fetchPilots() {
       try {
-        const res = await axios.get("https://api.openf1.org/v1/drivers?session_key=latest");
+        const res = await axios.get(
+          "https://api.openf1.org/v1/drivers?session_key=latest"
+        );
         setPilots(res.data);
       } catch (err) {
         console.error("Erro ao buscar pilotos:", err);
@@ -17,19 +21,24 @@ export default function PilotList() {
   }, []);
 
   return (
-    <div className="p-4">
-      <h2 className="text-lg font-semibold mb-3">Pilotos (Sessão Atual)</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {pilots.map((p) => (
-          <div
-            key={p.driver_number}
-            className="border p-3 rounded-md shadow-sm bg-white text-center"
-          >
-            <p className="font-bold">{p.full_name}</p>
-            <p className="text-sm text-gray-500">#{p.driver_number}</p>
-            <p className="text-sm">{p.team_name}</p>
-          </div>
-        ))}
+    <div className="pilots-section">
+      <h2 className="pilots-title">Pilots — Current Session</h2>
+      <div className="pilots-grid">
+    {pilots.map((p) => (
+  <div key={p.driver_number} className="pilot-card">
+<img
+  src={
+    p.headshot_url && p.headshot_url !== "null"
+      ? p.headshot_url.replace("/1col/", "/3col/")
+      : NotRegistered
+  }
+  alt={p.full_name || "Piloto não registrado"}
+  className="pilot-photo"
+/>
+    <p className="pilot-name">{p.full_name}</p>
+    <p className="pilot-team">{p.team_name}</p>
+  </div>
+))}
       </div>
     </div>
   );
