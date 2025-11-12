@@ -39,7 +39,13 @@
   box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
 }
 
- .pilot-photo {
+/* ---- Foto do piloto ---- */
+.pilot-photo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.pilot-photo {
   width: 150px;
   height: 150px;
   object-fit: cover;
@@ -47,19 +53,28 @@
   background-color: #111;
 }
 
+/* ---- Número grande e brilhante ---- */
+.pilot-number {
+  position: absolute;
+  left: -20px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
+  text-transform: uppercase;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ---- Info abaixo ---- */
 .pilot-info {
   text-align: center;
+  margin-top: 10px;
 }
 
 .pilot-name {
   font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
-}
-
-.pilot-number {
-  font-size: 0.9rem;
-  color: #ff4444;
 }
 
 .pilot-team {
