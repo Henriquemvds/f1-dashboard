@@ -4,24 +4,7 @@ import "../styles/Navbar.css";
 import car from "../images/car.png";
 
 export default function Navbar() {
-  const [seasons, setSeasons] = useState([]);
-  const [activeYear, setActiveYear] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Buscar temporadas
-  useEffect(() => {
-    async function fetchSeasons() {
-      try {
-        const res = await axios.get("https://api.openf1.org/v1/seasons");
-        const sorted = res.data.sort((a, b) => b.year - a.year);
-        setSeasons(sorted);
-        setActiveYear(sorted[0]?.year || null);
-      } catch (err) {
-        console.error("Erro ao buscar temporadas:", err);
-      }
-    }
-    fetchSeasons();
-  }, []);
 
   return (
     <header className="navbar-header">
@@ -36,23 +19,6 @@ export default function Navbar() {
             </h1>
             <div className="tire-trail"></div>
           </div>
-        </div>
-
-        {/* Seletor de temporada */}
-        <div className="navbar-season-select">
-          {seasons.length > 0 && (
-            <select
-              value={activeYear}
-              onChange={(e) => setActiveYear(e.target.value)}
-              className="season-select"
-            >
-              {seasons.map((s) => (
-                <option key={s.year} value={s.year}>
-                  Temporada {s.year}
-                </option>
-              ))}
-            </select>
-          )}
         </div>
 
         {/* Botão de menu mobile */}
