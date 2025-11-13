@@ -1,210 +1,279 @@
-/* === SEÇÃO PRINCIPAL === */
-.pilots-section {
-  padding: 40px 20px;
-  text-align: center;
-  background: linear-gradient(to bottom right, #b80000, #000000);
+/* === ESTRUTURA PRINCIPAL === */
+.navbar-header {
+  background: linear-gradient(90deg, #000, #b80000);
   color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  position: relative;
+  z-index: 1000;
 }
 
-/* === TÍTULO === */
-.pilots-title {
-  font-size: 2rem;
+/* === TOPO === */
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* === LOGO E TEXTO === */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+}
+
+.car {
+  width: 60px;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+  transition: transform 0.4s ease;
+}
+
+.navbar-logo:hover .car {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.logo-text h1 {
+  display: flex;
+  align-items: baseline;
+  font-family: "Orbitron", sans-serif;
   font-weight: 700;
-  margin-bottom: 30px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
-}
-
-/* === GRADE DE PILOTOS === */
-.pilots-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  width: 100%;
-  max-width: 1100px;
-  justify-content: center;
-  padding: 0 10px;
-}
-
-/* === CARD DO PILOTO === */
-.pilot-card {
-  background-color: #111;
-  border-radius: 12px;
-  padding: 18px;
-  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.pilot-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(255, 0, 0, 0.4);
-}
-
-/* === FOTO DO PILOTO === */
-.pilot-photo-container {
+  margin: 0;
+  padding: 0;
   position: relative;
-  display: inline-block;
-  margin-bottom: 10px;
+  z-index: 2;
 }
 
-.pilot-photo {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-  background-color: #111;
-  border: 2px solid #b80000;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+.logo-f1 {
+  font-size: 1.8rem;
+  color: #ff1e00;
+  text-shadow: 0 0 6px #ff1e00, 0 0 12px rgba(255, 0, 0, 0.8);
+  margin-right: 4px;
+}
+
+.logo-dash {
+  font-size: 1.2rem;
+  background: linear-gradient(to right, #fff, #aaa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* ---- Rastro de pneu ---- */
+.tire-trail {
+  margin-top: 4px;
+  width: 100%;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, #222 0 6px, #111 6px 12px);
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  animation: tireMove 1s linear infinite;
+}
+
+@keyframes tireMove {
+  from { background-position-x: 0; }
+  to { background-position-x: 12px; }
+}
+
+/* === MENU INFERIOR === */
+.navbar-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+}
+
+/* === LINKS === */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: #ff3c00;
+}
+
+/* === REDES SOCIAIS === */
+.navbar-social {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-social a {
+  color: #fff;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+}
+
+.navbar-social a:hover {
+  color: #ff3c00;
+}
+
+/* === BOTÃO MENU MOBILE === */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.pilot-card:hover .pilot-photo {
-  transform: scale(1.05);
-}
-
-/* === NÚMERO DO PILOTO === */
-.pilot-number {
-  position: absolute;
-  top: -10px;
-  left: -20px;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #ff3c00;
-  text-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* === INFORMAÇÕES DO PILOTO === */
-.pilot-info {
-  text-align: center;
-  margin-top: 8px;
-}
-
-.pilot-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 4px;
-}
-
-.pilot-team {
-  font-size: 0.9rem;
-  color: #bbb;
+.menu-toggle:active {
+  transform: rotate(90deg);
 }
 
 /* === RESPONSIVIDADE === */
 
-/* --- Telas médias (tablets) --- */
+/* --- Tablets e telas médias --- */
 @media (max-width: 992px) {
-  .pilots-title {
-    font-size: 2.2rem;
+  .navbar-top {
+    padding: 15px 25px;
   }
 
-  .pilot-photo {
-    width: 160px;
-    height: 160px;
+  .navbar-bottom {
+    padding: 10px 25px;
   }
 
-  .pilot-number {
-    font-size: 2rem;
-    left: -18px;
-  }
-
-  .pilot-card {
-    padding: 20px;
-  }
-
-  .pilots-grid {
-    gap: 22px;
-  }
-}
-
-/* --- Telas pequenas (celulares normais) --- */
-@media (max-width: 768px) {
-  .pilots-section {
-    padding: 35px 15px;
-  }
-
-  .pilots-title {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-  }
-
-  .pilots-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  .navbar-links {
     gap: 20px;
   }
 
-  .pilot-photo {
-    width: 180px;
-    height: 180px;
+  .car {
+    width: 55px;
   }
 
-  .pilot-number {
-    font-size: 2rem;
-    left: -15px;
+  .logo-f1 {
+    font-size: 1.6rem;
   }
 
-  .pilot-name {
-    font-size: 1.3rem;
+  .logo-dash {
+    font-size: 1.1rem;
   }
 
-  .pilot-team {
-    font-size: 1rem;
+}
+
+/* --- Celulares (tamanho padrão) --- */
+@media (max-width: 768px) {
+  .navbar-top {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 25px;
+  }
+
+  .car {
+    width: 70px;
+  }
+
+  .logo-f1 {
+    font-size: 2.1rem;
+  }
+
+  .logo-dash {
+    font-size: 1.4rem;
+  }
+
+  .tire-trail {
+    height: 7px;
+  }
+
+  .navbar-links a {
+    font-size: 1.2rem;
+    padding: 10px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 2.4rem;
+  }
+
+  .navbar-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 12px 0;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .navbar-links.active {
+    display: flex;
+    animation: fadeSlide 0.3s ease forwards;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .navbar-social {
+    display: none;
   }
 }
 
-/* --- Telas muito pequenas (celulares compactos, até 480px) --- */
+/* --- Celulares compactos (muito pequenos) --- */
 @media (max-width: 480px) {
-  .pilots-section {
-    padding: 45px 10px;
+  .navbar-top {
+    padding: 18px 18px;
   }
 
-  .pilots-title {
+  .car {
+    width: 80px;
+  }
+
+  .logo-f1 {
+    font-size: 2.3rem;
+  }
+
+  .logo-dash {
+    font-size: 1.5rem;
+  }
+
+  .tire-trail {
+    height: 8px;
+  }
+
+  .navbar-links a {
+    font-size: 1.3rem;
+  }
+
+  .menu-toggle {
     font-size: 2.6rem;
-    margin-bottom: 28px;
-  }
-
-  .pilots-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .pilot-photo {
-    width: 220px;
-    height: 220px;
-    border: 3px solid #ff1e00;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-  }
-
-  .pilot-number {
-    font-size: 2.5rem;
-    top: -12px;
-    left: -12px;
-  }
-
-  .pilot-name {
-    font-size: 1.6rem;
-    letter-spacing: 0.5px;
-  }
-
-  .pilot-team {
-    font-size: 1.2rem;
-    color: #ddd;
-  }
-
-  .pilot-card {
-    padding: 25px;
-    border-radius: 14px;
   }
 }
