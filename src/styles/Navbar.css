@@ -96,28 +96,6 @@
   }
 }
 
-/* === SELETOR DE TEMPORADA === */
-.navbar-season-select {
-  display: flex;
-  align-items: center;
-}
-
-.season-select {
-  background-color: #111;
-  color: #fff;
-  border: 1px solid #ff3c00;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  outline: none;
-  transition: 0.3s;
-}
-
-.season-select:hover {
-  background-color: #222;
-  border-color: #ff5e00;
-}
 
 /* === MENU INFERIOR === */
 .navbar-bottom {
@@ -188,38 +166,57 @@
 /* Tablets e telas médias */
 @media (max-width: 992px) {
   .navbar-top {
-    padding: 15px 25px;
-  }
-
-  .navbar-bottom {
-    padding: 10px 25px;
-  }
-
-  .navbar-links {
-    gap: 18px;
-  }
-
-  .season-select {
-    font-size: 0.9rem;
+    padding: 18px 30px;
   }
 
   .car {
-    width: 50px;
+    width: 70px;
+  }
+
+  .logo-f1 {
+    font-size: 2rem;
+  }
+
+  .logo-dash {
+    font-size: 1.4rem;
+  }
+
+
+  .navbar-links a {
+    font-size: 1.1rem;
   }
 }
 
-/* Celulares */
+/* Celulares (normais e grandes) */
 @media (max-width: 768px) {
   .navbar-top {
     flex-direction: row;
     justify-content: space-between;
+    padding: 20px 25px;
+  }
+
+  .car {
+    width: 85px;
+  }
+
+  .logo-f1 {
+    font-size: 2.4rem;
+  }
+
+  .logo-dash {
+    font-size: 1.8rem;
+  }
+
+  .tire-trail {
+    height: 8px;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
   }
 
   .menu-toggle {
     display: block;
+    font-size: 2.2rem;
   }
 
-  /* Oculta os links e redes sociais por padrão no mobile */
   .navbar-bottom {
     flex-direction: column;
     align-items: flex-start;
@@ -231,12 +228,11 @@
     flex-direction: column;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.95);
-    padding: 10px 0;
+    padding: 15px 0;
     text-align: left;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  /* Exibe os links quando o menu está ativo */
   .navbar-links.active {
     display: flex;
     animation: fadeSlide 0.3s ease forwards;
@@ -253,27 +249,45 @@
     }
   }
 
+  .navbar-links a {
+    font-size: 1.4rem;
+    padding: 10px 20px;
+  }
+
   .navbar-social {
     display: none;
   }
 }
 
-/* Telas muito pequenas (celulares compactos) */
+/* Celulares pequenos e compactos */
 @media (max-width: 480px) {
-  .logo-f1 {
-    font-size: 1.4rem;
-  }
-
-  .logo-dash {
-    font-size: 1rem;
+  .navbar-top {
+    padding: 22px 18px;
   }
 
   .car {
-    width: 45px;
+    width: 95px;
   }
 
-  .season-select {
-    font-size: 0.85rem;
-    padding: 4px 8px;
+  .logo-f1 {
+    font-size: 2.8rem;
+  }
+
+  .logo-dash {
+    font-size: 2.2rem;
+  }
+
+  .tire-trail {
+    height: 10px;
+    margin-top: 6px;
+  }
+
+  .menu-toggle {
+    font-size: 2.6rem;
+  }
+
+  .navbar-links a {
+    font-size: 1.6rem;
+    padding: 12px 25px;
   }
 }
