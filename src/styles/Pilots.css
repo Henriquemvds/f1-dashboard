@@ -1,3 +1,4 @@
+/* === SEÇÃO PRINCIPAL === */
 .pilots-section {
   padding: 40px 20px;
   text-align: center;
@@ -7,42 +8,52 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
+/* === TÍTULO === */
 .pilots-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 30px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
 }
 
+/* === GRADE DE PILOTOS === */
 .pilots-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   justify-content: center;
+  padding: 0 10px;
 }
 
+/* === CARD DO PILOTO === */
 .pilot-card {
   background-color: #111;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 12px;
+  padding: 18px;
   box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pilot-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(255, 0, 0, 0.4);
 }
 
-/* ---- Foto do piloto ---- */
+/* === FOTO DO PILOTO === */
 .pilot-photo-container {
   position: relative;
   display: inline-block;
+  margin-bottom: 10px;
 }
 
 .pilot-photo {
@@ -51,33 +62,139 @@
   object-fit: cover;
   border-radius: 10px;
   background-color: #111;
+  border: 2px solid #b80000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  transition: transform 0.3s ease;
 }
 
-/* ---- Número grande e brilhante ---- */
+.pilot-card:hover .pilot-photo {
+  transform: scale(1.05);
+}
+
+/* === NÚMERO DO PILOTO === */
 .pilot-number {
   position: absolute;
+  top: -10px;
   left: -20px;
   font-size: 1.8rem;
   font-weight: 800;
+  color: #ff3c00;
   text-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
-  text-transform: uppercase;
   z-index: 5;
   pointer-events: none;
 }
 
-/* ---- Info abaixo ---- */
+/* === INFORMAÇÕES DO PILOTO === */
 .pilot-info {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .pilot-name {
   font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
+  margin-bottom: 4px;
 }
 
 .pilot-team {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #bbb;
+}
+
+/* === RESPONSIVIDADE === */
+
+/* --- Telas médias (tablets) --- */
+@media (max-width: 992px) {
+  .pilots-title {
+    font-size: 1.8rem;
+  }
+
+  .pilot-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pilot-number {
+    font-size: 1.6rem;
+    left: -15px;
+  }
+
+  .pilot-card {
+    padding: 15px;
+  }
+
+  .pilots-grid {
+    gap: 20px;
+  }
+}
+
+/* --- Telas pequenas (celulares) --- */
+@media (max-width: 768px) {
+  .pilots-section {
+    padding: 30px 15px;
+  }
+
+  .pilots-title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .pilots-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+  }
+
+  .pilot-photo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .pilot-number {
+    font-size: 1.3rem;
+    left: -10px;
+  }
+
+  .pilot-name {
+    font-size: 1rem;
+  }
+
+  .pilot-team {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Telas muito pequenas (celulares compactos) --- */
+@media (max-width: 480px) {
+  .pilots-section {
+    padding: 25px 10px;
+  }
+
+  .pilots-title {
+    font-size: 1.4rem;
+  }
+
+  .pilots-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .pilot-photo {
+    width: 95px;
+    height: 95px;
+  }
+
+  .pilot-number {
+    font-size: 1.1rem;
+    top: -8px;
+    left: -8px;
+  }
+
+  .pilot-name {
+    font-size: 0.95rem;
+  }
+
+  .pilot-team {
+    font-size: 0.75rem;
+  }
 }
