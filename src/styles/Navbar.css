@@ -16,14 +16,13 @@
   align-items: center;
   padding: 15px 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  position: relative;
 }
 
 /* === LOGO E TEXTO === */
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   user-select: none;
 }
 
@@ -81,32 +80,47 @@
   height: 6px;
   background: repeating-linear-gradient(90deg, #222 0 6px, #111 6px 12px);
   border-radius: 3px;
-  position: relative;
-  overflow: hidden;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
   animation: tireMove 1s linear infinite;
 }
 
 @keyframes tireMove {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: 12px;
-  }
+  from { background-position-x: 0; }
+  to { background-position-x: 12px; }
 }
 
+/* === SELETOR DE TEMPORADA === */
+.navbar-season-select {
+  display: flex;
+  align-items: center;
+}
+
+.season-select {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #ff3c00;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}
+
+.season-select:hover {
+  background-color: #222;
+  border-color: #ff5e00;
+}
 
 /* === MENU INFERIOR === */
 .navbar-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
-  position: relative;
+  padding: 12px 40px;
 }
 
-/* === LINKS PRINCIPAIS === */
+/* === LINKS === */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -121,6 +135,7 @@
   text-decoration: none;
   color: white;
   font-weight: 500;
+  font-size: 1rem;
   transition: color 0.3s;
 }
 
@@ -133,12 +148,11 @@
 .navbar-social {
   display: flex;
   gap: 15px;
-  margin-left: 50px;
 }
 
 .navbar-social a {
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   transition: color 0.3s;
 }
 
@@ -152,7 +166,7 @@
   background: none;
   border: none;
   color: white;
-  font-size: 1.8rem;
+  font-size: 2rem;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -163,31 +177,38 @@
 
 /* === RESPONSIVIDADE === */
 
-/* Tablets e telas médias */
+/* --- Tablets e telas médias --- */
 @media (max-width: 992px) {
   .navbar-top {
-    padding: 18px 30px;
+    padding: 15px 25px;
+  }
+
+  .navbar-bottom {
+    padding: 10px 25px;
+  }
+
+  .navbar-links {
+    gap: 20px;
   }
 
   .car {
-    width: 70px;
+    width: 55px;
   }
 
   .logo-f1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .logo-dash {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
-
-  .navbar-links a {
-    font-size: 1.1rem;
+  .season-select {
+    font-size: 0.95rem;
   }
 }
 
-/* Celulares (normais e grandes) */
+/* --- Celulares (tamanho padrão) --- */
 @media (max-width: 768px) {
   .navbar-top {
     flex-direction: row;
@@ -196,25 +217,34 @@
   }
 
   .car {
-    width: 85px;
+    width: 70px;
   }
 
   .logo-f1 {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
   }
 
   .logo-dash {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 
   .tire-trail {
-    height: 8px;
-    box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+    height: 7px;
+  }
+
+  .season-select {
+    font-size: 1.1rem;
+    padding: 8px 14px;
+  }
+
+  .navbar-links a {
+    font-size: 1.2rem;
+    padding: 10px 0;
   }
 
   .menu-toggle {
     display: block;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 
   .navbar-bottom {
@@ -228,7 +258,7 @@
     flex-direction: column;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.95);
-    padding: 15px 0;
+    padding: 12px 0;
     text-align: left;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
@@ -239,19 +269,8 @@
   }
 
   @keyframes fadeSlide {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .navbar-links a {
-    font-size: 1.4rem;
-    padding: 10px 20px;
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .navbar-social {
@@ -259,35 +278,38 @@
   }
 }
 
-/* Celulares pequenos e compactos */
+/* --- Celulares compactos (muito pequenos) --- */
 @media (max-width: 480px) {
   .navbar-top {
-    padding: 22px 18px;
+    padding: 18px 18px;
   }
 
   .car {
-    width: 95px;
+    width: 80px;
   }
 
   .logo-f1 {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
   }
 
   .logo-dash {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
   }
 
   .tire-trail {
-    height: 10px;
-    margin-top: 6px;
+    height: 8px;
+  }
+
+  .season-select {
+    font-size: 1.2rem;
+    padding: 10px 16px;
+  }
+
+  .navbar-links a {
+    font-size: 1.3rem;
   }
 
   .menu-toggle {
     font-size: 2.6rem;
-  }
-
-  .navbar-links a {
-    font-size: 1.6rem;
-    padding: 12px 25px;
   }
 }
