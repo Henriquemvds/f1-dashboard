@@ -6,7 +6,7 @@ import car from "../images/car.png";
 export default function Navbar() {
   const [seasons, setSeasons] = useState([]);
   const [activeYear, setActiveYear] = useState(null);
-  const [nextRace, setNextRace] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Buscar temporadas
   useEffect(() => {
@@ -23,9 +23,9 @@ export default function Navbar() {
     fetchSeasons();
   }, []);
 
-
   return (
     <header className="navbar-header">
+      {/* ---------- TOPO ---------- */}
       <div className="navbar-top">
         <div className="navbar-logo">
           <img src={car} alt="F1 logo" className="car" />
@@ -37,8 +37,8 @@ export default function Navbar() {
             <div className="tire-trail"></div>
           </div>
         </div>
-  
 
+        {/* Seletor de temporada */}
         <div className="navbar-season-select">
           {seasons.length > 0 && (
             <select
@@ -48,16 +48,25 @@ export default function Navbar() {
             >
               {seasons.map((s) => (
                 <option key={s.year} value={s.year}>
-                  {s.year}
+                  Temporada {s.year}
                 </option>
               ))}
             </select>
           )}
         </div>
+
+        {/* Botão de menu mobile */}
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          ☰
+        </button>
       </div>
 
+      {/* ---------- INFERIOR ---------- */}
       <nav className="navbar-bottom">
-        <ul className="navbar-links">
+        <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
           <li><a href="#" className="active">Home</a></li>
           <li><a href="#">Pilotos</a></li>
           <li><a href="#">Equipes</a></li>

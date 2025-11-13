@@ -1,18 +1,25 @@
+/* === ESTRUTURA PRINCIPAL === */
 .navbar-header {
   background: linear-gradient(90deg, #000, #b80000);
   color: #fff;
   font-family: "Poppins", sans-serif;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  position: relative;
+  z-index: 1000;
 }
 
+/* === TOPO === */
 .navbar-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
 }
 
+/* === LOGO E TEXTO === */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -72,20 +79,12 @@
   margin-top: 4px;
   width: 100%;
   height: 6px;
-  background: repeating-linear-gradient(
-    90deg,
-    #222 0 6px,
-    #111 6px 12px
-  );
+  background: repeating-linear-gradient(90deg, #222 0 6px, #111 6px 12px);
   border-radius: 3px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-}
-
-/* Efeito de movimento sutil no hover */
-.navbar-logo .tire-trail {
-  animation: tireMove 0.6s linear infinite;
+  animation: tireMove 1s linear infinite;
 }
 
 @keyframes tireMove {
@@ -97,6 +96,7 @@
   }
 }
 
+/* === SELETOR DE TEMPORADA === */
 .navbar-season-select {
   display: flex;
   align-items: center;
@@ -119,19 +119,24 @@
   border-color: #ff5e00;
 }
 
+/* === MENU INFERIOR === */
 .navbar-bottom {
   display: flex;
   justify-content: space-between;
-  justify-content: right;
   align-items: center;
   padding: 10px 40px;
+  position: relative;
 }
 
+/* === LINKS PRINCIPAIS === */
 .navbar-links {
   list-style: none;
   display: flex;
   gap: 25px;
   align-items: center;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .navbar-links a {
@@ -146,6 +151,7 @@
   color: #ff3c00;
 }
 
+/* === REDES SOCIAIS === */
 .navbar-social {
   display: flex;
   gap: 15px;
@@ -160,4 +166,114 @@
 
 .navbar-social a:hover {
   color: #ff3c00;
+}
+
+/* === BOTÃO MENU MOBILE === */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:active {
+  transform: rotate(90deg);
+}
+
+/* === RESPONSIVIDADE === */
+
+/* Tablets e telas médias */
+@media (max-width: 992px) {
+  .navbar-top {
+    padding: 15px 25px;
+  }
+
+  .navbar-bottom {
+    padding: 10px 25px;
+  }
+
+  .navbar-links {
+    gap: 18px;
+  }
+
+  .season-select {
+    font-size: 0.9rem;
+  }
+
+  .car {
+    width: 50px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+  .navbar-top {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Oculta os links e redes sociais por padrão no mobile */
+  .navbar-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 10px 0;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Exibe os links quando o menu está ativo */
+  .navbar-links.active {
+    display: flex;
+    animation: fadeSlide 0.3s ease forwards;
+  }
+
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .navbar-social {
+    display: none;
+  }
+}
+
+/* Telas muito pequenas (celulares compactos) */
+@media (max-width: 480px) {
+  .logo-f1 {
+    font-size: 1.4rem;
+  }
+
+  .logo-dash {
+    font-size: 1rem;
+  }
+
+  .car {
+    width: 45px;
+  }
+
+  .season-select {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
 }
