@@ -64,3 +64,91 @@
   font-size: 0.95rem;
   opacity: 0.8;
 }
+
+/* ===========================
+      📲 RESPONSIVIDADE
+   =========================== */
+
+/* === Tablets (≤ 992px) === */
+@media (max-width: 992px) {
+  .about-content {
+    padding: 35px 30px;
+  }
+
+  .about-title {
+    font-size: 2.2rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .about-text {
+    font-size: 1.05rem;
+  }
+}
+
+/* === Celulares Normais (≤ 768px) === */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 45px 18px;
+  }
+
+  .about-content {
+    padding: 32px 26px;
+    border-radius: 16px;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.35rem;
+  }
+
+  .about-text {
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
+  .about-footer {
+    font-size: 0.9rem;
+  }
+}
+
+/* === Celulares Compactos (≤ 480px) === */
+@media (max-width: 480px) {
+  .about-container {
+    padding: 35px 14px;
+  }
+
+  .about-content {
+    padding: 28px 22px;
+    border-radius: 14px;
+  }
+
+  .about-title {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .about-subtitle {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .about-text {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .about-list li {
+    font-size: 0.95rem;
+  }
+
+  .about-footer {
+    font-size: 0.85rem;
+  }
+}
