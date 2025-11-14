@@ -15,12 +15,11 @@
 ==================================*/
 .hero {
   background-image: url("https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1400&q=60");
-  /* imagem otimizada */
   background-size: cover;
   background-position: center;
   padding: 120px 35px;
   border-radius: 18px;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.05); /* shadow leve */
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: flex-start;
 }
@@ -53,7 +52,7 @@
 }
 
 /* ================================
-   CARD (Compacto + leve)
+   CARD
 ==================================*/
 .card {
   background: rgba(255, 255, 255, 0.05);
@@ -104,12 +103,9 @@
   background: #d70000;
 }
 
-
 /* ================================
-   DESTAQUES (SPECIAL CARDS)
-   — Versão otimizada e suave —
+   SPECIAL CARDS
 ==================================*/
-
 .special-card {
   display: flex;
   align-items: center;
@@ -119,36 +115,25 @@
   overflow: hidden;
   padding: 8px;
   cursor: pointer;
-
-  /* Otimização */
   transition: transform 0.25s ease, border-color 0.25s ease;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .special-card:hover {
   transform: translateY(-3px);
-  border-color: #ff3c3c; /* mais leve que box-shadow */
+  border-color: #ff3c3c;
 }
 
-/* ================================
-   Imagem — versão mais leve
-==================================*/
-
 .special-card img {
-  width: 110px;       /* Compacto e proporcional */
+  width: 110px;
   height: 78px;
   border-radius: 12px;
   object-fit: cover;
   flex-shrink: 0;
   margin-right: 15px;
-
-  /* Suavidade no scroll */
   will-change: transform;
 }
 
-/* ================================
-   Conteúdo
-==================================*/
 .special-card div {
   padding: 6px 5px;
 }
@@ -163,4 +148,123 @@
   font-size: 0.9rem;
   opacity: 0.9;
   line-height: 1.45;
+}
+
+/* ==========================================================
+   📱 RESPONSIVIDADE
+   ======================
+   - Tablet (1024px)
+   - Celular Normal (768px)
+   - Celular Compacto (480px)
+==========================================================*/
+
+/* 📱 Tablet — até 1024px */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 100px 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+
+  .card img {
+    height: 165px;
+  }
+
+  .special-card img {
+    width: 100px;
+    height: 70px;
+  }
+}
+
+/* 📱 Celular Normal — até 768px */
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 90px 25px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.05rem;
+  }
+
+  .blog-grid h2 {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+  }
+
+  .special-card img {
+    width: 90px;
+    height: 64px;
+  }
+
+  .special-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .special-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 📱 Celular Compacto — até 480px */
+@media (max-width: 480px) {
+
+  .hero {
+    padding: 75px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .card img {
+    height: 130px;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+  }
+
+  .special-card {
+    padding: 6px;
+  }
+
+  .special-card img {
+    width: 80px;
+    height: 58px;
+    margin-right: 12px;
+  }
+
+  .special-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .special-card p {
+    font-size: 0.8rem;
+  }
 }
