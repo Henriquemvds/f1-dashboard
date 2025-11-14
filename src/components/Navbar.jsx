@@ -47,6 +47,11 @@ export default function Navbar() {
           <li><a href="#">Equipes</a></li>
           <li><a href="#">Resultados</a></li>
           <li><a href="#">Calendário</a></li>
+                <li>
+            <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>
+              Sobre
+            </NavLink>
+          </li>
         </ul>
 
         <div className="navbar-social">
