@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "../styles/Navbar.css";
 import car from "../images/car.png";
@@ -34,12 +34,16 @@ export default function Navbar() {
       {/* ---------- INFERIOR ---------- */}
       <nav className="navbar-bottom">
         <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
-          <Link className="active" to="/">
-          <li>Home</li>
-          </Link>
-          <Link to="/drivers">
-          <li>Pilotos</li>
-          </Link>
+          <li>
+            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
+              Início
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/drivers" className={({ isActive }) => isActive ? "active" : ""}>
+              Pilotos
+            </NavLink>
+          </li>
           <li><a href="#">Equipes</a></li>
           <li><a href="#">Resultados</a></li>
           <li><a href="#">Calendário</a></li>
