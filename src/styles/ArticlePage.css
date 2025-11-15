@@ -1,20 +1,20 @@
 /* Container principal */
 .article-container {
-  max-width: 900px;          /* página mais limpa e centralizada */
+  max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-
 .article-banner {
   width: 100%;
-  height: 280px;             /* altura reduzida e mais elegante */
-  object-fit: cover;         /* recorte inteligente */
-  border-radius: 14px;       /* cantos suaves */
-  margin: 20px 0 35px;       /* espaço superior e inferior */
+  height: 280px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin: 20px 0 35px;
   display: block;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25); /* sombra editorial */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
+
 /* Cabeçalho */
 .article-header h1 {
   font-size: 2.6rem;
@@ -109,4 +109,68 @@
 .related-card h4 {
   margin-top: 10px;
   font-size: 1rem;
+}
+
+
+
+/* -------------- 🔽 RESPONSIVIDADE 🔽 -------------- */
+
+
+/* 📱 Celular compacto (até 380px) */
+@media (max-width: 380px) {
+
+  .article-banner {
+    height: 180px;
+    border-radius: 10px;
+  }
+
+  .article-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .article-content {
+    font-size: 1rem;
+  }
+
+  .related-card {
+    width: 100%;
+  }
+}
+
+
+/* 📱 Celular padrão (até 480–600px) */
+@media (max-width: 600px) {
+
+  .article-banner {
+    height: 200px;
+  }
+
+  .article-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .article-content {
+    font-size: 1.05rem;
+  }
+
+  .related-card {
+    width: 48%;
+  }
+}
+
+
+/* 📱 Tablet (até 900px) */
+@media (max-width: 900px) {
+
+  .article-container {
+    max-width: 700px;
+  }
+
+  .article-banner {
+    height: 240px;
+  }
+
+  .related-card {
+    width: 45%;
+  }
 }
