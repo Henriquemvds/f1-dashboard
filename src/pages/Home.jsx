@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "../styles/Home.css";
 
 
@@ -74,6 +75,7 @@ export default function Home() {
         </section>
 
       </div>
+        <Footer />
     </div>
   );
 }
