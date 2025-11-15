@@ -11,7 +11,7 @@ export default function Footer() {
                 <div className="footer-col footer-about">
                     <h2 className="footer-title">F1™ Dash</h2>
                     <div className="footer-tire"></div>
-                    <p>Sua central de estatísticas, temporadas e informações da Fórmula 1.</p>
+                    <p>Sua central de estatísticas, temporadas e informações da Fórmula 1™.</p>
                 </div>
 
 
