@@ -1,5 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { posts } from "../data/posts";
+import { NavLink } from "react-router-dom";
 import "../styles/Home.css";
 
 
@@ -18,33 +20,26 @@ export default function Home() {
           </div>
         </section>
 
-   
-        <section class="blog-grid">
+
+        <section className="blog-grid">
           <h2>Últimos Artigos</h2>
 
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d" />
-            <h3>A evolução dos carros ao longo das décadas</h3>
-            <p>Descubra como o design aerodinâmico mudou o rumo da categoria.</p>
-            <button>Leia mais</button>
-          </div>
+          {posts.map(post => (
+            <div className="card" key={post.id}>
+              <img src={post.image} />
+              <h3>{post.title}</h3>
+              <p>{post.resume}</p>
 
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" />
-            <h3>Por dentro da aerodinâmica moderna</h3>
-            <p>Entenda os detalhes que fazem um carro voar baixo nas pistas.</p>
-            <button>Leia mais</button>
-          </div>
-
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e" />
-            <h3>Os bastidores de um final de semana da F1</h3>
-            <p>Telemetria, estratégia, pneus e muito mais.</p>
-            <button>Leia mais</button>
-          </div>
+              <NavLink to={`/article/${post.id}`} className="buttonMore">
+             
+                  Leia mais
+                
+              </NavLink>
+            </div>
+          ))}
         </section>
 
-       
+
         <section class="specials">
           <h2>Destaques</h2>
 
@@ -75,7 +70,7 @@ export default function Home() {
         </section>
 
       </div>
-        <Footer />
+      <Footer />
     </div>
   );
 }

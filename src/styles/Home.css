@@ -88,7 +88,7 @@
   margin-bottom: 12px;
 }
 
-.card button {
+.buttonMore {
   background: #ff0000;
   color: white;
   padding: 9px 16px;
@@ -97,9 +97,10 @@
   cursor: pointer;
   font-size: 0.9rem;
   transition: background 0.25s ease;
+
 }
 
-.card button:hover {
+.buttonMore:hover {
   background: #d70000;
 }
 
