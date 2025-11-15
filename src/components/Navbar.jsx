@@ -15,7 +15,7 @@ export default function Navbar() {
           <img src={car} alt="F1 logo" className="car" />
           <div className="logo-text">
             <h1>
-              <span className="logo-f1">F1</span>
+              <span className="logo-f1">F1™</span>
               <span className="logo-dash">Dashboard</span>
             </h1>
             <div className="tire-trail"></div>
@@ -54,10 +54,6 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <div className="navbar-social">
-          <a href="https://www.instagram.com/henrique.mv/"><i className="fab fa-instagram"></i></a>
-          <a href="https://github.com/Henriquemvds"><i className="fab fa-github"></i></a>
-        </div>
       </nav>
     </header>
   );

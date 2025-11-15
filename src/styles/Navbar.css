@@ -144,21 +144,6 @@
   color: #ff3c00;
 }
 
-/* === REDES SOCIAIS === */
-.navbar-social {
-  display: flex;
-  gap: 15px;
-}
-
-.navbar-social a {
-  color: #fff;
-  font-size: 1.3rem;
-  transition: color 0.3s;
-}
-
-.navbar-social a:hover {
-  color: #ff3c00;
-}
 
 /* === BOTÃO MENU MOBILE === */
 .menu-toggle {
@@ -273,9 +258,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .navbar-social {
-    display: none;
-  }
 }
 
 /* --- Celulares compactos (muito pequenos) --- */
