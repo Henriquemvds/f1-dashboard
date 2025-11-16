@@ -46,8 +46,10 @@ export default function Navbar() {
           </li>
           <li><a href="#">Equipes</a></li>
           <li><a href="#">Resultados</a></li>
-          <li><a href="#">Calendário</a></li>
-                <li>
+          <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
+            <li>Calendário</li>
+          </NavLink>
+          <li>
             <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>
               Sobre
             </NavLink>
