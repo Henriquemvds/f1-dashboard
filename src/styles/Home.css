@@ -14,7 +14,7 @@
    HERO (mais leve, sem lag)
 ==================================*/
 .hero {
-  background-image: url("https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1400&q=60");
+  background-image: url("../images/banner-formula1.jpg");
   background-size: cover;
   background-position: center;
   padding: 120px 35px;
@@ -28,6 +28,8 @@
   font-size: 2.6rem;
   margin: 0;
   letter-spacing: 1px;
+  color: #000;
+  text-shadow: 0 0 6px #ff1e00, 0 0 12px rgba(255, 0, 0, 0.8);
 }
 
 .hero-content p {
@@ -35,6 +37,8 @@
   margin-top: 10px;
   max-width: 480px;
   opacity: 0.9;
+  color: #000;
+  text-shadow: 0 0 6px #ff1e00, 0 0 12px rgba(255, 0, 0, 0.8);
 }
 
 /* ================================
