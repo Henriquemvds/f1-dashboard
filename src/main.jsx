@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import ArticlePage from "./pages/ArticlePage";
 import EventsCalendar from "./pages/EventsCalendar";
+import Results from "./pages/Results";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/article/:id",
     element: <ArticlePage />
+  },
+   {
+    path: "/results",
+    element: <Results />
   },
    {
     path: '/calendar',
