@@ -1,4 +1,4 @@
-/* GRID 2x2 */
+/* GRID 2x2 padrão (desktop) */
 .pilots-grid-2x2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -12,6 +12,7 @@
 .pilots-grid-2x2 .pilot-card:nth-child(even) {
     transform: translateY(30px);
 }
+
 /* Destacar a posição */
 .position-badge {
     position: absolute;
@@ -34,8 +35,72 @@
   color: #fff;
 }
 
-
-/* Ajuste necessário para o card */
 .pilot-card {
     position: relative;
+}
+
+
+
+/* -----------------------------------------------------
+   📲 TABLETS (481px – 768px)
+------------------------------------------------------*/
+@media (max-width: 768px) {
+    .pilots-grid-2x2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .pilots-grid-2x2 .pilot-card:nth-child(even) {
+        transform: translateY(20px);
+    }
+
+    .position-badge {
+        font-size: 1.4rem;
+        padding: 6px 12px;
+    }
+}
+
+
+
+/* -----------------------------------------------------
+   📱 CELULAR COMUM (361px – 480px)
+------------------------------------------------------*/
+@media (max-width: 480px) {
+    .pilots-grid-2x2 {
+        grid-template-columns: 1fr; /* uma coluna */
+        gap: 22px;
+    }
+
+    /* Escadinha mais suave */
+    .pilots-grid-2x2 .pilot-card:nth-child(even),
+    .pilots-grid-2x2 .pilot-card:nth-child(odd) {
+        transform: translateY(0px);
+    }
+
+    .position-badge {
+        font-size: 1.3rem;
+        padding: 5px 10px;
+    }
+}
+
+
+
+/* -----------------------------------------------------
+   📱📱 CELULAR COMPACTO (até 360px)
+------------------------------------------------------*/
+@media (max-width: 360px) {
+    .pilots-grid-2x2 {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .position-badge {
+        font-size: 1.1rem;
+        padding: 4px 8px;
+        border-width: 3px;
+    }
+
+    .pilot-gap {
+        font-size: 0.9rem;
+    }
 }
