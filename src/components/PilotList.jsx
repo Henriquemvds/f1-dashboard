@@ -22,7 +22,7 @@ export default function Pilots() {
 
   return (
     <div className="pilots-section">
-      <h2 className="pilots-title">Pilotos — Sessão atual</h2>
+      <h2 className="pilots-title">Pilotos — última Sessão</h2>
       <div className="pilots-grid">
         {pilots.map((p) => {
           // cor da equipe vinda da API, com fallback dourado
