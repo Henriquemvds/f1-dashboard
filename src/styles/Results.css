@@ -28,6 +28,13 @@
     box-shadow: 0 0 12px rgba(0,0,0,0.5);
 }
 
+.pilot-gap {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+
 /* Ajuste necessário para o card */
 .pilot-card {
     position: relative;
