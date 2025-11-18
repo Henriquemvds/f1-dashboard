@@ -5,15 +5,43 @@ import Footer from "../components/Footer";
 import "../styles/Pilots.css";
 import "../styles/Results.css";
 
+// =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
+function translateSessionType(type = "") {
+  const t = type.toLowerCase();
+
+  if (t.includes("practice")) {
+    const num = type.match(/\d+/)?.[0] || "";
+    return `Treino Livre ${num}`.trim();
+  }
+  if (t.includes("qualifying")) return "Classificação";
+  if (t.includes("race")) return "Corrida";
+
+  return type;
+}
+
+// =============== FORMATAÇÃO DE DATA EM PORTUGUÊS ===============
+function formatDatePT(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("pt-BR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 export default function Results() {
-  // agora é array: [{ year: 2025, groups: [{ key, location, country, sessions: [...] }, ...] }, ...]
-  const [sessionsByYear, setSessionsByYear] = useState([]);
+ const [sessionsByYear, setSessionsByYear] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [sessionResults, setSessionResults] = useState({});
   const [modalSessionKey, setModalSessionKey] = useState(null);
 
-  useEffect(() => {
+  // =====================================================
+  // CARREGAR SESSÕES
+  // =====================================================
+    useEffect(() => {
     async function load() {
       try {
         const res = await fetch("https://api.openf1.org/v1/sessions");
@@ -147,7 +175,7 @@ export default function Results() {
   if (loading) return <div className="pilots-section">Carregando...</div>;
 
   return (
-    <div>
+       <div>
       <Navbar />
 
       <div className="pilots-section">
@@ -175,7 +203,7 @@ export default function Results() {
                         onClick={() => openModal(s.session_key)}
                       >
                         <div className="session-header">
-                          <span className="session-name">{s.session_name}</span>
+                          <span className="session-name">{translateSessionType(s.session_name)}</span>
                           <button
                             className="session-toggle"
                             onClick={(ev) => {
@@ -188,7 +216,7 @@ export default function Results() {
                         </div>
 
                         <p className="session-meta">
-                          {s.circuit_short_name} • {s.session_type}
+                          {s.circuit_short_name} • {translateSessionType(s.session_type)}
                         </p>
 
                         <div className="session-bottom">
@@ -203,11 +231,11 @@ export default function Results() {
                                 : ""
                             }`}
                           >
-                            {s.session_type}
+                          {translateSessionType(s.session_type)}
                           </span>
 
                           <span className="session-date">
-                            {s.date_start?.slice(0, 10) || s.date_start}
+                            {formatDatePT(s.date_start)}
                           </span>
                         </div>
                       </div>
