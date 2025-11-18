@@ -72,7 +72,7 @@ export default function Home() {
 
 
   // ---- GERADOR DINÂMICO DE PÁGINAS ----
-  function getPageNumbers(currentPage, totalPages) {
+   function getPageNumbers(currentPage, totalPages) {
     const pages = [];
 
     // Caso total de páginas seja 10 ou menos → Mostra todas
