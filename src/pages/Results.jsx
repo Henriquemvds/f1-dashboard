@@ -7,7 +7,7 @@ import "../styles/Pilots.css";
 import "../styles/Results.css";
 import "../styles/Home.css"
 import ResultsPilots from "../components/ResultsPilots.jsx";
-import { getPageNumbers } from "../data/pagination.js";
+import { getPageNumbers } from "../data/Pagination.js";
 
 // =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
 function translateSessionType(type = "") {
