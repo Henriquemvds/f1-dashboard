@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Pilots.css";
 import "../styles/Results.css";
-import ResultsPilots from "../components/ResultsPilots.Jsx";
+import ResultsPilots from "../components/ResultsPilots.jsx";
 
 // =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
 function translateSessionType(type = "") {
