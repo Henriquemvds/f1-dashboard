@@ -1,6 +1,16 @@
 /* ============================================
    GRID 2x2 — MESMO VISUAL DAS PÁGINAS DE PILOTOS
 ============================================ */
+.list-results {
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0 18px 48px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+
+
 .pilots-grid-2x2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
