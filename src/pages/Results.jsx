@@ -6,132 +6,292 @@ import "../styles/Pilots.css";
 import "../styles/Results.css";
 
 export default function Results() {
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(true);
+  // agora é array: [{ year: 2025, groups: [{ key, location, country, sessions: [...] }, ...] }, ...]
+  const [sessionsByYear, setSessionsByYear] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        async function load() {
-            try {
-                const sessionRes = await fetch(
-                    "https://api.openf1.org/v1/session_result?session_key=latest"
-                );
-                const sessionData = await sessionRes.json();
+  const [sessionResults, setSessionResults] = useState({});
+  const [modalSessionKey, setModalSessionKey] = useState(null);
 
-                const driversRes = await fetch(
-                    "https://api.openf1.org/v1/drivers?session_key=latest"
-                );
-                const driversData = await driversRes.json();
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("https://api.openf1.org/v1/sessions");
+        const data = await res.json();
 
-                const driversMap = new Map(
-                    driversData.map((d) => [d.driver_number, d])
-                );
+        // Normaliza e enriquece cada sessão com campos úteis
+        const normalized = data.map((s) => {
+          // normaliza year
+          let year = s.year;
+          if (!year || isNaN(Number(String(year).trim()))) {
+            // tenta usar session_start (fallback)
+            const dt = s.session_start ? new Date(s.session_start) : null;
+            year = dt && !isNaN(dt.getTime()) ? dt.getFullYear() : "Desconhecido";
+          }
+          year = Number(String(year).trim());
 
-                const merged = sessionData
-                    .map((item) => ({
-                        ...item,
-                        driver: driversMap.get(item.driver_number) || null,
-                    }))
-                    .sort((a, b) => {
-                        const posA = a.position;
-                        const posB = b.position;
+          // normaliza session_start para Date (fallback para epoch 0 se inválido)
+          let sessionStartDate = null;
+          if (s.session_start) {
+            const d = new Date(s.session_start);
+            if (!isNaN(d.getTime())) sessionStartDate = d;
+          }
+          // se não tem, tenta date_start, date_end etc (opcional)
+          if (!sessionStartDate && s.date_start) {
+            const d2 = new Date(s.date_start);
+            if (!isNaN(d2.getTime())) sessionStartDate = d2;
+          }
+          // fallback
+          if (!sessionStartDate) sessionStartDate = new Date(0);
 
-                        // Se A é null e B não, A vai para o fim
-                        if (posA == null && posB != null) return 1;
+          return {
+            ...s,
+            __year: year,
+            __sessionStart: sessionStartDate,
+            __locationKey: `${s.location || s.circuit_short_name || "Desconhecido"}||${s.country_name || "Desconhecido"}`
+          };
+        });
 
-                        // Se B é null e A não, B vai para o fim
-                        if (posB == null && posA != null) return -1;
+        // Agrupa por ano usando Map para preservar ordem quando necessário
+        const mapByYear = new Map();
+        normalized.forEach((s) => {
+          const y = s.__year;
+          if (!mapByYear.has(y)) mapByYear.set(y, []);
+          mapByYear.get(y).push(s);
+        });
 
-                        // Se ambos são null, mantém ordem
-                        if (posA == null && posB == null) return 0;
+        // Converte para array de { year, sessions } e ordena anos (desc)
+        const yearsArray = Array.from(mapByYear.entries())
+          .map(([year, sessions]) => ({ year: Number(year), sessions }))
+          .sort((a, b) => b.year - a.year); // ano mais recente primeiro
 
-                        // Caso normal: ordena por posição
-                        return posA - posB;
-                    })
+        // Para cada ano, ordena sessões por data (sessionStart desc) e agrupa por location+country
+        const result = yearsArray.map(({ year, sessions }) => {
+          // ordena por data da sessão (mais recente primeiro)
+          const sortedSessions = sessions.sort((a, b) => b.__sessionStart - a.__sessionStart);
 
-                setResults(merged);
-            } catch (e) {
-                console.error(e);
-            } finally {
-                setLoading(false);
+          // agrupa por location+country preservando a ordem (Map mantém inserção)
+          const groupsMap = new Map();
+          sortedSessions.forEach((s) => {
+            const key = s.__locationKey;
+            if (!groupsMap.has(key)) {
+              const [location, country] = key.split("||");
+              groupsMap.set(key, { key, location, country, sessions: [] });
             }
-        }
+            groupsMap.get(key).sessions.push(s);
+          });
 
-        load();
-    }, []);
+          // transforma em array na ordem de inserção
+          const groups = Array.from(groupsMap.values());
 
-    if (loading) return <div className="pilots-section">Carregando...</div>;
+          return { year, groups };
+        });
 
-    return (
-        <div>
-            <Navbar />
-            <div className="pilots-section">
-                <h2 className="pilots-title">Resultados — Últimas Sessão</h2>
+        setSessionsByYear(result);
+      } catch (err) {
+        console.error("Erro carregando sessões:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-                <div className="pilots-grid pilots-grid-2x2">
-                    {results.map((r, i) => {
-                        const d = r.driver;
-                        const color = d?.team_colour
-                            ? `#${d.team_colour.replace("#", "")}`
-                            : "#FFD700";
+    load();
+  }, []);
 
-                        const imageSrc =
-                            d?.headshot_url && d.headshot_url !== "null"
-                                ? d.headshot_url.replace("/1col/", "/3col/")
-                                : NotRegistered;
+  // Carrega resultados da sessão e drivers (guardado em sessionResults)
+  async function loadSessionResults(session_key) {
+    if (!session_key) return;
+    if (sessionResults[session_key]) return; // já carregado
 
-                        // --- GAP INCREMENTAL ---
-                        let gapIncremental = null;
+    try {
+      const sessionRes = await fetch(
+        `https://api.openf1.org/v1/session_result?session_key=${session_key}`
+      );
+      const sessionData = await sessionRes.json();
 
-                        if (i === 0) {
-                            // Líder não tem intervalo
-                            gapIncremental = "—";
-                        } else {
-                            const atual = results[i].gap_to_leader;
-                            const anterior = results[i - 1].gap_to_leader;
+      const driversRes = await fetch(
+        `https://api.openf1.org/v1/drivers?session_key=${session_key}`
+      );
+      const driversData = await driversRes.json();
 
-                            if (typeof atual === "number" && typeof anterior === "number") {
-                                gapIncremental = `+${(atual - anterior).toFixed(3)}s`;
-                            } else {
-                                // Pode acontecer com pilotos 1 lap, DNF, etc.
-                                gapIncremental = results[i].gap_to_leader;
-                            }
-                        }
+      const driversMap = new Map(driversData.map((d) => [d.driver_number, d]));
 
-                        return (
-                            <div key={i} className="pilot-card">
-                                <div className="position-badge" style={{ borderColor: color }}>
-                                    {r.position || "—"}
-                                </div>
+      const merged = sessionData
+        .map((item) => ({ ...item, driver: driversMap.get(item.driver_number) || null }))
+        .sort((a, b) => {
+          const posA = a.position;
+          const posB = b.position;
+          if (posA == null && posB != null) return 1;
+          if (posB == null && posA != null) return -1;
+          if (posA == null && posB == null) return 0;
+          return posA - posB;
+        });
 
-                                <div className="pilot-photo-container">
-                                    <span
-                                        className="pilot-number"
-                                        style={{
-                                            color,
-                                            textShadow: `0 0 10px ${color}, 0 0 18px ${color}`,
-                                        }}
-                                    >
-                                        {d?.driver_number}
-                                    </span>
+      setSessionResults((prev) => ({ ...prev, [session_key]: merged }));
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
-                                    <img
-                                        src={imageSrc}
-                                        alt={d?.full_name || "Piloto não registrado"}
-                                        className="pilot-photo"
-                                    />
-                                </div>
+  function openModal(session_key) {
+    loadSessionResults(session_key);
+    setModalSessionKey(session_key);
+    document.body.style.overflow = "hidden";
+  }
 
-                                <p className="pilot-name">{d?.full_name || "Desconhecido"}</p>
-                                <p className="pilot-team">{d?.team_name || "—"}</p>
-                                <p className="pilot-gap">
-                                    <strong>Intervalo:</strong> {gapIncremental || "Fora da corrida"}
-                                </p>
-                            </div>
-                        );
-                    })}
+  function closeModal() {
+    setModalSessionKey(null);
+    document.body.style.overflow = "";
+  }
+
+  if (loading) return <div className="pilots-section">Carregando...</div>;
+
+  return (
+    <div>
+      <Navbar />
+
+      <div className="pilots-section">
+        <h2 className="pilots-title">Sessões por Ano</h2>
+
+        {sessionsByYear.map(({ year, groups }) => (
+          <section className="year-block" key={year}>
+            <h3 className="year-title">{year}</h3>
+
+            <div className="year-groups">
+              {groups.map((g) => (
+                <div className="sessions-row" key={g.key}>
+                  <div className="sessions-row-header">
+                    <div className="row-location">
+                      <strong>{g.location}</strong>
+                      <span className="row-country"> — {g.country}</span>
+                    </div>
+                  </div>
+
+                  <div className="sessions-list">
+                    {g.sessions.map((s) => (
+                      <div
+                        key={s.session_key}
+                        className="session-card"
+                        onClick={() => openModal(s.session_key)}
+                      >
+                        <div className="session-header">
+                          <span className="session-name">{s.session_name}</span>
+                          <button
+                            className="session-toggle"
+                            onClick={(ev) => {
+                              ev.stopPropagation();
+                              openModal(s.session_key);
+                            }}
+                          >
+                            Abrir
+                          </button>
+                        </div>
+
+                        <p className="session-meta">
+                          {s.circuit_short_name} • {s.session_type}
+                        </p>
+
+                        <div className="session-bottom">
+                          <span
+                            className={`badge ${
+                              s.session_type?.toLowerCase().includes("race")
+                                ? "badge-race"
+                                : s.session_type?.toLowerCase().includes("quali")
+                                ? "badge-quali"
+                                : s.session_type?.toLowerCase().includes("sprint")
+                                ? "badge-sprint"
+                                : ""
+                            }`}
+                          >
+                            {s.session_type}
+                          </span>
+
+                          <span className="session-date">
+                            {s.date_start?.slice(0, 10) || s.date_start}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              ))}
             </div>
-            <Footer />
+          </section>
+        ))}
+      </div>
+
+      <Footer />
+
+      {modalSessionKey && sessionResults[modalSessionKey] && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal-window">
+            <button className="modal-close" onClick={closeModal} aria-label="Fechar">
+              ×
+            </button>
+
+            <div className="modal-header">
+              <h3>Resultados — Sessão {modalSessionKey}</h3>
+            </div>
+
+            <div className="modal-body">
+              <div className="pilots-grid pilots-grid-2x2">
+                {sessionResults[modalSessionKey].map((r, i) => {
+                  const d = r.driver;
+                  const color = d?.team_colour ? `#${d.team_colour.replace("#", "")}` : "#FFD700";
+
+                  const imageSrc =
+                    d?.headshot_url && d.headshot_url !== "null"
+                      ? d.headshot_url.replace("/1col/", "/3col/")
+                      : NotRegistered;
+
+                  let gapIncremental = "—";
+                  if (i > 0) {
+                    const atual = r.gap_to_leader;
+                    const anterior = sessionResults[modalSessionKey][i - 1].gap_to_leader;
+                    if (typeof atual === "number" && typeof anterior === "number") {
+                      gapIncremental = `+${(atual - anterior).toFixed(3)}s`;
+                    } else {
+                      gapIncremental = r.gap_to_leader;
+                    }
+                  }
+
+                  return (
+                    <div key={i} className="pilot-card">
+                      <div className="position-badge" style={{ borderColor: color }}>
+                        {r.position || "—"}
+                      </div>
+
+                      <div className="pilot-photo-container">
+                        <span
+                          className="pilot-number"
+                          style={{
+                            color,
+                            textShadow: `0 0 10px ${color}, 0 0 18px ${color}`,
+                          }}
+                        >
+                          {d?.driver_number}
+                        </span>
+
+                        <img
+                          src={imageSrc}
+                          alt={d?.full_name || "Piloto não registrado"}
+                          className="pilot-photo"
+                        />
+                      </div>
+
+                      <p className="pilot-name">{d?.full_name || "Desconhecido"}</p>
+                      <p className="pilot-team">{d?.team_name || "—"}</p>
+                      <p className="pilot-gap">
+                        <strong>Intervalo:</strong> {gapIncremental || "Fora da corrida"}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 }
