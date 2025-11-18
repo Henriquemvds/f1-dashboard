@@ -39,68 +39,241 @@
     position: relative;
 }
 
+/* ================================
+   SESSIONS & GROUPS (layout por linha quando mesmo lugar)
+================================ */
+/* Container do ano */
+.year-block {
+  margin: 40px 0;
+}
 
+/* Título do ano */
+.year-title {
+  font-size: 2rem;
+  margin: 0 0 18px;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 6px #000, 0 0 8px rgba(0,0,0,0.35);
+}
 
-/* -----------------------------------------------------
-   📲 TABLETS (481px – 768px)
-------------------------------------------------------*/
+/* Cada grupo (mesmo local) - engloba header + lista */
+.sessions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+/* Cabeçalho da linha com local + país */
+.sessions-row-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-location {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.row-country {
+  color: #ddd;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+/* Lista de sessões em linha (usa todo o espaço disponível) */
+.sessions-list {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;             /* permite quebra de linha quando necessário */
+  justify-content: flex-start; /* alinha à esquerda, não centraliza */
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* CARD DE SESSÃO - tamanho natural, não centralizado */
+.session-card {
+  flex: 0 0 auto;               /* não estica, mantém largura natural */
+  min-width: 260px;
+  max-width: 360px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.22s ease, border-color 0.22s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* aumenta espaço entre sessões (você pediu mais largas) */
+.session-card {
+  padding: 18px 20px;
+  min-width: 300px;
+  max-width: 420px;
+}
+
+/* hover */
+.session-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff3c3c;
+}
+
+/* HEADER DA SESSÃO */
+.session-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.session-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.session-meta {
+  color: #ccc;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* bottom row do card */
+.session-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.session-date {
+  color: #ddd;
+  font-size: 13px;
+}
+
+/* badges */
+.badge {
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.badge-race { background: #ff1a1a; color: #fff; }
+.badge-quali { background: #00d0ff; color: #000; }
+.badge-sprint { background: #ffd500; color: #000; }
+
+/* toggle/abrir */
+.session-toggle {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.session-toggle:hover {
+  border-color: #ff1a1a;
+}
+
+/* detalhes internos (usado se quiser exibir algo inline) */
+.session-details {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+}
+
+/* ================================
+   MODAL (mantém os pilotos inalterados dentro do modal)
+================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 28px;
+}
+
+/* Janela do modal */
+.modal-window {
+  width: min(1100px, 96%);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  border-radius: 14px;
+  background: #0b0b0b; /* dark modal */
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 22px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+/* Botão fechar */
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.modal-close:hover {
+  color: #ff3c3c;
+}
+
+/* Cabeçalho modal */
+.modal-header h3 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: 20px;
+}
+
+/* Corpo do modal */
+.modal-body {
+  margin-top: 12px;
+}
+
+/* OBS: .pilots-grid e .pilot-card estão intactos - use seu CSS existente para controlar aparência */
+/* Adiciona um espaçamento extra entre as linhas internas para visual confortável */
+.modal-body .pilots-grid {
+  gap: 16px;
+}
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+@media (max-width: 1024px) {
+  .session-card { min-width: 260px; max-width: 360px; padding: 16px; }
+  .modal-window { width: min(920px, 96%); }
+}
+
 @media (max-width: 768px) {
-    .pilots-grid-2x2 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .pilots-grid-2x2 .pilot-card:nth-child(even) {
-        transform: translateY(20px);
-    }
-
-    .position-badge {
-        font-size: 1.4rem;
-        padding: 6px 12px;
-    }
+  .sessions-list { gap: 10px; }
+  .session-card { min-width: 220px; max-width: 320px; padding: 14px; }
+  .year-title { font-size: 1.6rem; }
+  .modal-window { width: 96%; padding: 14px; }
 }
 
-
-
-/* -----------------------------------------------------
-   📱 CELULAR COMUM (361px – 480px)
-------------------------------------------------------*/
 @media (max-width: 480px) {
-    .pilots-grid-2x2 {
-        grid-template-columns: 1fr; /* uma coluna */
-        gap: 22px;
-    }
-
-    /* Escadinha mais suave */
-    .pilots-grid-2x2 .pilot-card:nth-child(even),
-    .pilots-grid-2x2 .pilot-card:nth-child(odd) {
-        transform: translateY(0px);
-    }
-
-    .position-badge {
-        font-size: 1.3rem;
-        padding: 5px 10px;
-    }
-}
-
-
-
-/* -----------------------------------------------------
-   📱📱 CELULAR COMPACTO (até 360px)
-------------------------------------------------------*/
-@media (max-width: 360px) {
-    .pilots-grid-2x2 {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .position-badge {
-        font-size: 1.1rem;
-        padding: 4px 8px;
-        border-width: 3px;
-    }
-
-    .pilot-gap {
-        font-size: 0.9rem;
-    }
+  .session-card { width: 100%; min-width: auto; max-width: 100%; }
+  .sessions-list { justify-content: center; }
+  .sessions-row-header { display: none; } /* economiza espaço em mobile */
 }
