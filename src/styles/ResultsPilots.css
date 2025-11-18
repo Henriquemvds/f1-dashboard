@@ -1,0 +1,58 @@
+/* ============================================
+   MODAL — RESULTADOS (Pilotos)
+============================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 28px;
+}
+
+.modal-window {
+  width: min(1100px, 96%);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  border-radius: 14px;
+  background: #0b0b0b;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 22px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.modal-close:hover {
+  color: #ff3c3c;
+}
+
+.modal-header h3 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.modal-body {
+  margin-top: 12px;
+}
+
+.modal-body .pilots-grid {
+  gap: 16px;
+}
