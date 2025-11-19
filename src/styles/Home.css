@@ -155,31 +155,6 @@
   line-height: 1.45;
 }
 
-.pagination {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.pagination button {
-  padding: 8px 14px;
-  border: none;
-  background: #e6e6e6;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.pagination button:hover {
-  background: #ccc;
-}
-
-.pagination button.active {
-  background: #ff1a1a;
-  color: white;
-}
-
 
 /* ==========================================================
    📱 RESPONSIVIDADE
