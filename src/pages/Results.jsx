@@ -39,6 +39,10 @@ export default function Results() {
     const [sessionsByYear, setSessionsByYear] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // FILTROS NOVOS
+    const [selectedYears, setSelectedYears] = useState([]);
+    const [selectedTypes, setSelectedTypes] = useState([]);
+
     const [sessionResults, setSessionResults] = useState({});
     const [modalSessionKey, setModalSessionKey] = useState(null);
 
@@ -130,36 +134,57 @@ export default function Results() {
     // FILTRO GLOBAL
     // =====================================================
     function filterSessions(arr) {
-        if (!search.trim()) return arr;
-
-        const q = search.toLowerCase();
+        const q = search.toLowerCase().trim();
 
         return arr
+            .filter(({ year }) => {
+                if (selectedYears.length === 0) return true;
+                return selectedYears.includes(year);
+            })
             .map(({ year, groups }) => {
                 const filteredGroups = groups
-                    .map((g) => {
-                        const fs = g.sessions.filter((s) => {
-                            return (
+                    .map((g) => ({
+                        ...g,
+                        sessions: g.sessions.filter((s) => {
+                            const matchesSearch =
+                                !q ||
                                 s.session_name.toLowerCase().includes(q) ||
                                 s.session_type.toLowerCase().includes(q) ||
                                 (s.circuit_short_name || "").toLowerCase().includes(q) ||
                                 (s.location || "").toLowerCase().includes(q) ||
-                                (s.country_name || "").toLowerCase().includes(q)
-                            );
-                        });
-                        return { ...g, sessions: fs };
-                    })
+                                (s.country_name || "").toLowerCase().includes(q);
+
+                            const matchesType =
+                                selectedTypes.length === 0 ||
+                                selectedTypes.some(t => s.session_type.toLowerCase().includes(t));
+
+                            return matchesSearch && matchesType;
+                        })
+                    }))
                     .filter((g) => g.sessions.length > 0);
 
                 return { year, groups: filteredGroups };
             })
             .filter((y) => y.groups.length > 0);
+
+
     }
 
     // =====================================================
     // PAGINAÇÃO (30 por página)
     // =====================================================
     const filtered = filterSessions(sessionsByYear);
+
+    // Lista de anos disponíveis
+    const allYears = sessionsByYear.map(y => y.year);
+
+    // Lista de tipos de sessão disponíveis
+    const sessionTypeOptions = [
+        { id: "race", label: "Corrida" },
+        { id: "qualifying", label: "Classificação" },
+        { id: "practice", label: "Treino Livre" }
+    ];
+
 
     const flatSessions = filtered.flatMap((y) =>
         y.groups.flatMap((g) => g.sessions)
@@ -241,10 +266,10 @@ export default function Results() {
         }
     }
 
-  
-  useEffect(() => {
-    localStorage.setItem("lastPage", currentPage);
-  }, [currentPage]);
+
+    useEffect(() => {
+        localStorage.setItem("lastPage", currentPage);
+    }, [currentPage]);
 
 
     function openModal(session_key) {
@@ -266,9 +291,8 @@ export default function Results() {
 
             <div className="list-results">
                 <h2 className="pilots-title">Sessões por Ano</h2>
-
-                {/* CAMPO DE PESQUISA */}
                 <div className="events-controls">
+                    {/* PESQUISA */}
                     <input
                         type="search"
                         placeholder="Pesquisar sessão, circuito, país..."
@@ -278,6 +302,48 @@ export default function Results() {
                             setCurrentPage(1);
                         }}
                     />
+
+                    {/* FILTRO POR ANO */}
+                    <select
+                     
+                        className="filter-years"
+                        value={selectedYears}
+                        onChange={(e) => {
+                            const options = [...e.target.options]
+                                .filter(o => o.selected)
+                                .map(o => Number(o.value));
+
+                            setSelectedYears(options);
+                            setCurrentPage(1);
+                        }}
+                    >
+                        {allYears.map((y) => (
+                            <option value={y} key={y}>{y}</option>
+                        ))}
+                    </select>
+
+                    {/* FILTRO POR TIPO */}
+                    <div className="filter-types">
+                        {sessionTypeOptions.map((t) => (
+                            <label key={t.id}>
+                                <input
+                                    type="checkbox"
+                                    value={t.id}
+                                    checked={selectedTypes.includes(t.id)}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        setSelectedTypes(prev =>
+                                            prev.includes(value)
+                                                ? prev.filter(x => x !== value)
+                                                : [...prev, value]
+                                        );
+                                        setCurrentPage(1);
+                                    }}
+                                />
+                                {t.label}
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 {paginatedStructure.map(({ year, groups }) => (
@@ -327,18 +393,18 @@ export default function Results() {
                                                 <div className="session-bottom">
                                                     <span
                                                         className={`badge ${s.session_type
+                                                            ?.toLowerCase()
+                                                            .includes("race")
+                                                            ? "badge-race"
+                                                            : s.session_type
                                                                 ?.toLowerCase()
-                                                                .includes("race")
-                                                                ? "badge-race"
+                                                                .includes("quali")
+                                                                ? "badge-quali"
                                                                 : s.session_type
                                                                     ?.toLowerCase()
-                                                                    .includes("quali")
-                                                                    ? "badge-quali"
-                                                                    : s.session_type
-                                                                        ?.toLowerCase()
-                                                                        .includes("sprint")
-                                                                        ? "badge-sprint"
-                                                                        : ""
+                                                                    .includes("sprint")
+                                                                    ? "badge-sprint"
+                                                                    : ""
                                                             }`}
                                                     >
                                                         {translateSessionType(s.session_type)}
