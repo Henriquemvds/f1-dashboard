@@ -1,58 +1,78 @@
 /* ============================================
-   MODAL — RESULTADOS (Pilotos)
+   MODAL — RESULTADOS (Pilotos) — Versão melhorada
 ============================================ */
 
+/* Fundo escurecido com leve desfoque */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(2, 6, 12, 0.65);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   padding: 28px;
+  animation: fadeIn 0.25s ease-out;
 }
 
+/* Janela do modal */
 .modal-window {
-  width: min(1100px, 96%);
+  width: min(900px, 96%);
   max-height: calc(100vh - 80px);
   overflow: auto;
-  border-radius: 14px;
-  background: #0b0b0b;
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 26px 24px;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 10px 40px rgba(0, 0, 0, 0.75),
+    0 20px 60px rgba(0, 0, 0, 0.55);
+  animation: slideUp 0.28s ease-out;
 }
 
+/* Botão de fechar */
 .modal-close {
   position: absolute;
-  right: 12px;
-  top: 10px;
-  background: none;
-  border: none;
-  font-size: 28px;
+  right: 14px;
+  top: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 26px;
   line-height: 1;
   color: #fff;
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: 0.2s ease;
 }
 
 .modal-close:hover {
-  color: #ff3c3c;
+  background: rgba(255, 75, 75, 0.15);
+  border-color: rgba(255, 75, 75, 0.4);
+  color: #ff4f4f;
 }
 
+/* Cabeçalho */
 .modal-header h3 {
-  margin: 0 0 6px;
+  margin: 0 0 10px;
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 10px;
 }
 
+/* Corpo */
 .modal-body {
-  margin-top: 12px;
+  margin-top: 18px;
 }
 
+/* Grid dos pilotos */
 .modal-body .pilots-grid {
-  gap: 16px;
+  display: grid;
+  gap: 18px;
 }
