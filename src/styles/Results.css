@@ -9,6 +9,62 @@
   color: #fff;
 }
 
+.filter-years {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #111;
+    color: #fff;
+    min-width: 20px;
+    outline: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.filter-years:focus {
+    border-color: #e10600;
+    box-shadow: 0 0 4px #e10600;
+}
+
+/* Estilo das opções */
+.filter-years option {
+    padding: 6px;
+    background: #111;
+    color: #fff;
+}
+
+/* ====== CHECKBOXES DE TIPO ====== */
+
+.filter-types {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-types label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.filter-types label:hover {
+    border-color: #e10600;
+}
+
+.filter-types input[type="checkbox"] {
+    accent-color: #e10600; /* Cor oficial F1 */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
 
 
 .pilots-grid-2x2 {
