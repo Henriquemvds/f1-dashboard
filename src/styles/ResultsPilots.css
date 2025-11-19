@@ -1,6 +1,6 @@
-/* ============================================
-   MODAL — RESULTADOS (Pilotos) — Versão melhorada
-============================================ */
+/* ===============================
+   MODAL — RESPONSIVO
+================================*/
 
 /* Fundo escurecido com leve desfoque */
 .modal-overlay {
@@ -30,6 +30,7 @@
     0 10px 40px rgba(0, 0, 0, 0.75),
     0 20px 60px rgba(0, 0, 0, 0.55);
   animation: slideUp 0.28s ease-out;
+  backdrop-filter: blur(6px);
 }
 
 /* Botão de fechar */
@@ -75,4 +76,85 @@
 .modal-body .pilots-grid {
   display: grid;
   gap: 18px;
+}
+
+/* ===============================
+   BREAKPOINTS RESPONSIVOS
+================================*/
+
+/* 🟡 Tablet (481px–900px) */
+@media (max-width: 900px) {
+  .modal-window {
+    width: 92%;
+    padding: 22px 20px;
+  }
+
+  .modal-header h3 {
+    font-size: 20px;
+  }
+
+  .modal-body .pilots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+/* 🔵 Celular normal (361px–480px) */
+@media (max-width: 480px) {
+
+  .modal-window {
+    width: 95%;
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  .modal-close {
+    font-size: 22px;
+    padding: 4px 10px;
+  }
+
+  .modal-header h3 {
+    font-size: 18px;
+  }
+
+  .modal-body .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* 🔴 Celular compacto (≤ 360px) */
+@media (max-width: 360px) {
+
+  .modal-window {
+    width: 96%;
+    padding: 16px 14px;
+  }
+
+  .modal-close {
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    padding: 4px 8px;
+  }
+
+  .modal-header h3 {
+    font-size: 17px;
+  }
+
+  .modal-body .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Animações (opcional, melhora UX) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(25px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
