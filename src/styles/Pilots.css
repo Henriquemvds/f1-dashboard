@@ -117,7 +117,7 @@
 
   .pilot-number {
     font-size: 2rem;
-    left: -18px;
+    left: 120px;
   }
 
   .pilot-card {
@@ -152,7 +152,7 @@
 
   .pilot-number {
     font-size: 2rem;
-    left: -15px;
+   left: 120px;
   }
 
   .pilot-name {
@@ -190,7 +190,7 @@
   .pilot-number {
     font-size: 2.5rem;
     top: -12px;
-    left: -12px;
+    left: 180px;
   }
 
   .pilot-name {
