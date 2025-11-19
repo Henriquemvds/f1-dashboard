@@ -44,7 +44,6 @@ export default function Navbar() {
               Pilotos
             </NavLink>
           </li>
-          <li><a href="#">Equipes</a></li>
           <NavLink to="/results" className={({ isActive }) => isActive ? "active" : ""}>
             <li>Resultados</li>
           </NavLink>
