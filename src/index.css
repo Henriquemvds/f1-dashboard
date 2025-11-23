@@ -1,3 +1,6 @@
+/* --------------------------- */
+/* CONFIGURAÇÕES GERAIS        */
+/* --------------------------- */
 body {
   background: linear-gradient(135deg, #8b0000 0%, #000000 70%);
   color: white;
@@ -8,15 +11,18 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit; /* opcional: mantém a cor do texto */
+  color: inherit;
 }
 
+/* --------------------------- */
+/* PAGINAÇÃO                   */
+/* --------------------------- */
 .pagination {
   display: flex;
   gap: 8px;
   justify-content: center;
   margin-top: 30px;
-  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+  flex-wrap: wrap;
 }
 
 .pagination button {
@@ -38,6 +44,9 @@ a {
   color: white;
 }
 
+/* --------------------------- */
+/* LOADING SCREEN (F1 STYLE)   */
+/* --------------------------- */
 #loading-screen {
   position: fixed;
   inset: 0;
@@ -51,6 +60,7 @@ a {
   font-family: sans-serif;
 }
 
+/* Luzes padrão (desktop/tablets grandes) */
 .lights {
   display: flex;
   gap: 12px;
@@ -66,6 +76,7 @@ a {
   animation: lightAnim 1.2s infinite;
 }
 
+/* Animação */
 .lights span:nth-child(1) { animation-delay: 0s; }
 .lights span:nth-child(2) { animation-delay: 0.15s; }
 .lights span:nth-child(3) { animation-delay: 0.30s; }
@@ -77,6 +88,59 @@ a {
   50%  { background:#ff0000; box-shadow:0 0 10px #ff1a1a; }
   100% { background:#300000; box-shadow:none; }
 }
+
+/* --------------------------- */
+/*  RESPONSIVIDADE LOADER      */
+/* --------------------------- */
+
+/* 🔽 Tablet (<= 900px) */
+@media (max-width: 900px) {
+  .lights {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .lights span {
+    width: 20px;
+    height: 20px;
+  }
+  #loading-screen p {
+    font-size: 0.9rem;
+  }
+}
+
+/* 🔽 Celular Normal (<= 600px) */
+@media (max-width: 600px) {
+  .lights {
+    gap: 9px;
+    margin-bottom: 14px;
+  }
+  .lights span {
+    width: 18px;
+    height: 18px;
+  }
+  #loading-screen p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 🔽 Celular Compacto (<= 380px) */
+@media (max-width: 380px) {
+  .lights {
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+  .lights span {
+    width: 15px;
+    height: 15px;
+  }
+  #loading-screen p {
+    font-size: 0.78rem;
+  }
+}
+
+/* --------------------------- */
+/* RESPONSIVIDADE PAGINAÇÃO    */
+/* --------------------------- */
 
 /* 📱 Celular Compacto (<= 360px) */
 @media (max-width: 360px) {
