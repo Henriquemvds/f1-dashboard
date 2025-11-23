@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Pilots.css";
 import NotRegistered from "../images/pilot-not-registered.png";
-import Loading  from "./Loading";
+import Loading from "./Loading";
+import { Link } from "react-router-dom"; // se estiver usando React Router
 
 export default function Pilots() {
   const [pilots, setPilots] = useState([]);
@@ -24,14 +25,21 @@ export default function Pilots() {
     fetchPilots();
   }, []);
 
-    if (loading) return <Loading />;
+  if (loading) return <Loading />;
+
+  // Função para gerar URL amigável
+  function slugify(name) {
+    return name
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]/g, "");
+  }
 
   return (
     <div className="pilots-section">
-      <h2 className="pilots-title">Pilotos — última Sessão</h2>
+      <h2 className="pilots-title">Pilotos — Última Sessão</h2>
       <div className="pilots-grid">
         {pilots.map((p) => {
-          // cor da equipe vinda da API, com fallback dourado
           const color = p.team_colour
             ? `#${p.team_colour.replace("#", "")}`
             : "#FFD700";
@@ -53,14 +61,25 @@ export default function Pilots() {
                 >
                   {p.driver_number}
                 </span>
+
                 <img
                   src={imageSrc}
                   alt={p.full_name || "Piloto não registrado"}
                   className="pilot-photo"
                 />
               </div>
+
               <p className="pilot-name">{p.full_name}</p>
               <p className="pilot-team">{p.team_name}</p>
+
+              {/* 🔥 Botão de biografia */}
+              <Link
+                to={`/driver/${slugify(p.full_name)}`}
+                className="bio-button"
+              >
+                Ver biografia
+              </Link>
+
             </div>
           );
         })}

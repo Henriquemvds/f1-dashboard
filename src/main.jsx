@@ -7,6 +7,7 @@ import About from './pages/About'
 import ArticlePage from "./pages/ArticlePage";
 import EventsCalendar from "./pages/EventsCalendar";
 import Results from "./pages/Results";
+import BioDriver from "./pages/BioDriver";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: '/drivers',
     element: <Dashboard />
+  },
+  {
+    path: '/driver/:name',
+    element: <BioDriver />
   },
   {
     path: "/article/:id",
