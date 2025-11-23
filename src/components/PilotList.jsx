@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Pilots.css";
 import NotRegistered from "../images/pilot-not-registered.png";
+import Loading  from "./Loading";
 
 export default function Pilots() {
   const [pilots, setPilots] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPilots() {
@@ -15,10 +17,14 @@ export default function Pilots() {
         setPilots(res.data);
       } catch (err) {
         console.error("Erro ao buscar pilotos:", err);
+      } finally {
+        setLoading(false);
       }
     }
     fetchPilots();
   }, []);
+
+    if (loading) return <Loading />;
 
   return (
     <div className="pilots-section">

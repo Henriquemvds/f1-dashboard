@@ -5,6 +5,7 @@ import "../styles/ArticlePage.css";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import { doc, getDoc, collection, query, orderBy, limit, getDocs } from "firebase/firestore";
+import Loading from "../components/Loading";
 
 export default function ArticlePage() {
   const { id } = useParams();
@@ -49,7 +50,7 @@ export default function ArticlePage() {
     loadPost();
   }, [id]);
 
-  if (loading) return <p>Carregando artigo...</p>;
+  if (loading) return <Loading />;
   if (!post) return <h1>Artigo não encontrado</h1>;
 
   return (

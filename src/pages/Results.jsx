@@ -8,6 +8,7 @@ import "../styles/Results.css";
 import "../styles/Home.css"
 import ResultsPilots from "../components/ResultsPilots.jsx";
 import { getPageNumbers } from "../data/Pagination.js";
+import Loading  from "../components/Loading";
 
 // =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
 function translateSessionType(type = "") {
@@ -283,7 +284,7 @@ export default function Results() {
         document.body.style.overflow = "";
     }
 
-    if (loading) return <div className="list-results">Carregando...</div>;
+    if (loading) return <Loading />
 
     return (
         <div>
