@@ -5,20 +5,20 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import Loading from "../components/Loading";
+import "../styles/BioDriver.css";
 
 export default function BioDriver() {
 
-  const { id } = useParams(); // aqui vem "max-verstappen"
+  const { id } = useParams(); 
   const [pilot, setPilot] = useState(null);
   const [loading, setLoading] = useState(true);
 
   async function fetchPilot(docId) {
     try {
-      const ref = doc(db, "pilots", docId);  // usa o ID exatamente como está no Firebase
+      const ref = doc(db, "pilots", docId);
       const snap = await getDoc(ref);
 
-      if (snap.exists()) return snap.data();
-      else return null;
+      return snap.exists() ? snap.data() : null;
 
     } catch (err) {
       console.error("Erro ao buscar piloto:", err);
@@ -35,10 +35,7 @@ export default function BioDriver() {
     load();
   }, [id]);
 
-  if (loading)
-    return (
-     <Loading />
-    );
+  if (loading) return <Loading />;
 
   if (!pilot)
     return (
@@ -51,9 +48,93 @@ export default function BioDriver() {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
 
-      <div className="max-w-4xl mx-auto p-6">
-        <h1 className="text-3xl font-bold">{pilot.full_name}</h1>
-        <p>{pilot.biography?.long || "Biografia indisponível."}</p>
+      <div className="card pilot-card">
+
+        {/* FOTO */}
+        <div className="portrait">
+          <img
+            src={pilot.portrait_image}
+            alt={`Retrato de ${pilot.full_name}`}
+          />
+        </div>
+
+        {/* INFORMAÇÕES */}
+        <div>
+
+          <div className="header">
+            <div className="full-name">{pilot.full_name}</div>
+            <div className="team-name">{pilot.team_name}</div>
+
+            <div className="meta-row">
+              <div className="meta-item">
+                <strong>Número: </strong> {pilot.driver_number}
+              </div>
+
+              <div className="meta-item">
+                <strong>País:</strong> {pilot.country}
+              </div>
+
+              <div className="meta-item">
+                <strong>Nasc.:</strong>{" "}
+                {pilot.birthdate?.toDate
+                  ? pilot.birthdate.toDate().toLocaleDateString("pt-BR")
+                  : pilot.birthdate}
+              </div>
+
+              <div className="meta-item">
+                <strong>Natural de:</strong> {pilot.birthplace}
+              </div>
+            </div>
+          </div>
+
+          {/* BIO */}
+          <div className="section">
+            <h3>Biografia</h3>
+            <p>{pilot.biography}</p>
+          </div>
+
+          {/* CARREIRA */}
+          <div className="section">
+            <h3>Carreira</h3>
+
+            <div className="grid-stats">
+              <div className="stat">
+                <div className="value">{pilot.championships}</div>
+                <div className="label">Mundiais</div>
+              </div>
+
+              <div className="stat">
+                <div className="value">{pilot.height}</div>
+                <div className="label">Altura</div>
+              </div>
+
+              <div className="stat">
+                <div className="value">{pilot.weight}</div>
+                <div className="label">Peso</div>
+              </div>
+            </div>
+          </div>
+
+          {/* REDES SOCIAIS */}
+          <div className="section">
+            <h3>Redes Sociais</h3>
+
+            <div className="socials">
+              {pilot["social-instagram"] && (
+                <a href={pilot["social-instagram"]} target="_blank">Instagram</a>
+              )}
+
+              {pilot["social-twitter"] && (
+                <a href={pilot["social-twitter"]} target="_blank">Twitter</a>
+              )}
+
+              {pilot["social-website"] && (
+                <a href={pilot["social-website"]} target="_blank">Site Oficial</a>
+              )}
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <Footer />
