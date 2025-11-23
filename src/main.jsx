@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <Dashboard />
   },
   {
-    path: '/driver/:name',
+    path: '/driver/:id',
     element: <BioDriver />
   },
   {
