@@ -74,7 +74,7 @@ export default function Pilots() {
 
               {/* 🔥 Botão de biografia */}
               <Link
-                to={`/driver/${slugify(p.full_name)}`}
+                to={`/driver/${slugify(p.full_name.toLowerCase().replace(/ /g, "-"))}`}
                 className="bio-button"
               >
                 Ver biografia
