@@ -14,7 +14,6 @@ function getEventEndDate(event) {
 }
 
 
-
 export default function EventsCalendar() {
     const [query, setQuery] = useState("");
     const [onlySprint, setOnlySprint] = useState(false);
