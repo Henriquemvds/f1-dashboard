@@ -102,6 +102,25 @@
   color: #bbb;
 }
 
+.bio-button {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 6px 12px;
+  background: #ff1a1a;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.2s;
+  text-align: center;
+}
+
+.bio-button:hover {
+  background: #cc0000;
+  transform: scale(1.05);
+}
+
+
 /* === RESPONSIVIDADE === */
 
 /* --- Telas médias (tablets) --- */
