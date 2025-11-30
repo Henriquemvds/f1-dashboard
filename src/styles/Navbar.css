@@ -18,7 +18,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* === LOGO E TEXTO === */
+/* === LOGO === */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-/* ---- Rastro de pneu ---- */
+/* === Tire Trail === */
 .tire-trail {
   margin-top: 4px;
   width: 100%;
@@ -121,10 +121,13 @@
   color: #ff3c00;
 }
 
+/* ========================================================================= */
+/* ===========================  DROPDOWN  ================================== */
+/* ========================================================================= */
 
-/* ===== DROPDOWN BASE ===== */
 .dropdown {
   position: relative;
+  width: auto;
 }
 
 .dropdown-toggle {
@@ -146,11 +149,10 @@
   color: #ff3c00;
 }
 
-/* ===== SETA ANIMADA ===== */
 .arrow {
   display: inline-block;
-  transition: transform 0.3s ease;
-  font-size: 0.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 0.55rem;
   transform-origin: center;
 }
 
@@ -159,7 +161,6 @@
   color: #ff3c00;
 }
 
-/* ===== DROPDOWN MENU ===== */
 .dropdown-menu {
   list-style: none;
   position: absolute;
@@ -170,7 +171,7 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   padding: 10px 0;
-  min-width: 140px;
+  min-width: 160px;
   display: none;
   flex-direction: column;
   gap: 4px;
@@ -196,19 +197,15 @@
   background: rgba(255, 60, 0, 0.1);
 }
 
-/* Animação */
 @keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* === BOTÃO MENU MOBILE === */
+/* ========================================================================= */
+/* =======================  BOTÃO MENU MOBILE ============================== */
+/* ========================================================================= */
+
 .menu-toggle {
   display: none;
   background: none;
@@ -223,9 +220,11 @@
   transform: rotate(90deg);
 }
 
-/* === RESPONSIVIDADE === */
+/* ========================================================================= */
+/* =========================== RESPONSIVIDADE =============================== */
+/* ========================================================================= */
 
-/* --- Tablets e telas médias --- */
+/* --- Tablets --- */
 @media (max-width: 992px) {
   .navbar-top {
     padding: 15px 25px;
@@ -243,46 +242,29 @@
     width: 55px;
   }
 
-  .logo-f1 {
-    font-size: 1.6rem;
-  }
-
-  .logo-dash {
-    font-size: 1.1rem;
-  }
-
-  .season-select {
-    font-size: 0.95rem;
-  }
+  .logo-f1 { font-size: 1.6rem; }
+  .logo-dash { font-size: 1.1rem; }
 }
 
-/* --- Celulares (tamanho padrão) --- */
+/* --- Mobile --- */
 @media (max-width: 768px) {
+
   .navbar-top {
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 25px;
   }
 
-  .car {
-    width: 70px;
-  }
+  .car { width: 70px; }
+  .logo-f1 { font-size: 2.1rem; }
+  .logo-dash { font-size: 1.4rem; }
 
-  .logo-f1 {
-    font-size: 2.1rem;
-  }
+  .tire-trail { height: 7px; }
 
-  .logo-dash {
-    font-size: 1.4rem;
-  }
-
-  .tire-trail {
-    height: 7px;
-  }
-
-  .navbar-links a {
+  /* AQUI CORRIGIMOS — links e dropdown ficam IGUAIS */
+  .navbar-links a,
+  .dropdown-toggle {
     font-size: 1.2rem;
-    padding: 10px 0;
   }
 
   .menu-toggle {
@@ -316,35 +298,31 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  .dropdown-menu {
+    border: none;
+    padding-left: 20px;
+  }
+
+  .dropdown-menu li a {
+    padding: 6px 0;
+    font-size: 1.15rem; /* Ajustado para ficar proporcional */
+  }
 }
 
-/* --- Celulares compactos (muito pequenos) --- */
+/* --- Celulares muito pequenos --- */
 @media (max-width: 480px) {
-  .navbar-top {
-    padding: 18px 18px;
-  }
+  .navbar-top { padding: 18px 18px; }
 
-  .car {
-    width: 80px;
-  }
+  .car { width: 80px; }
+  .logo-f1 { font-size: 2.3rem; }
+  .logo-dash { font-size: 1.5rem; }
 
-  .logo-f1 {
-    font-size: 2.3rem;
-  }
+  .tire-trail { height: 8px; }
 
-  .logo-dash {
-    font-size: 1.5rem;
-  }
-
-  .tire-trail {
-    height: 8px;
-  }
-
-  .navbar-links a {
+  .navbar-links a,
+  .dropdown-toggle {
     font-size: 1.3rem;
   }
 
-  .menu-toggle {
-    font-size: 2.6rem;
-  }
+  .menu-toggle { font-size: 2.6rem; }
 }
