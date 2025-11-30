@@ -89,29 +89,6 @@
   to { background-position-x: 12px; }
 }
 
-/* === SELETOR DE TEMPORADA === */
-.navbar-season-select {
-  display: flex;
-  align-items: center;
-}
-
-.season-select {
-  background-color: #111;
-  color: #fff;
-  border: 1px solid #ff3c00;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-  transition: 0.3s;
-}
-
-.season-select:hover {
-  background-color: #222;
-  border-color: #ff5e00;
-}
-
 /* === MENU INFERIOR === */
 .navbar-bottom {
   display: flex;
@@ -144,6 +121,92 @@
   color: #ff3c00;
 }
 
+
+/* ===== DROPDOWN BASE ===== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+  font-family: inherit;
+}
+
+.dropdown-toggle:hover {
+  color: #ff3c00;
+}
+
+/* ===== SETA ANIMADA ===== */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 0.5rem;
+  transform-origin: center;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+  color: #ff3c00;
+}
+
+/* ===== DROPDOWN MENU ===== */
+.dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px 0;
+  min-width: 140px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  animation: dropdownFade 0.25s ease forwards;
+  z-index: 2000;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+.dropdown-menu li a {
+  padding: 8px 14px;
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  color: #ff3c00;
+  background: rgba(255, 60, 0, 0.1);
+}
+
+/* Animação */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* === BOTÃO MENU MOBILE === */
 .menu-toggle {
@@ -217,11 +280,6 @@
     height: 7px;
   }
 
-  .season-select {
-    font-size: 1.1rem;
-    padding: 8px 14px;
-  }
-
   .navbar-links a {
     font-size: 1.2rem;
     padding: 10px 0;
@@ -280,11 +338,6 @@
 
   .tire-trail {
     height: 8px;
-  }
-
-  .season-select {
-    font-size: 1.2rem;
-    padding: 10px 16px;
   }
 
   .navbar-links a {
