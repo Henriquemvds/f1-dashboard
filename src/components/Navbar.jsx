@@ -5,7 +5,7 @@ import "../styles/Navbar.css";
 import car from "../images/car.png";
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+ const [menuOpen, setMenuOpen] = useState({ main: false, topics: false });
 
   return (
     <header className="navbar-header">
@@ -25,7 +25,7 @@ export default function Navbar() {
         {/* Botão de menu mobile */}
         <button
           className="menu-toggle"
-          onClick={() => setMenuOpen((prev) => !prev)}
+        onClick={() => setMenuOpen(prev => ({ ...prev, main: !prev.main }))}
         >
           ☰
         </button>
@@ -33,11 +33,26 @@ export default function Navbar() {
 
       {/* ---------- INFERIOR ---------- */}
       <nav className="navbar-bottom">
-        <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
+       <ul className={`navbar-links ${menuOpen.main ? "active" : ""}`}>
           <li>
             <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
               Início
             </NavLink>
+          </li>
+          <li className="dropdown">
+            <button
+              className="dropdown-toggle"
+              onClick={() => setMenuOpen(prev => ({ ...prev, topics: !prev?.topics }))}
+            >
+              Tópicos
+              <span className={`arrow ${menuOpen?.topics ? "open" : ""}`}>▼</span>
+            </button>
+
+            <ul className={`dropdown-menu ${menuOpen?.topics ? "show" : ""}`}>
+              <li><NavLink to="/teams">Equipes</NavLink></li>
+              <li><NavLink to="/tracks">Circuitos</NavLink></li>
+              <li><NavLink to="/history">História</NavLink></li>
+            </ul>
           </li>
           <li>
             <NavLink to="/drivers" className={({ isActive }) => isActive ? "active" : ""}>
