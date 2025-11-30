@@ -18,7 +18,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* === LOGO E TEXTO === */
+/* === LOGO === */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-/* ---- Rastro de pneu ---- */
+/* === Tire Trail === */
 .tire-trail {
   margin-top: 4px;
   width: 100%;
@@ -87,29 +87,6 @@
 @keyframes tireMove {
   from { background-position-x: 0; }
   to { background-position-x: 12px; }
-}
-
-/* === SELETOR DE TEMPORADA === */
-.navbar-season-select {
-  display: flex;
-  align-items: center;
-}
-
-.season-select {
-  background-color: #111;
-  color: #fff;
-  border: 1px solid #ff3c00;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-  transition: 0.3s;
-}
-
-.season-select:hover {
-  background-color: #222;
-  border-color: #ff5e00;
 }
 
 /* === MENU INFERIOR === */
@@ -144,8 +121,91 @@
   color: #ff3c00;
 }
 
+/* ========================================================================= */
+/* ===========================  DROPDOWN  ================================== */
+/* ========================================================================= */
 
-/* === BOTÃO MENU MOBILE === */
+.dropdown {
+  position: relative;
+  width: auto;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+  font-family: inherit;
+}
+
+.dropdown-toggle:hover {
+  color: #ff3c00;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 0.55rem;
+  transform-origin: center;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+  color: #ff3c00;
+}
+
+.dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px;
+  min-width: 160px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  animation: dropdownFade 0.25s ease forwards;
+  z-index: 2000;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+.dropdown-menu li a {
+  padding: 8px 14px;
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  color: #ff3c00;
+  background: rgba(255, 60, 0, 0.1);
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================================================= */
+/* =======================  BOTÃO MENU MOBILE ============================== */
+/* ========================================================================= */
+
 .menu-toggle {
   display: none;
   background: none;
@@ -160,9 +220,72 @@
   transform: rotate(90deg);
 }
 
-/* === RESPONSIVIDADE === */
+/* =========================
+   BOTÃO DO DROPDOWN (aparência de link)
+   ========================= */
 
-/* --- Tablets e telas médias --- */
+.dropdown-btn-item {
+  /* remove aparência nativa */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* rótulo à esquerda, contador à direita */
+  gap: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+  outline: none;
+  line-height: 1.2;
+}
+
+/* Make it non-buttonlike: no border-radius, no box-shadow by default */
+.dropdown-btn-item::-moz-focus-inner { border: 0; padding: 0; }
+
+/* Hover = mesma cor do link */
+.dropdown-btn-item:hover {
+  color: #ff3c00;
+  background: rgba(255, 60, 0, 0.06);
+}
+
+/* Focus visível e sutil (acessibilidade) */
+.dropdown-btn-item:focus {
+  box-shadow: inset 0 0 0 2px rgba(255, 60, 0, 0.12);
+  border-radius: 4px;
+  color: #ff3c00;
+}
+
+/* Active (pressionado) */
+.dropdown-btn-item:active {
+  transform: translateY(0.5px);
+}
+
+/* contador com opacidade, igual ao que usou */
+.dropdown-btn-count {
+  opacity: 0.65;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+/* label com truncamento se precisar */
+.dropdown-btn-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================================================= */
+/* =========================== RESPONSIVIDADE =============================== */
+/* ========================================================================= */
+
+/* --- Tablets --- */
 @media (max-width: 992px) {
   .navbar-top {
     padding: 15px 25px;
@@ -180,51 +303,29 @@
     width: 55px;
   }
 
-  .logo-f1 {
-    font-size: 1.6rem;
-  }
-
-  .logo-dash {
-    font-size: 1.1rem;
-  }
-
-  .season-select {
-    font-size: 0.95rem;
-  }
+  .logo-f1 { font-size: 1.6rem; }
+  .logo-dash { font-size: 1.1rem; }
 }
 
-/* --- Celulares (tamanho padrão) --- */
+/* --- Mobile --- */
 @media (max-width: 768px) {
+
   .navbar-top {
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 25px;
   }
 
-  .car {
-    width: 70px;
-  }
+  .car { width: 70px; }
+  .logo-f1 { font-size: 2.1rem; }
+  .logo-dash { font-size: 1.4rem; }
 
-  .logo-f1 {
-    font-size: 2.1rem;
-  }
+  .tire-trail { height: 7px; }
 
-  .logo-dash {
-    font-size: 1.4rem;
-  }
-
-  .tire-trail {
-    height: 7px;
-  }
-
-  .season-select {
-    font-size: 1.1rem;
-    padding: 8px 14px;
-  }
-
-  .navbar-links a {
+  /* AQUI CORRIGIMOS — links e dropdown ficam IGUAIS */
+  .navbar-links a,
+  .dropdown-toggle {
     font-size: 1.2rem;
-    padding: 10px 0;
   }
 
   .menu-toggle {
@@ -258,40 +359,31 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  .dropdown-menu {
+    border: none;
+    padding-left: 20px;
+  }
+
+  .dropdown-menu li a {
+    padding: 6px 0;
+    font-size: 1.15rem; /* Ajustado para ficar proporcional */
+  }
 }
 
-/* --- Celulares compactos (muito pequenos) --- */
+/* --- Celulares muito pequenos --- */
 @media (max-width: 480px) {
-  .navbar-top {
-    padding: 18px 18px;
-  }
+  .navbar-top { padding: 18px 18px; }
 
-  .car {
-    width: 80px;
-  }
+  .car { width: 80px; }
+  .logo-f1 { font-size: 2.3rem; }
+  .logo-dash { font-size: 1.5rem; }
 
-  .logo-f1 {
-    font-size: 2.3rem;
-  }
+  .tire-trail { height: 8px; }
 
-  .logo-dash {
-    font-size: 1.5rem;
-  }
-
-  .tire-trail {
-    height: 8px;
-  }
-
-  .season-select {
-    font-size: 1.2rem;
-    padding: 10px 16px;
-  }
-
-  .navbar-links a {
+  .navbar-links a,
+  .dropdown-toggle {
     font-size: 1.3rem;
   }
 
-  .menu-toggle {
-    font-size: 2.6rem;
-  }
+  .menu-toggle { font-size: 2.6rem; }
 }

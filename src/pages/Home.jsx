@@ -6,69 +6,71 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import "../styles/Home.css";
+import { SelectTopics } from "../data/SelectTopics.js";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const [specials, setSpecials] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(() => {
     const saved = localStorage.getItem("lastPage");
     return saved ? Number(saved) : 1;
   });
-  const postsPerPage = 15; // ⬅️ mínimo 1 por página
 
-  useEffect(() => {
-    async function loadPosts() {
-      try {
-        const postsRef = collection(db, "posts");
-        const snapshot = await getDocs(postsRef);
+  const postsPerPage = 15;
 
-        const loaded = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+useEffect(() => {
+  async function loadPosts() {
+    const ref = collection(db, "posts");
+    const snapshot = await getDocs(ref);
 
-        setPosts(loaded);
-      } catch (error) {
-        console.error("❌ Erro ao carregar posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    const loaded = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-    async function loadSpecials() {
-      try {
-        const postsRef = collection(db, "posts");
-        const q = query(postsRef, orderBy("date", "desc"), limit(10));
-        const snapshot = await getDocs(q);
+    setPosts(loaded);
+    setFiltered(loaded);
+    setLoading(false);
+  }
 
-        const tenPosts = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+  async function loadSpecials() {
+    const ref = collection(db, "posts");
+    const q = query(ref, orderBy("date", "desc"), limit(10));
+    const snapshot = await getDocs(q);
 
-        const shuffled = tenPosts.sort(() => Math.random() - 0.5);
-        const topRandom = shuffled.slice(0, 3);
-        setSpecials(topRandom);
+    const ten = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-      } catch (error) {
-        console.error("❌ Erro ao carregar posts especiais:", error);
-      }
-    }
+    const shuffled = ten.sort(() => Math.random() - 0.5);
+    setSpecials(shuffled.slice(0, 3));
+  }
 
-    loadPosts();
-    loadSpecials();
-  }, []);
+  loadPosts();
+  loadSpecials();
+}, []); // <-- sem dependências
 
-  // -------------------------------------------
-  // 🔥 PAGINAÇÃO REAL
-  // -------------------------------------------
+useEffect(() => {
+  const unsubscribe = SelectTopics.on("filter-by-tag", (tagName) => {
+    const f = posts.filter(p => p.tags?.includes(tagName));
+    setFiltered(f);
+    setCurrentPage(1);
+  });
+
+  return () => unsubscribe(); // remove ao desmontar
+}, [posts]);
+
+
   const indexLast = currentPage * postsPerPage;
   const indexFirst = indexLast - postsPerPage;
-  const currentPosts = posts.slice(indexFirst, indexLast);
+  const currentPosts = filtered.slice(indexFirst, indexLast);
 
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const totalPages = Math.ceil(filtered.length / postsPerPage);
 
 
   useEffect(() => {
