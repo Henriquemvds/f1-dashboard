@@ -2,7 +2,7 @@
    LAYOUT DESKTOP (PADRÃO)
 =========================== */
 
-.card{
+.details-pilot {
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.5);
@@ -119,7 +119,7 @@
    TABLET (≤ 1024px)
 =========================== */
 @media (max-width: 1024px) {
-  .card {
+  .details-pilot {
     grid-template-columns: 180px 1fr;
     gap: 16px;
   }
@@ -139,7 +139,7 @@
    CELULAR NORMAL (≤ 768px)
 =========================== */
 @media (max-width: 768px) {
-  .card {
+  .details-pilot {
     grid-template-columns: 1fr;
     text-align: center;
   }
@@ -176,7 +176,7 @@
    CELULAR COMPACTO (≤ 480px)
 =========================== */
 @media (max-width: 480px) {
-  .card {
+  .details-pilot {
     padding: 15px;
   }
 
