@@ -3,13 +3,22 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
 import "../styles/Navbar.css";
 import car from "../images/car.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { SelectTopics } from "../data/SelectTopics.js";
 
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState({ main: false, topics: false });
   const [tagsCount, setTagsCount] = useState([]);
+
+  const location = useLocation();
+
+const handleHomeClick = (e) => {
+  if (location.pathname === "/") {
+    e.preventDefault(); // impede a navegação padrão do NavLink
+    window.location.reload(); // recarrega a página
+  }
+};
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -79,7 +88,7 @@ export default function Navbar() {
         <ul className={`navbar-links ${menuOpen.main ? "active" : ""}`}>
 
           <li>
-            <NavLink to="/">Início</NavLink>
+            <NavLink to="/" onClick={handleHomeClick}>Início</NavLink>
           </li>
 
           {/* Dropdown */}
@@ -95,7 +104,7 @@ export default function Navbar() {
             </button>
 
             <ul className={`dropdown-menu ${menuOpen.topics ? "show" : ""}`}>
-              <span className="dropdown-btn-label">Todos os Tópicos</span>
+              <span className="dropdown-btn-label">Tópicos Mais Publicados</span>
               {tagsCount.length === 0 ? (
                 <li style={{ padding: "8px 14px", opacity: 0.7 }}>Carregando...</li>
               ) : (

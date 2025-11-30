@@ -22,48 +22,48 @@ export default function Home() {
 
   const postsPerPage = 15;
 
-useEffect(() => {
-  async function loadPosts() {
-    const ref = collection(db, "posts");
-    const snapshot = await getDocs(ref);
+  useEffect(() => {
+    async function loadPosts() {
+      const ref = collection(db, "posts");
+      const snapshot = await getDocs(ref);
 
-    const loaded = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+      const loaded = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-    setPosts(loaded);
-    setFiltered(loaded);
-    setLoading(false);
-  }
+      setPosts(loaded);
+      setFiltered(loaded);
+      setLoading(false);
+    }
 
-  async function loadSpecials() {
-    const ref = collection(db, "posts");
-    const q = query(ref, orderBy("date", "desc"), limit(10));
-    const snapshot = await getDocs(q);
+    async function loadSpecials() {
+      const ref = collection(db, "posts");
+      const q = query(ref, orderBy("date", "desc"), limit(10));
+      const snapshot = await getDocs(q);
 
-    const ten = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+      const ten = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-    const shuffled = ten.sort(() => Math.random() - 0.5);
-    setSpecials(shuffled.slice(0, 3));
-  }
+      const shuffled = ten.sort(() => Math.random() - 0.5);
+      setSpecials(shuffled.slice(0, 3));
+    }
 
-  loadPosts();
-  loadSpecials();
-}, []); // <-- sem dependências
+    loadPosts();
+    loadSpecials();
+  }, []); // <-- sem dependências
 
-useEffect(() => {
-  const unsubscribe = SelectTopics.on("filter-by-tag", (tagName) => {
-    const f = posts.filter(p => p.tags?.includes(tagName));
-    setFiltered(f);
-    setCurrentPage(1);
-  });
+  useEffect(() => {
+    const unsubscribe = SelectTopics.on("filter-by-tag", (tagName) => {
+      const f = posts.filter(p => p.tags?.includes(tagName));
+      setFiltered(f);
+      setCurrentPage(1);
+    });
 
-  return () => unsubscribe(); // remove ao desmontar
-}, [posts]);
+    return () => unsubscribe(); // remove ao desmontar
+  }, [posts]);
 
 
   const indexLast = currentPage * postsPerPage;
@@ -107,6 +107,21 @@ useEffect(() => {
                   <img src={post.banner} alt={post.title} />
                   <h3>{post.title}</h3>
                   <p>{post.subtitle}</p>
+                  <div className="article-tags">
+                    {post.tags?.map(tag => (
+                      <span key={tag} className="tag">{tag}</span>
+                    ))}
+                  </div>
+
+                  <p className="article-meta">
+                    Publicado em{" "}
+                    <span>
+                      {post.date && post.date.toDate
+                        ? post.date.toDate().toLocaleDateString("pt-BR")
+                        : "Sem data definida"}
+                    </span>{" "}
+                    • Por <span>{post.author || "Henrique Santos"}</span>
+                  </p>
                   <button className="buttonMore">
                     Leia mais
                   </button>
