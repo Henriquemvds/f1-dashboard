@@ -1,15 +1,6 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../styles/Footer.css";
-
-const location = useLocation();
-
-const handleHomeClick = (e) => {
-  if (location.pathname === "/") {
-    e.preventDefault(); // impede a navegação padrão do NavLink
-    window.location.reload(); // recarrega a página
-  }
-};
 
 export default function Footer() {
     return (
@@ -27,7 +18,7 @@ export default function Footer() {
                     <h3>Links rápidos</h3>
                     <ul>
                         <li>
-                            <NavLink to="/" onClick={handleHomeClick} className={({ isActive }) => isActive ? "active" : ""}>
+                            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
                                 Início
                             </NavLink>
                         </li>
