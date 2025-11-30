@@ -170,7 +170,7 @@
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
-  padding: 10px 0;
+  padding: 10px;
   min-width: 160px;
   display: none;
   flex-direction: column;
@@ -218,6 +218,67 @@
 
 .menu-toggle:active {
   transform: rotate(90deg);
+}
+
+/* =========================
+   BOTÃO DO DROPDOWN (aparência de link)
+   ========================= */
+
+.dropdown-btn-item {
+  /* remove aparência nativa */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* rótulo à esquerda, contador à direita */
+  gap: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+  outline: none;
+  line-height: 1.2;
+}
+
+/* Make it non-buttonlike: no border-radius, no box-shadow by default */
+.dropdown-btn-item::-moz-focus-inner { border: 0; padding: 0; }
+
+/* Hover = mesma cor do link */
+.dropdown-btn-item:hover {
+  color: #ff3c00;
+  background: rgba(255, 60, 0, 0.06);
+}
+
+/* Focus visível e sutil (acessibilidade) */
+.dropdown-btn-item:focus {
+  box-shadow: inset 0 0 0 2px rgba(255, 60, 0, 0.12);
+  border-radius: 4px;
+  color: #ff3c00;
+}
+
+/* Active (pressionado) */
+.dropdown-btn-item:active {
+  transform: translateY(0.5px);
+}
+
+/* contador com opacidade, igual ao que usou */
+.dropdown-btn-count {
+  opacity: 0.65;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+/* label com truncamento se precisar */
+.dropdown-btn-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ========================================================================= */

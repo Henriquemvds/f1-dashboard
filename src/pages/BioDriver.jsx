@@ -48,7 +48,10 @@ export default function BioDriver() {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
 
+
+     
       <div className="details-pilot pilot-card">
+
 
         {/* FOTO */}
         <div className="portrait">
