@@ -33,6 +33,12 @@ export default function Footer() {
                         <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
                             <li>Calendário</li>
                         </NavLink>
+
+                        <li>
+                            <NavLink to="/guide" className={({ isActive }) => isActive ? "active" : ""}>
+                                Guia Para Iniciantes
+                            </NavLink>
+                        </li>
                         <li>
                             <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>
                                 Sobre
