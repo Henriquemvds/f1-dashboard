@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import "../styles/Home.css";
 import { SelectTopics } from "../data/SelectTopics.js";
+import ArticleCard from "../components/Post.jsx";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -103,29 +104,7 @@ export default function Home() {
             currentPosts.map(post => (
               <NavLink to={`/article/${post.id}`} key={post.id}
                 onClick={() => localStorage.setItem("lastPage", currentPage)}>
-                <div className="card">
-                  <img src={post.banner} alt={post.title} />
-                  <h3>{post.title}</h3>
-                  <p>{post.subtitle}</p>
-                  <div className="article-tags">
-                    {post.tags?.map(tag => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-
-                  <p className="article-meta">
-                    Publicado em{" "}
-                    <span>
-                      {post.date && post.date.toDate
-                        ? post.date.toDate().toLocaleDateString("pt-BR")
-                        : "Sem data definida"}
-                    </span>{" "}
-                    • Por <span>{post.author || "Henrique Santos"}</span>
-                  </p>
-                  <button className="buttonMore">
-                    Leia mais
-                  </button>
-                </div>
+                <ArticleCard post={post} />
               </NavLink>
             ))}
 
