@@ -7,6 +7,7 @@ import About from './pages/About'
 import ArticlePage from "./pages/ArticlePage";
 import EventsCalendar from "./pages/EventsCalendar";
 import Results from "./pages/Results";
+import Guide from "./pages/Guide";
 import BioDriver from "./pages/BioDriver";
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
    {
     path: '/calendar',
     element: <EventsCalendar />
+  },
+    {
+    path: '/guide',
+    element: <Guide />
   },
   {
     path: '/about',

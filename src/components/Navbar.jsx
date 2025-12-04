@@ -129,6 +129,7 @@ const handleHomeClick = (e) => {
           <li><NavLink to="/drivers">Pilotos</NavLink></li>
           <NavLink to="/results"><li>Resultados</li></NavLink>
           <NavLink to="/calendar"><li>Calendário</li></NavLink>
+          <NavLink to="/guide"><li>Guia Para Iniciantes</li></NavLink>
           <li><NavLink to="/about">Sobre</NavLink></li>
         </ul>
       </nav>
