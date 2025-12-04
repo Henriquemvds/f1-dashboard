@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { getPageNumbers } from "../data/Pagination";
+import Pagination from "../components/Pagination.jsx";
 import "../styles/Guide.css";
 
 export default function Guide() {
@@ -80,38 +80,12 @@ export default function Guide() {
                             </NavLink>
                         ))}
 
-                    <div className="pagination">
-
-                        {getPageNumbers(currentPage, totalPages).map((num, index) => {
-
-                            if (num === "first") {
-                                return (
-                                    <button key={index} onClick={() => setCurrentPage(1)}>
-                                        Primeira
-                                    </button>
-                                );
-                            }
-
-                            if (num === "last") {
-                                return (
-                                    <button key={index} onClick={() => setCurrentPage(totalPages)}>
-                                        Última
-                                    </button>
-                                );
-                            }
-
-                            return (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentPage(num)}
-                                    className={currentPage === num ? "active" : ""}
-                                >
-                                    {num}
-                                </button>
-                            );
-                        })}
-
-                    </div>
+                  
+                                    <Pagination
+                                           currentPage={currentPage}
+                                           totalPages={totalPages}
+                                           setCurrentPage={setCurrentPage}
+                                         />
 
                 </section>
             </div>

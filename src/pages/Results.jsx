@@ -7,7 +7,7 @@ import "../styles/Pilots.css";
 import "../styles/Results.css";
 import "../styles/Home.css"
 import ResultsPilots from "../components/ResultsPilots.jsx";
-import { getPageNumbers } from "../data/Pagination.js";
+import Pagination from "../components/Pagination.jsx";
 import Loading  from "../components/Loading";
 
 // =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
@@ -424,38 +424,12 @@ export default function Results() {
                     </section>
                 ))}
 
-                <div className="pagination">
-
-                    {getPageNumbers(currentPage, totalPages).map((num, index) => {
-
-                        if (num === "first") {
-                            return (
-                                <button key={index} onClick={() => setCurrentPage(1)}>
-                                    Primeira
-                                </button>
-                            );
-                        }
-
-                        if (num === "last") {
-                            return (
-                                <button key={index} onClick={() => setCurrentPage(totalPages)}>
-                                    Última
-                                </button>
-                            );
-                        }
-
-                        return (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentPage(num)}
-                                className={currentPage === num ? "active" : ""}
-                            >
-                                {num}
-                            </button>
-                        );
-                    })}
-
-                </div>
+                  <Pagination
+                         currentPage={currentPage}
+                         totalPages={totalPages}
+                         setCurrentPage={setCurrentPage}
+                       />
+             
             </div>
 
             <Footer />

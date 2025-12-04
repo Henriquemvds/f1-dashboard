@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../Firebase";
-import { getPageNumbers } from "../data/Pagination.js";
+import Pagination from "../components/Pagination.jsx";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
@@ -107,39 +107,11 @@ export default function Home() {
                 <ArticleCard post={post} />
               </NavLink>
             ))}
-
-          <div className="pagination">
-
-            {getPageNumbers(currentPage, totalPages).map((num, index) => {
-
-              if (num === "first") {
-                return (
-                  <button key={index} onClick={() => setCurrentPage(1)}>
-                    Primeira
-                  </button>
-                );
-              }
-
-              if (num === "last") {
-                return (
-                  <button key={index} onClick={() => setCurrentPage(totalPages)}>
-                    Última
-                  </button>
-                );
-              }
-
-              return (
-                <button
-                  key={index}
-                  onClick={() => setCurrentPage(num)}
-                  className={currentPage === num ? "active" : ""}
-                >
-                  {num}
-                </button>
-              );
-            })}
-
-          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
 
 
         </section>
