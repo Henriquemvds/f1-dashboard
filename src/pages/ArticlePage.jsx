@@ -6,98 +6,103 @@ import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import { doc, getDoc, collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import Loading from "../components/Loading";
+import ArticleContent from "../components/ArticleContent";
 
 export default function ArticlePage() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [collectionName, setCollectionName] = useState(null);
 
   useEffect(() => {
-    async function loadPost() {
+    async function loadContent() {
       try {
-        const postRef = doc(db, "posts", id);
-        const postSnap = await getDoc(postRef);
+        setLoading(true);
 
-        if (!postSnap.exists()) {
-          setPost(null);
-          setLoading(false);
-          return;
+        let ref = doc(db, "posts", id);
+        let snap = await getDoc(ref);
+
+        // 1️⃣ TENTA POSTS
+        if (snap.exists()) {
+          setCollectionName("posts");
+        } else {
+          // 2️⃣ SE NÃO EXISTIR, TENTA GUIDE
+          ref = doc(db, "guide", id);
+          snap = await getDoc(ref);
+
+          if (!snap.exists()) {
+            setPost(null);
+            setLoading(false);
+            return;
+          }
+
+          setCollectionName("guide");
         }
 
-        const currentPost = { id: postSnap.id, ...postSnap.data() };
-        setPost(currentPost);
+        // 3️⃣ CONTEÚDO PRINCIPAL
+        const data = { id: snap.id, ...snap.data() };
+        setPost(data);
 
-        // Buscar posts relacionados
-        const postsRef = collection(db, "posts");
-        const postsQuery = query(postsRef, orderBy("date", "desc"), limit(4));
-        const snapshot = await getDocs(postsQuery);
-        const lastPosts = snapshot.docs
-          .map(doc => ({ id: doc.id, ...doc.data() }))
+      } catch (e) {
+        console.error("Erro ao carregar conteúdo:", e);
+        setPost(null);
+      }
+    }
+
+    loadContent();
+  }, [id]);
+
+  // 4️⃣ Carregar RELACIONADOS assim que collectionName estiver definido
+  useEffect(() => {
+    async function loadRelated() {
+      if (!collectionName) return;
+
+      try {
+        const listRef = collection(db, collectionName);
+        const q = query(listRef, orderBy("date", "desc"), limit(6));
+
+        const relatedSnap = await getDocs(q);
+        const related = relatedSnap.docs
+          .map(d => ({ id: d.id, ...d.data() }))
           .filter(p => p.id !== id)
           .slice(0, 3);
 
-        setRelatedPosts(lastPosts);
+        setRelatedPosts(related);
 
-      } catch (error) {
-        console.error("Erro ao carregar o post:", error);
-        setPost(null);
+      } catch (e) {
+        console.error("Erro ao carregar relacionados:", e);
+        setRelatedPosts([]);
       } finally {
         setLoading(false);
       }
     }
 
-    loadPost();
-  }, [id]);
+    loadRelated();
+  }, [collectionName, id]);
 
   if (loading) return <Loading />;
-  if (!post) return <h1>Artigo não encontrado</h1>;
+  if (!post) return <h1>Conteúdo não encontrado</h1>;
 
   return (
     <>
       <Navbar />
-
       <div className="article-container">
 
-        <img src={post.image} className="article-banner" alt={post.title} />
-
-        <div className="article-header">
-          <h1>{post.title}</h1>
-
-          <p className="article-meta">
-            Publicado em{" "}
-            <span>
-              {post.date && post.date.toDate
-                ? post.date.toDate().toLocaleDateString("pt-BR")
-                : "Sem data definida"}
-            </span>{" "}
-            • Por <span>{post.author || "Henrique Santos"}</span>
-          </p>
-
-          <div className="article-tags">
-            {post.tags?.map(tag => (
-              <span key={tag} className="tag">{tag}</span>
-            ))}
-          </div>
-        </div>
-
-        <div
-          className="article-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <ArticleContent content={post} />
 
         <div className="article-related">
           <h3>Leia também</h3>
+
           <div className="related-list">
             {relatedPosts.map(p => (
               <Link key={p.id} to={`/article/${p.id}`} className="related-card">
-                <img src={p.image} alt={p.title} />
+                <img src={p.image || p.banner} alt={p.title} />
                 <h4>{p.title}</h4>
               </Link>
             ))}
           </div>
         </div>
-
       </div>
 
       <Footer />
