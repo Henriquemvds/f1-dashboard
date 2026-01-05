@@ -9,6 +9,7 @@ import "../styles/Home.css"
 import ResultsPilots from "../components/ResultsPilots.jsx";
 import Pagination from "../components/Pagination.jsx";
 import Loading  from "../components/Loading";
+import MaintenanceMessage from "../components/MaintenanceMessage.jsx";
 
 // =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
 function translateSessionType(type = "") {
@@ -39,11 +40,11 @@ function formatDatePT(dateStr) {
 export default function Results() {
     const [sessionsByYear, setSessionsByYear] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false); // Novo estado de erro
 
     // FILTROS NOVOS
     const [selectedYears, setSelectedYears] = useState([]);
     const [selectedTypes, setSelectedTypes] = useState([]);
-
     const [sessionResults, setSessionResults] = useState({});
     const [modalSessionKey, setModalSessionKey] = useState(null);
 
@@ -60,6 +61,11 @@ export default function Results() {
             try {
                 const res = await fetch("https://api.openf1.org/v1/sessions");
                 const data = await res.json();
+
+                if (!data || data.length === 0) {
+                    setError(true); // Marca erro se não houver dados
+                    return;
+                }
 
                 // Normaliza e enriquece cada sessão
                 const normalized = data.map((s) => {
@@ -97,12 +103,10 @@ export default function Results() {
                     mapByYear.get(y).push(s);
                 });
 
-                // Converte para lista ordenada
                 const yearsArray = Array.from(mapByYear.entries())
                     .map(([year, sessions]) => ({ year: Number(year), sessions }))
                     .sort((a, b) => b.year - a.year);
 
-                // Agrupamento por ano + local
                 const result = yearsArray.map(({ year, sessions }) => {
                     const sortedSessions = sessions.sort((a, b) => b.__sessionStart - a.__sessionStart);
 
@@ -116,13 +120,14 @@ export default function Results() {
                         groupsMap.get(key).sessions.push(s);
                     });
 
-                    const groups = Array.from(groupsMap.values());
-                    return { year, groups };
+                    return { year, groups: Array.from(groupsMap.values()) };
                 });
 
                 setSessionsByYear(result);
+
             } catch (err) {
                 console.error("Erro carregando sessões:", err);
+                setError(true); // Marca erro se a requisição falhar
             } finally {
                 setLoading(false);
             }
@@ -130,6 +135,7 @@ export default function Results() {
 
         load();
     }, []);
+
 
     // =====================================================
     // FILTRO GLOBAL
@@ -285,6 +291,12 @@ export default function Results() {
     }
 
     if (loading) return <Loading />
+
+     if (error) {
+        return (
+          <MaintenanceMessage />
+        );
+      }
 
     return (
         <div>

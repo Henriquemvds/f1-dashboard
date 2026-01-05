@@ -4,10 +4,12 @@ import "../styles/Pilots.css";
 import NotRegistered from "../images/pilot-not-registered.png";
 import Loading from "./Loading";
 import { Link } from "react-router-dom"; // se estiver usando React Router
+import MaintenanceMessage from "./MaintenanceMessage";
 
 export default function Pilots() {
   const [pilots, setPilots] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false); // Estado para erro
 
   useEffect(() => {
     async function fetchPilots() {
@@ -15,9 +17,14 @@ export default function Pilots() {
         const res = await axios.get(
           "https://api.openf1.org/v1/drivers?session_key=latest"
         );
-        setPilots(res.data);
+        if (!res.data || res.data.length === 0) {
+          setError(true); // Marca erro se não houver dados
+        } else {
+          setPilots(res.data);
+        }
       } catch (err) {
         console.error("Erro ao buscar pilotos:", err);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -26,6 +33,12 @@ export default function Pilots() {
   }, []);
 
   if (loading) return <Loading />;
+
+  if (error) {
+    return (
+      <MaintenanceMessage />
+    );
+  }
 
   // Função para gerar URL amigável
   function slugify(name) {
@@ -72,14 +85,14 @@ export default function Pilots() {
               <p className="pilot-name">{p.full_name}</p>
               <p className="pilot-team">{p.team_name}</p>
 
-              {/* 🔥 Botão de biografia */}
               <Link
-                to={`/driver/${slugify(p.full_name.toLowerCase().replace(/ /g, "-"))}`}
+                to={`/driver/${slugify(
+                  p.full_name.toLowerCase().replace(/ /g, "-")
+                )}`}
                 className="bio-button"
               >
                 Ver biografia
               </Link>
-
             </div>
           );
         })}
