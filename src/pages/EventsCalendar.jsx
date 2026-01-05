@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EVENTS_2025 } from "../data/EventsCalendar";
+import { EVENTS_2026 } from "../data/EventsCalendar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/EventsCalendar.css";
@@ -19,7 +19,7 @@ export default function EventsCalendar() {
     const [onlySprint, setOnlySprint] = useState(false);
     const [expandedRound, setExpandedRound] = useState(null);
 
-    const filtered = EVENTS_2025.filter(e => {
+    const filtered = EVENTS_2026.filter(e => {
         const q = query.trim().toLowerCase();
         if (onlySprint && !e.sprint) return false;
         if (!q) return true;
@@ -48,8 +48,8 @@ export default function EventsCalendar() {
             <Navbar />
             <div className="events-page">
                 <header className="events-header">
-                    <h1>Calendário de Corridas — F1 2025</h1>
-                    <p>Calendário compilado a partir do calendário oficial (temporada 2025).</p>
+                    <h1>Calendário de Corridas — F1 2026</h1>
+                    <p>Calendário compilado a partir do calendário oficial (temporada 2026).</p>
 
                     <div className="events-controls">
                         <input
