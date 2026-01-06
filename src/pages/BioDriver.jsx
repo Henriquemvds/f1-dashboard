@@ -1,15 +1,15 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet";
 import "../styles/BioDriver.css";
 
 export default function BioDriver() {
-
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [pilot, setPilot] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,9 +17,7 @@ export default function BioDriver() {
     try {
       const ref = doc(db, "pilots", docId);
       const snap = await getDoc(ref);
-
       return snap.exists() ? snap.data() : null;
-
     } catch (err) {
       console.error("Erro ao buscar piloto:", err);
       return null;
@@ -44,15 +42,63 @@ export default function BioDriver() {
       </div>
     );
 
+  const birthDate =
+    pilot.birthdate?.toDate
+      ? pilot.birthdate.toDate().toISOString().split("T")[0]
+      : null;
+
+  const pageTitle = `${pilot.full_name} | ${pilot.team_name}`;
+  const pageDescription = `Conheça a biografia, carreira e estatísticas de ${pilot.full_name}, piloto da equipe ${pilot.team_name}.`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: pilot.full_name,
+    nationality: pilot.country,
+    birthDate: birthDate,
+    birthPlace: pilot.birthplace,
+    height: pilot.height,
+    weight: pilot.weight,
+    image: pilot.portrait_image,
+    affiliation: {
+      "@type": "SportsTeam",
+      name: pilot.team_name,
+    },
+    sameAs: [
+      pilot["social-instagram"],
+      pilot["social-twitter"],
+      pilot["social-website"],
+    ].filter(Boolean),
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
+      <Helmet>
+        {/* SEO básico */}
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={pilot.portrait_image} />
+        <meta property="og:type" content="profile" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pilot.portrait_image} />
+
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
+
       <Navbar />
 
-
-     
       <div className="details-pilot pilot-card">
-
-
         {/* FOTO */}
         <div className="portrait">
           <img
@@ -63,14 +109,13 @@ export default function BioDriver() {
 
         {/* INFORMAÇÕES */}
         <div>
-
           <div className="header">
             <div className="full-name">{pilot.full_name}</div>
             <div className="team-name">{pilot.team_name}</div>
 
             <div className="meta-row">
               <div className="meta-item">
-                <strong>Número: </strong> {pilot.driver_number}
+                <strong>Número:</strong> {pilot.driver_number}
               </div>
 
               <div className="meta-item">
@@ -124,19 +169,24 @@ export default function BioDriver() {
 
             <div className="socials">
               {pilot["social-instagram"] && (
-                <a href={pilot["social-instagram"]} target="_blank">Instagram</a>
+                <a href={pilot["social-instagram"]} target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
               )}
 
               {pilot["social-twitter"] && (
-                <a href={pilot["social-twitter"]} target="_blank">Twitter</a>
+                <a href={pilot["social-twitter"]} target="_blank" rel="noreferrer">
+                  Twitter
+                </a>
               )}
 
               {pilot["social-website"] && (
-                <a href={pilot["social-website"]} target="_blank">Site Oficial</a>
+                <a href={pilot["social-website"]} target="_blank" rel="noreferrer">
+                  Site Oficial
+                </a>
               )}
             </div>
           </div>
-
         </div>
       </div>
 
