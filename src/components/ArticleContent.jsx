@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import ReactMarkdown from "react-markdown";
 
 export default function ArticleContent({ content }) {
+  const [comment, setComment] = useState("");
+  const [commentsList, setCommentsList] = useState([]);
+
   const formattedDate =
     content.date && content.date.toDate
       ? content.date.toDate().toLocaleDateString("pt-BR")
       : "Sem data definida";
+
+  const handleCommentSubmit = () => {
+    if (comment.trim() === "") return;
+    setCommentsList([...commentsList, comment]);
+    setComment("");
+  };
 
   return (
     <div>
@@ -66,6 +76,33 @@ export default function ArticleContent({ content }) {
         className="article-content"
         dangerouslySetInnerHTML={{ __html: content.content }}
       />
+
+      {/* Seção de Comentários */}
+      <div className="article-comments" style={{ marginTop: "2rem" }}>
+        <h2>Deixe sua opinião anônima para todos!</h2>
+
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Escreva seu comentário... (em desenvolvimento)"
+          rows={4}
+          style={{ width: "100%", padding: "0.5rem", fontSize: "1rem" }}
+        />
+
+        <button
+          onClick={handleCommentSubmit}
+          className="buttonMore">
+          Enviar
+        </button>
+
+        <div className="comments-list" style={{ marginTop: "1rem" }}>
+          {commentsList.map((c, i) => (
+            <div key={i} style={{ borderBottom: "1px solid #ddd", padding: "0.5rem 0" }}>
+              <ReactMarkdown>{c}</ReactMarkdown>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
