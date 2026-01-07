@@ -45,7 +45,7 @@ export default function Guide() {
       const currentPosts = filtered.slice(indexFirst, indexLast);
     
       const totalPages = Math.ceil(filtered.length / postsPerPage);
-    
+      
     
       useEffect(() => {
         localStorage.setItem("lastPage", currentPage);

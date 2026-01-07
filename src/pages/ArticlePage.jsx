@@ -13,19 +13,19 @@ export default function ArticlePage() {
   const [post, setPost] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [collectionName, setCollectionName] = useState(null);
+  const [collectionType, setCollectionType] = useState(null); // 'posts' ou 'guide'
 
   useEffect(() => {
     async function loadContent() {
       try {
         setLoading(true);
 
+        // 1️⃣ TENTA POSTS
         let ref = doc(db, "posts", id);
         let snap = await getDoc(ref);
 
-        // 1️⃣ TENTA POSTS
         if (snap.exists()) {
-          setCollectionName("posts");
+          setCollectionType("posts");
         } else {
           // 2️⃣ SE NÃO EXISTIR, TENTA GUIDE
           ref = doc(db, "guide", id);
@@ -37,7 +37,7 @@ export default function ArticlePage() {
             return;
           }
 
-          setCollectionName("guide");
+          setCollectionType("guide");
         }
 
         // 3️⃣ CONTEÚDO PRINCIPAL
@@ -53,13 +53,13 @@ export default function ArticlePage() {
     loadContent();
   }, [id]);
 
-  // 4️⃣ Carregar RELACIONADOS assim que collectionName estiver definido
+  // 4️⃣ Carregar RELACIONADOS assim que collectionType estiver definido
   useEffect(() => {
     async function loadRelated() {
-      if (!collectionName) return;
+      if (!collectionType) return;
 
       try {
-        const listRef = collection(db, collectionName);
+        const listRef = collection(db, collectionType);
         const q = query(listRef, orderBy("date", "desc"), limit(6));
 
         const relatedSnap = await getDocs(q);
@@ -79,7 +79,7 @@ export default function ArticlePage() {
     }
 
     loadRelated();
-  }, [collectionName, id]);
+  }, [collectionType, id]);
 
   if (loading) return <Loading />;
   if (!post) return <h1>Conteúdo não encontrado</h1>;
@@ -88,12 +88,11 @@ export default function ArticlePage() {
     <>
       <Navbar />
       <div className="article-container">
-
-        <ArticleContent content={post} />
+        {/* PASSA collectionType para ArticleContent */}
+        <ArticleContent content={post} collectionType={collectionType} />
 
         <div className="article-related">
           <h3>Leia também</h3>
-
           <div className="related-list">
             {relatedPosts.map(p => (
               <Link key={p.id} to={`/article/${p.id}`} className="related-card">
@@ -104,7 +103,6 @@ export default function ArticlePage() {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
