@@ -4,7 +4,7 @@ import ArticleCard from "../components/Post";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Pagination from "../components/Pagination.jsx";
 import "../styles/Guide.css";
 
@@ -24,7 +24,8 @@ export default function Guide() {
       useEffect(() => {
         async function loadPosts() {
           const ref = collection(db, "guide");
-          const snapshot = await getDocs(ref);
+          const q = query(ref, orderBy("date", "desc"));
+          const snapshot = await getDocs(q);
     
           const loaded = snapshot.docs.map(doc => ({
             id: doc.id,
