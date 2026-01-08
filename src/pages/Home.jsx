@@ -26,7 +26,8 @@ export default function Home() {
   useEffect(() => {
     async function loadPosts() {
       const ref = collection(db, "posts");
-      const snapshot = await getDocs(ref);
+      const q = query(ref, orderBy("date", "desc"));
+      const snapshot = await getDocs(q);
 
       const loaded = snapshot.docs.map(doc => ({
         id: doc.id,
