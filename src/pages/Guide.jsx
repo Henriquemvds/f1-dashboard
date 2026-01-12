@@ -60,7 +60,7 @@ export default function Guide() {
                 <section className="hero">
                     <div className="hero-content">
                         <h1>Guia Para Iniciantes</h1>
-                        <p>Aprenda sobre detalhes técnicos, regulamentos e mecânica da Formula 1™.</p>
+                        <p>Aprenda sobre detalhes técnicos, regulamentos e mecânica das corridas da Fórmula 1™.</p>
                     </div>
                 </section>
 

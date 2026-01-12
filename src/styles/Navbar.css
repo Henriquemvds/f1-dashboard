@@ -26,11 +26,9 @@
   user-select: none;
 }
 
-.car {
-  width: 60px;
+.logo-f1 {
+  width: 250px;
   height: auto;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
-  transition: transform 0.4s ease;
 }
 
 .navbar-logo:hover .car {
@@ -57,7 +55,7 @@
   z-index: 2;
 }
 
-.logo-f1 {
+.title-f1 {
   font-size: 1.8rem;
   color: #ff1e00;
   text-shadow: 0 0 6px #ff1e00, 0 0 12px rgba(255, 0, 0, 0.8);
@@ -299,12 +297,7 @@
     gap: 20px;
   }
 
-  .car {
-    width: 55px;
-  }
-
-  .logo-f1 { font-size: 1.6rem; }
-  .logo-dash { font-size: 1.1rem; }
+  
 }
 
 /* --- Mobile --- */
@@ -316,8 +309,8 @@
     padding: 20px 25px;
   }
 
-  .car { width: 70px; }
-  .logo-f1 { font-size: 2.1rem; }
+  .logo-f1  { width: 120px; }
+  .title-f1 { font-size: 1.2rem; }
   .logo-dash { font-size: 1.4rem; }
 
   .tire-trail { height: 7px; }
@@ -374,8 +367,8 @@
 @media (max-width: 480px) {
   .navbar-top { padding: 18px 18px; }
 
-  .car { width: 80px; }
-  .logo-f1 { font-size: 2.3rem; }
+  .logo-f1  { width: 120px; }
+  .title-f1 { font-size: 1.2rem; }
   .logo-dash { font-size: 1.5rem; }
 
   .tire-trail { height: 8px; }
