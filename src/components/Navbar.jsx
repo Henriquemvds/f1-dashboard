@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
 import "../styles/Navbar.css";
-import car from "../images/car.png";
+import logo from "../images/LOGO-F1-PNG.png"
 import { NavLink, useLocation } from "react-router-dom";
 import { SelectTopics } from "../data/SelectTopics.js";
 
@@ -13,12 +13,12 @@ export default function Navbar() {
 
   const location = useLocation();
 
-const handleHomeClick = (e) => {
-  if (location.pathname === "/") {
-    e.preventDefault(); // impede a navegação padrão do NavLink
-    window.location.reload(); // recarrega a página
-  }
-};
+  const handleHomeClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault(); // impede a navegação padrão do NavLink
+      window.location.reload(); // recarrega a página
+    }
+  };
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -66,11 +66,12 @@ const handleHomeClick = (e) => {
     <header className="navbar-header">
       <div className="navbar-top">
         <div className="navbar-logo">
-          <img src={car} alt="F1 logo" className="car" />
+          <NavLink to="/">
+            <img src={logo} alt="F1 logo" className="logo-f1" />
+          </NavLink>
           <div className="logo-text">
             <h1>
-              <span className="logo-f1">F1™</span>
-              <span className="logo-dash">Dashboard</span>
+              <span className="title-f1">Um Olhar pelo Paddock</span>
             </h1>
             <div className="tire-trail"></div>
           </div>
@@ -127,9 +128,9 @@ const handleHomeClick = (e) => {
           </li>
 
           <li><NavLink to="/drivers">Pilotos</NavLink></li>
-          <NavLink to="/results"><li>Resultados</li></NavLink>
-          <NavLink to="/calendar"><li>Calendário</li></NavLink>
-          <NavLink to="/guide"><li>Guia Para Iniciantes</li></NavLink>
+          <li><NavLink to="/results">Resultados</NavLink></li>
+          <li><NavLink to="/calendar">Calendário</NavLink></li>
+          <li><NavLink to="/guide">Guia Para Iniciantes</NavLink></li>
           <li><NavLink to="/about">Sobre</NavLink></li>
         </ul>
       </nav>

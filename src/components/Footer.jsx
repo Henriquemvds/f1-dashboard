@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Footer.css";
+import logo from "../images/LOGO-F1-PNG.png"
 
 export default function Footer() {
     return (
@@ -9,8 +10,10 @@ export default function Footer() {
 
 
                 <div className="footer-col footer-about">
-                    <h2 className="footer-title">F1™ Dash</h2>
-                    <p>Sua central de estatísticas, temporadas e informações da Fórmula 1™.</p>
+                    <NavLink to="/">
+                        <img src={logo} alt="F1 logo" className="logo-f1" />
+                    </NavLink>
+                    <p>Sua central de estatísticas, temporadas e informações das corridas da Fórmula 1™.</p>
                 </div>
 
 
