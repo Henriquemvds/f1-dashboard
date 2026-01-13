@@ -16,31 +16,31 @@ const router = createBrowserRouter([
     element: <Home />
   },
   {
-    path: '/drivers',
+    path: '/pilotos',
     element: <Dashboard />
   },
   {
-    path: '/driver/:id',
+    path: '/piloto/:id',
     element: <BioDriver />
   },
   {
-    path: "/article/:id",
+    path: "/artigo/:id",
     element: <ArticlePage />
   },
    {
-    path: "/results",
+    path: "/resultados",
     element: <Results />
   },
    {
-    path: '/calendar',
+    path: '/calendario',
     element: <EventsCalendar />
   },
     {
-    path: '/guide',
+    path: '/guia',
     element: <Guide />
   },
   {
-    path: '/about',
+    path: '/sobre',
     element: <About />
   },
 ])

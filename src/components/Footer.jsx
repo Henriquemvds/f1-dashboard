@@ -26,24 +26,24 @@ export default function Footer() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/drivers" className={({ isActive }) => isActive ? "active" : ""}>
+                            <NavLink to="/pilotos" className={({ isActive }) => isActive ? "active" : ""}>
                                 Pilotos
                             </NavLink>
                         </li>
-                        <NavLink to="/results" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/resultados" className={({ isActive }) => isActive ? "active" : ""}>
                             <li>Resultados</li>
                         </NavLink>
-                        <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/calendario" className={({ isActive }) => isActive ? "active" : ""}>
                             <li>Calendário</li>
                         </NavLink>
 
                         <li>
-                            <NavLink to="/guide" className={({ isActive }) => isActive ? "active" : ""}>
+                            <NavLink to="/guia" className={({ isActive }) => isActive ? "active" : ""}>
                                 Guia Para Iniciantes
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>
+                            <NavLink to="/sobre" className={({ isActive }) => isActive ? "active" : ""}>
                                 Sobre
                             </NavLink>
                         </li>

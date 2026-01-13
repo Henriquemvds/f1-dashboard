@@ -95,7 +95,7 @@ export default function ArticlePage() {
           <h3>Leia também</h3>
           <div className="related-list">
             {relatedPosts.map(p => (
-              <Link key={p.id} to={`/article/${p.id}`} className="related-card">
+              <Link key={p.id} to={`/artigo/${p.id}`} className="related-card">
                 <img src={p.image || p.banner} alt={p.title} />
                 <h4>{p.title}</h4>
               </Link>
