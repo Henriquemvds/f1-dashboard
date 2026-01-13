@@ -42,6 +42,11 @@ export default function Footer() {
                                 Guia Para Iniciantes
                             </NavLink>
                         </li>
+                            <li>
+                            <NavLink to="/circuitos" className={({ isActive }) => isActive ? "active" : ""}>
+                               Circuitos
+                            </NavLink>
+                        </li>
                         <li>
                             <NavLink to="/sobre" className={({ isActive }) => isActive ? "active" : ""}>
                                 Sobre

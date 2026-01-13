@@ -131,6 +131,7 @@ export default function Navbar() {
           <li><NavLink to="/resultados">Resultados</NavLink></li>
           <li><NavLink to="/calendario">Calendário</NavLink></li>
           <li><NavLink to="/guia">Guia Para Iniciantes</NavLink></li>
+          <li><NavLink to="/circuitos">Circuitos</NavLink></li>
           <li><NavLink to="/sobre">Sobre</NavLink></li>
         </ul>
       </nav>

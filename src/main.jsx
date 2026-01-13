@@ -9,6 +9,7 @@ import EventsCalendar from "./pages/EventsCalendar";
 import Results from "./pages/Results";
 import Guide from "./pages/Guide";
 import BioDriver from "./pages/BioDriver";
+import Circuits from './pages/Circuits'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,9 @@ const router = createBrowserRouter([
     {
     path: '/guia',
     element: <Guide />
+  }, {
+    path: '/circuitos',
+    element: <Circuits />
   },
   {
     path: '/sobre',
