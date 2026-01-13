@@ -249,6 +249,7 @@ export default function Results() {
             const driversRes = await fetch(
                 `https://api.openf1.org/v1/drivers?session_key=${session_key}`
             );
+            
             const driversData = await driversRes.json();
 
             const driversMap = new Map(
