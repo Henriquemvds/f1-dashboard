@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "../styles/Circuits.css"
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 export default function Circuits() {
   const [meetings, setMeetings] = useState([]);
@@ -25,7 +27,7 @@ export default function Circuits() {
     fetchMeetings();
   }, []);
 
-  if (loading) return <p>Carregando meetings...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Erro ao carregar dados.</p>;
 
   // Agrupa os meetings por ano
@@ -47,78 +49,63 @@ export default function Circuits() {
     }));
   };
 
+  function translateCircuitType(type = "") {
+  const t = type
+
+  if (t.includes("Permanent")) return "Permanente";
+  if (t.includes("Temporary - Street")) return "Temporário - Rua";
+
+  return type; // se não encontrar, mantém original
+}
+
   return (
     <div>
       <Navbar />
 
       {sortedYears.length === 0 && <p>Nenhum meeting encontrado.</p>}
 
-      {sortedYears.map((year) => (
-        <section key={year} style={{ marginBottom: "2rem" }}>
-          <h2
-            onClick={() => toggleYear(year)}>
-            {year} {expandedYears[year] ? "▼" : "►"}
-          </h2>
+    <div className="list-circuits">
+  {sortedYears.map((year) => (
+    <section className="year-block-circuits" key={year}>
+      <h2 className="year-title-circuits" onClick={() => toggleYear(year)}>
+        Circuitos de {year} {expandedYears[year] ? "▼" : "►"}
+      </h2>
 
-          {expandedYears[year] &&
-            meetingsByYear[year].map((m) => (
-              <div
-                key={m.meeting_key}>
-                <h3>{m.meeting_name}</h3>
-                <p>
-                  <strong>Nome oficial:</strong> {m.meeting_official_name}
-                </p>
-
-                <p>
-                  <strong>Local:</strong> {m.location}, {m.country_name} (
-                  {m.country_code})
-                </p>
-
+      {expandedYears[year] && (
+        <div className="circuits-grid-2x2">
+          {meetingsByYear[year].map((m) => (
+            <div className="circuit-card" key={m.meeting_key}>
+              <div className="circuit-header">
+                <span className="circuit-name">{m.meeting_name}</span>
                 {m.country_flag && (
                   <img
+                    className="circuit-flag"
                     src={m.country_flag}
                     alt={`${m.country_name} flag`}
-                    width="40"
-                    style={{ marginRight: "0.5rem" }}
                   />
                 )}
-
-                <p>
-                  <strong>Circuito:</strong> {m.circuit_short_name} (
-                  {m.circuit_type})
-                </p>
-
-                {m.circuit_image && (
-                  <div>
-                    <strong>Imagem do circuito:</strong>
-                    <br />
-                    <img
-                      src={m.circuit_image}
-                      alt={`${m.circuit_short_name} track`}
-                      width="250"
-                    />
-                  </div>
-                )}
-
-                <p>
-                  <strong>Início:</strong>{" "}
-                  {new Date(m.date_start).toLocaleString()} <br />
-                  <strong>Fim:</strong>{" "}
-                  {new Date(m.date_end).toLocaleString()}
-                </p>
-
-                <p>
-                  <strong>GMT Offset:</strong> {m.gmt_offset}
-                </p>
-
-                <p>
-                  <strong>Meeting Key:</strong> {m.meeting_key} <br />
-                  <strong>Circuit Key:</strong> {m.circuit_key}
-                </p>
               </div>
-            ))}
-        </section>
-      ))}
+              <p className="circuit-meta">{m.location}, {m.country_name}</p>
+              <p className="circuit-info">Circuito: {m.circuit_short_name} ({translateCircuitType(m.circuit_type)})</p>
+              {m.circuit_image && (
+                <img
+                  className="circuit-image"
+                  src={m.circuit_image}
+                  alt={`${m.circuit_short_name} track`}
+                />
+              )}
+              <p className="circuit-info">
+                Início: {new Date(m.date_start).toLocaleString()} <br/>
+                Fim: {new Date(m.date_end).toLocaleString()} <br/>
+                GMT Offset: {m.gmt_offset}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  ))}
+</div>
 
       <Footer />
     </div>
