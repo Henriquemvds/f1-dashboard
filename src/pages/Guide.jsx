@@ -75,7 +75,7 @@ export default function Guide() {
 
                     {!loading &&
                         currentPosts.map(post => (
-                            <NavLink to={`/article/${post.id}`} key={post.id}
+                            <NavLink to={`/artigo/${post.id}`} key={post.id}
                                 onClick={() => localStorage.setItem("lastPage", currentPage)}>
                                 <ArticleCard post={post} />
                             </NavLink>

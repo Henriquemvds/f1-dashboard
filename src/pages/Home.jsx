@@ -103,7 +103,7 @@ export default function Home() {
 
           {!loading &&
             currentPosts.map(post => (
-              <NavLink to={`/article/${post.id}`} key={post.id}
+              <NavLink to={`/artigo/${post.id}`} key={post.id}
                 onClick={() => localStorage.setItem("lastPage", currentPage)}>
                 <ArticleCard post={post} />
               </NavLink>
@@ -121,7 +121,7 @@ export default function Home() {
           <h2>Destaques</h2>
 
           {specials.map(post => (
-            <NavLink to={`/article/${post.id}`} key={post.id}>
+            <NavLink to={`/artigo/${post.id}`} key={post.id}>
               <div className="special-card">
                 <img src={post.banner} alt={post.title} />
                 <div>

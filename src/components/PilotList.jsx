@@ -86,7 +86,7 @@ export default function Pilots() {
               <p className="pilot-team">{p.team_name}</p>
 
               <Link
-                to={`/driver/${slugify(
+                to={`/piloto/${slugify(
                   p.full_name.toLowerCase().replace(/ /g, "-")
                 )}`}
                 className="bio-button"
