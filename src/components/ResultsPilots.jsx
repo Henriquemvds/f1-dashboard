@@ -33,6 +33,7 @@ export default function ResultsPilots({
         </div>
 
         <div className="modal-body">
+
           <div className="pilots-grid pilots-grid-2x2">
             {sessionResults[modalSessionKey].map((r, i) => {
               const d = r.driver;
@@ -50,7 +51,7 @@ export default function ResultsPilots({
               // -------------------------------------------
 
               let durationDisplay = null;
-              
+
 
               if (isQualifying && Array.isArray(r.duration)) {
                 // Caso 1 — Qualifying com array (Q1, Q2, Q3)
@@ -144,8 +145,21 @@ export default function ResultsPilots({
                     </p>
                   )}
                 </div>
+
               );
             })}
+
+          </div>
+          <div className="scroll-top-button">
+            <button
+              className="buttonMore"
+              onClick={() => {
+                const body = document.querySelector(".modal-body");
+                if (body) body.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              ↑ Voltar ao topo
+            </button>
           </div>
         </div>
       </div>

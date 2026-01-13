@@ -88,7 +88,7 @@ export default function Home() {
         <section className="hero">
           <div className="hero-content">
             <h1>Bem-vindo ao Universo da Velocidade</h1>
-            <p>Descubra opiniões, curiosidades e tudo que move o mundo das corridas da Fórmula 1™.</p>
+            <p>Descubra opiniões, curiosidades e tudo que move o mundo da Fórmula 1™.</p>
           </div>
         </section>
 
