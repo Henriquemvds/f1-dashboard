@@ -88,6 +88,17 @@ export default function Home() {
           rel="canonical"
           href="https://www.blog-f1-dashboard.com/"
         />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "F1™ Dash",
+            "url": "https://www.blog-f1-dashboard.com/",
+            "logo": "https://www.blog-f1-dashboard.com/public/LOGO-F1-PNG-df5e9c46.png"
+          })}
+        </script>
+
       </Helmet>
       <Navbar />
 
