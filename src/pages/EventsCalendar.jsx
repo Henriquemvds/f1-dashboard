@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { EVENTS_2026 } from "../data/EventsCalendar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -45,6 +46,12 @@ export default function EventsCalendar() {
     }
     return (
         <div>
+            <Helmet>
+                <link
+                    rel="canonical"
+                    href="https://www.blog-f1-dashboard.com/calendario"
+                />
+            </Helmet>
             <Navbar />
             <div className="events-page">
                 <header className="events-header">

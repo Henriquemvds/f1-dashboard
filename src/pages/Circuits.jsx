@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";  
 import "../styles/Circuits.css"
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -50,62 +51,68 @@ export default function Circuits() {
   };
 
   function translateCircuitType(type = "") {
-  const t = type
+    const t = type
 
-  if (t.includes("Permanent")) return "Permanente";
-  if (t.includes("Temporary - Street")) return "Temporário - Rua";
+    if (t.includes("Permanent")) return "Permanente";
+    if (t.includes("Temporary - Street")) return "Temporário - Rua";
 
-  return type; // se não encontrar, mantém original
-}
+    return type; // se não encontrar, mantém original
+  }
 
   return (
     <div>
+      <Helmet>
+        <link
+          rel="canonical"
+          href="https://www.blog-f1-dashboard.com/circuitos"
+        />
+      </Helmet>
       <Navbar />
 
       {sortedYears.length === 0 && <p>Nenhum meeting encontrado.</p>}
 
-    <div className="list-circuits">
-  {sortedYears.map((year) => (
-    <section className="year-block-circuits" key={year}>
-      <h2 className="year-title-circuits" onClick={() => toggleYear(year)}>
-        Circuitos de {year} {expandedYears[year] ? "▼" : "►"}
-      </h2>
+      <div className="list-circuits">
+        {sortedYears.map((year) => (
+          <section className="year-block-circuits" key={year}>
+            <h2 className="year-title-circuits" onClick={() => toggleYear(year)}>
+              Circuitos de {year} {expandedYears[year] ? "▼" : "►"}
+            </h2>
 
-      {expandedYears[year] && (
-        <div className="circuits-grid-2x2">
-          {meetingsByYear[year].map((m) => (
-            <div className="circuit-card" key={m.meeting_key}>
-              <div className="circuit-header">
-                <span className="circuit-name">{m.meeting_name}</span>
-                {m.country_flag && (
-                  <img
-                    className="circuit-flag"
-                    src={m.country_flag}
-                    alt={`${m.country_name} flag`}
-                  />
-                )}
+            {expandedYears[year] && (
+              <div className="circuits-grid-2x2">
+                {meetingsByYear[year].map((m) => (
+                  <div className="circuit-card" key={m.meeting_key}>
+                    <div className="circuit-header">
+                      <span className="circuit-name">{m.meeting_name}</span>
+                      {m.country_flag && (
+                        <img
+                          className="circuit-flag"
+                          src={m.country_flag}
+                          alt={`${m.country_name} flag`}
+                        />
+                      )}
+                    </div>
+                    <p className="circuit-meta">{m.location}, {m.country_name}</p>
+                    <p className="circuit-info">Circuito: {m.circuit_short_name} ({translateCircuitType(m.circuit_type)})</p>
+                    {m.circuit_image && (
+                      <img
+                        className="circuit-image"
+                        src={m.circuit_image}
+                        alt={`${m.circuit_short_name} track`}
+                      />
+                    )}
+                    <p className="circuit-info">
+                      Início: {new Date(m.date_start).toLocaleString()} <br />
+                      Fim: {new Date(m.date_end).toLocaleString()} <br />
+                      GMT Offset: {m.gmt_offset}
+                    </p>
+                  </div>
+                ))}
               </div>
-              <p className="circuit-meta">{m.location}, {m.country_name}</p>
-              <p className="circuit-info">Circuito: {m.circuit_short_name} ({translateCircuitType(m.circuit_type)})</p>
-              {m.circuit_image && (
-                <img
-                  className="circuit-image"
-                  src={m.circuit_image}
-                  alt={`${m.circuit_short_name} track`}
-                />
-              )}
-              <p className="circuit-info">
-                Início: {new Date(m.date_start).toLocaleString()} <br/>
-                Fim: {new Date(m.date_end).toLocaleString()} <br/>
-                GMT Offset: {m.gmt_offset}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </section>
-  ))}
-</div>
+            )}
+          </section>
+        ))}
+      </div>
 
       <Footer />
     </div>

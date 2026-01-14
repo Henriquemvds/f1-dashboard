@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NotRegistered from "../images/pilot-not-registered.png";
+import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/EventsCalendar.css"
@@ -8,7 +9,7 @@ import "../styles/Results.css";
 import "../styles/Home.css"
 import ResultsPilots from "../components/ResultsPilots.jsx";
 import Pagination from "../components/Pagination.jsx";
-import Loading  from "../components/Loading";
+import Loading from "../components/Loading";
 import MaintenanceMessage from "../components/MaintenanceMessage.jsx";
 
 // =============== TRADUÇÃO DE TIPOS DE SESSÃO ===============
@@ -140,50 +141,50 @@ export default function Results() {
     // =====================================================
     // FILTRO GLOBAL
     // =====================================================
-  function filterSessions(arr) {
-    const q = search.toLowerCase().trim();
+    function filterSessions(arr) {
+        const q = search.toLowerCase().trim();
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-    return arr
-        .filter(({ year }) => {
-            if (selectedYears.length === 0) return true;
-            return selectedYears.includes(year);
-        })
-        .map(({ year, groups }) => {
-            const filteredGroups = groups
-                .map((g) => ({
-                    ...g,
-                    sessions: g.sessions.filter((s) => {
-                        const matchesSearch =
-                            !q ||
-                            s.session_name.toLowerCase().includes(q) ||
-                            s.session_type.toLowerCase().includes(q) ||
-                            (s.circuit_short_name || "").toLowerCase().includes(q) ||
-                            (s.location || "").toLowerCase().includes(q) ||
-                            (s.country_name || "").toLowerCase().includes(q);
+        return arr
+            .filter(({ year }) => {
+                if (selectedYears.length === 0) return true;
+                return selectedYears.includes(year);
+            })
+            .map(({ year, groups }) => {
+                const filteredGroups = groups
+                    .map((g) => ({
+                        ...g,
+                        sessions: g.sessions.filter((s) => {
+                            const matchesSearch =
+                                !q ||
+                                s.session_name.toLowerCase().includes(q) ||
+                                s.session_type.toLowerCase().includes(q) ||
+                                (s.circuit_short_name || "").toLowerCase().includes(q) ||
+                                (s.location || "").toLowerCase().includes(q) ||
+                                (s.country_name || "").toLowerCase().includes(q);
 
-                        const matchesType =
-                            selectedTypes.length === 0 ||
-                            selectedTypes.some(t =>
-                                s.session_type.toLowerCase().includes(t)
-                            );
+                            const matchesType =
+                                selectedTypes.length === 0 ||
+                                selectedTypes.some(t =>
+                                    s.session_type.toLowerCase().includes(t)
+                                );
 
-                        const sessionDate = new Date(s.__sessionStart);
-                        sessionDate.setHours(0, 0, 0, 0);
+                            const sessionDate = new Date(s.__sessionStart);
+                            sessionDate.setHours(0, 0, 0, 0);
 
-                        const isPastOrToday = sessionDate <= today;
+                            const isPastOrToday = sessionDate <= today;
 
-                        return matchesSearch && matchesType && isPastOrToday;
-                    })
-                }))
-                .filter((g) => g.sessions.length > 0);
+                            return matchesSearch && matchesType && isPastOrToday;
+                        })
+                    }))
+                    .filter((g) => g.sessions.length > 0);
 
-            return { year, groups: filteredGroups };
-        })
-        .filter((y) => y.groups.length > 0);
-}
+                return { year, groups: filteredGroups };
+            })
+            .filter((y) => y.groups.length > 0);
+    }
 
 
     // =====================================================
@@ -258,7 +259,7 @@ export default function Results() {
             const driversRes = await fetch(
                 `https://api.openf1.org/v1/drivers?session_key=${session_key}`
             );
-            
+
             const driversData = await driversRes.json();
 
             const driversMap = new Map(
@@ -302,14 +303,21 @@ export default function Results() {
 
     if (loading) return <Loading />
 
-     if (error) {
+    if (error) {
         return (
-          <MaintenanceMessage />
+            <MaintenanceMessage />
         );
-      }
+    }
 
     return (
         <div>
+            <Helmet>
+                <link
+                    rel="canonical"
+                    href="https://www.blog-f1-dashboard.com/resultados"
+                />
+            </Helmet>
+
             <Navbar />
 
             <div className="list-results">
@@ -328,7 +336,7 @@ export default function Results() {
 
                     {/* FILTRO POR ANO */}
                     <select
-                     
+
                         className="filter-years"
                         value={selectedYears}
                         onChange={(e) => {
@@ -446,12 +454,12 @@ export default function Results() {
                     </section>
                 ))}
 
-                  <Pagination
-                         currentPage={currentPage}
-                         totalPages={totalPages}
-                         setCurrentPage={setCurrentPage}
-                       />
-             
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    setCurrentPage={setCurrentPage}
+                />
+
             </div>
 
             <Footer />

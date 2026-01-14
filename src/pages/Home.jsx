@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../Firebase";
 import Pagination from "../components/Pagination.jsx";
@@ -81,6 +82,13 @@ export default function Home() {
 
   return (
     <div>
+
+      <Helmet>
+        <link
+          rel="canonical"
+          href="https://www.blog-f1-dashboard.com/"
+        />
+      </Helmet>
       <Navbar />
 
       <div className="home-container">

@@ -1,10 +1,17 @@
 import "../styles/About.css";
+import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function About() {
   return (
     <div>
+      <Helmet>
+        <link
+          rel="canonical"
+          href="https://www.blog-f1-dashboard.com/sobre"
+        />
+      </Helmet>
       <Navbar />
       <div className="about-container">
         <div className="about-content">

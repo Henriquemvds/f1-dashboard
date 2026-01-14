@@ -61,15 +61,19 @@ export default function ArticleContent({ content, collectionType }) {
       console.error("Erro ao enviar comentário:", error);
     }
   };
-
   return (
     <div>
       {/* Meta Tags e JSON-LD */}
       <Helmet>
-        <title>{content.title} | F1 Dashboard</title>
+
+        <link
+          rel="canonical"
+          href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
+        />
+        <title>{content.title} | F1™ Dash</title>
         <meta
           name="description"
-          content={content.description || "Meu blog sobre Fórmula 1™."}
+          content={content.description || "Meu blog sobre as corridas da Fórmula 1™."}
         />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content={content.title} />
@@ -136,19 +140,19 @@ export default function ArticleContent({ content, collectionType }) {
                 <small style={{ color: "#555", fontSize: "0.8rem" }}>
                   {c.createdAt.toDate
                     ? c.createdAt.toDate().toLocaleString("pt-BR", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
                     : new Date(c.createdAt.seconds * 1000).toLocaleString("pt-BR", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                 </small>
               )}
             </div>

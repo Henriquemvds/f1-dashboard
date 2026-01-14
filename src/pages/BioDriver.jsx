@@ -74,6 +74,12 @@ export default function BioDriver() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Helmet>
+
+        <link
+          rel="canonical"
+          href="https://www.blog-f1-dashboard.com/piloto"
+        />
+
         {/* SEO básico */}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
