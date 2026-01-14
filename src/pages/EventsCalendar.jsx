@@ -48,7 +48,7 @@ export default function EventsCalendar() {
             <Navbar />
             <div className="events-page">
                 <header className="events-header">
-                    <h1>Calendário de Corridas — F1 2026</h1>
+                    <h1>Calendário de Corridas — F1™ 2026</h1>
                     <p>Calendário compilado a partir do calendário oficial (temporada 2026).</p>
 
                     <div className="events-controls">
