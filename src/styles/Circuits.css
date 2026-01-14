@@ -11,7 +11,7 @@
 
 /* BLOCO DO ANO */
 .year-block-circuits {
-  margin: 20px 0; /* compacto entre anos */
+  margin: 20px 0;
 }
 
 .year-title-circuits {
@@ -103,3 +103,88 @@
   line-height: 1.3;
 }
 
+/* ============================================
+   RESPONSIVIDADE — TABLET (até 900px)
+============================================ */
+@media (max-width: 900px) {
+  .circuits-grid-2x2 {
+    grid-template-columns: 1fr; /* 1 coluna */
+  }
+
+  .year-title-circuits {
+    font-size: 1.3rem;
+    justify-content: center;
+  }
+
+  .circuit-card {
+    padding: 14px;
+  }
+
+  .circuit-name {
+    font-size: 14px;
+  }
+
+  .circuit-meta,
+  .circuit-info {
+    font-size: 11px;
+  }
+
+  .circuit-image {
+    max-width: 200px;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE — CELULAR NORMAL (até 480px)
+============================================ */
+@media (max-width: 480px) {
+  .year-title-circuits {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+  }
+
+  .circuit-card {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .circuit-name {
+    font-size: 13px;
+  }
+
+  .circuit-meta,
+  .circuit-info {
+    font-size: 10px;
+  }
+
+  .circuit-image {
+    max-width: 180px;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE — CELULAR COMPACTO (até 360px)
+============================================ */
+@media (max-width: 360px) {
+  .year-title-circuits {
+    font-size: 1.1rem;
+    padding: 5px 8px;
+  }
+
+  .circuit-card {
+    padding: 10px;
+  }
+
+  .circuit-name {
+    font-size: 12px;
+  }
+
+  .circuit-meta,
+  .circuit-info {
+    font-size: 9px;
+  }
+
+  .circuit-image {
+    max-width: 160px;
+  }
+}
