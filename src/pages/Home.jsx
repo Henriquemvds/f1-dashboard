@@ -95,7 +95,7 @@ export default function Home() {
             "@type": "Organization",
             "name": "F1™ Dash",
             "url": "https://www.blog-f1-dashboard.com/",
-            "logo": "https://www.blog-f1-dashboard.com/public/logo-f1-meta.png"
+            "logo": "https://www.blog-f1-dashboard.com/logo-f1-meta.png"
           })}
         </script>
 
