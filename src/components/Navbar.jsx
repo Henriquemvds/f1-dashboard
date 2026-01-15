@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
 import "../styles/Navbar.css";
-import logo from "../../public/LOGO-F1-PNG.png"
+import logo from "../images/LOGO-F1-PNG.png"
 import { NavLink, useLocation } from "react-router-dom";
 import { SelectTopics } from "../data/SelectTopics.js";
 
