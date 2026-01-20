@@ -1,0 +1,276 @@
+/* ================================
+   HOME CONTAINER
+==================================*/
+.home-container {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+  padding-bottom: 50px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ================================
+   HERO (mais leve, sem lag)
+==================================*/
+.hero {
+  background-image: url("../images/banner-formula1.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 120px 35px;
+  border-radius: 18px;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: flex-start;
+}
+
+.hero-content h1 {
+  font-size: 2.6rem;
+  margin: 0;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 0 6px #000, 0 0 12px rgba(255, 0, 0, 0.8);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  max-width: 480px;
+  opacity: 0.9;
+  color: #fff;
+  text-shadow: 0 0 6px #000, 0 0 12px rgba(255, 0, 0, 0.8);
+}
+
+/* ================================
+   BLOG GRID
+==================================*/
+.blog-grid {
+  margin-top: 50px;
+}
+
+.blog-grid h2 {
+  font-size: 2rem;
+  border-left: 4px solid #ff0000;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+/* ================================
+   CARD
+==================================*/
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px;
+  border-radius: 16px;
+  margin-top: 22px;
+  transition: transform 0.25s ease, border 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #ff3c3c;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.buttonMore {
+  background: #ff0000;
+  color: white;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.25s ease;
+
+}
+
+.buttonMore:hover {
+  background: #d70000;
+}
+
+/* ================================
+   SPECIAL CARDS
+==================================*/
+.special-card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  margin-top: 25px;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.special-card:hover {
+  transform: translateY(-3px);
+  border-color: #ff3c3c;
+}
+
+.special-card img {
+  width: 110px;
+  height: 78px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 15px;
+  will-change: transform;
+}
+
+.special-card div {
+  padding: 6px 5px;
+}
+
+.special-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.special-card p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.45;
+}
+
+
+/* ==========================================================
+   📱 RESPONSIVIDADE
+   ======================
+   - Tablet (1024px)
+   - Celular Normal (768px)
+   - Celular Compacto (480px)
+==========================================================*/
+
+/* 📱 Tablet — até 1024px */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 100px 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+
+  .card img {
+    height: 165px;
+  }
+
+  .special-card img {
+    width: 100px;
+    height: 70px;
+  }
+}
+
+/* 📱 Celular Normal — até 768px */
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 90px 25px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.05rem;
+  }
+
+  .blog-grid h2 {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+  }
+
+  .special-card img {
+    width: 90px;
+    height: 64px;
+  }
+
+  .special-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .special-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 📱 Celular Compacto — até 480px */
+@media (max-width: 480px) {
+
+  .hero {
+    padding: 75px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .card img {
+    height: 130px;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+  }
+
+  .special-card {
+    padding: 6px;
+  }
+
+  .special-card img {
+    width: 80px;
+    height: 58px;
+    margin-right: 12px;
+  }
+
+  .special-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .special-card p {
+    font-size: 0.8rem;
+  }
+}

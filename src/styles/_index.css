@@ -1,0 +1,180 @@
+/* --------------------------- */
+/* CONFIGURAÇÕES GERAIS        */
+/* --------------------------- */
+body {
+  background: linear-gradient(135deg, #8b0000 0%, #000000 70%);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --------------------------- */
+/* PAGINAÇÃO                   */
+/* --------------------------- */
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: none;
+  background: #e6e6e6;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.pagination button:hover {
+  background: #ccc;
+}
+
+.pagination button.active {
+  background: #ff1a1a;
+  color: white;
+}
+
+/* --------------------------- */
+/* LOADING SCREEN (F1 STYLE)   */
+/* --------------------------- */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #8b0000 0%, #000000 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  font-family: sans-serif;
+}
+
+/* Luzes padrão (desktop/tablets grandes) */
+.lights {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.lights span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #300000;
+  box-shadow: 0 0 8px rgba(255,0,0,0);
+  animation: lightAnim 1.2s infinite;
+}
+
+/* Animação */
+.lights span:nth-child(1) { animation-delay: 0s; }
+.lights span:nth-child(2) { animation-delay: 0.15s; }
+.lights span:nth-child(3) { animation-delay: 0.30s; }
+.lights span:nth-child(4) { animation-delay: 0.45s; }
+.lights span:nth-child(5) { animation-delay: 0.60s; }
+
+@keyframes lightAnim {
+  0%   { background:#300000; box-shadow:none; }
+  50%  { background:#ff0000; box-shadow:0 0 10px #ff1a1a; }
+  100% { background:#300000; box-shadow:none; }
+}
+
+/* --------------------------- */
+/*  RESPONSIVIDADE LOADER      */
+/* --------------------------- */
+
+/* 🔽 Tablet (<= 900px) */
+@media (max-width: 900px) {
+  .lights {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .lights span {
+    width: 20px;
+    height: 20px;
+  }
+  #loading-screen p {
+    font-size: 0.9rem;
+  }
+}
+
+/* 🔽 Celular Normal (<= 600px) */
+@media (max-width: 600px) {
+  .lights {
+    gap: 9px;
+    margin-bottom: 14px;
+  }
+  .lights span {
+    width: 18px;
+    height: 18px;
+  }
+  #loading-screen p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 🔽 Celular Compacto (<= 380px) */
+@media (max-width: 380px) {
+  .lights {
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+  .lights span {
+    width: 15px;
+    height: 15px;
+  }
+  #loading-screen p {
+    font-size: 0.78rem;
+  }
+}
+
+/* --------------------------- */
+/* RESPONSIVIDADE PAGINAÇÃO    */
+/* --------------------------- */
+
+/* 📱 Celular Compacto (<= 360px) */
+@media (max-width: 360px) {
+  .pagination {
+    gap: 6px;
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+}
+
+/* 📱 Celular Normal (361px – 480px) */
+@media (max-width: 480px) and (min-width: 361px) {
+  .pagination {
+    gap: 7px;
+  }
+
+  .pagination button {
+    padding: 7px 12px;
+    font-size: 14px;
+  }
+}
+
+/* 📱 Tablet (481px – 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .pagination {
+    gap: 10px;
+  }
+
+  .pagination button {
+    padding: 8px 16px;
+    font-size: 17px;
+  }
+}

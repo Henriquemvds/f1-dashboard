@@ -1,0 +1,184 @@
+/* ===============================
+   MODAL — RESPONSIVO
+================================*/
+
+/* Fundo escurecido com leve desfoque */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 28px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Janela do modal */
+.modal-window {
+  width: min(900px, 96%);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 26px 24px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 10px 40px rgba(0, 0, 0, 0.75),
+    0 20px 60px rgba(0, 0, 0, 0.55);
+  animation: slideUp 0.28s ease-out;
+  backdrop-filter: blur(6px);
+}
+
+/* Botão de fechar */
+.modal-close {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 26px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 75, 75, 0.15);
+  border-color: rgba(255, 75, 75, 0.4);
+  color: #ff4f4f;
+}
+
+/* Cabeçalho */
+.modal-header h3 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 10px;
+}
+
+/* Corpo */
+.modal-body {
+  margin-top: 18px;
+}
+
+/* Grid dos pilotos */
+.modal-body .pilots-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.modal-body {
+  position: relative;   /* necessário para botão absoluto */
+  max-height: 70vh;     /* altura do modal com scroll */
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.scroll-top-button {
+  position: fixed;        /* flutua sobre o conteúdo do modal */
+  bottom: 20px;              /* distância da base do modal */
+  left: 50%;                 /* centraliza horizontalmente */
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+/* ===============================
+   BREAKPOINTS RESPONSIVOS
+================================*/
+
+/* 🟡 Tablet (481px–900px) */
+@media (max-width: 900px) {
+  .modal-window {
+    width: 92%;
+    padding: 22px 20px;
+  }
+
+  .modal-header h3 {
+    font-size: 20px;
+  }
+
+  .modal-body .pilots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+/* 🔵 Celular normal (361px–480px) */
+@media (max-width: 480px) {
+
+  .modal-window {
+    width: 95%;
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  .modal-close {
+    font-size: 22px;
+    padding: 4px 10px;
+  }
+
+  .modal-header h3 {
+    font-size: 18px;
+  }
+
+  .modal-body .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* 🔴 Celular compacto (≤ 360px) */
+@media (max-width: 360px) {
+
+  .modal-window {
+    width: 96%;
+    padding: 16px 14px;
+  }
+
+  .modal-close {
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    padding: 4px 8px;
+  }
+
+  .modal-header h3 {
+    font-size: 17px;
+  }
+
+  .modal-body .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Animações (opcional, melhora UX) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(25px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
