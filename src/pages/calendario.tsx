@@ -185,6 +185,7 @@ export default function EventsCalendar() {
             })
           )}
         </main>
+        
 
         <footer className="events-footer">
           <small>
