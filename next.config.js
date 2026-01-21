@@ -2,11 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["upload.wikimedia.org", "example.com"], // se usar imagens externas
+    // Se você usava domains, substitua por remotePatterns
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**", // ou especifique os domínios confiáveis
+      },
+    ],
   },
   experimental: {
-    appDir: true
-  }
+    // Remova appDir se estiver definido
+    // appDir: true
+  },
 };
 
 module.exports = nextConfig;
