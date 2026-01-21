@@ -30,6 +30,6 @@
     "**/*.mts",
     "src/pages/_app.tsx",
     "src/components/ArticleContent.tsx"
-, "next.config.js"  ],
+, "next.config.js", "Firebase.ts"  ],
   "exclude": ["node_modules"]
 }
