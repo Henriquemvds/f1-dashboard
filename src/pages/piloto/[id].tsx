@@ -1,10 +1,11 @@
+// src/pages/piloto/[id].tsx
 import Head from "next/head";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { doc, getDoc, Timestamp } from "firebase/firestore";
-import { db } from "../../../Firebase";
+import { db } from "../../../Firebase"; // ajuste do path
 import Loading from "../../components/Loading";
 
 interface Pilot {
@@ -28,7 +29,6 @@ export default function BioDriver() {
   const router = useRouter();
   const { id } = router.query;
 
-  // id do Next pode ser string | string[] | undefined
   const pilotId = typeof id === "string" ? id : null;
 
   const [pilot, setPilot] = useState<Pilot | null>(null);
@@ -51,7 +51,7 @@ export default function BioDriver() {
 
     async function load() {
       setLoading(true);
-      const data = await fetchPilot(pilotId as string);
+      const data = await fetchPilot(pilotId);
       setPilot(data);
       setLoading(false);
     }
@@ -67,10 +67,11 @@ export default function BioDriver() {
       </div>
     );
 
-const birthDate =
-  pilot.birthdate instanceof Timestamp
-    ? pilot.birthdate.toDate().toLocaleDateString("pt-BR")
-    : "-";
+  // 🔹 Converte Timestamp para data legível
+  const birthDate =
+    pilot.birthdate instanceof Timestamp
+      ? pilot.birthdate.toDate().toLocaleDateString("pt-BR")
+      : "-";
 
   const pageTitle = `${pilot.full_name} | ${pilot.team_name}`;
   const pageDescription = `Conheça a biografia, carreira e estatísticas de ${pilot.full_name}, piloto da equipe ${pilot.team_name}.`;
@@ -121,13 +122,10 @@ const birthDate =
 
       <Navbar />
 
-   <div className="details-pilot pilot-card">
+      <div className="details-pilot pilot-card">
         {/* FOTO */}
         <div className="portrait">
-          <img
-            src={pilot.portrait_image}
-            alt={`Retrato de ${pilot.full_name}`}
-          />
+          <img src={pilot.portrait_image} alt={`Retrato de ${pilot.full_name}`} />
         </div>
 
         {/* INFORMAÇÕES */}
@@ -146,8 +144,7 @@ const birthDate =
               </div>
 
               <div className="meta-item">
-                <strong>Nasc.:</strong>{" "}
-                {birthDate}
+                <strong>Nasc.:</strong> {birthDate}
               </div>
 
               <div className="meta-item">
@@ -190,7 +187,11 @@ const birthDate =
 
             <div className="socials">
               {pilot["social-instagram"] && (
-                <a href={pilot["social-instagram"]} target="_blank" rel="noreferrer">
+                <a
+                  href={pilot["social-instagram"]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Instagram
                 </a>
               )}

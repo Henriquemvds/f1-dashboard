@@ -1,3 +1,4 @@
+// src/pages/artigo/[id].tsx
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
@@ -5,7 +6,7 @@ import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
 import Link from "next/link";
 import ArticleContent, { Content } from "../../components/ArticleContent";
-import { db } from "../../../Firebase";
+import { db } from "../../../Firebase"; // ajuste do path
 import {
   doc,
   getDoc,
@@ -17,7 +18,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 
-// Interface auxiliar para dados crus do Firestore
+// Tipo dos posts
 interface Post {
   id: string;
   title?: string;
@@ -31,11 +32,10 @@ interface Post {
 }
 
 export default function ArticlePage() {
- const router = useRouter();
-const { id } = router.query;
+  const router = useRouter();
+  const { id } = router.query;
 
-const postId =
-  typeof id === "string" ? id : null;
+  const postId = typeof id === "string" ? id : null;
 
   const [post, setPost] = useState<Content | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
@@ -45,80 +45,84 @@ const postId =
   );
 
   // 🔹 Carrega o artigo principal
- useEffect(() => {
-  if (!postId) return;
+  useEffect(() => {
+    if (!postId) return;
 
-  async function loadContent(currentId: string) {
-    try {
-      setLoading(true);
+    async function loadContent(currentId: string) {
+      try {
+        setLoading(true);
 
-      let ref = doc(db, "posts", currentId);
-      let snap = await getDoc(ref);
-
-      if (!snap.exists()) {
-        ref = doc(db, "guide", currentId);
-        snap = await getDoc(ref);
+        // Tenta buscar primeiro em "posts"
+        let ref = doc(db, "posts", currentId);
+        let snap = await getDoc(ref);
 
         if (!snap.exists()) {
-          setPost(null);
-          return;
+          // Se não existir, tenta "guide"
+          ref = doc(db, "guide", currentId);
+          snap = await getDoc(ref);
+
+          if (!snap.exists()) {
+            setPost(null);
+            return;
+          }
+          setCollectionType("guide");
+        } else {
+          setCollectionType("posts");
         }
 
-        setCollectionType("guide");
-      } else {
-        setCollectionType("posts");
+        const rawData = snap.data() as Post;
+
+        const data: Content = {
+          id: snap.id,
+          title: rawData.title || "Sem título",
+          banner: rawData.banner || "",
+          image: rawData.image || "",
+          description: rawData.description || "",
+          author: rawData.author || "Henrique Santos",
+          content: rawData.content || "",
+          tags: rawData.tags || [],
+          date: rawData.date || null,
+        };
+
+        setPost(data);
+      } catch (error) {
+        console.error("Erro ao carregar artigo:", error);
+        setPost(null);
+      } finally {
+        setLoading(false);
       }
-
-      const rawData = snap.data() as Post;
-
-      const data: Content = {
-        id: snap.id,
-        title: rawData.title || "Sem título",
-        banner: rawData.banner || "",
-        image: rawData.image || "",
-        description: rawData.description || "",
-        author: rawData.author || "Henrique Santos",
-        content: rawData.content || "",
-        tags: rawData.tags || [],
-        date: rawData.date || null,
-      };
-
-      setPost(data);
-    } catch (error) {
-      console.error("Erro ao carregar artigo:", error);
-      setPost(null);
-    } finally {
-      setLoading(false);
     }
-  }
 
-  loadContent(postId);
-}, [postId]);
+    loadContent(postId);
+  }, [postId]);
 
   // 🔹 Carrega artigos relacionados
-useEffect(() => {
-  if (!collectionType || !postId) return;
+  useEffect(() => {
+    if (!collectionType || !postId) return;
 
-  async function loadRelated(currentCollection: "posts" | "guide", currentId: string) {
-    try {
-      const listRef = collection(db, currentCollection);
-      const q = query(listRef, orderBy("date", "desc"), limit(6));
-      const relatedSnap = await getDocs(q);
+    async function loadRelated(
+      currentCollection: "posts" | "guide",
+      currentId: string
+    ) {
+      try {
+        const listRef = collection(db, currentCollection);
+        const q = query(listRef, orderBy("date", "desc"), limit(6));
+        const relatedSnap = await getDocs(q);
 
-      const related = relatedSnap.docs
-        .map((d) => ({ id: d.id, ...d.data() } as Post))
-        .filter((p) => p.id !== currentId)
-        .slice(0, 3);
+        const related: Post[] = relatedSnap.docs
+          .map((d) => ({ id: d.id, ...d.data() } as Post))
+          .filter((p) => p.id !== currentId)
+          .slice(0, 3);
 
-      setRelatedPosts(related);
-    } catch (error) {
-      console.error("Erro ao carregar relacionados:", error);
-      setRelatedPosts([]);
+        setRelatedPosts(related);
+      } catch (error) {
+        console.error("Erro ao carregar relacionados:", error);
+        setRelatedPosts([]);
+      }
     }
-  }
 
-  loadRelated(collectionType, postId);
-}, [collectionType, postId]);
+    loadRelated(collectionType, postId);
+  }, [collectionType, postId]);
 
   return (
     <>
@@ -128,16 +132,12 @@ useEffect(() => {
         {loading && <Loading />}
 
         {!loading && post && collectionType && (
-          <ArticleContent
-            content={post}
-            collectionType={collectionType}
-          />
+          <ArticleContent content={post} collectionType={collectionType} />
         )}
 
         {!loading && relatedPosts.length > 0 && (
           <div className="article-related">
             <h3>Leia também</h3>
-
             <div className="related-list">
               {relatedPosts.map((p) => (
                 <Link
@@ -145,10 +145,7 @@ useEffect(() => {
                   href={`/artigo/${p.id}`}
                   className="related-card"
                 >
-                  <img
-                    src={p.image || p.banner || ""}
-                    alt={p.title || "Sem título"}
-                  />
+                  <img src={p.image || p.banner || ""} alt={p.title || "Sem título"} />
                   <h4>{p.title || "Sem título"}</h4>
                 </Link>
               ))}

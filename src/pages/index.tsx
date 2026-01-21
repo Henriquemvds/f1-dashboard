@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { collection, getDocs, query, orderBy, limit, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
-import { db } from "../../Firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  QueryDocumentSnapshot,
+  DocumentData,
+} from "firebase/firestore";
+import { db } from "../../Firebase"; // ajustado para o path correto
 import Pagination from "../components/Pagination";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ArticleCard, { Post as ArticleCardPost } from "../components/Post";
 import { SelectTopics } from "../data/SelectTopics";
 
-// Tipo dos posts da home, compatível com ArticleCard
+// Tipo compatível com ArticleCard
 export type HomePost = ArticleCardPost & { id: string };
 
 export default function Home() {
@@ -17,11 +25,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [specials, setSpecials] = useState<HomePost[]>([]);
 
-  // Estado de página inicializado com 1 e atualizado no client
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 15;
 
-  // === Sincroniza página com localStorage somente no client ===
+  // Sincroniza página com localStorage apenas no Client
   useEffect(() => {
     const saved = localStorage.getItem("lastPage");
     if (saved) setCurrentPage(Number(saved));
@@ -31,56 +38,65 @@ export default function Home() {
     localStorage.setItem("lastPage", currentPage.toString());
   }, [currentPage]);
 
-  // === Carrega posts e destaques ===
+  // Carrega posts e destaques
   useEffect(() => {
     async function loadPosts() {
-      const ref = collection(db, "posts");
-      const q = query(ref, orderBy("date", "desc"));
-      const snapshot = await getDocs(q);
+      try {
+        const ref = collection(db, "posts");
+        const q = query(ref, orderBy("date", "desc"));
+        const snapshot = await getDocs(q);
 
-      const loaded: HomePost[] = snapshot.docs.map(
-        (doc: QueryDocumentSnapshot<DocumentData>) => ({
-          id: doc.id,
-          title: doc.data().title || "Sem título",
-          subtitle: doc.data().subtitle || "",
-          banner: doc.data().banner || "",
-          tags: doc.data().tags || [],
-          date: doc.data().date || null,
-          author: doc.data().author || "Henrique Santos",
-        })
-      );
+        const loaded: HomePost[] = snapshot.docs.map(
+          (doc: QueryDocumentSnapshot<DocumentData>) => ({
+            id: doc.id,
+            title: doc.data().title || "Sem título",
+            subtitle: doc.data().subtitle || "",
+            banner: doc.data().banner || "",
+            tags: doc.data().tags || [],
+            date: doc.data().date || null,
+            author: doc.data().author || "Henrique Santos",
+          })
+        );
 
-      setPosts(loaded);
-      setFiltered(loaded);
-      setLoading(false);
+        setPosts(loaded);
+        setFiltered(loaded);
+        setLoading(false);
+      } catch (err) {
+        console.error("Erro ao carregar posts:", err);
+        setLoading(false);
+      }
     }
 
     async function loadSpecials() {
-      const ref = collection(db, "posts");
-      const q = query(ref, orderBy("date", "desc"), limit(10));
-      const snapshot = await getDocs(q);
+      try {
+        const ref = collection(db, "posts");
+        const q = query(ref, orderBy("date", "desc"), limit(10));
+        const snapshot = await getDocs(q);
 
-      const ten: HomePost[] = snapshot.docs.map(
-        (doc: QueryDocumentSnapshot<DocumentData>) => ({
-          id: doc.id,
-          title: doc.data().title || "Sem título",
-          subtitle: doc.data().subtitle || "",
-          banner: doc.data().banner || "",
-          tags: doc.data().tags || [],
-          date: doc.data().date || null,
-          author: doc.data().author || "Henrique Santos",
-        })
-      );
+        const ten: HomePost[] = snapshot.docs.map(
+          (doc: QueryDocumentSnapshot<DocumentData>) => ({
+            id: doc.id,
+            title: doc.data().title || "Sem título",
+            subtitle: doc.data().subtitle || "",
+            banner: doc.data().banner || "",
+            tags: doc.data().tags || [],
+            date: doc.data().date || null,
+            author: doc.data().author || "Henrique Santos",
+          })
+        );
 
-      const shuffled = ten.sort(() => Math.random() - 0.5);
-      setSpecials(shuffled.slice(0, 3));
+        const shuffled = ten.sort(() => Math.random() - 0.5);
+        setSpecials(shuffled.slice(0, 3));
+      } catch (err) {
+        console.error("Erro ao carregar destaques:", err);
+      }
     }
 
     loadPosts();
     loadSpecials();
   }, []);
 
-  // === Filtro por tag ===
+  // Filtro por tag
   useEffect(() => {
     const unsubscribe = SelectTopics.on("filter-by-tag", (tagName: string) => {
       const f = posts.filter((p) => p.tags?.includes(tagName));
@@ -91,7 +107,7 @@ export default function Home() {
     return () => unsubscribe();
   }, [posts]);
 
-  // === Paginação ===
+  // Paginação
   const indexLast = currentPage * postsPerPage;
   const indexFirst = indexLast - postsPerPage;
   const currentPosts = filtered.slice(indexFirst, indexLast);
@@ -105,7 +121,10 @@ export default function Home() {
         <section className="hero">
           <div className="hero-content">
             <h1>Bem-vindo ao Universo da Velocidade</h1>
-            <p>Descubra opiniões, curiosidades e tudo que move o mundo das corridas Fórmula 1™.</p>
+            <p>
+              Descubra opiniões, curiosidades e tudo que move o mundo das
+              corridas Fórmula 1™.
+            </p>
           </div>
         </section>
 
@@ -113,7 +132,6 @@ export default function Home() {
           <h2>Últimos Artigos</h2>
 
           {loading && <p>Carregando artigos...</p>}
-
           {!loading && currentPosts.length === 0 && <p>Nenhum artigo encontrado.</p>}
 
           {!loading &&
@@ -121,15 +139,19 @@ export default function Home() {
               <Link
                 href={`/artigo/${post.id}`}
                 key={post.id}
-                onClick={() => localStorage.setItem("lastPage", currentPage.toString())}
+                onClick={() =>
+                  localStorage.setItem("lastPage", currentPage.toString())
+                }
               >
                 <ArticleCard post={post} />
               </Link>
             ))}
 
-
-
-          <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
         </section>
 
         <section className="specials">
@@ -146,7 +168,6 @@ export default function Home() {
               </div>
             </Link>
           ))}
-
         </section>
       </div>
 
