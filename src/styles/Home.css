@@ -233,7 +233,7 @@
 @media (max-width: 480px) {
 
   .hero {
-    padding: 75px 20px;
+   padding: 150px 25px;
     background-image: url("../images/banner-formula-mobile1.png");
   }
 
