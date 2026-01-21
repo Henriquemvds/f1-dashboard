@@ -51,7 +51,7 @@ export default function BioDriver() {
 
     async function load() {
       setLoading(true);
-      const data = await fetchPilot(pilotId);
+      const data = await fetchPilot(pilotId as string);
       setPilot(data);
       setLoading(false);
     }
