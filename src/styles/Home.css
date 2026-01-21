@@ -14,10 +14,10 @@
    HERO (mais leve, sem lag)
 ==================================*/
 .hero {
-  background-image: url("../images/banner-formula1.jpg");
+  background-image: url("../images/banner-formula1.png");
   background-size: cover;
   background-position: center;
-  padding: 120px 35px;
+  padding: 170px 35px;
   border-radius: 18px;
   box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
   display: flex;
@@ -234,6 +234,7 @@
 
   .hero {
     padding: 75px 20px;
+    background-image: url("../images/banner-formula-mobile1.png");
   }
 
   .hero-content h1 {

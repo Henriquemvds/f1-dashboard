@@ -64,7 +64,7 @@ export default function Guide() {
             <Navbar />
             <div className="home-container">
 
-                <section className="hero">
+                <section className="hero-guide">
                     <div className="hero-content">
                         <h1>Guia Para Iniciantes</h1>
                         <p>Aprenda sobre detalhes técnicos, regulamentos e mecânica das corridas da Fórmula 1™.</p>
