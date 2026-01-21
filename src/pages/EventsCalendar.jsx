@@ -44,13 +44,95 @@ export default function EventsCalendar() {
 
         return `${day} ${month}`;
     }
+
+    function buildCalendarDescription(events = []) {
+        if (!events.length) {
+            return "Calendário oficial da temporada 2026 da Fórmula 1™, com datas, circuitos e fins de semana de corrida.";
+        }
+
+        const first = events[0];
+        const last = events[events.length - 1];
+
+        return `Calendário completo das corridas Fórmula 1™ 2026: ${events.length} etapas, de ${first.gp} até ${last.gp}, com datas, circuitos e corridas sprint.`;
+    }
+
+    const pageTitle = "Calendário das corridas F1™ 2026 | Datas, circuitos e corridas sprint";
+    const pageDescription = buildCalendarDescription(EVENTS_2026);
+
     return (
         <div>
             <Helmet>
+                <title>{pageTitle}</title>
+
                 <link
                     rel="canonical"
                     href="https://www.blog-f1-dashboard.com/calendario"
                 />
+
+                <meta name="description" content={pageDescription} />
+                <meta name="robots" content="index, follow" />
+
+                {/* Open Graph */}
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={pageDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:locale" content="pt_BR" />
+
+                {/* Twitter */}
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={pageDescription} />
+
+                {/* EventSeries (temporada) */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "SportsEvent",
+                        name: "Campeonato Mundial de Fórmula 1™ 2026",
+                        sport: "Formula One",
+                        startDate: EVENTS_2026[0]?.weekend.start,
+                        endDate: EVENTS_2026[EVENTS_2026.length - 1]?.weekend.end,
+                        location: {
+                            "@type": "Place",
+                            name: "Circuitos internacionais"
+                        },
+                        organizer: {
+                            "@type": "Organization",
+                            name: "Formula 1"
+                        },
+                        url: "https://www.blog-f1-dashboard.com/calendario"
+                    })}
+                </script>
+
+                {/* Lista de eventos */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "ItemList",
+                        itemListElement: EVENTS_2026.map((e, index) => ({
+                            "@type": "ListItem",
+                            position: index + 1,
+                            item: {
+                                "@type": "SportsEvent",
+                                name: `${e.gp} — Fórmula 1™ 2026`,
+                                startDate: e.weekend.start,
+                                endDate: e.weekend.end,
+                                location: {
+                                    "@type": "Place",
+                                    name: e.circuit,
+                                    address: {
+                                        "@type": "PostalAddress",
+                                        addressLocality: e.location
+                                    }
+                                },
+                                eventStatus: getEventEndDate(e) < new Date()
+                                    ? "https://schema.org/EventCompleted"
+                                    : "https://schema.org/EventScheduled",
+                                url: "https://www.blog-f1-dashboard.com/calendario"
+                            }
+                        }))
+                    })}
+                </script>
             </Helmet>
             <Navbar />
             <div className="events-page">

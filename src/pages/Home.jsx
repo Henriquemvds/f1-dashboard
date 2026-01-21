@@ -80,25 +80,92 @@ export default function Home() {
     localStorage.setItem("lastPage", currentPage);
   }, [currentPage]);
 
+  function buildHomeDescription(posts = []) {
+  if (!posts.length) {
+    return "Notícias, análises e opiniões sobre Fórmula 1™ no F1 Dash.";
+  }
+
+  const titles = posts.slice(0, 3).map(p => p.title).join(" • ");
+
+  return `Últimos artigos sobre as corridas da Fórmula 1™: ${titles}. Análises, opiniões e bastidores no F1™ Dash.`;
+}
+
+const pageTitle = "F1™ Dash | Notícias, análises e bastidores das corridas daFórmula 1™";
+const pageDescription = buildHomeDescription(posts);
+
+
   return (
     <div>
 
       <Helmet>
+        <title>{pageTitle}</title>
+
         <link
           rel="canonical"
           href="https://www.blog-f1-dashboard.com/"
         />
 
+        <meta name="description" content={pageDescription} />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content="https://www.blog-f1-dashboard.com/logo-f1-meta.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content="https://www.blog-f1-dashboard.com/logo-f1-meta.png" />
+
+        {/* Organization */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "F1™ Dash",
-            "url": "https://www.blog-f1-dashboard.com/",
-            "logo": "https://www.blog-f1-dashboard.com/logo-f1-meta.png"
+            name: "F1™ Dash",
+            url: "https://www.blog-f1-dashboard.com/",
+            logo: "https://www.blog-f1-dashboard.com/logo-f1-meta.png",
+            sameAs: [
+              "https://www.instagram.com/",
+              "https://twitter.com/"
+            ]
           })}
         </script>
 
+        {/* WebSite + Search */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "F1™ Dash",
+            url: "https://www.blog-f1-dashboard.com/",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://www.blog-f1-dashboard.com/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+
+        {/* ItemList – últimos artigos */}
+        {!loading && posts.length > 0 && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              itemListElement: posts.slice(0, 10).map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `https://www.blog-f1-dashboard.com/artigo/${post.id}`,
+                name: post.title
+              }))
+            })}
+          </script>
+        )}
       </Helmet>
       <Navbar />
 
@@ -106,8 +173,8 @@ export default function Home() {
 
         <section className="hero">
           <div className="hero-content">
-            <h1>Bem-vindo ao Universo da Velocidade</h1>
-            <p>Descubra opiniões, curiosidades e tudo que move o mundo das corridas Fórmula 1™.</p>
+            <h1>Corridas da Fórmula 1™ em profundidade</h1>
+            <p>Análises, opiniões e bastidores do mundo da velocidade.</p>
           </div>
         </section>
 

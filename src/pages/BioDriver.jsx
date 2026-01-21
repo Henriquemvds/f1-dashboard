@@ -48,60 +48,64 @@ export default function BioDriver() {
       : null;
 
   const pageTitle = `${pilot.full_name} | ${pilot.team_name}`;
-  const pageDescription = `Conheça a biografia, carreira e estatísticas de ${pilot.full_name}, piloto da equipe ${pilot.team_name}.`;
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: pilot.full_name,
-    nationality: pilot.country,
-    birthDate: birthDate,
-    birthPlace: pilot.birthplace,
-    height: pilot.height,
-    weight: pilot.weight,
-    image: pilot.portrait_image,
-    affiliation: {
-      "@type": "SportsTeam",
-      name: pilot.team_name,
-    },
-    sameAs: [
-      pilot["social-instagram"],
-      pilot["social-twitter"],
-      pilot["social-website"],
-    ].filter(Boolean),
-  };
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Helmet>
+        <title>{pageTitle}</title>
 
         <link
           rel="canonical"
-          href="https://www.blog-f1-dashboard.com/piloto"
+          href={`https://www.blog-f1-dashboard.com/piloto/${id}`}
         />
 
         {/* SEO básico */}
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
+        <meta name="description" content={seoDescription} />
+        <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
+        <meta property="og:description" content={seoDescription} />
         <meta property="og:image" content={pilot.portrait_image} />
         <meta property="og:type" content="profile" />
+        <meta property="og:locale" content="pt_BR" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:description" content={seoDescription} />
         <meta name="twitter:image" content={pilot.portrait_image} />
 
-        {/* JSON-LD */}
+        {/* JSON-LD enriquecido */}
         <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: pilot.full_name,
+            description: seoDescription,
+            image: pilot.portrait_image,
+            nationality: pilot.country,
+            birthDate: birthDate,
+            birthPlace: pilot.birthplace,
+            height: pilot.height,
+            weight: pilot.weight,
+            affiliation: {
+              "@type": "SportsTeam",
+              name: pilot.team_name,
+            },
+            jobTitle: "Piloto de Fórmula 1",
+            sameAs: [
+              pilot["social-instagram"],
+              pilot["social-twitter"],
+              pilot["social-website"],
+            ].filter(Boolean),
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://www.blog-f1-dashboard.com/piloto/${id}`,
+            },
+          })}
         </script>
       </Helmet>
-
       <Navbar />
 
       <div className="details-pilot pilot-card">
