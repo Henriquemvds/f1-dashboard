@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap (se tiver um)
+Sitemap: https://www.blog-f1-dashboard.com/sitemap.xml

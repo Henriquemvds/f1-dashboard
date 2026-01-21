@@ -1,0 +1,190 @@
+/* ============================================
+   CONTAINER PRINCIPAL
+============================================ */
+.list-circuits {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px 40px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+/* BLOCO DO ANO */
+.year-block-circuits {
+  margin: 20px 0;
+}
+
+.year-title-circuits {
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 8px 12px;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 4px #000, 0 0 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  background: #111;
+  border-radius: 6px;
+  user-select: none;
+  transition: 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.year-title-circuits:hover {
+  border: 1px solid #e10600;
+  box-shadow: 0 0 6px #e10600;
+}
+
+/* GRID DE CIRCUITOS */
+.circuits-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 12px;
+}
+
+/* CARD DE CIRCUITO */
+.circuit-card {
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.circuit-card:hover {
+  transform: translateY(-4px);
+  border-color: #ff3c3c;
+}
+
+/* HEADER DO CARD */
+.circuit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.circuit-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.circuit-meta {
+  color: #ccc;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* IMAGENS */
+.circuit-flag {
+  width: 28px;
+  height: auto;
+}
+
+.circuit-image {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+
+/* INFORMAÇÕES ADICIONAIS */
+.circuit-info {
+  font-size: 12px;
+  color: #ddd;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* ============================================
+   RESPONSIVIDADE — TABLET (até 900px)
+============================================ */
+@media (max-width: 900px) {
+  .circuits-grid-2x2 {
+    grid-template-columns: 1fr; /* 1 coluna */
+  }
+
+  .year-title-circuits {
+    font-size: 1.3rem;
+    justify-content: center;
+  }
+
+  .circuit-card {
+    padding: 14px;
+  }
+
+  .circuit-name {
+    font-size: 14px;
+  }
+
+  .circuit-meta,
+  .circuit-info {
+    font-size: 11px;
+  }
+
+  .circuit-image {
+    max-width: 200px;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE — CELULAR NORMAL (até 480px)
+============================================ */
+@media (max-width: 480px) {
+  .year-title-circuits {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+  }
+
+  .circuit-card {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .circuit-name {
+    font-size: 13px;
+  }
+
+  .circuit-meta,
+  .circuit-info {
+    font-size: 10px;
+  }
+
+  .circuit-image {
+    max-width: 180px;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE — CELULAR COMPACTO (até 360px)
+============================================ */
+@media (max-width: 360px) {
+  .year-title-circuits {
+    font-size: 1.1rem;
+    padding: 5px 8px;
+  }
+
+  .circuit-card {
+    padding: 10px;
+  }
+
+  .circuit-name {
+    font-size: 12px;
+  }
+
+  .circuit-meta,
+  .circuit-info {
+    font-size: 9px;
+  }
+
+  .circuit-image {
+    max-width: 160px;
+  }
+}

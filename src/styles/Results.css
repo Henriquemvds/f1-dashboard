@@ -1,0 +1,377 @@
+/* ============================================
+   GRID 2x2 — MESMO VISUAL DAS PÁGINAS DE PILOTOS
+============================================ */
+.list-results {
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0 18px 48px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+.filter-years {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #111;
+    color: #fff;
+    min-width: 20px;
+    outline: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.filter-years:focus {
+    border-color: #e10600;
+    box-shadow: 0 0 4px #e10600;
+}
+
+/* Estilo das opções */
+.filter-years option {
+    padding: 6px;
+    background: #111;
+    color: #fff;
+}
+
+/* ====== CHECKBOXES DE TIPO ====== */
+
+.filter-types {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-types label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.filter-types label:hover {
+    border-color: #e10600;
+}
+
+.filter-types input[type="checkbox"] {
+    accent-color: #e10600; /* Cor oficial F1 */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+
+
+.pilots-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.pilots-grid-2x2 .pilot-card:nth-child(odd) {
+    transform: translateY(0px);
+}
+
+.pilots-grid-2x2 .pilot-card:nth-child(even) {
+    transform: translateY(30px);
+}
+
+.pilot-card {
+    position: relative;
+}
+
+.position-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: black;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: 4px solid;
+    border-radius: 12px;
+    z-index: 10;
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+.pilot-gap {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* ============================================
+   ANOS, GRUPOS E SESSÕES
+============================================ */
+
+/* BLOCO DO ANO */
+.year-block {
+  margin: 40px 0;
+}
+
+.year-title {
+  font-size: 2rem;
+  margin: 0 0 18px;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 6px #000, 0 0 8px rgba(0,0,0,0.35);
+}
+
+/* GRUPOS DE MESMO LOCAL */
+.sessions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.sessions-row-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-location {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.row-country {
+  color: #ddd;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+/* LISTA DE SESSÕES (EM LINHA, COM QUEBRA) */
+.sessions-list {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* ============================================
+   CARD DE SESSÃO
+============================================ */
+.session-card {
+  flex: 0 0 auto;
+  min-width: 300px;
+  max-width: 420px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+  
+}
+
+.session-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff3c3c;
+}
+
+/* HEADER */
+.session-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.session-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.session-meta {
+  color: #ccc;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* LINHA DE BAIXO DO CARD */
+.session-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.session-date {
+  color: #ddd;
+  font-size: 13px;
+}
+
+/* BADGES */
+.badge {
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Cores podem ser mantidas se você quiser */
+.badge-race { background: #ff1a1a; color: #fff; }
+.badge-quali { background: #00d0ff; color: #000; }
+.badge-sprint { background: #ffd500; color: #000; }
+
+/* BOTÃO ABRIR */
+.session-toggle {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.session-toggle:hover {
+  border-color: #ff1a1a;
+}
+
+.session-details {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+}
+
+/* ============================================================
+   🔻 RESPONSIVIDADE — TABLET
+   (telas até 900px)
+============================================================ */
+@media (max-width: 900px) {
+
+  .events-controls {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .filter-years {
+    min-width: 140px;
+  }
+
+  .filter-types {
+    justify-content: center;
+  }
+
+  .session-card {
+    min-width: 260px;
+    max-width: 100%;
+  }
+
+  .sessions-list {
+    justify-content: center;
+  }
+
+  .year-title {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  .sessions-row-header {
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   🔻 RESPONSIVIDADE — CELULAR NORMAL
+   (telas até 480px)
+============================================================ */
+@media (max-width: 480px) {
+
+  .list-results {
+    padding: 0 12px 40px;
+  }
+
+  /* INPUT DE BUSCA */
+  .events-controls input[type="search"] {
+    width: 100%;
+  }
+
+  /* SELECT DE ANO */
+  .filter-years {
+    width: 100%;
+  }
+
+  /* TIPOS — VÃO VIRAR "TAGS" EM 2 COLUNAS */
+  .filter-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 10px;
+  }
+
+  .filter-types label {
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  /* SESSIONS → 1 CARD POR LINHA */
+  .sessions-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .session-card {
+    width: 85%;
+  }
+
+  /* TEXTO */
+  .session-name {
+    font-size: 14px;
+  }
+}
+
+/* ============================================================
+   🔻 RESPONSIVIDADE — CELULAR MUITO PEQUENO / COMPACTO
+   (telas até 360px)
+============================================================ */
+@media (max-width: 360px) {
+
+  .filter-types {
+    grid-template-columns: 1fr;
+  }
+
+  .session-card {
+    padding: 14px;
+    width: 85%;
+  }
+
+  .session-header {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .session-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .year-title {
+    font-size: 1.4rem;
+  }
+
+  .row-location {
+    font-size: 14px;
+  }
+}

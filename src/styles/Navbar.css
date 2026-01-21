@@ -1,0 +1,382 @@
+/* === ESTRUTURA PRINCIPAL === */
+.navbar-header {
+  background: linear-gradient(90deg, #000, #b80000);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+}
+
+/* === TOPO === */
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* === LOGO === */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+}
+
+.logo-f1 {
+  width: 250px;
+  height: auto;
+}
+
+.navbar-logo:hover .car {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.logo-text h1 {
+  display: flex;
+  align-items: baseline;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.title-f1 {
+  font-size: 1.8rem;
+  color: #ff1e00;
+  text-shadow: 0 0 6px #ff1e00, 0 0 12px rgba(255, 0, 0, 0.8);
+  margin-right: 4px;
+}
+
+.logo-dash {
+  font-size: 1.2rem;
+  background: linear-gradient(to right, #fff, #aaa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* === Tire Trail === */
+.tire-trail {
+  margin-top: 4px;
+  width: 100%;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, #222 0 6px, #111 6px 12px);
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  animation: tireMove 1s linear infinite;
+}
+
+@keyframes tireMove {
+  from { background-position-x: 0; }
+  to { background-position-x: 12px; }
+}
+
+/* === MENU INFERIOR === */
+.navbar-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+}
+
+/* === LINKS === */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: #ff3c00;
+}
+
+/* ========================================================================= */
+/* ===========================  DROPDOWN  ================================== */
+/* ========================================================================= */
+
+.dropdown {
+  position: relative;
+  width: auto;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+  font-family: inherit;
+}
+
+.dropdown-toggle:hover {
+  color: #ff3c00;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 0.55rem;
+  transform-origin: center;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+  color: #ff3c00;
+}
+
+.dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px;
+  min-width: 160px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  animation: dropdownFade 0.25s ease forwards;
+  z-index: 2000;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+.dropdown-menu li a {
+  padding: 8px 14px;
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  color: #ff3c00;
+  background: rgba(255, 60, 0, 0.1);
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================================================= */
+/* =======================  BOTÃO MENU MOBILE ============================== */
+/* ========================================================================= */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:active {
+  transform: rotate(90deg);
+}
+
+/* =========================
+   BOTÃO DO DROPDOWN (aparência de link)
+   ========================= */
+
+.dropdown-btn-item {
+  /* remove aparência nativa */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* rótulo à esquerda, contador à direita */
+  gap: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+  outline: none;
+  line-height: 1.2;
+}
+
+/* Make it non-buttonlike: no border-radius, no box-shadow by default */
+.dropdown-btn-item::-moz-focus-inner { border: 0; padding: 0; }
+
+/* Hover = mesma cor do link */
+.dropdown-btn-item:hover {
+  color: #ff3c00;
+  background: rgba(255, 60, 0, 0.06);
+}
+
+/* Focus visível e sutil (acessibilidade) */
+.dropdown-btn-item:focus {
+  box-shadow: inset 0 0 0 2px rgba(255, 60, 0, 0.12);
+  border-radius: 4px;
+  color: #ff3c00;
+}
+
+/* Active (pressionado) */
+.dropdown-btn-item:active {
+  transform: translateY(0.5px);
+}
+
+/* contador com opacidade, igual ao que usou */
+.dropdown-btn-count {
+  opacity: 0.65;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+/* label com truncamento se precisar */
+.dropdown-btn-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================================================= */
+/* =========================== RESPONSIVIDADE =============================== */
+/* ========================================================================= */
+
+/* --- Tablets --- */
+@media (max-width: 992px) {
+  .navbar-top {
+    padding: 15px 25px;
+  }
+
+  .navbar-bottom {
+    padding: 10px 25px;
+  }
+
+  .navbar-links {
+    gap: 20px;
+  }
+
+  
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+
+  .navbar-top {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 25px;
+  }
+
+  .logo-f1  { width: 120px; }
+  .title-f1 { font-size: 1.2rem; }
+  .logo-dash { font-size: 1.4rem; }
+
+  .tire-trail { height: 7px; }
+
+  /* AQUI CORRIGIMOS — links e dropdown ficam IGUAIS */
+  .navbar-links a,
+  .dropdown-toggle {
+    font-size: 1.2rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 2.4rem;
+  }
+
+  .navbar-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 12px 0;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .navbar-links.active {
+    display: flex;
+    animation: fadeSlide 0.3s ease forwards;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .dropdown-menu {
+    border: none;
+    padding-left: 20px;
+  }
+
+  .dropdown-menu li a {
+    padding: 6px 0;
+    font-size: 1.15rem; /* Ajustado para ficar proporcional */
+  }
+}
+
+/* --- Celulares muito pequenos --- */
+@media (max-width: 480px) {
+  .navbar-top { padding: 18px 18px; }
+
+  .logo-f1  { width: 120px; }
+  .title-f1 { font-size: 1.2rem; }
+  .logo-dash { font-size: 1.5rem; }
+
+  .tire-trail { height: 8px; }
+
+  .navbar-links a,
+  .dropdown-toggle {
+    font-size: 1.3rem;
+  }
+
+  .menu-toggle { font-size: 2.6rem; }
+}

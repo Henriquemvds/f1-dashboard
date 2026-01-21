@@ -1,0 +1,229 @@
+/* === SEÇÃO PRINCIPAL === */
+.pilots-section {
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(to bottom right, #b80000, #000000);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* === TÍTULO === */
+.pilots-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+}
+
+/* === GRADE DE PILOTOS === */
+.pilots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1100px;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+/* === CARD DO PILOTO === */
+.pilot-card {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pilot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(255, 0, 0, 0.4);
+}
+
+/* === FOTO DO PILOTO === */
+.pilot-photo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.pilot-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: #111;
+  border: 2px solid #b80000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.pilot-card:hover .pilot-photo {
+  transform: scale(1.05);
+}
+
+/* === NÚMERO DO PILOTO === */
+.pilot-number {
+  position: absolute;
+  top: -10px;
+  left: 120px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ff3c00;
+  text-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* === INFORMAÇÕES DO PILOTO === */
+.pilot-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.pilot-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.pilot-team {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.bio-button {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 6px 12px;
+  background: #ff1a1a;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.2s;
+  text-align: center;
+}
+
+.bio-button:hover {
+  background: #cc0000;
+  transform: scale(1.05);
+}
+
+
+/* === RESPONSIVIDADE === */
+
+/* --- Telas médias (tablets) --- */
+@media (max-width: 992px) {
+  .pilots-title {
+    font-size: 2.2rem;
+  }
+
+  .pilot-photo {
+    width: 160px;
+    height: 160px;
+  }
+
+  .pilot-number {
+    font-size: 2rem;
+    left: 120px;
+  }
+
+  .pilot-card {
+    padding: 20px;
+  }
+
+  .pilots-grid {
+    gap: 22px;
+  }
+}
+
+/* --- Telas pequenas (celulares normais) --- */
+@media (max-width: 768px) {
+  .pilots-section {
+    padding: 35px 15px;
+  }
+
+  .pilots-title {
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+  }
+
+  .pilots-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .pilot-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .pilot-number {
+    font-size: 2rem;
+   left: 120px;
+  }
+
+  .pilot-name {
+    font-size: 1.3rem;
+  }
+
+  .pilot-team {
+    font-size: 1rem;
+  }
+}
+
+/* --- Telas muito pequenas (celulares compactos, até 480px) --- */
+@media (max-width: 480px) {
+  .pilots-section {
+    padding: 45px 10px;
+  }
+
+  .pilots-title {
+    font-size: 2.6rem;
+    margin-bottom: 28px;
+  }
+
+  .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .pilot-photo {
+    width: 220px;
+    height: 220px;
+    border: 3px solid #ff1e00;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  }
+
+  .pilot-number {
+    font-size: 2.5rem;
+    top: -12px;
+    left: 180px;
+  }
+
+  .pilot-name {
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  .pilot-team {
+    font-size: 1.2rem;
+    color: #ddd;
+  }
+
+  .pilot-card {
+    padding: 25px;
+    border-radius: 14px;
+  }
+}
