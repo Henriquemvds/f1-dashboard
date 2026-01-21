@@ -7,9 +7,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build --turbo=false",
+    "build": "next build",
     "start": "next start",
-     "build:trace": "next build --trace-warnings",
     "lint": "next lint"
   },
   "dependencies": {
