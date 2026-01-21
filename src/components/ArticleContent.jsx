@@ -64,23 +64,59 @@ export default function ArticleContent({ content, collectionType }) {
   return (
     <div>
       {/* Meta Tags e JSON-LD */}
-      <Helmet>
+    <Helmet>
+  <title>{content.title} | F1™ Dash</title>
 
-        <link
-          rel="canonical"
-          href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
-        />
-        <title>{content.title} | F1™ Dash</title>
-        <meta
-          name="description"
-          content={content.description || "Meu blog sobre as corridas da Fórmula 1™."}
-        />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content={content.title} />
-        <meta property="og:description" content={content.description || ""} />
-        <meta property="og:image" content={content.image} />
-        <meta property="og:type" content="article" />
-      </Helmet>
+  <link
+    rel="canonical"
+    href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
+  />
+
+  <meta name="description" content={seoDescription} />
+  <meta name="robots" content="index, follow" />
+
+  {/* Open Graph */}
+  <meta property="og:title" content={content.title} />
+  <meta property="og:description" content={seoDescription} />
+  <meta property="og:image" content={content.image} />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="pt_BR" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={content.title} />
+  <meta name="twitter:description" content={seoDescription} />
+  <meta name="twitter:image" content={content.image} />
+
+  {/* Article JSON-LD */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: content.title,
+      image: [content.image],
+      datePublished: content.date?.toDate?.().toISOString(),
+      dateModified: content.updatedAt?.toDate?.().toISOString() || content.date?.toDate?.().toISOString(),
+      author: {
+        "@type": "Person",
+        name: content.author || "Henrique Santos",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "F1 Dash",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.blog-f1-dashboard.com/logo.png",
+        },
+      },
+      description: seoDescription,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `https://www.blog-f1-dashboard.com/artigo/${content.id}`,
+      },
+    })}
+  </script>
+</Helmet>
 
       {/* Conteúdo do artigo */}
       {content.image && (

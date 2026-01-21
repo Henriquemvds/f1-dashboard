@@ -309,14 +309,92 @@ export default function Results() {
         );
     }
 
+    // Description baseado nas sessões mais recentes
+    function buildResultsDescription(sessions = []) {
+        if (!sessions.length) {
+            return "Resultados das sessões da Fórmula 1™, incluindo treinos livres, classificações e corridas, com informações de pilotos e circuitos.";
+        }
+
+        const top3 = sessions.slice(0, 3).map(s => s.session_name).join(" • ");
+
+        return `Resultados das sessões da Fórmula 1™: ${top3} e outras. Detalhes de circuitos, pilotos e datas das corridas.`;
+    }
+
+    const pageTitle = "Resultados da Fórmula 1™ | Treinos, Classificações e Corridas";
+    const pageDescription = buildResultsDescription(flatSessions);
+
     return (
         <div>
             <Helmet>
-                <link
-                    rel="canonical"
-                    href="https://www.blog-f1-dashboard.com/resultados"
-                />
+                <title>{pageTitle}</title>
+
+                <link rel="canonical" href="https://www.blog-f1-dashboard.com/resultados" />
+
+                <meta name="description" content={pageDescription} />
+                <meta name="robots" content="index, follow" />
+
+                {/* Open Graph */}
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={pageDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:locale" content="pt_BR" />
+
+                {/* Twitter */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={pageDescription} />
+
+                {/* CollectionPage Schema */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "CollectionPage",
+                        name: "Resultados das corridas da Fórmula 1™",
+                        description: pageDescription,
+                        url: "https://www.blog-f1-dashboard.com/resultados",
+                        inLanguage: "pt-BR",
+                        isPartOf: {
+                            "@type": "WebSite",
+                            name: "F1™ Dash",
+                            url: "https://www.blog-f1-dashboard.com/"
+                        }
+                    })}
+                </script>
+
+                {/* ItemList com sessões (limit 30 para JSON-LD) */}
+                {flatSessions.length > 0 && (
+                    <script type="application/ld+json">
+                        {JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "ItemList",
+                            itemListElement: flatSessions.slice(0, 30).map((s, index) => ({
+                                "@type": "ListItem",
+                                position: index + 1,
+                                item: {
+                                    "@type": "SportsEvent",
+                                    name: `${s.session_name} — ${s.circuit_short_name || s.location}`,
+                                    startDate: s.date_start,
+                                    endDate: s.date_end,
+                                    location: {
+                                        "@type": "Place",
+                                        name: s.circuit_short_name || s.location,
+                                        address: {
+                                            "@type": "PostalAddress",
+                                            addressLocality: s.location,
+                                            addressCountry: s.country_name
+                                        }
+                                    },
+                                    eventStatus: new Date(s.date_end) < new Date()
+                                        ? "https://schema.org/EventCompleted"
+                                        : "https://schema.org/EventScheduled",
+                                    url: `https://www.blog-f1-dashboard.com/resultados#${s.session_key}`
+                                }
+                            }))
+                        })}
+                    </script>
+                )}
             </Helmet>
+
 
             <Navbar />
 

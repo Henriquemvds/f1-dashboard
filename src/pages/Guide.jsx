@@ -53,13 +53,75 @@ export default function Guide() {
         localStorage.setItem("lastPage", currentPage);
     }, [currentPage]);
 
+    function buildGuideDescription(posts = []) {
+        if (!posts.length) {
+            return "Guia para iniciantes na Fórmula 1™, com explicações sobre regras, mecânica, estratégias e funcionamento das corridas.";
+        }
+
+        const titles = posts.slice(0, 3).map(p => p.title).join(" • ");
+
+        return `Guia completo das corridas da Fórmula 1™ para iniciantes: ${titles}. Aprenda regras, mecânica e conceitos essenciais das corridas da F1™.`;
+    }
+
+    const pageTitle = "Guia das corridas Fórmula 1™ para Iniciantes | Regras, mecânica e conceitos";
+    const pageDescription = buildGuideDescription(posts);
+
     return (
         <div className="min-h-screen bg-gray-100">
             <Helmet>
+                <title>{pageTitle}</title>
+
                 <link
                     rel="canonical"
                     href="https://www.blog-f1-dashboard.com/guia"
                 />
+
+                <meta name="description" content={pageDescription} />
+                <meta name="robots" content="index, follow" />
+
+                {/* Open Graph */}
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={pageDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:locale" content="pt_BR" />
+
+                {/* Twitter */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={pageDescription} />
+
+                {/* CollectionPage Schema */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "CollectionPage",
+                        name: "Guia da Fórmula 1™ para Iniciantes",
+                        description: pageDescription,
+                        url: "https://www.blog-f1-dashboard.com/guia",
+                        inLanguage: "pt-BR",
+                        isPartOf: {
+                            "@type": "WebSite",
+                            name: "F1™ Dash",
+                            url: "https://www.blog-f1-dashboard.com/"
+                        }
+                    })}
+                </script>
+
+                {/* ItemList – artigos do guia */}
+                {!loading && posts.length > 0 && (
+                    <script type="application/ld+json">
+                        {JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "ItemList",
+                            itemListElement: posts.slice(0, 10).map((post, index) => ({
+                                "@type": "ListItem",
+                                position: index + 1,
+                                url: `https://www.blog-f1-dashboard.com/artigo/${post.id}`,
+                                name: post.title
+                            }))
+                        })}
+                    </script>
+                )}
             </Helmet>
             <Navbar />
             <div className="home-container">
