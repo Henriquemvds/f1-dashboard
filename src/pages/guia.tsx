@@ -1,21 +1,13 @@
-// src/pages/guide.tsx
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ArticleCard, { Post as ArticleCardPost } from "../components/Post";
 import Pagination from "../components/Pagination";
-import { db } from "../../Firebase"; // ajuste do path
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  QueryDocumentSnapshot,
-  DocumentData,
-} from "firebase/firestore";
+import { db } from "../../Firebase";
+import { collection, getDocs, query, orderBy, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 
-// Tipo dos posts do guia
+// Tipo do post de guia
 export type GuidePost = ArticleCardPost & {
   id: string;
   date?: { toDate?: () => Date } | null;
@@ -26,20 +18,13 @@ export default function Guide() {
   const [filtered, setFiltered] = useState<GuidePost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState(() => {
+    const saved = localStorage.getItem("lastPage");
+    return saved ? Number(saved) : 1;
+  });
+
   const postsPerPage = 15;
 
-  // Carrega página salva apenas no client
-  useEffect(() => {
-    const saved = localStorage.getItem("lastPage");
-    if (saved) setCurrentPage(Number(saved));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("lastPage", currentPage.toString());
-  }, [currentPage]);
-
-  // Carrega posts do Firestore
   useEffect(() => {
     async function loadPosts() {
       try {
@@ -48,18 +33,15 @@ export default function Guide() {
         const snapshot = await getDocs(q);
 
         const loaded: GuidePost[] = snapshot.docs.map(
-          (doc: QueryDocumentSnapshot<DocumentData>) => {
-            const data = doc.data();
-            return {
-              id: doc.id,
-              title: data.title || "Sem título",
-              subtitle: data.subtitle || "",
-              banner: data.banner || "",
-              tags: data.tags || [],
-              date: data.date || null,
-              author: data.author || "Henrique Santos",
-            };
-          }
+          (doc: QueryDocumentSnapshot<DocumentData>) => ({
+            id: doc.id,
+            title: doc.data().title || "Sem título",
+            subtitle: doc.data().subtitle || "",
+            banner: doc.data().banner || "",
+            tags: doc.data().tags || [],
+            date: doc.data().date || null,
+            author: doc.data().author || "Henrique Santos",
+          })
         );
 
         setPosts(loaded);
@@ -82,6 +64,10 @@ export default function Guide() {
   const currentPosts = filtered.slice(indexFirst, indexLast);
   const totalPages = Math.ceil(filtered.length / postsPerPage);
 
+  useEffect(() => {
+    localStorage.setItem("lastPage", currentPage.toString());
+  }, [currentPage]);
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
@@ -90,10 +76,7 @@ export default function Guide() {
         <section className="hero">
           <div className="hero-content">
             <h1>Guia Para Iniciantes</h1>
-            <p>
-              Aprenda sobre detalhes técnicos, regulamentos e mecânica das
-              corridas da Fórmula 1™.
-            </p>
+            <p>Aprenda sobre detalhes técnicos, regulamentos e mecânica das corridas da Fórmula 1™.</p>
           </div>
         </section>
 
@@ -109,19 +92,13 @@ export default function Guide() {
               <Link
                 href={`/artigo/${post.id}`}
                 key={post.id}
-                onClick={() =>
-                  localStorage.setItem("lastPage", currentPage.toString())
-                }
+                onClick={() => localStorage.setItem("lastPage", currentPage.toString())}
               >
                 <ArticleCard post={post} />
               </Link>
             ))}
 
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            setCurrentPage={setCurrentPage}
-          />
+          <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
         </section>
       </div>
 
