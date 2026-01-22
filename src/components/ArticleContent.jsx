@@ -72,12 +72,12 @@ export default function ArticleContent({ content, collectionType }) {
     href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
   />
 
-  <meta name="description" content={seoDescription} />
+  <meta name="description" content={content.content} />
   <meta name="robots" content="index, follow" />
 
   {/* Open Graph */}
   <meta property="og:title" content={content.title} />
-  <meta property="og:description" content={seoDescription} />
+  <meta property="og:description" content={content.content} />
   <meta property="og:image" content={content.image} />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="pt_BR" />
@@ -85,7 +85,7 @@ export default function ArticleContent({ content, collectionType }) {
   {/* Twitter */}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={content.title} />
-  <meta name="twitter:description" content={seoDescription} />
+  <meta name="twitter:description" content={content.content} />
   <meta name="twitter:image" content={content.image} />
 
   {/* Article JSON-LD */}
@@ -109,7 +109,7 @@ export default function ArticleContent({ content, collectionType }) {
           url: "https://www.blog-f1-dashboard.com/logo.png",
         },
       },
-      description: seoDescription,
+      description: content.content,
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": `https://www.blog-f1-dashboard.com/artigo/${content.id}`,
