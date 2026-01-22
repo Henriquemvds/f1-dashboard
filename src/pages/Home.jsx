@@ -90,7 +90,7 @@ export default function Home() {
   return `Últimos artigos sobre as corridas da Fórmula 1™: ${titles}. Análises, opiniões e bastidores no F1™ Dash.`;
 }
 
-const pageTitle = "F1™ Dash | Notícias, análises e bastidores das corridas daFórmula 1™";
+const pageTitle = "F1™ Dash | Notícias, análises e bastidores das corridas da Fórmula 1™";
 const pageDescription = buildHomeDescription(posts);
 
 
