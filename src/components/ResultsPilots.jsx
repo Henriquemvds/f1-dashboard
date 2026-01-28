@@ -1,6 +1,4 @@
 import NotRegistered from "../images/pilot-not-registered.png";
-import "../styles/ResultsPilots.css"
-import "../styles/Pilots.css";
 
 export default function ResultsPilots({
   modalSessionKey,

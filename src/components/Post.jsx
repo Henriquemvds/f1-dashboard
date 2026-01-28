@@ -19,8 +19,8 @@ export default function ArticleCard({ post }) {
             <p className="article-meta">
                 Publicado em{" "}
                 <span>
-                    {post.date && post.date.toDate
-                        ? post.date.toDate().toLocaleDateString("pt-BR")
+                    {post.date
+                        ? new Date(post.date).toLocaleDateString("pt-BR")
                         : "Sem data definida"}
                 </span>{" "}
                 • Por <span>{post.author || "Henrique Santos"}</span>

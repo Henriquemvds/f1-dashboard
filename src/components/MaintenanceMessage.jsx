@@ -1,4 +1,3 @@
-import  "./../styles/MaintenanceMessage.css";
 
 export default function MaintenanceMessage() {
 

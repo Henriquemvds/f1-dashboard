@@ -1,0 +1,219 @@
+/* [project]/src/styles/Pilots.css [client] (css) */
+.pilots-section {
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(to bottom right, #b80000, #000);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+}
+
+.pilots-title {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px #f009;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.pilots-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 10px;
+  display: grid;
+}
+
+.pilot-card {
+  background-color: #111;
+  border-radius: 12px;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px;
+  transition: transform .3s, box-shadow .3s;
+  display: flex;
+  box-shadow: 0 4px 10px #f003;
+}
+
+.pilot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px #f006;
+}
+
+.pilot-photo-container {
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.pilot-photo {
+  object-fit: cover;
+  background-color: #111;
+  border: 2px solid #b80000;
+  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  transition: transform .3s;
+  box-shadow: 0 0 10px #f006;
+}
+
+.pilot-card:hover .pilot-photo {
+  transform: scale(1.05);
+}
+
+.pilot-number {
+  color: #ff3c00;
+  text-shadow: 0 0 8px, 0 0 15px;
+  z-index: 5;
+  pointer-events: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  position: absolute;
+  top: -10px;
+  left: 120px;
+}
+
+.pilot-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.pilot-name {
+  color: #fff;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.pilot-team {
+  color: #bbb;
+  font-size: .9rem;
+}
+
+.bio-button {
+  color: #fff;
+  text-align: center;
+  background: #ff1a1a;
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all .2s;
+  display: inline-block;
+}
+
+.bio-button:hover {
+  background: #c00;
+  transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
+  .pilots-title {
+    font-size: 2.2rem;
+  }
+
+  .pilot-photo {
+    width: 160px;
+    height: 160px;
+  }
+
+  .pilot-number {
+    font-size: 2rem;
+    left: 120px;
+  }
+
+  .pilot-card {
+    padding: 20px;
+  }
+
+  .pilots-grid {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pilots-section {
+    padding: 35px 15px;
+  }
+
+  .pilots-title {
+    margin-bottom: 25px;
+    font-size: 2.4rem;
+  }
+
+  .pilots-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .pilot-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .pilot-number {
+    font-size: 2rem;
+    left: 120px;
+  }
+
+  .pilot-name {
+    font-size: 1.3rem;
+  }
+
+  .pilot-team {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pilots-section {
+    padding: 45px 10px;
+  }
+
+  .pilots-title {
+    margin-bottom: 28px;
+    font-size: 2.6rem;
+  }
+
+  .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .pilot-photo {
+    border: 3px solid #ff1e00;
+    width: 220px;
+    height: 220px;
+    box-shadow: 0 0 15px #ff000080;
+  }
+
+  .pilot-number {
+    font-size: 2.5rem;
+    top: -12px;
+    left: 180px;
+  }
+
+  .pilot-name {
+    letter-spacing: .5px;
+    font-size: 1.6rem;
+  }
+
+  .pilot-team {
+    color: #ddd;
+    font-size: 1.2rem;
+  }
+
+  .pilot-card {
+    border-radius: 14px;
+    padding: 25px;
+  }
+}
+
+/*# sourceMappingURL=src_styles_Pilots_css_65f1660e._.single.css.map*/
