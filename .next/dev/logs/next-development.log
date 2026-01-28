@@ -1,0 +1,137 @@
+[00:00:03.484] Server  LOG     ✓ Ready in 2.5s
+[00:04:29.505] Server  LOG     ✓ Compiled in 197ms
+[00:05:57.730] Server  LOG     ✓ Compiled in 406ms
+[00:05:57.797] Browser LOG     Refreshing page data due to server-side change
+[00:05:58.580] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:05:58.802] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:05:59.892] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:05:59.970] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:06:00.316] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:07:27.358] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:07:27.472] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:07:27.675] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:08:15.505] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:15.568] Server  LOG     ✓ Compiled in 90ms
+[00:08:15.929] Server  ERROR   ⨯ Error: The default export is not a React Component in page: "/artigo/[id]"
+[00:08:16.030] Server  ERROR   ⨯ Error: The default export is not a React Component in page: "/artigo/[id]"
+[00:08:16.408] Browser ERROR   uncaughtError: Error: The default export is not a React Component in page: "/artigo/[id]"
+[00:08:22.015] Server  ERROR   ⨯ Error: The default export is not a React Component in page: "/artigo/[id]"
+[00:08:22.091] Server  ERROR   ⨯ Error: The default export is not a React Component in page: "/artigo/[id]"
+[00:08:22.311] Browser ERROR   uncaughtError: Error: The default export is not a React Component in page: "/artigo/[id]"
+[00:08:59.657] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:59.688] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:09:00.658] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:00.750] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:00.840] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:00.954] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:01.243] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:19.642] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:09:20.393] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:20.476] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:21.022] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:39.464] Server  LOG     ✓ Compiled in 9ms
+[00:09:43.537] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:43.623] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:43.850] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:11:12.842] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:11:13.038] Server  LOG     ✓ Compiled in 14ms
+[00:11:13.779] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:11:13.878] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:11:14.160] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:11:17.540] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:11:17.678] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:11:17.952] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:13:24.569] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:13:24.809] Server  LOG     ✓ Compiled in 26ms
+[00:13:25.521] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:13:25.655] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:13:25.928] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:14:34.651] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:14:34.675] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:14:34.709] Server  LOG     ✓ Compiled in 76ms
+[00:14:35.676] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:14:35.893] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:14:36.102] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:14:36.314] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:14:36.636] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:15:59.178] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:16:00.338] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:00.471] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:00.860] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:04.068] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:04.139] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:04.365] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:05.676] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:05.744] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:05.952] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:07.198] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:07.270] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:07.502] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:32.328] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:16:32.334] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:16:32.392] Server  LOG     ✓ Compiled in 10ms
+[00:16:33.308] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:33.403] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:33.721] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:33.778] Server  LOG     ✓ Compiled in 235ms
+[00:16:37.453] Server  LOG     ✓ Compiled in 10ms
+[00:16:42.756] Server  LOG     ✓ Compiled in 14ms
+[00:16:46.314] Server  LOG     ✓ Compiled in 267ms
+[00:16:50.621] Server  LOG     ✓ Compiled in 17ms
+[00:16:55.644] Server  LOG     ✓ Compiled in 69ms
+[00:17:21.801] Server  LOG     ✓ Compiled in 28ms
+[00:17:51.158] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
