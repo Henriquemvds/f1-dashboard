@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Pichau/Desktop/Arquivos%20de%20programa%C3%A7%C3%A3o/Projetos/f1-dashboard/src/pages/_app.jsx"],"sourcesContent":["import '../styles/index.css' // CSS global\nimport \"../styles/Home.css\";\nimport \"../styles/Footer.css\";\nimport \"../styles/Navbar.css\";\nimport \"../styles/ArticlePage.css\";\nimport \"../styles/About.css\";\nimport \"../styles/EventsCalendar.css\"\nimport \"../styles/Pilots.css\";\nimport \"../styles/Results.css\";\nimport  \"../styles/MaintenanceMessage.css\";\nimport \"../styles/ResultsPilots.css\"\nimport \"../styles/Guide.css\";\nimport \"../styles/Circuits.css\"\nimport \"../styles/BioDriver.css\";\nimport React from 'react';\n\nexport default function MyApp({ Component, pageProps }) {\n  // Component é a página atual\n  // pageProps vem de getStaticProps / getServerSideProps\n  return <Component {...pageProps} />;\n}"],"names":[],"mappings":";;;;;AAcA;;;;;;;;;;;;;;;;;AAEe,SAAS,MAAM,EAAE,SAAS,EAAE,SAAS,EAAE;IACpD,6BAA6B;IAC7B,uDAAuD;IACvD,qBAAO,qKAAC;QAAW,GAAG,SAAS;;;;;;AACjC"}}]
-}
