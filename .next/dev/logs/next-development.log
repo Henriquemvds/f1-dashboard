@@ -1,48 +1,62 @@
-[00:00:04.783] Server  LOG     ✓ Ready in 3.8s
-[00:00:07.907] Server  LOG     ○ Compiling /artigo/[id] ...
-[00:00:15.428] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+[00:00:03.367] Server  LOG     ✓ Ready in 2.2s
+[00:07:57.607] Server  LOG     ✓ Compiled in 79ms
+[00:08:04.432] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
     at title
     at head
     at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
     at html
     at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
     at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
-[00:00:25.911] Server  LOG     ✓ Finished writing to filesystem cache in 13.4s
-[00:05:20.668] Server  LOG     ✓ Compiled in 19ms
-[00:05:28.310] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+[00:09:32.063] Server  LOG     ✓ Compiled in 18ms
+[00:09:45.303] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
 Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:05:28.403] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+[00:09:45.505] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
 Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:05:29.193] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+[00:09:48.476] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
 Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:05:29.266] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+[00:09:48.553] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
 Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:05:29.494] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
+[00:09:48.555] Server  LOG     ○ Compiling /_error ...
+[00:09:56.755] Server  LOG     ✓ Finished filesystem cache database compaction in 21.8s
+[00:09:56.757] Server  LOG     ✓ Finished writing to filesystem cache in 15.1s
+[00:09:57.291] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
 Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:05:42.378] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:05:42.382] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:05:42.411] Server  LOG     ✓ Compiled in 10ms
-[00:05:43.050] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
-    at title
-    at head
-    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
-    at html
-    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
-    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
-[00:08:44.559] Server  LOG     ✓ Compiled in 98ms
-[00:08:44.619] Browser LOG     Refreshing page data due to server-side change
-[00:08:44.620] Browser ERROR   ./src/pages/artigo/[id].jsx:34:1
+[00:09:57.369] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:57.482] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:57.621] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:09:57.841] Browser ERROR   uncaughtError: Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:10:36.093] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:10:36.118] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:10:36.151] Server  LOG     ✓ Compiled in 66ms
+[00:10:36.845] Browser ERROR   uncaughtError: Error: ./src/pages/artigo/[id].jsx:19:59
 Parsing ecmascript source code failed
-  32 |   };
-  33 |
-> 34 | export default function ArticlePage({ post, relatedPosts, collectionType }) {
-     | ^^^^^^
-  35 |   const router = useRouter();
-  36 |
-  37 |   if (router.isFallback) return <Loading />;
+  17 |     // Garantir que a data seja string ISO
+  18 |     date: post.date?.toDate?.()?.toISOString() || post.date || null,
+> 19 |     updatedAt: post.updatedAt?.toDate?.()?.toISOString()  post.date || null,
+     |                                                           ^^^^
+  20 |     comments: post.comments
+  21 |       ? Object.fromEntries(
+  22 |           Object.entries(post.comments).map(([id, comment]) => [
 
-'import', and 'export' cannot be used outside of module code
-[00:08:44.620] Browser ERROR   ./src/pages/artigo/[id].jsx
+Expected ',', got 'ident'
+
+
+[00:10:37.658] Browser ERROR   ./src/pages/artigo/[id].jsx:19:59
+Parsing ecmascript source code failed
+  17 |     // Garantir que a data seja string ISO
+  18 |     date: post.date?.toDate?.()?.toISOString() || post.date || null,
+> 19 |     updatedAt: post.updatedAt?.toDate?.()?.toISOString()  post.date || null,
+     |                                                           ^^^^
+  20 |     comments: post.comments
+  21 |       ? Object.fromEntries(
+  22 |           Object.entries(post.comments).map(([id, comment]) => [
+
+Expected ',', got 'ident'
+[00:10:37.658] Browser ERROR   ./src/pages/artigo/[id].jsx
 Code generation for chunk item errored
 An error occurred while generating the chunk item [project]/src/pages/artigo/[id].jsx [ssr] (ecmascript)
 
@@ -54,31 +68,18 @@ Debug info:
 - Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
 - Execution of EcmascriptChunkItemContent::new failed
 - CJS module can't be async.
-[00:08:44.967] Browser ERROR   uncaughtError: Error: ./src/pages/artigo/[id].jsx:34:1
+[00:10:37.658] Browser ERROR   ./src/pages/artigo/[id].jsx:19:59
 Parsing ecmascript source code failed
-  32 |   };
-  33 |
-> 34 | export default function ArticlePage({ post, relatedPosts, collectionType }) {
-     | ^^^^^^
-  35 |   const router = useRouter();
-  36 |
-  37 |   if (router.isFallback) return <Loading />;
+  17 |     // Garantir que a data seja string ISO
+  18 |     date: post.date?.toDate?.()?.toISOString() || post.date || null,
+> 19 |     updatedAt: post.updatedAt?.toDate?.()?.toISOString()  post.date || null,
+     |                                                           ^^^^
+  20 |     comments: post.comments
+  21 |       ? Object.fromEntries(
+  22 |           Object.entries(post.comments).map(([id, comment]) => [
 
-'import', and 'export' cannot be used outside of module code
-
-
-[00:08:46.065] Browser ERROR   ./src/pages/artigo/[id].jsx:34:1
-Parsing ecmascript source code failed
-  32 |   };
-  33 |
-> 34 | export default function ArticlePage({ post, relatedPosts, collectionType }) {
-     | ^^^^^^
-  35 |   const router = useRouter();
-  36 |
-  37 |   if (router.isFallback) return <Loading />;
-
-'import', and 'export' cannot be used outside of module code
-[00:08:46.066] Browser ERROR   ./src/pages/artigo/[id].jsx
+Expected ',', got 'ident'
+[00:10:37.658] Browser ERROR   ./src/pages/artigo/[id].jsx
 Code generation for chunk item errored
 An error occurred while generating the chunk item [project]/src/pages/artigo/[id].jsx [ssr] (ecmascript)
 
@@ -90,220 +91,13 @@ Debug info:
 - Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
 - Execution of EcmascriptChunkItemContent::new failed
 - CJS module can't be async.
-[00:08:46.066] Browser ERROR   ./src/pages/artigo/[id].jsx:34:1
-Parsing ecmascript source code failed
-  32 |   };
-  33 |
-> 34 | export default function ArticlePage({ post, relatedPosts, collectionType }) {
-     | ^^^^^^
-  35 |   const router = useRouter();
-  36 |
-  37 |   if (router.isFallback) return <Loading />;
-
-'import', and 'export' cannot be used outside of module code
-[00:08:46.066] Browser ERROR   ./src/pages/artigo/[id].jsx
-Code generation for chunk item errored
-An error occurred while generating the chunk item [project]/src/pages/artigo/[id].jsx [ssr] (ecmascript)
-
-Caused by:
-- CJS module can't be async.
-
-Debug info:
-- An error occurred while generating the chunk item [project]/src/pages/artigo/[id].jsx [ssr] (ecmascript)
-- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
-- Execution of EcmascriptChunkItemContent::new failed
-- CJS module can't be async.
-[00:08:50.262] Server  LOG     ✓ Compiled in 22ms
-[00:08:52.652] Server  LOG     ✓ Compiled in 11ms
-[00:08:57.910] Server  LOG     ✓ Compiled in 33ms
-[00:09:05.485] Server  LOG     ✓ Compiled in 8ms
-[00:09:21.670] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:09:21.739] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:09:21.931] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:41.530] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:11:41.741] Server  LOG     ✓ Compiled in 19ms
-[00:11:42.409] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:42.503] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:42.805] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:49.722] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:49.796] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:50.077] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:58.566] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:58.643] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:59.285] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:59.357] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:11:59.520] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:12:14.925] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:12:14.932] Server  LOG     ✓ Compiled in 123ms
-[00:12:15.807] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:12:15.876] Server  ERROR   ⨯ Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:12:16.098] Browser ERROR   uncaughtError: Error: Error serializing `.post.date` returned from `getServerSideProps` in "/artigo/[id]".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:12:18.737] Server  LOG     ✓ Compiled in 15ms
-[00:12:22.711] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+[00:10:40.779] Server  LOG     ✓ Compiled in 16ms
+[00:10:53.404] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:10:54.222] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
     at title
     at head
     at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
     at html
     at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
     at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
-[00:12:54.238] Server  LOG     ✓ Compiled in 17ms
-[00:12:55.061] Browser ERROR   ./src/components/ArticleContent.jsx:26:63
-Parsing ecmascript source code failed
-  24 |   // Formata a data do artigo
-  25 |   const formattedDate = content.dateString
-> 26 |     ? new Date(content.dateString).toLocaleDateString("pt-BR");
-     |                                                               ^
-  27 |
-  28 |   // Atualiza os comentários em tempo real
-  29 |   useEffect(() => {
-
-Expected ':', got ';'
-
-Import traces:
-  Browser:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-
-  SSR:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-[00:12:55.061] Browser ERROR   ./src/components/ArticleContent.jsx
-Code generation for chunk item errored
-An error occurred while generating the chunk item [project]/src/components/ArticleContent.jsx [ssr] (ecmascript)
-
-Caused by:
-- CJS module can't be async.
-
-Debug info:
-- An error occurred while generating the chunk item [project]/src/components/ArticleContent.jsx [ssr] (ecmascript)
-- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
-- Execution of EcmascriptChunkItemContent::new failed
-- CJS module can't be async.
-
-Import traces:
-  Browser:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-
-  SSR:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-[00:12:57.628] Server  LOG     ✓ Compiled in 12ms
-[00:12:58.069] Browser ERROR   ./src/components/ArticleContent.jsx:25:44
-Parsing ecmascript source code failed
-  23 |
-  24 |   // Formata a data do artigo
-> 25 |   const formattedDate = content.dateString new Date(content.dateString).toLocaleDateString("pt-BR");
-     |                                            ^^^
-  26 |
-  27 |   // Atualiza os comentários em tempo real
-  28 |   useEffect(() => {
-
-Expected a semicolon
-
-Import traces:
-  Browser:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-
-  SSR:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-[00:12:58.069] Browser ERROR   ./src/components/ArticleContent.jsx
-Code generation for chunk item errored
-An error occurred while generating the chunk item [project]/src/components/ArticleContent.jsx [ssr] (ecmascript)
-
-Caused by:
-- CJS module can't be async.
-
-Debug info:
-- An error occurred while generating the chunk item [project]/src/components/ArticleContent.jsx [ssr] (ecmascript)
-- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
-- Execution of EcmascriptChunkItemContent::new failed
-- CJS module can't be async.
-
-Import traces:
-  Browser:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-
-  SSR:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-[00:12:59.059] Browser ERROR   ./src/components/ArticleContent.jsx:25:43
-Parsing ecmascript source code failed
-  23 |
-  24 |   // Formata a data do artigo
-> 25 |   const formattedDate = content.dateStrin new Date(content.dateString).toLocaleDateString("pt-BR");
-     |                                           ^^^
-  26 |
-  27 |   // Atualiza os comentários em tempo real
-  28 |   useEffect(() => {
-
-Expected a semicolon
-
-Import traces:
-  Browser:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-
-  SSR:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-[00:12:59.059] Browser ERROR   ./src/components/ArticleContent.jsx
-Code generation for chunk item errored
-An error occurred while generating the chunk item [project]/src/components/ArticleContent.jsx [ssr] (ecmascript)
-
-Caused by:
-- CJS module can't be async.
-
-Debug info:
-- An error occurred while generating the chunk item [project]/src/components/ArticleContent.jsx [ssr] (ecmascript)
-- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
-- Execution of EcmascriptChunkItemContent::new failed
-- CJS module can't be async.
-
-Import traces:
-  Browser:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-
-  SSR:
-    ./src/components/ArticleContent.jsx
-    ./src/pages/artigo/[id].jsx
-[00:13:03.150] Server  LOG     ✓ Compiled in 29ms
-[00:14:30.566] Server  LOG     ✓ Compiled in 15ms
-[00:14:41.913] Server  LOG     ✓ Compiled in 11ms
-[00:14:45.510] Server  ERROR   Erro ao carregar artigo: ReferenceError: data is not defined
-[00:15:02.059] Browser LOG     Refreshing page data due to server-side change
-[00:18:29.806] Server  LOG     ✓ Compiled in 17ms
-[00:18:32.672] Server  LOG     ✓ Compiled in 25ms
-[00:20:36.327] Server  LOG     ✓ Compiled in 27ms
-[00:20:38.991] Server  ERROR   ⨯ Error: Error serializing `.initialPosts[0].date` returned from `getStaticProps` in "/".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:20:39.082] Server  ERROR   ⨯ Error: Error serializing `.initialPosts[0].date` returned from `getStaticProps` in "/".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:20:39.372] Server  ERROR   ⨯ Error: Error serializing `.initialPosts[0].date` returned from `getStaticProps` in "/".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:20:39.449] Server  ERROR   ⨯ Error: Error serializing `.initialPosts[0].date` returned from `getStaticProps` in "/".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:20:39.730] Browser ERROR   uncaughtError: Error: Error serializing `.initialPosts[0].date` returned from `getStaticProps` in "/".
-Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
-[00:20:44.393] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:14:06.914] Server  LOG     ✓ Compiled in 40ms

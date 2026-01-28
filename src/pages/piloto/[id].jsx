@@ -36,30 +36,30 @@ export default function BioDriver({ pilot }) {
 
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={seoDescription} />
-        <meta property="og:image" content={pilot.portrait_image} />
+        <meta property="og:image" content={pilot.portrait_image || ""} />
         <meta property="og:type" content="profile" />
         <meta property="og:locale" content="pt_BR" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={seoDescription} />
-        <meta name="twitter:image" content={pilot.portrait_image} />
+        <meta name="twitter:image" content={pilot.portrait_image || ""} />
 
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            name: pilot.full_name,
+            name: pilot.full_name || "",
             description: seoDescription,
-            image: pilot.portrait_image,
-            nationality: pilot.country,
-            birthDate: birthDate, // já é string ISO
-            birthPlace: pilot.birthplace,
-            height: pilot.height,
-            weight: pilot.weight,
+            image: pilot.portrait_image || "",
+            nationality: pilot.country || "",
+            birthDate: birthDate,
+            birthPlace: pilot.birthplace || "",
+            height: pilot.height || null,
+            weight: pilot.weight || null,
             affiliation: {
               "@type": "SportsTeam",
-              name: pilot.team_name,
+              name: pilot.team_name || "",
             },
             jobTitle: "Piloto de Fórmula 1",
             sameAs: [
@@ -80,7 +80,7 @@ export default function BioDriver({ pilot }) {
       <div className="details-pilot pilot-card">
         <div className="portrait">
           <img
-            src={pilot.portrait_image}
+            src={pilot.portrait_image || ""}
             alt={`Retrato de ${pilot.full_name}`}
           />
         </div>
@@ -92,11 +92,11 @@ export default function BioDriver({ pilot }) {
 
             <div className="meta-row">
               <div className="meta-item">
-                <strong>Número:</strong> {pilot.driver_number}
+                <strong>Número:</strong> {pilot.driver_number || ""}
               </div>
 
               <div className="meta-item">
-                <strong>País:</strong> {pilot.country}
+                <strong>País:</strong> {pilot.country || ""}
               </div>
 
               <div className="meta-item">
@@ -105,31 +105,31 @@ export default function BioDriver({ pilot }) {
               </div>
 
               <div className="meta-item">
-                <strong>Natural de:</strong> {pilot.birthplace}
+                <strong>Natural de:</strong> {pilot.birthplace || ""}
               </div>
             </div>
           </div>
 
           <div className="section">
             <h3>Biografia</h3>
-            <p>{pilot.biography}</p>
+            <p>{pilot.biography || "Sem biografia disponível."}</p>
           </div>
 
           <div className="section">
             <h3>Carreira</h3>
             <div className="grid-stats">
               <div className="stat">
-                <div className="value">{pilot.championships}</div>
+                <div className="value">{pilot.championships || 0}</div>
                 <div className="label">Mundiais</div>
               </div>
 
               <div className="stat">
-                <div className="value">{pilot.height}</div>
+                <div className="value">{pilot.height || "—"}</div>
                 <div className="label">Altura</div>
               </div>
 
               <div className="stat">
-                <div className="value">{pilot.weight}</div>
+                <div className="value">{pilot.weight || "—"}</div>
                 <div className="label">Peso</div>
               </div>
             </div>
@@ -193,6 +193,9 @@ export async function getServerSideProps(context) {
       id,
       ...data,
       birthdate: data.birthdate?.toDate ? data.birthdate.toDate().toISOString() : null,
+      height: data.height || null,
+      weight: data.weight || null,
+      championships: data.championships || 0,
     };
 
     return { props: { pilot } };
