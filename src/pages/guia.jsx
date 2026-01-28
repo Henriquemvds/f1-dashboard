@@ -24,6 +24,7 @@ export default function Guide() {
 
   const postsPerPage = 15;
 
+  // Carrega posts do Firestore
   useEffect(() => {
     async function loadPosts() {
       try {
@@ -31,10 +32,32 @@ export default function Guide() {
         const q = query(ref, orderBy("date", "desc"));
         const snapshot = await getDocs(q);
 
-        const loaded = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const loaded = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            title: data.title || "",
+            subtitle: data.subtitle || "",
+            content: data.content || "",
+            image: data.image || "",
+            banner: data.banner || "",
+            tags: Array.isArray(data.tags) ? data.tags : [],
+            date: data.date?.toDate ? data.date.toDate().toISOString() : data.date || null,
+            comments: data.comments
+              ? Object.fromEntries(
+                  Object.entries(data.comments).map(([key, comment]) => [
+                    key,
+                    {
+                      comment: comment.comment || "",
+                      createdAt: comment.createdAt?.toDate
+                        ? comment.createdAt.toDate().toISOString()
+                        : comment.createdAt || null,
+                    },
+                  ])
+                )
+              : {},
+          };
+        });
 
         setPosts(loaded);
         setFiltered(loaded);
@@ -118,8 +141,8 @@ export default function Guide() {
                 "@type": "ListItem",
                 position: index + 1,
                 url: `https://www.blog-f1-dashboard.com/artigo/${post.id}`,
-                name: post.title
-              }))
+                name: post.title || "",
+              })),
             })}
           </script>
         )}
@@ -139,14 +162,11 @@ export default function Guide() {
           <h2>Últimos Artigos</h2>
 
           {loading && <p>Carregando artigos...</p>}
-
           {!loading && currentPosts.length === 0 && <p>Nenhum artigo encontrado.</p>}
 
           {!loading && currentPosts.map(post => (
-            <Link href={`/artigo/${post.id}`} key={post.id} passHref>
-             
-                <ArticleCard post={post} />
-            
+            <Link href={`/artigo/${post.id}`} key={post.id}>
+              <ArticleCard post={post} />
             </Link>
           ))}
 
@@ -155,7 +175,6 @@ export default function Guide() {
             totalPages={totalPages}
             setCurrentPage={setCurrentPage}
           />
-
         </section>
       </div>
 

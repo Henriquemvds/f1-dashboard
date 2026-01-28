@@ -8,6 +8,9 @@ self.__BUILD_MANIFEST = {
   "/artigo/[id]": [
     "static/chunks/pages/artigo/[id].js"
   ],
+  "/circuitos": [
+    "static/chunks/pages/circuitos.js"
+  ],
   "/guia": [
     "static/chunks/pages/guia.js"
   ],

@@ -18,15 +18,14 @@ export default function ArticleContent({ content, collectionType }) {
 
   const db = getFirestore();
 
-  // Define a coleção: "guide" ou "posts"
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
-  // Formata a data do artigo
+  // Garantindo string ISO para a data
   const formattedDate = content.date
     ? new Date(content.date).toLocaleDateString("pt-BR")
     : "Sem data definida";
 
-  // Atualiza os comentários em tempo real
+  // Atualiza comentários em tempo real
   useEffect(() => {
     if (!content.id) return;
 
@@ -35,14 +34,14 @@ export default function ArticleContent({ content, collectionType }) {
     const unsubscribe = onSnapshot(docRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.data();
-        // Converte comentários para objetos serializáveis (strings ISO)
+
+        // Serializa comentários
         const serializedComments = data.comments
           ? Object.fromEntries(
               Object.entries(data.comments).map(([id, comment]) => [
                 id,
                 {
                   ...comment,
-                  // Mantém createdAt como string ISO
                   createdAt: comment.createdAt?.toDate
                     ? comment.createdAt.toDate().toISOString()
                     : comment.createdAt || null,
@@ -50,6 +49,7 @@ export default function ArticleContent({ content, collectionType }) {
               ])
             )
           : {};
+
         setComments(serializedComments);
       }
     });
@@ -66,7 +66,7 @@ export default function ArticleContent({ content, collectionType }) {
     const commentId = crypto.randomUUID();
     const newCommentObj = {
       comment: newComment.trim(),
-      createdAt: serverTimestamp(),
+      createdAt: serverTimestamp(), // será convertido pelo Firestore
     };
 
     setNewComment("");
@@ -83,15 +83,12 @@ export default function ArticleContent({ content, collectionType }) {
 
   return (
     <div>
-      {/* Metatags SEO e JSON-LD */}
       <Head>
         <title>{content.title} | F1™ Dash</title>
-
         <link
           rel="canonical"
           href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
         />
-
         <meta name="description" content={content.content} />
         <meta name="robots" content="index, follow" />
 
@@ -117,19 +114,13 @@ export default function ArticleContent({ content, collectionType }) {
               "@type": "Article",
               headline: content.title,
               image: [content.image],
-              datePublished: content.dateString,
-              dateModified: content.updatedAtString || content.dateString,
-              author: {
-                "@type": "Person",
-                name: content.author || "Henrique Santos",
-              },
+              datePublished: content.date,
+              dateModified: content.updatedAt || content.date,
+              author: { "@type": "Person", name: content.author || "Henrique Santos" },
               publisher: {
                 "@type": "Organization",
                 name: "F1 Dash",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://www.blog-f1-dashboard.com/logo.png",
-                },
+                logo: { "@type": "ImageObject", url: "https://www.blog-f1-dashboard.com/logo.png" },
               },
               description: content.content,
               mainEntityOfPage: {
@@ -142,13 +133,7 @@ export default function ArticleContent({ content, collectionType }) {
       </Head>
 
       {/* Banner */}
-      {content.image && (
-        <img
-          src={content.image}
-          className="article-banner"
-          alt={content.title}
-        />
-      )}
+      {content.image && <img src={content.image} className="article-banner" alt={content.title} />}
 
       {/* Cabeçalho */}
       <div className="article-header">
@@ -159,18 +144,13 @@ export default function ArticleContent({ content, collectionType }) {
         </p>
         <div className="article-tags">
           {content.tags?.map((tag) => (
-            <span key={tag} className="tag">
-              {tag}
-            </span>
+            <span key={tag} className="tag">{tag}</span>
           ))}
         </div>
       </div>
 
-      {/* Conteúdo do artigo */}
-      <div
-        className="article-content"
-        dangerouslySetInnerHTML={{ __html: content.content }}
-      />
+      {/* Conteúdo */}
+      <div className="article-content" dangerouslySetInnerHTML={{ __html: content.content }} />
 
       {/* Comentários */}
       <div className="article-comments" style={{ marginTop: "2rem" }}>
@@ -184,11 +164,7 @@ export default function ArticleContent({ content, collectionType }) {
           style={{ width: "100%", padding: "0.5rem", fontSize: "1rem" }}
         />
 
-        <button
-          className="buttonMore"
-          style={{ marginTop: "0.5rem" }}
-          onClick={handleCommentSubmit}
-        >
+        <button className="buttonMore" style={{ marginTop: "0.5rem" }} onClick={handleCommentSubmit}>
           Enviar
         </button>
 
@@ -196,10 +172,7 @@ export default function ArticleContent({ content, collectionType }) {
           {commentsArray.length === 0 && <p>Nenhum comentário ainda.</p>}
 
           {commentsArray.map((c, i) => (
-            <div
-              key={i}
-              style={{ borderBottom: "1px solid #ddd", padding: "0.5rem 0" }}
-            >
+            <div key={i} style={{ borderBottom: "1px solid #ddd", padding: "0.5rem 0" }}>
               <ReactMarkdown>{c.comment}</ReactMarkdown>
               {c.createdAt && (
                 <small style={{ color: "#555", fontSize: "0.8rem" }}>

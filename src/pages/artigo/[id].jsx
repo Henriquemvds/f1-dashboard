@@ -8,12 +8,13 @@ import ArticleContent from "../../components/ArticleContent";
 import { db } from "../../Firebase";
 import { doc, getDoc, collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
-// Função para serializar posts e comentários do Firestore
+// Serializa posts e comentários para enviar ao Next.js
 function serializePost(post) {
   if (!post) return null;
 
   return {
     ...post,
+    // Garantir que a data seja string ISO
     date: post.date?.toDate?.()?.toISOString() || post.date || null,
     comments: post.comments
       ? Object.fromEntries(
@@ -21,6 +22,7 @@ function serializePost(post) {
             id,
             {
               ...comment,
+              // Garante string ISO para createdAt
               createdAt: comment.createdAt?.toDate?.()?.toISOString() || comment.createdAt || null,
             },
           ])
@@ -66,14 +68,14 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
   );
 }
 
-// Carrega os dados do artigo e relacionados no servidor
+// Busca o artigo no servidor
 export async function getServerSideProps(context) {
   const { id } = context.params;
   let post = null;
   let collectionType = null;
 
   try {
-    // Tenta "posts"
+    // Tenta "posts" primeiro
     let ref = doc(db, "posts", id);
     let snap = await getDoc(ref);
 
@@ -93,7 +95,7 @@ export async function getServerSideProps(context) {
     const data = snap.data();
     post = serializePost({ id: snap.id, ...data });
 
-    // Carrega relacionados
+    // Carrega posts relacionados
     const listRef = collection(db, collectionType);
     const q = query(listRef, orderBy("date", "desc"), limit(6));
     const relatedSnap = await getDocs(q);
