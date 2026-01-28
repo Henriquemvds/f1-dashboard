@@ -1365,7 +1365,7 @@ function ArticleContent({ content, collectionType }) {
     // Define a coleção: "guide" ou "posts"
     const collectionName = collectionType === "guide" ? "guide" : "posts";
     // Formata a data do artigo
-    const formattedDate = content.dateString ? new Date(content.dateString).toLocaleDateString("pt-BR") : "Sem data definida";
+    const formattedDate = content.date ? new Date(content.date).toLocaleDateString("pt-BR") : "Sem data definida";
     // Atualiza os comentários em tempo real
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ArticleContent.useEffect": ()=>{

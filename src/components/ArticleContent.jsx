@@ -22,8 +22,8 @@ export default function ArticleContent({ content, collectionType }) {
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
   // Formata a data do artigo
-  const formattedDate = content.dateString
-    ? new Date(content.dateString).toLocaleDateString("pt-BR")
+  const formattedDate = content.date
+    ? new Date(content.date).toLocaleDateString("pt-BR")
     : "Sem data definida";
 
   // Atualiza os comentários em tempo real
