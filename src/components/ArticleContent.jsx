@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
+// components/ArticleContent.jsx
+import { useState, useEffect } from "react";
+import Head from "next/head";
 import ReactMarkdown from "react-markdown";
-import { getFirestore, doc, updateDoc, serverTimestamp, onSnapshot } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  serverTimestamp,
+  onSnapshot,
+} from "firebase/firestore";
 
 export default function ArticleContent({ content, collectionType }) {
   const [newComment, setNewComment] = useState("");
@@ -9,15 +16,14 @@ export default function ArticleContent({ content, collectionType }) {
 
   const db = getFirestore();
 
-  // Garantir que collectionType seja 'posts' ou 'guide'
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
   const formattedDate =
-    content.date && content.date.toDate
-      ? content.date.toDate().toLocaleDateString("pt-BR")
+    content.date && content.dateString
+      ? new Date(content.dateString).toLocaleDateString("pt-BR")
       : "Sem data definida";
 
-  // Atualiza os comentários em tempo real
+  // Atualiza comentários em tempo real
   useEffect(() => {
     if (!content.id) return;
 
@@ -35,13 +41,9 @@ export default function ArticleContent({ content, collectionType }) {
 
   const commentsArray = Object.values(comments);
 
-  // Envia comentário para o Firestore
   const handleCommentSubmit = async () => {
     if (!newComment.trim()) return;
-    if (!content.id) {
-      console.error("Erro: content.id não definido");
-      return;
-    }
+    if (!content.id) return;
 
     const commentId = crypto.randomUUID();
     const newCommentObj = {
@@ -49,78 +51,83 @@ export default function ArticleContent({ content, collectionType }) {
       createdAt: serverTimestamp(),
     };
 
-    setNewComment(""); // limpa textarea
+    setNewComment("");
 
     try {
       const docRef = doc(db, collectionName, content.id);
       await updateDoc(docRef, {
         [`comments.${commentId}`]: newCommentObj,
       });
-      console.log("Comentário enviado!");
     } catch (error) {
       console.error("Erro ao enviar comentário:", error);
     }
   };
+
   return (
     <div>
-      {/* Meta Tags e JSON-LD */}
-    <Helmet>
-  <title>{content.title} | F1™ Dash</title>
+      <Head>
+        <title>{content.title} | F1™ Dash</title>
 
-  <link
-    rel="canonical"
-    href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
-  />
+        <link
+          rel="canonical"
+          href={`https://www.blog-f1-dashboard.com/artigo/${content.id}`}
+        />
 
-  <meta name="description" content={content.content} />
-  <meta name="robots" content="index, follow" />
+        <meta name="description" content={content.content} />
+        <meta name="robots" content="index, follow" />
 
-  {/* Open Graph */}
-  <meta property="og:title" content={content.title} />
-  <meta property="og:description" content={content.content} />
-  <meta property="og:image" content={content.image} />
-  <meta property="og:type" content="article" />
-  <meta property="og:locale" content="pt_BR" />
+        {/* Open Graph */}
+        <meta property="og:title" content={content.title} />
+        <meta property="og:description" content={content.content} />
+        <meta property="og:image" content={content.image} />
+        <meta property="og:type" content="article" />
+        <meta property="og:locale" content="pt_BR" />
 
-  {/* Twitter */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={content.title} />
-  <meta name="twitter:description" content={content.content} />
-  <meta name="twitter:image" content={content.image} />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={content.title} />
+        <meta name="twitter:description" content={content.content} />
+        <meta name="twitter:image" content={content.image} />
 
-  {/* Article JSON-LD */}
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: content.title,
-      image: [content.image],
-      datePublished: content.date?.toDate?.().toISOString(),
-      dateModified: content.updatedAt?.toDate?.().toISOString() || content.date?.toDate?.().toISOString(),
-      author: {
-        "@type": "Person",
-        name: content.author || "Henrique Santos",
-      },
-      publisher: {
-        "@type": "Organization",
-        name: "F1 Dash",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://www.blog-f1-dashboard.com/logo.png",
-        },
-      },
-      description: content.content,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `https://www.blog-f1-dashboard.com/artigo/${content.id}`,
-      },
-    })}
-  </script>
-</Helmet>
+        {/* JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: content.title,
+              image: [content.image],
+              datePublished: content.dateString,
+              dateModified: content.updatedAtString || content.dateString,
+              author: {
+                "@type": "Person",
+                name: content.author || "Henrique Santos",
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "F1 Dash",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.blog-f1-dashboard.com/logo.png",
+                },
+              },
+              description: content.content,
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://www.blog-f1-dashboard.com/artigo/${content.id}`,
+              },
+            }),
+          }}
+        />
+      </Head>
 
-      {/* Conteúdo do artigo */}
       {content.image && (
-        <img src={content.image} className="article-banner" alt={content.title} />
+        <img
+          src={content.image}
+          className="article-banner"
+          alt={content.title}
+        />
       )}
 
       <div className="article-header">
@@ -143,7 +150,6 @@ export default function ArticleContent({ content, collectionType }) {
         dangerouslySetInnerHTML={{ __html: content.content }}
       />
 
-      {/* Seção de Comentários */}
       <div className="article-comments" style={{ marginTop: "2rem" }}>
         <h2>Deixe sua opinião anônima para todos!</h2>
 
@@ -175,20 +181,23 @@ export default function ArticleContent({ content, collectionType }) {
               {c.createdAt && (
                 <small style={{ color: "#555", fontSize: "0.8rem" }}>
                   {c.createdAt.toDate
-                    ? c.createdAt.toDate().toLocaleString("pt-BR", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })
+                    ? new Date(c.createdAt.toDate().toISOString()).toLocaleString(
+                        "pt-BR",
+                        {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )
                     : new Date(c.createdAt.seconds * 1000).toLocaleString("pt-BR", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                 </small>
               )}
             </div>

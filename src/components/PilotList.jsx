@@ -1,9 +1,9 @@
+// components/Pilots.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/Pilots.css";
 import NotRegistered from "../images/pilot-not-registered.png";
 import Loading from "./Loading";
-import { Link } from "react-router-dom"; // se estiver usando React Router
+import Link from "next/link";
 import MaintenanceMessage from "./MaintenanceMessage";
 
 export default function Pilots() {
@@ -34,11 +34,7 @@ export default function Pilots() {
 
   if (loading) return <Loading />;
 
-  if (error) {
-    return (
-      <MaintenanceMessage />
-    );
-  }
+  if (error) return <MaintenanceMessage />;
 
   // Função para gerar URL amigável
   function slugify(name) {
@@ -86,7 +82,7 @@ export default function Pilots() {
               <p className="pilot-team">{p.team_name}</p>
 
               <Link
-                to={`/piloto/${slugify(
+                href={`/piloto/${slugify(
                   p.full_name.toLowerCase().replace(/ /g, "-")
                 )}`}
                 className="bio-button"

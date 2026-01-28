@@ -9,6 +9,8 @@
 /coverage
 
 # production
+/.next
+/out
 /build
 
 # misc
@@ -17,7 +19,12 @@
 .env.development.local
 .env.test.local
 .env.production.local
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Next.js specific
+.next/
+.next/cache/
+.next/static/
+
