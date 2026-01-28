@@ -1,10 +1,11 @@
-// pages/piloto/[id].jsx
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../Firebase";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Head from "next/head";
+import { adminDb } from "../../FirebaseAdmin";
 
+// ====================
+// Página
+// ====================
 export default function BioDriver({ pilot }) {
   if (!pilot) {
     return (
@@ -26,6 +27,7 @@ export default function BioDriver({ pilot }) {
     <div className="min-h-screen bg-gray-100">
       <Head>
         <title>{pageTitle}</title>
+
         <link
           rel="canonical"
           href={`https://www.blog-f1-dashboard.com/piloto/${pilot.id}`}
@@ -34,45 +36,51 @@ export default function BioDriver({ pilot }) {
         <meta name="description" content={seoDescription} />
         <meta name="robots" content="index, follow" />
 
+        {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={seoDescription} />
         <meta property="og:image" content={pilot.portrait_image || ""} />
         <meta property="og:type" content="profile" />
         <meta property="og:locale" content="pt_BR" />
 
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={seoDescription} />
         <meta name="twitter:image" content={pilot.portrait_image || ""} />
 
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: pilot.full_name || "",
-            description: seoDescription,
-            image: pilot.portrait_image || "",
-            nationality: pilot.country || "",
-            birthDate: birthDate,
-            birthPlace: pilot.birthplace || "",
-            height: pilot.height || null,
-            weight: pilot.weight || null,
-            affiliation: {
-              "@type": "SportsTeam",
-              name: pilot.team_name || "",
-            },
-            jobTitle: "Piloto de Fórmula 1",
-            sameAs: [
-              pilot["social-instagram"],
-              pilot["social-twitter"],
-              pilot["social-website"],
-            ].filter(Boolean),
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `https://www.blog-f1-dashboard.com/piloto/${pilot.id}`,
-            },
-          })}
-        </script>
+        {/* JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: pilot.full_name || "",
+              description: seoDescription,
+              image: pilot.portrait_image || "",
+              nationality: pilot.country || "",
+              birthDate: birthDate,
+              birthPlace: pilot.birthplace || "",
+              height: pilot.height || null,
+              weight: pilot.weight || null,
+              affiliation: {
+                "@type": "SportsTeam",
+                name: pilot.team_name || "",
+              },
+              jobTitle: "Piloto de Fórmula 1",
+              sameAs: [
+                pilot["social-instagram"],
+                pilot["social-twitter"],
+                pilot["social-website"],
+              ].filter(Boolean),
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://www.blog-f1-dashboard.com/piloto/${pilot.id}`,
+              },
+            }),
+          }}
+        />
       </Head>
 
       <Navbar />
@@ -101,7 +109,9 @@ export default function BioDriver({ pilot }) {
 
               <div className="meta-item">
                 <strong>Nasc.:</strong>{" "}
-                {birthDate ? new Date(birthDate).toLocaleDateString("pt-BR") : ""}
+                {birthDate
+                  ? new Date(birthDate).toLocaleDateString("pt-BR")
+                  : ""}
               </div>
 
               <div className="meta-item">
@@ -176,29 +186,34 @@ export default function BioDriver({ pilot }) {
 }
 
 // ====================
-// Busca piloto no servidor
+// SSR – Firebase Admin
 // ====================
-export async function getServerSideProps(context) {
-  const { id } = context.params;
+export async function getServerSideProps({ params }) {
+  const { id } = params;
 
   try {
-    const ref = doc(db, "pilots", id);
-    const snap = await getDoc(ref);
-    if (!snap.exists()) return { props: { pilot: null } };
+    const snap = await adminDb.collection("pilots").doc(id).get();
+
+    if (!snap.exists) {
+      return { props: { pilot: null } };
+    }
 
     const data = snap.data();
 
-    // Converte timestamps para string ISO
     const pilot = {
       id,
       ...data,
-      birthdate: data.birthdate?.toDate ? data.birthdate.toDate().toISOString() : null,
+      birthdate: data.birthdate?.toDate
+        ? data.birthdate.toDate().toISOString()
+        : null,
       height: data.height || null,
       weight: data.weight || null,
       championships: data.championships || 0,
     };
 
-    return { props: { pilot } };
+    return {
+      props: { pilot },
+    };
   } catch (err) {
     console.error("Erro ao buscar piloto:", err);
     return { props: { pilot: null } };
