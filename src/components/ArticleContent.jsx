@@ -1,4 +1,6 @@
 // components/ArticleContent.jsx
+"use client"; // Necessário para hooks no Next 13+
+
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
@@ -16,14 +18,15 @@ export default function ArticleContent({ content, collectionType }) {
 
   const db = getFirestore();
 
+  // Define a coleção: "guide" ou "posts"
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
-  const formattedDate =
-    content.date && content.dateString
-      ? new Date(content.dateString).toLocaleDateString("pt-BR")
-      : "Sem data definida";
+  // Formata a data do artigo
+  const formattedDate = content.dateString
+    ? new Date(content.dateString).toLocaleDateString("pt-BR")
+    : "Sem data definida";
 
-  // Atualiza comentários em tempo real
+  // Atualiza os comentários em tempo real
   useEffect(() => {
     if (!content.id) return;
 
@@ -32,7 +35,22 @@ export default function ArticleContent({ content, collectionType }) {
     const unsubscribe = onSnapshot(docRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.data();
-        setComments(data.comments ? { ...data.comments } : {});
+        // Converte comentários para objetos serializáveis (strings ISO)
+        const serializedComments = data.comments
+          ? Object.fromEntries(
+              Object.entries(data.comments).map(([id, comment]) => [
+                id,
+                {
+                  ...comment,
+                  // Mantém createdAt como string ISO
+                  createdAt: comment.createdAt?.toDate
+                    ? comment.createdAt.toDate().toISOString()
+                    : comment.createdAt || null,
+                },
+              ])
+            )
+          : {};
+        setComments(serializedComments);
       }
     });
 
@@ -41,9 +59,9 @@ export default function ArticleContent({ content, collectionType }) {
 
   const commentsArray = Object.values(comments);
 
+  // Envia comentário para o Firestore
   const handleCommentSubmit = async () => {
-    if (!newComment.trim()) return;
-    if (!content.id) return;
+    if (!newComment.trim() || !content.id) return;
 
     const commentId = crypto.randomUUID();
     const newCommentObj = {
@@ -65,6 +83,7 @@ export default function ArticleContent({ content, collectionType }) {
 
   return (
     <div>
+      {/* Metatags SEO e JSON-LD */}
       <Head>
         <title>{content.title} | F1™ Dash</title>
 
@@ -122,6 +141,7 @@ export default function ArticleContent({ content, collectionType }) {
         />
       </Head>
 
+      {/* Banner */}
       {content.image && (
         <img
           src={content.image}
@@ -130,6 +150,7 @@ export default function ArticleContent({ content, collectionType }) {
         />
       )}
 
+      {/* Cabeçalho */}
       <div className="article-header">
         <h1>{content.title}</h1>
         <p className="article-meta">
@@ -145,11 +166,13 @@ export default function ArticleContent({ content, collectionType }) {
         </div>
       </div>
 
+      {/* Conteúdo do artigo */}
       <div
         className="article-content"
         dangerouslySetInnerHTML={{ __html: content.content }}
       />
 
+      {/* Comentários */}
       <div className="article-comments" style={{ marginTop: "2rem" }}>
         <h2>Deixe sua opinião anônima para todos!</h2>
 
@@ -180,24 +203,13 @@ export default function ArticleContent({ content, collectionType }) {
               <ReactMarkdown>{c.comment}</ReactMarkdown>
               {c.createdAt && (
                 <small style={{ color: "#555", fontSize: "0.8rem" }}>
-                  {c.createdAt.toDate
-                    ? new Date(c.createdAt.toDate().toISOString()).toLocaleString(
-                        "pt-BR",
-                        {
-                          day: "2-digit",
-                          month: "long",
-                          year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        }
-                      )
-                    : new Date(c.createdAt.seconds * 1000).toLocaleString("pt-BR", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                  {new Date(c.createdAt).toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </small>
               )}
             </div>

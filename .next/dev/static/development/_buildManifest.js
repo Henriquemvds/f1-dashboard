@@ -8,27 +8,6 @@ self.__BUILD_MANIFEST = {
   "/artigo/[id]": [
     "static/chunks/pages/artigo/[id].js"
   ],
-  "/calendario": [
-    "static/chunks/pages/calendario.js"
-  ],
-  "/circuitos": [
-    "static/chunks/pages/circuitos.js"
-  ],
-  "/guia": [
-    "static/chunks/pages/guia.js"
-  ],
-  "/piloto/[id]": [
-    "static/chunks/pages/piloto/[id].js"
-  ],
-  "/pilotos": [
-    "static/chunks/pages/pilotos.js"
-  ],
-  "/resultados": [
-    "static/chunks/pages/resultados.js"
-  ],
-  "/sobre": [
-    "static/chunks/pages/sobre.js"
-  ],
   "__rewrites": {
     "afterFiles": [],
     "beforeFiles": [],

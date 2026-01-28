@@ -3,12 +3,5 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/artigo/[id]": "pages/artigo/[id].js",
-  "/calendario": "pages/calendario.js",
-  "/circuitos": "pages/circuitos.js",
-  "/guia": "pages/guia.js",
-  "/piloto/[id]": "pages/piloto/[id].js",
-  "/pilotos": "pages/pilotos.js",
-  "/resultados": "pages/resultados.js",
-  "/sobre": "pages/sobre.js"
+  "/artigo/[id]": "pages/artigo/[id].js"
 }
