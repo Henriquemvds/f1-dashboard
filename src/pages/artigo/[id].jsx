@@ -1,29 +1,29 @@
-// pages/artigo/[id].jsx
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
 import ArticleContent from "../../components/ArticleContent";
-import { db } from "../../Firebase";
-import { doc, getDoc, collection, query, orderBy, limit, getDocs } from "firebase/firestore";
+import { adminDb } from "../../FirebaseAdmin";
 
-// Serializa posts e comentários para enviar ao Next.js
+// Serializa Firestore Admin → JSON seguro
 function serializePost(post) {
   if (!post) return null;
 
   return {
     ...post,
-    // Garantir que a data seja string ISO
-    date: post.date?.toDate?.()?.toISOString() || post.date || null,
+    date: post.date?.toDate
+      ? post.date.toDate().toISOString()
+      : post.date || null,
     comments: post.comments
       ? Object.fromEntries(
           Object.entries(post.comments).map(([id, comment]) => [
             id,
             {
               ...comment,
-              // Garante string ISO para createdAt
-              createdAt: comment.createdAt?.toDate?.()?.toISOString() || comment.createdAt || null,
+              createdAt: comment.createdAt?.toDate
+                ? comment.createdAt.toDate().toISOString()
+                : comment.createdAt || null,
             },
           ])
         )
@@ -36,7 +36,7 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
 
   if (router.isFallback) return <Loading />;
 
-  if (!post)
+  if (!post) {
     return (
       <>
         <Navbar />
@@ -44,6 +44,7 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
         <Footer />
       </>
     );
+  }
 
   return (
     <>
@@ -68,46 +69,47 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
   );
 }
 
-// Busca o artigo no servidor
-export async function getServerSideProps(context) {
-  const { id } = context.params;
-  let post = null;
-  let collectionType = null;
+// =======================
+// SSR com Firebase Admin
+// =======================
+export async function getServerSideProps({ params }) {
+  const { id } = params;
 
   try {
-    // Tenta "posts" primeiro
-    let ref = doc(db, "posts", id);
-    let snap = await getDoc(ref);
+    let collectionType = "posts";
+    let snap = await adminDb.collection("posts").doc(id).get();
 
-    if (snap.exists()) {
-      collectionType = "posts";
-    } else {
-      // Tenta "guide"
-      ref = doc(db, "guide", id);
-      snap = await getDoc(ref);
-
-      if (!snap.exists()) {
+    if (!snap.exists) {
+      snap = await adminDb.collection("guide").doc(id).get();
+      if (!snap.exists) {
         return { props: { post: null, relatedPosts: [], collectionType: null } };
       }
       collectionType = "guide";
     }
 
-    const data = snap.data();
-    post = serializePost({ id: snap.id, ...data });
+    const post = serializePost({ id: snap.id, ...snap.data() });
 
-    // Carrega posts relacionados
-    const listRef = collection(db, collectionType);
-    const q = query(listRef, orderBy("date", "desc"), limit(6));
-    const relatedSnap = await getDocs(q);
+    // Relacionados
+    const relatedSnap = await adminDb
+      .collection(collectionType)
+      .orderBy("date", "desc")
+      .limit(6)
+      .get();
 
     const relatedPosts = relatedSnap.docs
       .map((d) => serializePost({ id: d.id, ...d.data() }))
       .filter((p) => p.id !== id)
       .slice(0, 3);
 
-    return { props: { post, relatedPosts, collectionType } };
-  } catch (e) {
-    console.error("Erro ao carregar artigo:", e);
+    return {
+      props: {
+        post,
+        relatedPosts,
+        collectionType,
+      },
+    };
+  } catch (err) {
+    console.error("Erro ao carregar artigo:", err);
     return { props: { post: null, relatedPosts: [], collectionType: null } };
   }
 }
