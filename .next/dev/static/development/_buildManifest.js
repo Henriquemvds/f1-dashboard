@@ -1,12 +1,6 @@
 self.__BUILD_MANIFEST = {
-  "/": [
-    "static/chunks/pages/index.js"
-  ],
-  "/artigo/[id]": [
-    "static/chunks/pages/artigo/[id].js"
-  ],
-  "/guia": [
-    "static/chunks/pages/guia.js"
+  "/piloto/[id]": [
+    "static/chunks/pages/piloto/[id].js"
   ],
   "__rewrites": {
     "afterFiles": [],

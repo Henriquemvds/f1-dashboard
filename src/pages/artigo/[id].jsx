@@ -25,11 +25,13 @@ function serializePost(post) {
                 ? comment.createdAt.toDate().toISOString()
                 : comment.createdAt || null,
             },
+            
           ])
         )
       : {},
   };
 }
+
 
 export default function ArticlePage({ post, relatedPosts, collectionType }) {
   const router = useRouter();
@@ -73,7 +75,9 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
 // SSR com Firebase Admin
 // =======================
 export async function getServerSideProps({ params }) {
+  
   const { id } = params;
+  
 
   try {
     let collectionType = "posts";
