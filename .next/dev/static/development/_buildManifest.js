@@ -14,6 +14,9 @@ self.__BUILD_MANIFEST = {
   "/piloto/[id]": [
     "static/chunks/pages/piloto/[id].js"
   ],
+  "/pilotos": [
+    "static/chunks/pages/pilotos.js"
+  ],
   "__rewrites": {
     "afterFiles": [],
     "beforeFiles": [],

@@ -11,7 +11,6 @@ import logo from "../images/LOGO-F1-PNG.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState({ main: false, topics: false });
-  const [tagsCount, setTagsCount] = useState([]);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -22,39 +21,6 @@ export default function Navbar() {
     }
   };
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      try {
-        const postsRef = collection(db, "posts");
-        const snapshot = await getDocs(postsRef);
-
-        let countMap = {};
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          const tags = data.tags || [];
-          tags.forEach((tag) => {
-            const clean = tag.trim();
-            if (clean.length > 0) countMap[clean] = (countMap[clean] || 0) + 1;
-          });
-        });
-
-        const formatted = Object.entries(countMap)
-          .map(([name, count]) => ({ name, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 20);
-
-        setTagsCount(formatted);
-      } catch (err) {
-        console.error("Erro ao buscar tags:", err);
-      }
-    };
-    fetchTags();
-  }, []);
-
-  const handleSelectTag = (tag) => {
-    SelectTopics.emit("filter-by-tag", tag);
-    setMenuOpen((prev) => ({ ...prev, topics: false, main: false }));
-  };
 
   return (
     <header className="navbar-header">
@@ -94,42 +60,6 @@ export default function Navbar() {
               Início
             </Link>
           </li>
-
-          <li className="dropdown">
-            <button
-              className="dropdown-toggle"
-              aria-haspopup="true"
-              aria-expanded={menuOpen.topics}
-              onClick={() => setMenuOpen(prev => ({ ...prev, topics: !prev.topics }))}
-              title="Abrir lista de tópicos mais populares"
-            >
-              Tópicos
-              <span className={`arrow ${menuOpen.topics ? "open" : ""}`}>▼</span>
-            </button>
-
-            <ul className={`dropdown-menu ${menuOpen.topics ? "show" : ""}`} aria-busy={tagsCount.length === 0}>
-              <span className="dropdown-btn-label">Tópicos Mais Publicados</span>
-              {tagsCount.length === 0 ? (
-                <li style={{ padding: "8px 14px", opacity: 0.7 }}>Carregando...</li>
-              ) : (
-                tagsCount.map(tag => (
-                  <li key={tag.name}>
-                    <button
-                      className="dropdown-btn-item"
-                      onClick={() => handleSelectTag(tag.name)}
-                      data-tag={tag.name}
-                      type="button"
-                      title={`Filtrar posts pelo tópico ${tag.name}`}
-                    >
-                      <span className="dropdown-btn-label">{tag.name}</span>
-                      <span className="dropdown-btn-count">({tag.count})</span>
-                    </button>
-                  </li>
-                ))
-              )}
-            </ul>
-          </li>
-
           <li><Link href="/pilotos" title="Página de pilotos – Informações e perfis de pilotos de F1™">Pilotos</Link></li>
           <li><Link href="/resultados" title="Página de resultados – Últimos resultados de corridas de F1™">Resultados</Link></li>
           <li><Link href="/calendario" title="Calendário de corridas – Datas e locais da temporada de F1™">Calendário</Link></li>

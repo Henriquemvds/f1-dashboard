@@ -573,7 +573,6 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$firebase$2f$firestore$2f$dist$2f$esm$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/firebase/firestore/dist/esm/index.esm.js [client] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@firebase/firestore/dist/index.esm.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$Firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/Firebase.js [client] (ecmascript)"); // firebase adaptado para Next
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/link.js [client] (ecmascript)");
@@ -598,7 +597,6 @@ function Navbar() {
         main: false,
         topics: false
     });
-    const [tagsCount, setTagsCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$client$5d$__$28$ecmascript$29$__["usePathname"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const handleHomeClick = (e)=>{
@@ -606,51 +604,6 @@ function Navbar() {
             e.preventDefault();
             router.refresh(); // Atualiza a página no Next.js
         }
-    };
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "Navbar.useEffect": ()=>{
-            const fetchTags = {
-                "Navbar.useEffect.fetchTags": async ()=>{
-                    try {
-                        const postsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$Firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__["db"], "posts");
-                        const snapshot = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["getDocs"])(postsRef);
-                        let countMap = {};
-                        snapshot.forEach({
-                            "Navbar.useEffect.fetchTags": (doc)=>{
-                                const data = doc.data();
-                                const tags = data.tags || [];
-                                tags.forEach({
-                                    "Navbar.useEffect.fetchTags": (tag)=>{
-                                        const clean = tag.trim();
-                                        if (clean.length > 0) countMap[clean] = (countMap[clean] || 0) + 1;
-                                    }
-                                }["Navbar.useEffect.fetchTags"]);
-                            }
-                        }["Navbar.useEffect.fetchTags"]);
-                        const formatted = Object.entries(countMap).map({
-                            "Navbar.useEffect.fetchTags.formatted": ([name, count])=>({
-                                    name,
-                                    count
-                                })
-                        }["Navbar.useEffect.fetchTags.formatted"]).sort({
-                            "Navbar.useEffect.fetchTags.formatted": (a, b)=>b.count - a.count
-                        }["Navbar.useEffect.fetchTags.formatted"]).slice(0, 20);
-                        setTagsCount(formatted);
-                    } catch (err) {
-                        console.error("Erro ao buscar tags:", err);
-                    }
-                }
-            }["Navbar.useEffect.fetchTags"];
-            fetchTags();
-        }
-    }["Navbar.useEffect"], []);
-    const handleSelectTag = (tag)=>{
-        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$SelectTopics$2e$js__$5b$client$5d$__$28$ecmascript$29$__["SelectTopics"].emit("filter-by-tag", tag);
-        setMenuOpen((prev)=>({
-                ...prev,
-                topics: false,
-                main: false
-            }));
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
         className: "navbar-header",
@@ -673,12 +626,12 @@ function Navbar() {
                                     height: 50
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.jsx",
-                                    lineNumber: 64,
+                                    lineNumber: 30,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 63,
+                                lineNumber: 29,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -690,31 +643,31 @@ function Navbar() {
                                             children: "Um Olhar pelo Paddock"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Navbar.jsx",
-                                            lineNumber: 74,
+                                            lineNumber: 40,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Navbar.jsx",
-                                        lineNumber: 73,
+                                        lineNumber: 39,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "tire-trail"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Navbar.jsx",
-                                        lineNumber: 76,
+                                        lineNumber: 42,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 72,
+                                lineNumber: 38,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Navbar.jsx",
-                        lineNumber: 62,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -727,13 +680,13 @@ function Navbar() {
                         children: "☰"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Navbar.jsx",
-                        lineNumber: 80,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Navbar.jsx",
-                lineNumber: 61,
+                lineNumber: 27,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -750,113 +703,12 @@ function Navbar() {
                                 children: "Início"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 93,
+                                lineNumber: 59,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 92,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                            className: "dropdown",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    className: "dropdown-toggle",
-                                    "aria-haspopup": "true",
-                                    "aria-expanded": menuOpen.topics,
-                                    onClick: ()=>setMenuOpen((prev)=>({
-                                                ...prev,
-                                                topics: !prev.topics
-                                            })),
-                                    title: "Abrir lista de tópicos mais populares",
-                                    children: [
-                                        "Tópicos",
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: `arrow ${menuOpen.topics ? "open" : ""}`,
-                                            children: "▼"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/Navbar.jsx",
-                                            lineNumber: 107,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/components/Navbar.jsx",
-                                    lineNumber: 99,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: `dropdown-menu ${menuOpen.topics ? "show" : ""}`,
-                                    "aria-busy": tagsCount.length === 0,
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "dropdown-btn-label",
-                                            children: "Tópicos Mais Publicados"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/Navbar.jsx",
-                                            lineNumber: 111,
-                                            columnNumber: 15
-                                        }, this),
-                                        tagsCount.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            style: {
-                                                padding: "8px 14px",
-                                                opacity: 0.7
-                                            },
-                                            children: "Carregando..."
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/Navbar.jsx",
-                                            lineNumber: 113,
-                                            columnNumber: 17
-                                        }, this) : tagsCount.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    className: "dropdown-btn-item",
-                                                    onClick: ()=>handleSelectTag(tag.name),
-                                                    "data-tag": tag.name,
-                                                    type: "button",
-                                                    title: `Filtrar posts pelo tópico ${tag.name}`,
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "dropdown-btn-label",
-                                                            children: tag.name
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/Navbar.jsx",
-                                                            lineNumber: 124,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "dropdown-btn-count",
-                                                            children: [
-                                                                "(",
-                                                                tag.count,
-                                                                ")"
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/components/Navbar.jsx",
-                                                            lineNumber: 125,
-                                                            columnNumber: 23
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/components/Navbar.jsx",
-                                                    lineNumber: 117,
-                                                    columnNumber: 21
-                                                }, this)
-                                            }, tag.name, false, {
-                                                fileName: "[project]/src/components/Navbar.jsx",
-                                                lineNumber: 116,
-                                                columnNumber: 19
-                                            }, this))
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/components/Navbar.jsx",
-                                    lineNumber: 110,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 98,
+                            lineNumber: 58,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -866,12 +718,12 @@ function Navbar() {
                                 children: "Pilotos"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 133,
+                                lineNumber: 63,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 133,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -881,12 +733,12 @@ function Navbar() {
                                 children: "Resultados"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 134,
+                                lineNumber: 64,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 134,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -896,12 +748,12 @@ function Navbar() {
                                 children: "Calendário"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 135,
+                                lineNumber: 65,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 135,
+                            lineNumber: 65,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -911,12 +763,12 @@ function Navbar() {
                                 children: "Guia Para Iniciantes"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 136,
+                                lineNumber: 66,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 136,
+                            lineNumber: 66,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -926,12 +778,12 @@ function Navbar() {
                                 children: "Circuitos"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 137,
+                                lineNumber: 67,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 137,
+                            lineNumber: 67,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -941,33 +793,33 @@ function Navbar() {
                                 children: "Sobre"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.jsx",
-                                lineNumber: 138,
+                                lineNumber: 68,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.jsx",
-                            lineNumber: 138,
+                            lineNumber: 68,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Navbar.jsx",
-                    lineNumber: 90,
+                    lineNumber: 56,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Navbar.jsx",
-                lineNumber: 89,
+                lineNumber: 55,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Navbar.jsx",
-        lineNumber: 60,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
 }
-_s(Navbar, "TfYZpWLHTnFv1gvO2cFUS+Cnsxo=", false, function() {
+_s(Navbar, "DALsX+KHGeIAHrMAqpRurpeJYzg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$client$5d$__$28$ecmascript$29$__["usePathname"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"]
@@ -1402,7 +1254,7 @@ function ArticleContent({ content, collectionType }) {
         const commentId = crypto.randomUUID();
         const newCommentObj = {
             comment: newComment.trim(),
-            createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
+            createdAt: serverTimestamp()
         };
         setNewComment("");
         try {
@@ -1619,7 +1471,7 @@ function ArticleContent({ content, collectionType }) {
                             }, tag, false, {
                                 fileName: "[project]/src/components/ArticleContent.jsx",
                                 lineNumber: 145,
-                                columnNumber: 17
+                                columnNumber: 15
                             }, this)) : null
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
@@ -1695,7 +1547,17 @@ function ArticleContent({ content, collectionType }) {
                                 lineNumber: 180,
                                 columnNumber: 42
                             }, this),
-                            commentsArray.map((c, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            commentsArray.map((c, i)=>{
+                                // Converte timestamp do Firestore para Date
+                                let createdDate = null;
+                                if (c.createdAt) {
+                                    if (c.createdAt instanceof __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Timestamp"]) {
+                                        createdDate = c.createdAt.toDate(); // Timestamp → Date
+                                    } else {
+                                        createdDate = new Date(c.createdAt); // string ISO → Date
+                                    }
+                                }
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
                                         borderBottom: "1px solid #ddd",
                                         padding: "0.5rem 0"
@@ -1705,15 +1567,15 @@ function ArticleContent({ content, collectionType }) {
                                             children: c.comment || ""
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ArticleContent.jsx",
-                                            lineNumber: 184,
-                                            columnNumber: 15
+                                            lineNumber: 195,
+                                            columnNumber: 17
                                         }, this),
-                                        c.createdAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                                        createdDate && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
                                             style: {
                                                 color: "#555",
                                                 fontSize: "0.8rem"
                                             },
-                                            children: new Date(c.createdAt).toLocaleString("pt-BR", {
+                                            children: createdDate.toLocaleString("pt-BR", {
                                                 day: "2-digit",
                                                 month: "long",
                                                 year: "numeric",
@@ -1722,15 +1584,16 @@ function ArticleContent({ content, collectionType }) {
                                             })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ArticleContent.jsx",
-                                            lineNumber: 186,
-                                            columnNumber: 17
+                                            lineNumber: 197,
+                                            columnNumber: 19
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/src/components/ArticleContent.jsx",
-                                    lineNumber: 183,
-                                    columnNumber: 13
-                                }, this))
+                                    lineNumber: 194,
+                                    columnNumber: 15
+                                }, this);
+                            })
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
@@ -1788,7 +1651,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
     if (router.isFallback) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Loading$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/src/pages/artigo/[id].jsx",
-        lineNumber: 42,
+        lineNumber: 30,
         columnNumber: 33
     }, this);
     if (!post) {
@@ -1796,19 +1659,19 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/artigo/[id].jsx",
-                    lineNumber: 47,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                     children: "Conteúdo não encontrado"
                 }, void 0, false, {
                     fileName: "[project]/src/pages/artigo/[id].jsx",
-                    lineNumber: 48,
+                    lineNumber: 36,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/artigo/[id].jsx",
-                    lineNumber: 49,
+                    lineNumber: 37,
                     columnNumber: 9
                 }, this)
             ]
@@ -1818,7 +1681,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                lineNumber: 56,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1829,7 +1692,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
                         collectionType: collectionType
                     }, void 0, false, {
                         fileName: "[project]/src/pages/artigo/[id].jsx",
-                        lineNumber: 58,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1839,7 +1702,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
                                 children: "Leia também"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                lineNumber: 61,
+                                lineNumber: 49,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1853,42 +1716,42 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
                                                 alt: p.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                                lineNumber: 65,
+                                                lineNumber: 53,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                                 children: p.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                                lineNumber: 66,
+                                                lineNumber: 54,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, p.id, true, {
                                         fileName: "[project]/src/pages/artigo/[id].jsx",
-                                        lineNumber: 64,
+                                        lineNumber: 52,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                lineNumber: 62,
+                                lineNumber: 50,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/artigo/[id].jsx",
-                        lineNumber: 60,
+                        lineNumber: 48,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                lineNumber: 57,
+                lineNumber: 45,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                lineNumber: 72,
+                lineNumber: 60,
                 columnNumber: 7
             }, this)
         ]
