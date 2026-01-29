@@ -6,15 +6,17 @@ import Loading from "../../components/Loading";
 import ArticleContent from "../../components/ArticleContent";
 import { adminDb } from "../../FirebaseAdmin";
 
+// ============================
 // Serializa Firestore Admin → JSON seguro
+// ============================
 function serializePost(post) {
   if (!post) return null;
 
   return {
     ...post,
-    date: post.date?.toDate
-      ? post.date.toDate().toISOString()
-      : post.date || null,
+    // Datas convertidas para ISO
+    date: post.date?.toDate ? post.date.toDate().toISOString() : post.date || null,
+    // Comentários serializados
     comments: post.comments
       ? Object.fromEntries(
           Object.entries(post.comments).map(([id, comment]) => [
@@ -25,14 +27,15 @@ function serializePost(post) {
                 ? comment.createdAt.toDate().toISOString()
                 : comment.createdAt || null,
             },
-            
           ])
         )
       : {},
   };
 }
 
-
+// ============================
+// Página
+// ============================
 export default function ArticlePage({ post, relatedPosts, collectionType }) {
   const router = useRouter();
 
@@ -71,13 +74,11 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
   );
 }
 
-// =======================
+// ============================
 // SSR com Firebase Admin
-// =======================
+// ============================
 export async function getServerSideProps({ params }) {
-  
   const { id } = params;
-  
 
   try {
     let collectionType = "posts";
@@ -93,7 +94,7 @@ export async function getServerSideProps({ params }) {
 
     const post = serializePost({ id: snap.id, ...snap.data() });
 
-    // Relacionados
+    // Artigos relacionados
     const relatedSnap = await adminDb
       .collection(collectionType)
       .orderBy("date", "desc")

@@ -16,10 +16,8 @@ export default function ArticleContent({ content, collectionType }) {
   const [comments, setComments] = useState({});
 
   const db = getFirestore();
-
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
-  // Garantindo string ISO para a data
   const formattedDate = content?.date
     ? new Date(content.date).toLocaleDateString("pt-BR")
     : "Sem data definida";
@@ -34,19 +32,17 @@ export default function ArticleContent({ content, collectionType }) {
       if (snapshot.exists()) {
         const data = snapshot.data();
 
-        // Serializa comentários para evitar erros de deploy
+        // Serializa comentários recebidos do Admin SDK (já em string ISO)
         const serializedComments = data.comments
           ? Object.fromEntries(
-            Object.entries(data.comments).map(([id, comment]) => [
-              id,
-              {
-                comment: comment.comment || "",
-                createdAt: comment.createdAt?.toDate
-                  ? comment.createdAt.toDate().toISOString()
-                  : comment.createdAt || null,
-              },
-            ])
-          )
+              Object.entries(data.comments).map(([id, comment]) => [
+                id,
+                {
+                  comment: comment.comment || "",
+                  createdAt: comment.createdAt || null,
+                },
+              ])
+            )
           : {};
 
         setComments(serializedComments);
@@ -146,8 +142,8 @@ export default function ArticleContent({ content, collectionType }) {
         <div className="article-tags">
           {Array.isArray(content?.tags)
             ? content.tags.map((tag) => (
-              <span key={tag} className="tag">{tag}</span>
-            ))
+                <span key={tag} className="tag">{tag}</span>
+              ))
             : null}
         </div>
       </div>

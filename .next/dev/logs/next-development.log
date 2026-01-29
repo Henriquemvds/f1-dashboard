@@ -1,5 +1,37 @@
-[00:00:02.656] Server  LOG     ✓ Ready in 1712ms
-[00:00:11.419] Server  ERROR   (node:5036) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[00:00:02.484] Server  LOG     ✓ Ready in 1662ms
+[00:00:05.316] Server  ERROR   (node:11260) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-[00:00:13.684] Server  LOG     ID do artigo: {}
-[00:02:15.778] Browser LOG     Refreshing page data due to server-side change
+[00:10:22.009] Browser LOG     Refreshing page data due to server-side change
+[00:11:02.988] Server  LOG     ✓ Compiled in 78ms
+[00:11:03.939] Server  ERROR   Erro ao buscar piloto: ReferenceError: c is not defined
+[00:11:03.997] Browser LOG     Refreshing page data due to server-side change
+[00:11:06.347] Server  LOG     ✓ Compiled in 11ms
+[00:11:07.008] Browser LOG     Refreshing page data due to server-side change
+[00:11:09.578] Server  LOG     
+[00:11:10.056] Browser LOG     Refreshing page data due to server-side change
+[00:11:11.915] Server  LOG     {}
+[00:11:12.000] Browser LOG     Refreshing page data due to server-side change
+[00:16:59.472] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:16:59.549] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:17:02.858] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:17:02.936] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:17:03.145] Browser ERROR   uncaughtError: Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:17:04.356] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:17:04.428] Server  ERROR   ⨯ Error: Error serializing `.post.updatedAt` returned from `getServerSideProps` in "/artigo/[id]".
+Reason: `object` ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types.
+[00:18:16.419] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:18:16.421] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:18:16.445] Server  LOG     ✓ Compiled in 6ms
+[00:18:17.931] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)

@@ -1,3 +1,4 @@
+// pages/piloto/[id].jsx
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Head from "next/head";
@@ -15,7 +16,10 @@ export default function BioDriver({ pilot }) {
     );
   }
 
-  const birthDate = pilot.birthdate || null;
+  // Normaliza data no UTC para evitar mismatch
+  const formattedBirthDate = pilot.birthdate
+    ? new Date(pilot.birthdate).toLocaleDateString("pt-BR", { timeZone: "UTC" })
+    : "";
 
   const seoDescription =
     pilot.biography ||
@@ -27,11 +31,7 @@ export default function BioDriver({ pilot }) {
     <div className="min-h-screen bg-gray-100">
       <Head>
         <title>{pageTitle}</title>
-
-        <link
-          rel="canonical"
-          href={`https://www.blog-f1-dashboard.com/piloto/${pilot.id}`}
-        />
+        <link rel="canonical" href={`https://www.blog-f1-dashboard.com/piloto/${pilot.id}`} />
 
         <meta name="description" content={seoDescription} />
         <meta name="robots" content="index, follow" />
@@ -60,7 +60,7 @@ export default function BioDriver({ pilot }) {
               description: seoDescription,
               image: pilot.portrait_image || "",
               nationality: pilot.country || "",
-              birthDate: birthDate,
+              birthDate: pilot.birthdate || null,
               birthPlace: pilot.birthplace || "",
               height: pilot.height || null,
               weight: pilot.weight || null,
@@ -108,10 +108,7 @@ export default function BioDriver({ pilot }) {
               </div>
 
               <div className="meta-item">
-                <strong>Nasc.:</strong>{" "}
-                {birthDate
-                  ? new Date(birthDate).toLocaleDateString("pt-BR")
-                  : ""}
+                <strong>Nasc.:</strong> {formattedBirthDate}
               </div>
 
               <div className="meta-item">
@@ -149,29 +146,17 @@ export default function BioDriver({ pilot }) {
             <h3>Redes Sociais</h3>
             <div className="socials">
               {pilot["social-instagram"] && (
-                <a
-                  href={pilot["social-instagram"]}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={pilot["social-instagram"]} target="_blank" rel="noreferrer">
                   Instagram
                 </a>
               )}
               {pilot["social-twitter"] && (
-                <a
-                  href={pilot["social-twitter"]}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={pilot["social-twitter"]} target="_blank" rel="noreferrer">
                   Twitter
                 </a>
               )}
               {pilot["social-website"] && (
-                <a
-                  href={pilot["social-website"]}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={pilot["social-website"]} target="_blank" rel="noreferrer">
                   Site Oficial
                 </a>
               )}
@@ -200,6 +185,7 @@ export async function getServerSideProps({ params }) {
 
     const data = snap.data();
 
+    // Normaliza datas para ISO no servidor
     const pilot = {
       id,
       ...data,
@@ -210,6 +196,8 @@ export async function getServerSideProps({ params }) {
       weight: data.weight || null,
       championships: data.championships || 0,
     };
+
+    console.log(pilot)
 
     return {
       props: { pilot },
