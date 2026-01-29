@@ -1,4 +1,3 @@
-"use client"; // Necessário para hooks no Next 13+
 
 import { useState, useEffect } from "react";
 import Head from "next/head";
