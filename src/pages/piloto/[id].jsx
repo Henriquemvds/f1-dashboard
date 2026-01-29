@@ -6,6 +6,20 @@ import Footer from "../../components/Footer";
 import Head from "next/head";
 
 // ====================
+// Serializa piloto MD → JSON
+// ====================
+function serializePilot(pilot) {
+  if (!pilot) return null;
+  return {
+    ...pilot,
+    birthdate: pilot.birthdate ? new Date(pilot.birthdate).toISOString() : null,
+    height: pilot.height || null,
+    weight: pilot.weight || null,
+    championships: pilot.championships || 0,
+  };
+}
+
+// ====================
 // Página
 // ====================
 export default function BioDriver({ pilot }) {
@@ -17,7 +31,6 @@ export default function BioDriver({ pilot }) {
     );
   }
 
-  // Normaliza data no UTC para evitar mismatch
   const formattedBirthDate = pilot.birthdate
     ? new Date(pilot.birthdate).toLocaleDateString("pt-BR", { timeZone: "UTC" })
     : "";
@@ -140,36 +153,46 @@ export default function BioDriver({ pilot }) {
 }
 
 // ====================
-// SSR – Markdown
+// Paths estáticos
 // ====================
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const pilotsDir = path.join(process.cwd(), "pilots");
+  const files = fs.existsSync(pilotsDir) ? fs.readdirSync(pilotsDir) : [];
+
+  const paths = files.map((f) => ({
+    params: { id: f.replace(/\.md$/, "") },
+  }));
+
+  return {
+    paths,
+    fallback: false, // ou 'blocking' se quiser gerar novos pilotos on-demand
+  };
+}
+
+// ====================
+// Conteúdo estático MD
+// ====================
+export async function getStaticProps({ params }) {
   const { id } = params;
   const pilotsDir = path.join(process.cwd(), "pilots");
+  const fileName = fs.existsSync(pilotsDir)
+    ? fs.readdirSync(pilotsDir).find((f) => f.replace(/\.md$/, "") === id)
+    : null;
 
-  try {
-    const files = fs.readdirSync(pilotsDir);
-    const fileName = files.find((f) => f.replace(/\.md$/, "") === id);
-
-    if (!fileName) {
-      return { props: { pilot: null } };
-    }
-
-    const fileContent = fs.readFileSync(path.join(pilotsDir, fileName), "utf8");
-    const { data, content } = matter(fileContent);
-
-    const pilot = {
-      id,
-      ...data,
-      biography: data.biography,
-      birthdate: data.birthdate ? new Date(data.birthdate).toISOString() : null,
-      height: data.height || null,
-      weight: data.weight || null,
-      championships: data.championships || 0,
-    };
-
-    return { props: { pilot } };
-  } catch (err) {
-    console.error("Erro ao carregar piloto MD:", err);
-    return { props: { pilot: null } };
+  if (!fileName) {
+    return { notFound: true };
   }
+
+  const fileContent = fs.readFileSync(path.join(pilotsDir, fileName), "utf8");
+  const { data } = matter(fileContent);
+
+  const pilot = serializePilot({
+    id,
+    ...data,
+    biography: data.biography || "",
+  });
+
+  return {
+    props: { pilot },
+  };
 }
