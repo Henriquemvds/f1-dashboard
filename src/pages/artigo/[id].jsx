@@ -25,19 +25,6 @@ function serializePost(post) {
 // Página
 // ============================
 export default function ArticlePage({ post, relatedPosts, collectionType }) {
-  const router = useRouter();
-
-  if (router.isFallback) return <Loading />;
-
-  if (!post) {
-    return (
-      <>
-        <Navbar />
-        <h1>Conteúdo não encontrado</h1>
-        <Footer />
-      </>
-    );
-  }
 
   return (
     <>
