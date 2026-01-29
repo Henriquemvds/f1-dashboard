@@ -83,12 +83,10 @@ export default function ArticleContent({ content, collectionType }) {
           rel="canonical"
           href={`https://www.blog-f1-dashboard.com/artigo/${content?.id || ""}`}
         />
-        <meta name="description" content={content?.content || ""} />
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
         <meta property="og:title" content={content?.title || ""} />
-        <meta property="og:description" content={content?.content || ""} />
         <meta property="og:image" content={content?.image || ""} />
         <meta property="og:type" content="article" />
         <meta property="og:locale" content="pt_BR" />
