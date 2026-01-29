@@ -1,8 +1,9 @@
-// pages/piloto/[id].jsx
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Head from "next/head";
-import { adminDb } from "../../FirebaseAdmin";
 
 // ====================
 // Página
@@ -69,11 +70,7 @@ export default function BioDriver({ pilot }) {
                 name: pilot.team_name || "",
               },
               jobTitle: "Piloto de Fórmula 1",
-              sameAs: [
-                pilot["social-instagram"],
-                pilot["social-twitter"],
-                pilot["social-website"],
-              ].filter(Boolean),
+              sameAs: [pilot["social-instagram"], pilot["social-twitter"], pilot["social-website"]].filter(Boolean),
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": `https://www.blog-f1-dashboard.com/piloto/${pilot.id}`,
@@ -87,10 +84,7 @@ export default function BioDriver({ pilot }) {
 
       <div className="details-pilot pilot-card">
         <div className="portrait">
-          <img
-            src={pilot.portrait_image || ""}
-            alt={`Retrato de ${pilot.full_name}`}
-          />
+          <img src={pilot.portrait_image || ""} alt={`Retrato de ${pilot.full_name}`} />
         </div>
 
         <div>
@@ -99,21 +93,10 @@ export default function BioDriver({ pilot }) {
             <div className="team-name">{pilot.team_name}</div>
 
             <div className="meta-row">
-              <div className="meta-item">
-                <strong>Número:</strong> {pilot.driver_number || ""}
-              </div>
-
-              <div className="meta-item">
-                <strong>País:</strong> {pilot.country || ""}
-              </div>
-
-              <div className="meta-item">
-                <strong>Nasc.:</strong> {formattedBirthDate}
-              </div>
-
-              <div className="meta-item">
-                <strong>Natural de:</strong> {pilot.birthplace || ""}
-              </div>
+              <div className="meta-item"><strong>Número:</strong> {pilot.driver_number || ""}</div>
+              <div className="meta-item"><strong>País:</strong> {pilot.country || ""}</div>
+              <div className="meta-item"><strong>Nasc.:</strong> {formattedBirthDate}</div>
+              <div className="meta-item"><strong>Natural de:</strong> {pilot.birthplace || ""}</div>
             </div>
           </div>
 
@@ -129,12 +112,10 @@ export default function BioDriver({ pilot }) {
                 <div className="value">{pilot.championships || 0}</div>
                 <div className="label">Mundiais</div>
               </div>
-
               <div className="stat">
                 <div className="value">{pilot.height || "—"}</div>
                 <div className="label">Altura</div>
               </div>
-
               <div className="stat">
                 <div className="value">{pilot.weight || "—"}</div>
                 <div className="label">Peso</div>
@@ -145,21 +126,9 @@ export default function BioDriver({ pilot }) {
           <div className="section">
             <h3>Redes Sociais</h3>
             <div className="socials">
-              {pilot["social-instagram"] && (
-                <a href={pilot["social-instagram"]} target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-              )}
-              {pilot["social-twitter"] && (
-                <a href={pilot["social-twitter"]} target="_blank" rel="noreferrer">
-                  Twitter
-                </a>
-              )}
-              {pilot["social-website"] && (
-                <a href={pilot["social-website"]} target="_blank" rel="noreferrer">
-                  Site Oficial
-                </a>
-              )}
+              {pilot["social-instagram"] && <a href={pilot["social-instagram"]} target="_blank" rel="noreferrer">Instagram</a>}
+              {pilot["social-twitter"] && <a href={pilot["social-twitter"]} target="_blank" rel="noreferrer">Twitter</a>}
+              {pilot["social-website"] && <a href={pilot["social-website"]} target="_blank" rel="noreferrer">Site Oficial</a>}
             </div>
           </div>
         </div>
@@ -171,39 +140,36 @@ export default function BioDriver({ pilot }) {
 }
 
 // ====================
-// SSR – Firebase Admin
+// SSR – Markdown
 // ====================
 export async function getServerSideProps({ params }) {
   const { id } = params;
+  const pilotsDir = path.join(process.cwd(), "pilots");
 
   try {
-    const snap = await adminDb.collection("pilots").doc(id).get();
+    const files = fs.readdirSync(pilotsDir);
+    const fileName = files.find((f) => f.replace(/\.md$/, "") === id);
 
-    if (!snap.exists) {
+    if (!fileName) {
       return { props: { pilot: null } };
     }
 
-    const data = snap.data();
+    const fileContent = fs.readFileSync(path.join(pilotsDir, fileName), "utf8");
+    const { data, content } = matter(fileContent);
 
-    // Normaliza datas para ISO no servidor
     const pilot = {
       id,
       ...data,
-      birthdate: data.birthdate?.toDate
-        ? data.birthdate.toDate().toISOString()
-        : null,
+      biography: data.biography,
+      birthdate: data.birthdate ? new Date(data.birthdate).toISOString() : null,
       height: data.height || null,
       weight: data.weight || null,
       championships: data.championships || 0,
     };
 
-    console.log(pilot)
-
-    return {
-      props: { pilot },
-    };
+    return { props: { pilot } };
   } catch (err) {
-    console.error("Erro ao buscar piloto:", err);
+    console.error("Erro ao carregar piloto MD:", err);
     return { props: { pilot: null } };
   }
 }

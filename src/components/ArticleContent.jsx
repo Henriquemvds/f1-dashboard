@@ -7,7 +7,7 @@ import {
   getFirestore,
   doc,
   updateDoc,
-  serverTimestamp,
+  Timestamp,
   onSnapshot,
 } from "firebase/firestore";
 
@@ -35,14 +35,14 @@ export default function ArticleContent({ content, collectionType }) {
         // Serializa comentários recebidos do Admin SDK (já em string ISO)
         const serializedComments = data.comments
           ? Object.fromEntries(
-              Object.entries(data.comments).map(([id, comment]) => [
-                id,
-                {
-                  comment: comment.comment || "",
-                  createdAt: comment.createdAt || null,
-                },
-              ])
-            )
+            Object.entries(data.comments).map(([id, comment]) => [
+              id,
+              {
+                comment: comment.comment || "",
+                createdAt: comment.createdAt || null,
+              },
+            ])
+          )
           : {};
 
         setComments(serializedComments);
@@ -142,8 +142,8 @@ export default function ArticleContent({ content, collectionType }) {
         <div className="article-tags">
           {Array.isArray(content?.tags)
             ? content.tags.map((tag) => (
-                <span key={tag} className="tag">{tag}</span>
-              ))
+              <span key={tag} className="tag">{tag}</span>
+            ))
             : null}
         </div>
       </div>
@@ -179,22 +179,34 @@ export default function ArticleContent({ content, collectionType }) {
         <div className="comments-list" style={{ marginTop: "1rem" }}>
           {commentsArray.length === 0 && <p>Nenhum comentário ainda.</p>}
 
-          {commentsArray.map((c, i) => (
-            <div key={i} style={{ borderBottom: "1px solid #ddd", padding: "0.5rem 0" }}>
-              <ReactMarkdown>{c.comment || ""}</ReactMarkdown>
-              {c.createdAt && (
-                <small style={{ color: "#555", fontSize: "0.8rem" }}>
-                  {new Date(c.createdAt).toLocaleString("pt-BR", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </small>
-              )}
-            </div>
-          ))}
+          {commentsArray.map((c, i) => {
+            // Converte timestamp do Firestore para Date
+            let createdDate = null;
+            if (c.createdAt) {
+              if (c.createdAt instanceof Timestamp) {
+                createdDate = c.createdAt.toDate(); // Timestamp → Date
+              } else {
+                createdDate = new Date(c.createdAt); // string ISO → Date
+              }
+            }
+
+            return (
+              <div key={i} style={{ borderBottom: "1px solid #ddd", padding: "0.5rem 0" }}>
+                <ReactMarkdown>{c.comment || ""}</ReactMarkdown>
+                {createdDate && (
+                  <small style={{ color: "#555", fontSize: "0.8rem" }}>
+                    {createdDate.toLocaleString("pt-BR", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </small>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

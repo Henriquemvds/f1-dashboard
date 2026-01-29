@@ -1,35 +1,23 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
 import ArticleContent from "../../components/ArticleContent";
-import { adminDb } from "../../FirebaseAdmin";
 
 // ============================
-// Serializa Firestore Admin → JSON seguro
+// Serializa MD → JSON seguro
 // ============================
 function serializePost(post) {
   if (!post) return null;
 
   return {
     ...post,
-    // Datas convertidas para ISO
-    date: post.date?.toDate ? post.date.toDate().toISOString() : post.date || null,
-    // Comentários serializados
-    comments: post.comments
-      ? Object.fromEntries(
-          Object.entries(post.comments).map(([id, comment]) => [
-            id,
-            {
-              ...comment,
-              createdAt: comment.createdAt?.toDate
-                ? comment.createdAt.toDate().toISOString()
-                : comment.createdAt || null,
-            },
-          ])
-        )
-      : {},
+    date: post.date ? new Date(post.date).toISOString() : null,
+    comments: post.comments || {},
   };
 }
 
@@ -75,46 +63,48 @@ export default function ArticlePage({ post, relatedPosts, collectionType }) {
 }
 
 // ============================
-// SSR com Firebase Admin
+// SSR lendo Markdown (posts ou guide)
 // ============================
 export async function getServerSideProps({ params }) {
   const { id } = params;
 
-  try {
-    let collectionType = "posts";
-    let snap = await adminDb.collection("posts").doc(id).get();
+  const directories = ["posts", "guide"]; // busca primeiro em posts, depois em guide
 
-    if (!snap.exists) {
-      snap = await adminDb.collection("guide").doc(id).get();
-      if (!snap.exists) {
-        return { props: { post: null, relatedPosts: [], collectionType: null } };
-      }
-      collectionType = "guide";
+  let found = null;
+  let collectionType = "posts";
+
+  for (const dir of directories) {
+    const dirPath = path.join(process.cwd(), dir);
+    if (!fs.existsSync(dirPath)) continue;
+
+    const files = fs.readdirSync(dirPath);
+    const fileName = files.find((f) => f.replace(/\.md$/, "") === id);
+    if (fileName) {
+      const filePath = path.join(dirPath, fileName);
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      const { data, content } = matter(fileContent);
+
+      found = {
+        post: serializePost({ id, ...data, content }),
+        relatedPosts: files
+          .filter((f) => f !== fileName)
+          .slice(0, 3)
+          .map((f) => {
+            const md = fs.readFileSync(path.join(dirPath, f), "utf8");
+            const { data } = matter(md);
+            return serializePost({ id: f.replace(/\.md$/, ""), ...data });
+          }),
+        collectionType: dir,
+      };
+      break;
     }
+  }
 
-    const post = serializePost({ id: snap.id, ...snap.data() });
-
-    // Artigos relacionados
-    const relatedSnap = await adminDb
-      .collection(collectionType)
-      .orderBy("date", "desc")
-      .limit(6)
-      .get();
-
-    const relatedPosts = relatedSnap.docs
-      .map((d) => serializePost({ id: d.id, ...d.data() }))
-      .filter((p) => p.id !== id)
-      .slice(0, 3);
-
-    return {
-      props: {
-        post,
-        relatedPosts,
-        collectionType,
-      },
-    };
-  } catch (err) {
-    console.error("Erro ao carregar artigo:", err);
+  if (!found) {
     return { props: { post: null, relatedPosts: [], collectionType: null } };
   }
+
+  return {
+    props: found,
+  };
 }
