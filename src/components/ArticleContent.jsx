@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import {
@@ -8,18 +8,27 @@ import {
   updateDoc,
   Timestamp,
   onSnapshot,
+  serverTimestamp,
 } from "firebase/firestore";
 
 export default function ArticleContent({ content, collectionType }) {
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState({});
 
-  const db = getFirestore();
+  // Firestore estável entre renders
+  const db = useMemo(() => getFirestore(), []);
+
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
   const formattedDate = content?.date
     ? new Date(content.date).toLocaleDateString("pt-BR")
     : "Sem data definida";
+
+  // Excerpt seguro para SEO
+  const description =
+    typeof content?.content === "string"
+      ? content.content.replace(/<[^>]+>/g, "").slice(0, 160)
+      : "";
 
   // Atualiza comentários em tempo real
   useEffect(() => {
@@ -28,12 +37,12 @@ export default function ArticleContent({ content, collectionType }) {
     const docRef = doc(db, collectionName, content.id);
 
     const unsubscribe = onSnapshot(docRef, (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.data();
+      if (!snapshot.exists()) return;
 
-        // Serializa comentários recebidos do Admin SDK (já em string ISO)
-        const serializedComments = data.comments
-          ? Object.fromEntries(
+      const data = snapshot.data();
+
+      const serializedComments = data.comments
+        ? Object.fromEntries(
             Object.entries(data.comments).map(([id, comment]) => [
               id,
               {
@@ -42,10 +51,9 @@ export default function ArticleContent({ content, collectionType }) {
               },
             ])
           )
-          : {};
+        : {};
 
-        setComments(serializedComments);
-      }
+      setComments(serializedComments);
     });
 
     return () => unsubscribe();
@@ -53,11 +61,13 @@ export default function ArticleContent({ content, collectionType }) {
 
   const commentsArray = Object.values(comments);
 
-  // Envia comentário para o Firestore
+  // Envia comentário
   const handleCommentSubmit = async () => {
     if (!newComment.trim() || !content?.id) return;
 
-    const commentId = crypto.randomUUID();
+    // ID compatível com qualquer browser
+    const commentId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
     const newCommentObj = {
       comment: newComment.trim(),
       createdAt: serverTimestamp(),
@@ -79,14 +89,18 @@ export default function ArticleContent({ content, collectionType }) {
     <div>
       <Head>
         <title>{content?.title || "Artigo"} | F1™ Dash</title>
+
         <link
           rel="canonical"
           href={`https://www.blog-f1-dashboard.com/artigo/${content?.id || ""}`}
         />
+
+        <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
         <meta property="og:title" content={content?.title || ""} />
+        <meta property="og:description" content={description} />
         <meta property="og:image" content={content?.image || ""} />
         <meta property="og:type" content="article" />
         <meta property="og:locale" content="pt_BR" />
@@ -94,7 +108,7 @@ export default function ArticleContent({ content, collectionType }) {
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={content?.title || ""} />
-        <meta name="twitter:description" content={content?.content || ""} />
+        <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={content?.image || ""} />
 
         {/* JSON-LD */}
@@ -105,16 +119,25 @@ export default function ArticleContent({ content, collectionType }) {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: content?.title || "",
-              image: [content?.image || ""],
+              image: content?.image ? [content.image] : [],
               datePublished: content?.date || new Date().toISOString(),
-              dateModified: content?.updatedAt || content?.date || new Date().toISOString(),
-              author: { "@type": "Person", name: content?.author || "Henrique Santos" },
+              dateModified:
+                content?.updatedAt ||
+                content?.date ||
+                new Date().toISOString(),
+              author: {
+                "@type": "Person",
+                name: content?.author || "Henrique Santos",
+              },
               publisher: {
                 "@type": "Organization",
                 name: "F1 Dash",
-                logo: { "@type": "ImageObject", url: "https://www.blog-f1-dashboard.com/logo.png" },
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.blog-f1-dashboard.com/logo.png",
+                },
               },
-              description: content?.content || "",
+              description,
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": `https://www.blog-f1-dashboard.com/artigo/${content?.id || ""}`,
@@ -126,22 +149,29 @@ export default function ArticleContent({ content, collectionType }) {
 
       {/* Banner */}
       {content?.image && (
-        <img src={content.image} className="article-banner" alt={content.title} />
+        <img
+          src={content.image}
+          className="article-banner"
+          alt={content.title || "Imagem do artigo"}
+        />
       )}
 
       {/* Cabeçalho */}
       <div className="article-header">
         <h1>{content?.title || "Sem título"}</h1>
+
         <p className="article-meta">
           Publicado em <span>{formattedDate}</span> • Por{" "}
           <span>{content?.author || "Henrique Santos"}</span>
         </p>
+
         <div className="article-tags">
-          {Array.isArray(content?.tags)
-            ? content.tags.map((tag) => (
-              <span key={tag} className="tag">{tag}</span>
-            ))
-            : null}
+          {Array.isArray(content?.tags) &&
+            content.tags.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
         </div>
       </div>
 
@@ -149,7 +179,10 @@ export default function ArticleContent({ content, collectionType }) {
       <div
         className="article-content"
         dangerouslySetInnerHTML={{
-          __html: typeof content.content === "string" ? content.content : "<p>Sem conteúdo</p>",
+          __html:
+            typeof content?.content === "string"
+              ? content.content
+              : "<p>Sem conteúdo</p>",
         }}
       />
 
@@ -177,19 +210,25 @@ export default function ArticleContent({ content, collectionType }) {
           {commentsArray.length === 0 && <p>Nenhum comentário ainda.</p>}
 
           {commentsArray.map((c, i) => {
-            // Converte timestamp do Firestore para Date
             let createdDate = null;
+
             if (c.createdAt) {
-              if (c.createdAt instanceof Timestamp) {
-                createdDate = c.createdAt.toDate(); // Timestamp → Date
-              } else {
-                createdDate = new Date(c.createdAt); // string ISO → Date
-              }
+              createdDate =
+                c.createdAt instanceof Timestamp
+                  ? c.createdAt.toDate()
+                  : new Date(c.createdAt);
             }
 
             return (
-              <div key={i} style={{ borderBottom: "1px solid #ddd", padding: "0.5rem 0" }}>
+              <div
+                key={i}
+                style={{
+                  borderBottom: "1px solid #ddd",
+                  padding: "0.5rem 0",
+                }}
+              >
                 <ReactMarkdown>{c.comment || ""}</ReactMarkdown>
+
                 {createdDate && (
                   <small style={{ color: "#555", fontSize: "0.8rem" }}>
                     {createdDate.toLocaleString("pt-BR", {
