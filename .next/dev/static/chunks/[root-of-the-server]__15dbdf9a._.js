@@ -1351,7 +1351,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$firebase$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@firebase/firestore/dist/index.esm.js [client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
-// components/ArticleContent.jsx
 "use client"; // Necessário para hooks no Next 13+
 ;
 ;
@@ -1364,22 +1363,22 @@ function ArticleContent({ content, collectionType }) {
     const db = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["getFirestore"])();
     const collectionName = collectionType === "guide" ? "guide" : "posts";
     // Garantindo string ISO para a data
-    const formattedDate = content.date ? new Date(content.date).toLocaleDateString("pt-BR") : "Sem data definida";
+    const formattedDate = content?.date ? new Date(content.date).toLocaleDateString("pt-BR") : "Sem data definida";
     // Atualiza comentários em tempo real
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ArticleContent.useEffect": ()=>{
-            if (!content.id) return;
+            if (!content?.id) return;
             const docRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(db, collectionName, content.id);
             const unsubscribe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["onSnapshot"])(docRef, {
                 "ArticleContent.useEffect.unsubscribe": (snapshot)=>{
                     if (snapshot.exists()) {
                         const data = snapshot.data();
-                        // Serializa comentários
+                        // Serializa comentários para evitar erros de deploy
                         const serializedComments = data.comments ? Object.fromEntries(Object.entries(data.comments).map({
                             "ArticleContent.useEffect.unsubscribe": ([id, comment])=>[
                                     id,
                                     {
-                                        ...comment,
+                                        comment: comment.comment || "",
                                         createdAt: comment.createdAt?.toDate ? comment.createdAt.toDate().toISOString() : comment.createdAt || null
                                     }
                                 ]
@@ -1395,12 +1394,12 @@ function ArticleContent({ content, collectionType }) {
     }["ArticleContent.useEffect"], [
         db,
         collectionName,
-        content.id
+        content?.id
     ]);
     const commentsArray = Object.values(comments);
     // Envia comentário para o Firestore
     const handleCommentSubmit = async ()=>{
-        if (!newComment.trim() || !content.id) return;
+        if (!newComment.trim() || !content?.id) return;
         const commentId = crypto.randomUUID();
         const newCommentObj = {
             comment: newComment.trim(),
@@ -1422,28 +1421,28 @@ function ArticleContent({ content, collectionType }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("title", {
                         children: [
-                            content.title,
+                            content?.title || "Artigo",
                             " | F1™ Dash"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 87,
+                        lineNumber: 86,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
                         rel: "canonical",
-                        href: `https://www.blog-f1-dashboard.com/artigo/${content.id}`
+                        href: `https://www.blog-f1-dashboard.com/artigo/${content?.id || ""}`
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 88,
+                        lineNumber: 87,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
                         name: "description",
-                        content: content.content
+                        content: content?.content || ""
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 92,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -1451,31 +1450,31 @@ function ArticleContent({ content, collectionType }) {
                         content: "index, follow"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 93,
+                        lineNumber: 92,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
                         property: "og:title",
-                        content: content.title
+                        content: content?.title || ""
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ArticleContent.jsx",
+                        lineNumber: 95,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
+                        property: "og:description",
+                        content: content?.content || ""
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
                         lineNumber: 96,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
-                        property: "og:description",
-                        content: content.content
+                        property: "og:image",
+                        content: content?.image || ""
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
                         lineNumber: 97,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
-                        property: "og:image",
-                        content: content.image
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 98,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -1483,7 +1482,7 @@ function ArticleContent({ content, collectionType }) {
                         content: "article"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 99,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -1491,7 +1490,7 @@ function ArticleContent({ content, collectionType }) {
                         content: "pt_BR"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 100,
+                        lineNumber: 99,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -1499,31 +1498,31 @@ function ArticleContent({ content, collectionType }) {
                         content: "summary_large_image"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 103,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
                         name: "twitter:title",
-                        content: content.title
+                        content: content?.title || ""
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ArticleContent.jsx",
+                        lineNumber: 103,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
+                        name: "twitter:description",
+                        content: content?.content || ""
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
                         lineNumber: 104,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
-                        name: "twitter:description",
-                        content: content.content
+                        name: "twitter:image",
+                        content: content?.image || ""
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
                         lineNumber: 105,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
-                        name: "twitter:image",
-                        content: content.image
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 106,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("script", {
@@ -1532,15 +1531,15 @@ function ArticleContent({ content, collectionType }) {
                             __html: JSON.stringify({
                                 "@context": "https://schema.org",
                                 "@type": "Article",
-                                headline: content.title,
+                                headline: content?.title || "",
                                 image: [
-                                    content.image
+                                    content?.image || ""
                                 ],
-                                datePublished: content.date,
-                                dateModified: content.updatedAt || content.date,
+                                datePublished: content?.date || new Date().toISOString(),
+                                dateModified: content?.updatedAt || content?.date || new Date().toISOString(),
                                 author: {
                                     "@type": "Person",
-                                    name: content.author || "Henrique Santos"
+                                    name: content?.author || "Henrique Santos"
                                 },
                                 publisher: {
                                     "@type": "Organization",
@@ -1550,41 +1549,41 @@ function ArticleContent({ content, collectionType }) {
                                         url: "https://www.blog-f1-dashboard.com/logo.png"
                                     }
                                 },
-                                description: content.content,
+                                description: content?.content || "",
                                 mainEntityOfPage: {
                                     "@type": "WebPage",
-                                    "@id": `https://www.blog-f1-dashboard.com/artigo/${content.id}`
+                                    "@id": `https://www.blog-f1-dashboard.com/artigo/${content?.id || ""}`
                                 }
                             })
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 109,
+                        lineNumber: 108,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ArticleContent.jsx",
-                lineNumber: 86,
+                lineNumber: 85,
                 columnNumber: 7
             }, this),
-            content.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+            content?.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                 src: content.image,
                 className: "article-banner",
                 alt: content.title
             }, void 0, false, {
                 fileName: "[project]/src/components/ArticleContent.jsx",
                 lineNumber: 136,
-                columnNumber: 25
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "article-header",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        children: content.title
+                        children: content?.title || "Sem título"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 140,
+                        lineNumber: 141,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1595,53 +1594,53 @@ function ArticleContent({ content, collectionType }) {
                                 children: formattedDate
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ArticleContent.jsx",
-                                lineNumber: 142,
+                                lineNumber: 143,
                                 columnNumber: 24
                             }, this),
                             " • Por",
                             " ",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                children: content.author || "Henrique Santos"
+                                children: content?.author || "Henrique Santos"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ArticleContent.jsx",
-                                lineNumber: 143,
+                                lineNumber: 144,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 141,
+                        lineNumber: 142,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "article-tags",
-                        children: content.tags?.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        children: Array.isArray(content?.tags) ? content.tags.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "tag",
                                 children: tag
                             }, tag, false, {
                                 fileName: "[project]/src/components/ArticleContent.jsx",
-                                lineNumber: 147,
-                                columnNumber: 13
-                            }, this))
+                                lineNumber: 149,
+                                columnNumber: 17
+                            }, this)) : null
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 145,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ArticleContent.jsx",
-                lineNumber: 139,
+                lineNumber: 140,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "article-content",
                 dangerouslySetInnerHTML: {
-                    __html: content.content
+                    __html: content?.content || ""
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/ArticleContent.jsx",
-                lineNumber: 153,
+                lineNumber: 156,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1654,7 +1653,7 @@ function ArticleContent({ content, collectionType }) {
                         children: "Deixe sua opinião anônima para todos!"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 157,
+                        lineNumber: 163,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1669,7 +1668,7 @@ function ArticleContent({ content, collectionType }) {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 159,
+                        lineNumber: 165,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1681,7 +1680,7 @@ function ArticleContent({ content, collectionType }) {
                         children: "Enviar"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 167,
+                        lineNumber: 173,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1694,7 +1693,7 @@ function ArticleContent({ content, collectionType }) {
                                 children: "Nenhum comentário ainda."
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ArticleContent.jsx",
-                                lineNumber: 172,
+                                lineNumber: 182,
                                 columnNumber: 42
                             }, this),
                             commentsArray.map((c, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1704,10 +1703,10 @@ function ArticleContent({ content, collectionType }) {
                                     },
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$markdown$2f$lib$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__Markdown__as__default$3e$__["default"], {
-                                            children: c.comment
+                                            children: c.comment || ""
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ArticleContent.jsx",
-                                            lineNumber: 176,
+                                            lineNumber: 186,
                                             columnNumber: 15
                                         }, this),
                                         c.createdAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
@@ -1724,31 +1723,31 @@ function ArticleContent({ content, collectionType }) {
                                             })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ArticleContent.jsx",
-                                            lineNumber: 178,
+                                            lineNumber: 188,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/src/components/ArticleContent.jsx",
-                                    lineNumber: 175,
+                                    lineNumber: 185,
                                     columnNumber: 13
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ArticleContent.jsx",
-                        lineNumber: 171,
+                        lineNumber: 181,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ArticleContent.jsx",
-                lineNumber: 156,
+                lineNumber: 162,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ArticleContent.jsx",
-        lineNumber: 85,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }
@@ -1790,7 +1789,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
     if (router.isFallback) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Loading$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/src/pages/artigo/[id].jsx",
-        lineNumber: 37,
+        lineNumber: 39,
         columnNumber: 33
     }, this);
     if (!post) {
@@ -1798,19 +1797,19 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/artigo/[id].jsx",
-                    lineNumber: 42,
+                    lineNumber: 44,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                     children: "Conteúdo não encontrado"
                 }, void 0, false, {
                     fileName: "[project]/src/pages/artigo/[id].jsx",
-                    lineNumber: 43,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/artigo/[id].jsx",
-                    lineNumber: 44,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, this)
             ]
@@ -1820,7 +1819,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                lineNumber: 51,
+                lineNumber: 53,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1831,7 +1830,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
                         collectionType: collectionType
                     }, void 0, false, {
                         fileName: "[project]/src/pages/artigo/[id].jsx",
-                        lineNumber: 53,
+                        lineNumber: 55,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1841,7 +1840,7 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
                                 children: "Leia também"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                lineNumber: 56,
+                                lineNumber: 58,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1855,42 +1854,42 @@ function ArticlePage({ post, relatedPosts, collectionType }) {
                                                 alt: p.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                                lineNumber: 60,
+                                                lineNumber: 62,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                                 children: p.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                                lineNumber: 61,
+                                                lineNumber: 63,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, p.id, true, {
                                         fileName: "[project]/src/pages/artigo/[id].jsx",
-                                        lineNumber: 59,
+                                        lineNumber: 61,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                                lineNumber: 57,
+                                lineNumber: 59,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/artigo/[id].jsx",
-                        lineNumber: 55,
+                        lineNumber: 57,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                lineNumber: 52,
+                lineNumber: 54,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/artigo/[id].jsx",
-                lineNumber: 67,
+                lineNumber: 69,
                 columnNumber: 7
             }, this)
         ]

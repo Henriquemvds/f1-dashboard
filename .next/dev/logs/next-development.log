@@ -1,3 +1,5 @@
-[00:00:03.602] Server  LOG     ✓ Ready in 2.5s
-[00:00:26.909] Server  ERROR   (node:14424) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[00:00:02.656] Server  LOG     ✓ Ready in 1712ms
+[00:00:11.419] Server  ERROR   (node:5036) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
+[00:00:13.684] Server  LOG     ID do artigo: {}
+[00:02:15.778] Browser LOG     Refreshing page data due to server-side change

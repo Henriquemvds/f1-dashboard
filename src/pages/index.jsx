@@ -56,7 +56,7 @@ export default function Home({ initialPosts }) {
 
   const pageTitle = "F1™ Dash | Notícias, análises e bastidores das corridas da Fórmula 1™";
   const pageDescription = buildHomeDescription(posts);
-
+    
   return (
     <div>
       <Head>
@@ -181,6 +181,7 @@ export async function getStaticProps() {
 
   const posts = snapshot.docs.map(doc => {
     const data = doc.data();
+
 
     // Converte comentários
     const comments = data.comments
