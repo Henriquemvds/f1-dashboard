@@ -12,27 +12,51 @@ import {
 } from "firebase/firestore";
 
 export default function ArticleContent({ content, collectionType }) {
+  /* ===========================
+     ESTADOS BÁSICOS
+  ============================ */
+  const [mounted, setMounted] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState({});
 
-  // Firestore estável entre renders
+  /* ===========================
+     FIRESTORE ESTÁVEL
+  ============================ */
   const db = useMemo(() => getFirestore(), []);
-
   const collectionName = collectionType === "guide" ? "guide" : "posts";
 
-  const formattedDate = content?.date
-    ? new Date(content.date).toLocaleDateString("pt-BR")
-    : "Sem data definida";
+  /* ===========================
+     NORMALIZAÇÕES (SSR SAFE)
+  ============================ */
+  const safeTitle = typeof content?.title === "string" ? content.title : "Artigo";
+  const safeAuthor =
+    typeof content?.author === "string" ? content.author : "Henrique Santos";
 
-  // Excerpt seguro para SEO
-  const description =
-    typeof content?.content === "string"
-      ? content.content.replace(/<[^>]+>/g, "").slice(0, 160)
-      : "";
+  const safeHtml =
+    typeof content?.content === "string" ? content.content : "";
 
-  // Atualiza comentários em tempo real
+  const description = safeHtml
+    ? safeHtml.replace(/<[^>]+>/g, "").slice(0, 160)
+    : "";
+
+  const formattedDate =
+    typeof content?.date === "string"
+      ? new Date(content.date).toLocaleDateString("pt-BR")
+      : "Sem data definida";
+
+  /* ===========================
+     MARCA MOUNT (ANTI #418)
+  ============================ */
   useEffect(() => {
-    if (!content?.id) return;
+    setMounted(true);
+  }, []);
+
+  /* ===========================
+     FIRESTORE (CLIENT ONLY)
+  ============================ */
+  useEffect(() => {
+    if (!mounted) return;
+    if (!content?.id || typeof content.id !== "string") return;
 
     const docRef = doc(db, collectionName, content.id);
 
@@ -43,11 +67,11 @@ export default function ArticleContent({ content, collectionType }) {
 
       const serializedComments = data.comments
         ? Object.fromEntries(
-            Object.entries(data.comments).map(([id, comment]) => [
+            Object.entries(data.comments).map(([id, c]) => [
               id,
               {
-                comment: comment.comment || "",
-                createdAt: comment.createdAt || null,
+                comment: typeof c.comment === "string" ? c.comment : "",
+                createdAt: c.createdAt || null,
               },
             ])
           )
@@ -57,15 +81,16 @@ export default function ArticleContent({ content, collectionType }) {
     });
 
     return () => unsubscribe();
-  }, [db, collectionName, content?.id]);
+  }, [mounted, db, collectionName, content?.id]);
 
   const commentsArray = Object.values(comments);
 
-  // Envia comentário
+  /* ===========================
+     ENVIO DE COMENTÁRIO
+  ============================ */
   const handleCommentSubmit = async () => {
     if (!newComment.trim() || !content?.id) return;
 
-    // ID compatível com qualquer browser
     const commentId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
     const newCommentObj = {
@@ -80,15 +105,50 @@ export default function ArticleContent({ content, collectionType }) {
       await updateDoc(docRef, {
         [`comments.${commentId}`]: newCommentObj,
       });
-    } catch (error) {
-      console.error("Erro ao enviar comentário:", error);
+    } catch (err) {
+      console.error("Erro ao enviar comentário:", err);
     }
   };
 
+  /* ===========================
+     JSON-LD (CLIENT ONLY)
+  ============================ */
+  const jsonLd =
+    mounted && content?.id
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: safeTitle,
+          image: content?.image ? [content.image] : [],
+          datePublished: content?.date || "",
+          dateModified: content?.updatedAt || content?.date || "",
+          author: {
+            "@type": "Person",
+            name: safeAuthor,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "F1 Dash",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://www.blog-f1-dashboard.com/logo.png",
+            },
+          },
+          description,
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://www.blog-f1-dashboard.com/artigo/${content.id}`,
+          },
+        }
+      : null;
+
+  /* ===========================
+     RENDER
+  ============================ */
   return (
     <div>
       <Head>
-        <title>{content?.title || "Artigo"} | F1™ Dash</title>
+        <title>{safeTitle} | F1™ Dash</title>
 
         <link
           rel="canonical"
@@ -99,7 +159,7 @@ export default function ArticleContent({ content, collectionType }) {
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
-        <meta property="og:title" content={content?.title || ""} />
+        <meta property="og:title" content={safeTitle} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={content?.image || ""} />
         <meta property="og:type" content="article" />
@@ -107,62 +167,33 @@ export default function ArticleContent({ content, collectionType }) {
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={content?.title || ""} />
+        <meta name="twitter:title" content={safeTitle} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={content?.image || ""} />
 
-        {/* JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Article",
-              headline: content?.title || "",
-              image: content?.image ? [content.image] : [],
-              datePublished: content?.date || new Date().toISOString(),
-              dateModified:
-                content?.updatedAt ||
-                content?.date ||
-                new Date().toISOString(),
-              author: {
-                "@type": "Person",
-                name: content?.author || "Henrique Santos",
-              },
-              publisher: {
-                "@type": "Organization",
-                name: "F1 Dash",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://www.blog-f1-dashboard.com/logo.png",
-                },
-              },
-              description,
-              mainEntityOfPage: {
-                "@type": "WebPage",
-                "@id": `https://www.blog-f1-dashboard.com/artigo/${content?.id || ""}`,
-              },
-            }),
-          }}
-        />
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(jsonLd),
+            }}
+          />
+        )}
       </Head>
 
-      {/* Banner */}
       {content?.image && (
         <img
           src={content.image}
+          alt={safeTitle}
           className="article-banner"
-          alt={content.title || "Imagem do artigo"}
         />
       )}
 
-      {/* Cabeçalho */}
       <div className="article-header">
-        <h1>{content?.title || "Sem título"}</h1>
-
+        <h1>{safeTitle}</h1>
         <p className="article-meta">
           Publicado em <span>{formattedDate}</span> • Por{" "}
-          <span>{content?.author || "Henrique Santos"}</span>
+          <span>{safeAuthor}</span>
         </p>
 
         <div className="article-tags">
@@ -175,18 +206,11 @@ export default function ArticleContent({ content, collectionType }) {
         </div>
       </div>
 
-      {/* Conteúdo */}
       <div
         className="article-content"
-        dangerouslySetInnerHTML={{
-          __html:
-            typeof content?.content === "string"
-              ? content.content
-              : "<p>Sem conteúdo</p>",
-        }}
+        dangerouslySetInnerHTML={{ __html: safeHtml }}
       />
 
-      {/* Comentários */}
       <div className="article-comments" style={{ marginTop: "2rem" }}>
         <h2>Deixe sua opinião anônima para todos!</h2>
 
@@ -227,17 +251,11 @@ export default function ArticleContent({ content, collectionType }) {
                   padding: "0.5rem 0",
                 }}
               >
-                <ReactMarkdown>{c.comment || ""}</ReactMarkdown>
+                <ReactMarkdown>{c.comment}</ReactMarkdown>
 
                 {createdDate && (
                   <small style={{ color: "#555", fontSize: "0.8rem" }}>
-                    {createdDate.toLocaleString("pt-BR", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {createdDate.toLocaleString("pt-BR")}
                   </small>
                 )}
               </div>
