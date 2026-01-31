@@ -5,14 +5,11 @@ self.__BUILD_MANIFEST = {
   "/_error": [
     "static/chunks/pages/_error.js"
   ],
-  "/artigo/[id]": [
-    "static/chunks/pages/artigo/[id].js"
+  "/piloto/[id]": [
+    "static/chunks/pages/piloto/[id].js"
   ],
-  "/guia": [
-    "static/chunks/pages/guia.js"
-  ],
-  "/resultados": [
-    "static/chunks/pages/resultados.js"
+  "/pilotos": [
+    "static/chunks/pages/pilotos.js"
   ],
   "__rewrites": {
     "afterFiles": [],
