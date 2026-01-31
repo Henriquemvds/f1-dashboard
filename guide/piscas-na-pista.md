@@ -15,11 +15,15 @@ tags:
 <h2>💡 Pisca-Pisca de alerta: Sabia que tem tanto traseira quanto frontal agora?</h2>
 
 <p>
-  Ah, os piscas… aqueles LEDs minúsculos que ficam no retrovisor e na traseira do carro. Se você acha que eles só existem pra decorar, parabéns, você está oficialmente no time dos que nunca assistiram a briefing técnico da FIA.
+Ah, os piscas… aqueles LEDs minúsculos que ficam no retrovisor e na traseira do carro. Se você acha que eles só existem pra decorar, parabéns, você está oficialmente no time dos que nunca assistiram a briefing técnico da FIA.
 </p>
 
 <p>
-  Eles <strong>não piscam só porque o piloto está com vontade</strong>. Servem para sinalizar manobras, avisar quem está atrás e evitar que alguém cole no seu carro mais rápido do que spoiler em filme de ação. Sim, no meio de 300 km/h, um pisca pode salvar sua corrida — ou pelo menos sua cara.
+As luzes traseiras (e agora laterais) nos carros de Fórmula 1™, frequentemente chamadas de "piscas", não funcionam como as setas ou luzes de freio convencionais de carros de rua. Elas são sistemas de segurança e sinalização ativa, situadas na traseira (luz central e nas placas laterais da asa) e, a partir de 2026, também nos retrovisores.
+</p>
+
+<p>
+Eles <strong>não piscam só porque o piloto está com vontade</strong>. Servem para sinalizar manobras, avisar quem está atrás e evitar que alguém cole no seu carro mais rápido do que spoiler em filme de ação. Sim, no meio de 300 km/h, um pisca pode salvar sua corrida — ou pelo menos sua cara.
 </p>
 
 <hr />
@@ -27,7 +31,7 @@ tags:
 <h2>🔄 Retrovisores x traseira: quem pisca primeiro?</h2>
 
 <p>
-  Antes, os piscas eram todos na traseira, discretos como um ninja de terno. Agora, também aparecem nos retrovisores — porque, aparentemente, pilotos de F1™ precisam de um lembrete de que existe vida atrás deles.
+Antes, os piscas eram todos na traseira, discretos como um ninja de terno. Agora, também aparecem nos retrovisores — porque, aparentemente, pilotos de F1™ precisam de um lembrete de que existe vida atrás deles.
 </p>
 
 <ul>
@@ -41,12 +45,46 @@ tags:
 
 <hr />
 
+<h2>⚡ Para que serve cada pisca e quando eles piscam</h2>
+
+<p>Aqui está um resumo prático do que cada luz faz e em quais situações são usadas:</p>
+
+<h3>1. Luzes Vermelhas Traseiras (Funções Principais)</h3>
+<p>O LED central traseiro e os painéis na asa traseira piscam em diferentes frequências:</p>
+<ul>
+  <li><strong>Chuva/Baixa Visibilidade (Piscada Rápida - 4x por segundo):</strong> Acionadas em pista molhada para melhorar a visibilidade através do spray de água produzido pelos pneus.</li>
+  <li><strong>Recuperação de Energia - ERS (Piscada 1x por segundo):</strong> Indica que o carro está recuperando energia e pode estar mais lento que o carro atrás, evitando colisões.</li>
+  <li><strong>Pit Lane/Limitação de Velocidade (Piscada 2x por segundo):</strong> Ativadas quando o piloto reduz a velocidade ao entrar nos boxes.</li>
+  <li><strong>Safety Car/Virtual Safety Car (Piscada 2x por segundo):</strong> Usadas nos primeiros 10 segundos após a ativação do Safety Car ou VSC para alertar que o carro reduziu a velocidade.</li>
+</ul>
+
+<h3>2. Luzes de Retrovisor/Laterais (A partir de 2026)</h3>
+<p>Projetadas para melhorar a visibilidade lateral e frontal em condições de baixa visibilidade, especialmente se um carro estiver atravessado na pista.</p>
+
+<h3>3. Luzes de Segurança Médica (Piscada Azul)</h3>
+<p>Integradas frequentemente na câmera T-Cam superior, indicam a gravidade de um acidente para os fiscais de pista:</p>
+<ul>
+  <li><strong>Azul piscando a cada 6 segundos:</strong> situação do acidente controlada.</li>
+  <li><strong>Piscada rápida:</strong> situação grave que pode exigir intervenção médica imediata.</li>
+</ul>
+
+<h3>4. Luz Verde (Piloto Rookie)</h3>
+<p>Em situações especiais, uma luz verde pisca na traseira, indicando que um piloto novato (sem Superlicença completa da FIA) está no carro.</p>
+
+<p><strong>Resumo das cores:</strong></p>
+<ul>
+  <li>Vermelho: alerta geral de baixa velocidade, chuva, boxes ou recarga de energia.</li>
+  <li>Verde: piloto novato/Rookie.</li>
+  <li>Azul (na T-Cam): estado médico/incidente.</li>
+</ul>
+
+<hr />
+
 <h2>⚡ Por que eles importam (mesmo que você ignore)</h2>
 
 <p>
-  Você pode pensar: "ah, piscas, detalhe mínimo". Mas na pista, cada segundo conta, e cada piscar pode ser a diferença entre:
+Você pode pensar: "ah, piscas, detalhe mínimo". Mas na pista, cada segundo conta, e cada piscar pode ser a diferença entre:
 </p>
-
 
 <ul>
   <li>Ultrapassagem elegante ou toque indesejado</li>
@@ -55,11 +93,11 @@ tags:
 </ul>
 
 <p>
-  Então sim, eles são pequenos, discretos e caros, mas <strong>podem salvar sua corrida e sua reputação</strong>.
+Então sim, eles são pequenos, discretos e caros, mas <strong>podem salvar sua corrida e sua reputação</strong>.
 </p>
 
 <p>
-  Dá uma checada aí visual de como deve ser nas pistas e como isso é importante, ou seja, tem CNH? LIGUE O PISCA!!!!
+Dá uma checada aí visual de como deve ser nas pistas e como isso é importante, ou seja, tem CNH? LIGUE O PISCA!!!!
 </p>
 
 <iframe width="360" height="315"
@@ -75,7 +113,7 @@ tags:
 <h2>🏁 Conclusão: piscas, os heróis invisíveis das corridas da Fórmula 1™ como novidade</h2>
 
 <p>
-  Enquanto os pneus disputam holofotes e os motores fazem barulho, os piscas <strong>ficam ali, piscando em silêncio e garantindo que ninguém vá bater a 320 km/h</strong>.  
-  Pequenos, discretos e muitas vezes ignorados, mas absolutamente indispensáveis.  
-  Sem eles, as corridas da F1™ seriam só carros rápidos e muita reclamação.
+Enquanto os pneus disputam holofotes e os motores fazem barulho, os piscas <strong>ficam ali, piscando em silêncio e garantindo que ninguém vá bater a 320 km/h</strong>.  
+Pequenos, discretos e muitas vezes ignorados, mas absolutamente indispensáveis.  
+Sem eles, as corridas da F1™ seriam só carros rápidos e muita reclamação.
 </p>
