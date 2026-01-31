@@ -1,1 +1,142 @@
-[00:00:02.111] Server  LOG     ✓ Ready in 1352ms
+[00:00:02.782] Server  LOG     ✓ Ready in 1904ms
+[00:00:27.184] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:01:42.810] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:01:46.238] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:07:08.538] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:07:13.987] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:10:23.122] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:14:19.235] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:14:33.721] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:15:35.240] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:17:15.380] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:17:32.241] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:18:54.328] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:26:32.178] Server  ERROR   ⨯ YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key at line 4, column 7:
+    author: "Henrique Santos"
+          ^
+[00:26:32.298] Server  ERROR   ⨯ YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key at line 4, column 7:
+    author: "Henrique Santos"
+          ^
+[00:27:32.573] Server  ERROR   ⨯ YAMLException: end of the stream or a document separator is expected at line 3, column 11:
+    subtitle: `"SEM FREIOS??? Muito bem pensad ... 
+              ^
+[00:27:32.689] Server  ERROR   ⨯ YAMLException: end of the stream or a document separator is expected at line 3, column 11:
+    subtitle: `"SEM FREIOS??? Muito bem pensad ... 
+              ^
+[00:27:32.863] Browser ERROR   uncaughtError: YAMLException: end of the stream or a document separator is expected at line 3, column 11:
+    subtitle: `"SEM FREIOS??? Muito bem pensad ... 
+              ^
+[00:28:13.657] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:40:49.314] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:41:01.062] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:41:25.002] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:43:59.272] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:50:07.586] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
