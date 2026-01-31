@@ -33,17 +33,100 @@ export default function Home({ initialPosts }) {
   const currentPosts = filtered.slice(indexFirst, indexLast);
   const totalPages = Math.ceil(filtered.length / postsPerPage);
 
-  const pageTitle = "F1™ Dash | Notícias, análises e bastidores das corridas da Fórmula 1™";
+  // SEO
+  const pageTitle = "F1 Dash | Notícias e análises de corridas de Fórmula 1";
   const pageDescription =
     posts.length > 0
-      ? `Últimos artigos: ${posts.slice(0, 3).map((p) => p.title).join(" • ")}`
-      : "Notícias, análises e opiniões sobre as corridas da Fórmula 1™.";
+      ? `Últimos artigos sobre Fórmula 1: ${posts.slice(0, 3).map((p) => p.title).join(", ")}`
+      : "Notícias, análises e bastidores das corridas da Fórmula 1. Acompanhe resultados, análises e curiosidades do mundo da F1.";
+  const siteUrl = "https://www.blog-f1-dashboard.com";
+  const defaultImage = `https://www.blog-f1-dashboard.com/logo-f1-meta.png`;
 
   return (
     <div>
       <Head>
+        {/* Meta Básico */}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={siteUrl} />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:image" content={defaultImage} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={defaultImage} />
+
+        {/* CollectionPage Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Notícias, análises e opiniões sobre as corridas da Fórmula 1",
+            description: pageDescription,
+            url: siteUrl,
+            inLanguage: "pt-BR",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "F1 Dash",
+              url: siteUrl
+            }
+          })}
+        </script>
+
+        {/* ItemList Schema – últimos artigos */}
+        {posts.length > 0 && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              itemListElement: posts.slice(0, 10).map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${siteUrl}/artigo/${post.slug}`,
+                name: post.title
+              }))
+            })}
+          </script>
+        )}
+
+        {/* BreadcrumbList Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: siteUrl
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Artigos",
+                item: siteUrl
+              }
+            ]
+          })}
+        </script>
+
+        {/* Paginação SEO */}
+        {currentPage < totalPages && (
+          <link rel="next" href={`/?page=${currentPage + 1}`} />
+        )}
+        {currentPage > 1 && (
+          <link rel="prev" href={`/?page=${currentPage - 1}`} />
+        )}
       </Head>
 
       <Navbar />
@@ -52,10 +135,11 @@ export default function Home({ initialPosts }) {
         <section className="blog-grid">
           <section className="hero">
             <div className="hero-content">
-              <h1>Guia Para Iniciantes</h1>
-              <p>Notícias, análises e opiniões sobre as corridas da Fórmula 1™</p>
+              <h1>Notícias, Análises e Bastidores</h1>
+              <p>Últimas notícias e artigos sobre corridas de Fórmula 1™, análises detalhadas e curiosidades do mundo da F1™.</p>
             </div>
           </section>
+
           <h2>Últimos Artigos</h2>
 
           {currentPosts.length === 0 && <p>Nenhum artigo encontrado.</p>}
@@ -95,7 +179,7 @@ export async function getStaticProps() {
     return {
       slug: filename.replace(/\.md$/, ""),
       ...data,
-      content,
+      content
     };
   });
 
@@ -104,6 +188,6 @@ export async function getStaticProps() {
 
   return {
     props: { initialPosts: posts },
-    revalidate: 60,
+    revalidate: 60
   };
 }

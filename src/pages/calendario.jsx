@@ -18,7 +18,7 @@ export default function EventsCalendar() {
   const [onlySprint, setOnlySprint] = useState(false);
   const [expandedRound, setExpandedRound] = useState(null);
 
-  const filtered = EVENTS_2026.filter(e => {
+  const filtered = EVENTS_2026.filter((e) => {
     const q = query.trim().toLowerCase();
     if (onlySprint && !e.sprint) return false;
     if (!q) return true;
@@ -32,8 +32,8 @@ export default function EventsCalendar() {
   function formatDateBR(dateStr) {
     const date = new Date(dateStr + "T00:00:00");
     const months = [
-      "jan","fev","mar","abr","mai","jun",
-      "jul","ago","set","out","nov","dez"
+      "jan", "fev", "mar", "abr", "mai", "jun",
+      "jul", "ago", "set", "out", "nov", "dez"
     ];
     const day = date.getDate();
     const month = months[date.getMonth()];
@@ -42,22 +42,24 @@ export default function EventsCalendar() {
 
   function buildCalendarDescription(events = []) {
     if (!events.length) {
-      return "Calendário oficial da temporada 2026 da Fórmula 1™, com datas, circuitos e fins de semana de corrida.";
+      return "Calendário oficial da temporada 2026 da Fórmula 1™, com datas, circuitos e corridas sprint.";
     }
     const first = events[0];
     const last = events[events.length - 1];
-    return `Calendário completo das corridas Fórmula 1™ 2026: ${events.length} etapas, de ${first.gp} até ${last.gp}, com datas, circuitos e corridas sprint.`;
+    return `Calendário completo da Fórmula 1™ 2026: ${events.length} etapas, de ${first.gp} até ${last.gp}, com datas, circuitos e corridas sprint.`;
   }
 
-  const pageTitle = "Calendário das corridas F1™ 2026 | Datas, circuitos e corridas sprint";
+  const pageTitle = "Calendário F1™ 2026 | Datas de corridas, circuitos e Sprint";
   const pageDescription = buildCalendarDescription(EVENTS_2026);
+  const siteUrl = "https://www.blog-f1-dashboard.com";
+  const defaultImage = `https://www.blog-f1-dashboard.com/logo-f1-meta.png`;
 
   return (
     <div>
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://www.blog-f1-dashboard.com/calendario" />
+        <link rel="canonical" href={`${siteUrl}/calendario`} />
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
@@ -65,13 +67,28 @@ export default function EventsCalendar() {
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content={`${siteUrl}/calendario`} />
+        <meta property="og:image" content={defaultImage} />
 
         {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={defaultImage} />
 
-        {/* EventSeries JSON-LD */}
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+              { "@type": "ListItem", position: 2, name: "Calendário F1 2026", item: `${siteUrl}/calendario` },
+            ]
+          })}
+        </script>
+
+        {/* SportsEvent Series JSON-LD */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -82,7 +99,7 @@ export default function EventsCalendar() {
             endDate: EVENTS_2026[EVENTS_2026.length - 1]?.weekend.end,
             location: { "@type": "Place", name: "Circuitos internacionais" },
             organizer: { "@type": "Organization", name: "Formula 1" },
-            url: "https://www.blog-f1-dashboard.com/calendario"
+            url: `${siteUrl}/calendario`
           })}
         </script>
 
@@ -107,7 +124,7 @@ export default function EventsCalendar() {
                 eventStatus: getEventEndDate(e) < new Date()
                   ? "https://schema.org/EventCompleted"
                   : "https://schema.org/EventScheduled",
-                url: "https://www.blog-f1-dashboard.com/calendario"
+                url: `${siteUrl}/calendario`
               }
             }))
           })}
@@ -118,8 +135,8 @@ export default function EventsCalendar() {
 
       <div className="events-page">
         <header className="events-header">
-          <h1>Calendário de Corridas — F1™ 2026</h1>
-          <p>Calendário compilado a partir do calendário oficial (temporada 2026).</p>
+          <h1>Calendário Oficial — F1™ 2026</h1>
+          <p>{pageDescription}</p>
 
           <div className="events-controls">
             <input
@@ -198,7 +215,7 @@ export default function EventsCalendar() {
 
         <footer className="events-footer">
           <small>
-            Fonte: <a href="https://www.formula1.com/">Formula1.com</a> (calendário oficial) e reports públicos sobre sprint races.
+            Fonte: <a href="https://www.formula1.com/">Formula1.com</a> (calendário oficial) e reports públicos sobre Sprint Races.
           </small>
         </footer>
       </div>

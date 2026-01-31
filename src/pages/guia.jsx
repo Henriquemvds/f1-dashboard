@@ -1,3 +1,4 @@
+// pages/guide.jsx
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -33,20 +34,24 @@ export default function Guide({ allPosts }) {
   const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
   function buildGuideDescription(posts = []) {
-    if (!posts.length) return "Guia para iniciantes na Fórmula 1™, com explicações sobre regras, mecânica, estratégias e funcionamento das corridas.";
+    if (!posts.length)
+      return "Guia para iniciantes na Fórmula 1, com explicações sobre regras, mecânica, estratégias e funcionamento das corridas.";
     const titles = posts.slice(0, 3).map(p => p.title).join(" • ");
-    return `Guia completo das corridas da Fórmula 1™ para iniciantes: ${titles}. Aprenda regras, mecânica e conceitos essenciais das corridas da F1™.`;
+    return `Guia completo das corridas da Fórmula 1 para iniciantes: ${titles}. Aprenda regras, mecânica e conceitos essenciais da F1.`;
   }
 
-  const pageTitle = "Guia das corridas Fórmula 1™ para Iniciantes | Regras, mecânica e conceitos";
+  const pageTitle = "Guia de Corridas da Fórmula 1 para Iniciantes | Regras, Mecânica e Estratégias";
   const pageDescription = buildGuideDescription(allPosts);
+  const siteUrl = "https://www.blog-f1-dashboard.com";
+  const defaultImage = `${siteUrl}/images/og-banner.png`;
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Head>
+        {/* Meta básico */}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://www.blog-f1-dashboard.com/guia" />
+        <link rel="canonical" href={`${siteUrl}/guia`} />
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
@@ -54,30 +59,33 @@ export default function Guide({ allPosts }) {
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content={`${siteUrl}/guia`} />
+        <meta property="og:image" content={defaultImage} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={defaultImage} />
 
         {/* CollectionPage Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Guia da Fórmula 1™ para Iniciantes",
+            name: "Guia da Fórmula 1 para Iniciantes",
             description: pageDescription,
-            url: "https://www.blog-f1-dashboard.com/guia",
+            url: `${siteUrl}/guia`,
             inLanguage: "pt-BR",
             isPartOf: {
               "@type": "WebSite",
-              name: "F1™ Dash",
-              url: "https://www.blog-f1-dashboard.com/"
-            }
+              name: "F1 Dash",
+              url: siteUrl,
+            },
           })}
         </script>
 
-        {/* ItemList – artigos do guia */}
+        {/* ItemList Schema – últimos artigos */}
         {allPosts.length > 0 && (
           <script type="application/ld+json">
             {JSON.stringify({
@@ -86,11 +94,41 @@ export default function Guide({ allPosts }) {
               itemListElement: allPosts.slice(0, 10).map((post, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
-                url: `https://www.blog-f1-dashboard.com/artigo/${post.id}`,
+                url: `${siteUrl}/artigo/${post.slug}`,
                 name: post.title || "",
-              }))
+              })),
             })}
           </script>
+        )}
+
+        {/* BreadcrumbList Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: siteUrl,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Guia",
+                item: `${siteUrl}/guia`,
+              },
+            ],
+          })}
+        </script>
+
+        {/* Paginação SEO */}
+        {currentPage < totalPages && (
+          <link rel="next" href={`/guia?page=${currentPage + 1}`} />
+        )}
+        {currentPage > 1 && (
+          <link rel="prev" href={`/guia?page=${currentPage - 1}`} />
         )}
       </Head>
 
@@ -99,18 +137,18 @@ export default function Guide({ allPosts }) {
       <div className="home-container">
         <section className="hero-guide">
           <div className="hero-content">
-            <h1>Guia Para Iniciantes</h1>
-            <p>Aprenda sobre detalhes técnicos, regulamentos e mecânica das corridas da Fórmula 1™.</p>
+            <h1>Guia Completo para Iniciantes em Fórmula 1™</h1>
+            <p>Aprenda regras, mecânica, estratégias e detalhes técnicos das corridas da Fórmula 1™.</p>
           </div>
         </section>
 
         <section className="blog-grid">
-          <h2>Últimos Artigos</h2>
+          <h2>Últimos Artigos do Guia</h2>
 
           {currentPosts.length === 0 && <p>Nenhum artigo encontrado.</p>}
 
           {currentPosts.map(post => (
-            <Link href={`/artigo/${post.id}`} key={post.id}>
+            <Link href={`/artigo/${post.slug}`} key={post.slug}>
               <ArticleCard post={post} />
             </Link>
           ))}
@@ -143,7 +181,7 @@ export async function getStaticProps() {
       const fileContent = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(fileContent);
       return serializePost({
-        id: f.replace(/\.md$/, ""),
+        slug: f.replace(/\.md$/, ""),
         ...data,
         content,
       });
@@ -155,6 +193,6 @@ export async function getStaticProps() {
 
   return {
     props: { allPosts },
-    revalidate: 60, // revalida a cada 60s
+    revalidate: 60,
   };
 }

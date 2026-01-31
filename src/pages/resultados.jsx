@@ -85,7 +85,7 @@ export default function Results() {
             ...s,
             __year: year,
             __sessionStart: sessionStartDate,
-            __locationKey: `${s.location || s.circuit_short_name || "Desconhecido"}||${s.country_name || "Desconhecido"}`
+            __locationKey: `${s.location || s.circuit_short_name || "Desconhecido"}||${s.country_name || "Desconhecido"}`,
           };
         });
 
@@ -118,7 +118,6 @@ export default function Results() {
         });
 
         setSessionsByYear(result);
-
       } catch (err) {
         console.error("Erro carregando sessões:", err);
         setError(true);
@@ -140,10 +139,7 @@ export default function Results() {
     today.setHours(0, 0, 0, 0);
 
     return arr
-      .filter(({ year }) => {
-        if (selectedYears.length === 0) return true;
-        return selectedYears.includes(year);
-      })
+      .filter(({ year }) => (selectedYears.length === 0 ? true : selectedYears.includes(year)))
       .map(({ year, groups }) => {
         const filteredGroups = groups
           .map((g) => ({
@@ -159,9 +155,7 @@ export default function Results() {
 
               const matchesType =
                 selectedTypes.length === 0 ||
-                selectedTypes.some(t =>
-                  s.session_type.toLowerCase().includes(t)
-                );
+                selectedTypes.some((t) => s.session_type.toLowerCase().includes(t));
 
               const sessionDate = new Date(s.__sessionStart);
               sessionDate.setHours(0, 0, 0, 0);
@@ -169,7 +163,7 @@ export default function Results() {
               const isPastOrToday = sessionDate <= today;
 
               return matchesSearch && matchesType && isPastOrToday;
-            })
+            }),
           }))
           .filter((g) => g.sessions.length > 0);
 
@@ -182,19 +176,14 @@ export default function Results() {
   // PAGINAÇÃO
   // =====================================================
   const filtered = filterSessions(sessionsByYear);
-
-  const allYears = sessionsByYear.map(y => y.year);
-
+  const allYears = sessionsByYear.map((y) => y.year);
   const sessionTypeOptions = [
     { id: "race", label: "Corrida" },
     { id: "qualifying", label: "Classificação" },
-    { id: "practice", label: "Treino Livre" }
+    { id: "practice", label: "Treino Livre" },
   ];
 
-  const flatSessions = filtered.flatMap((y) =>
-    y.groups.flatMap((g) => g.sessions)
-  );
-
+  const flatSessions = filtered.flatMap((y) => y.groups.flatMap((g) => g.sessions));
   const totalPages = Math.ceil(flatSessions.length / itemsPerPage);
 
   const paginatedSessions = flatSessions.slice(
@@ -204,7 +193,6 @@ export default function Results() {
 
   function rebuildStructure(list) {
     const map = new Map();
-
     list.forEach((s) => {
       const year = s.__year;
       if (!map.has(year)) map.set(year, new Map());
@@ -216,7 +204,7 @@ export default function Results() {
           key: locKey,
           location,
           country,
-          sessions: []
+          sessions: [],
         });
       }
       map.get(year).get(locKey).sessions.push(s);
@@ -224,7 +212,7 @@ export default function Results() {
 
     return Array.from(map.entries()).map(([year, groupsMap]) => ({
       year,
-      groups: Array.from(groupsMap.values())
+      groups: Array.from(groupsMap.values()),
     }));
   }
 
@@ -234,30 +222,17 @@ export default function Results() {
   // MODAL
   // =====================================================
   async function loadSessionResults(session_key) {
-    if (!session_key) return;
-    if (sessionResults[session_key]) return;
-
+    if (!session_key || sessionResults[session_key]) return;
     try {
-      const sessionRes = await fetch(
-        `https://api.openf1.org/v1/session_result?session_key=${session_key}`
-      );
+      const sessionRes = await fetch(`https://api.openf1.org/v1/session_result?session_key=${session_key}`);
       const sessionData = await sessionRes.json();
 
-      const driversRes = await fetch(
-        `https://api.openf1.org/v1/drivers?session_key=${session_key}`
-      );
-
+      const driversRes = await fetch(`https://api.openf1.org/v1/drivers?session_key=${session_key}`);
       const driversData = await driversRes.json();
 
-      const driversMap = new Map(
-        driversData.map((d) => [d.driver_number, d])
-      );
-
+      const driversMap = new Map(driversData.map((d) => [d.driver_number, d]));
       const merged = sessionData
-        .map((item) => ({
-          ...item,
-          driver: driversMap.get(item.driver_number) || null
-        }))
+        .map((item) => ({ ...item, driver: driversMap.get(item.driver_number) || null }))
         .sort((a, b) => {
           if (a.position == null && b.position != null) return 1;
           if (b.position == null && a.position != null) return -1;
@@ -289,24 +264,61 @@ export default function Results() {
   if (loading) return <Loading />;
   if (error) return <MaintenanceMessage />;
 
-  const pageTitle = "Resultados da Fórmula 1™ | Treinos, Classificações e Corridas";
-  const pageDescription = "Resultados das sessões da Fórmula 1™ incluindo treinos, classificações e corridas, com informações de pilotos e circuitos.";
+  const pageTitle = "Resultados da Fórmula 1 | Treinos, Classificações e Corridas";
+  const pageDescription =
+    "Confira resultados detalhados das sessões da Fórmula 1: treinos livres, classificações e corridas, incluindo pilotos, circuitos e posições.";
+
+  const siteUrl = "https://www.blog-f1-dashboard.com";
+const defaultImage = `https://www.blog-f1-dashboard.com/logo-f1-meta.png`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://www.blog-f1-dashboard.com/resultados" />
+        <link rel="canonical" href={`${siteUrl}/resultados`} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content={`${siteUrl}/resultados`} />
+        <meta property="og:image" content={defaultImage} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={defaultImage} />
+
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+              { "@type": "ListItem", position: 2, name: "Resultados", item: `${siteUrl}/resultados` },
+            ],
+          })}
+        </script>
+
+        {/* Paginação SEO */}
+        {currentPage < totalPages && <link rel="next" href={`/resultados?page=${currentPage + 1}`} />}
+        {currentPage > 1 && <link rel="prev" href={`/resultados?page=${currentPage - 1}`} />}
       </Head>
 
       <Navbar />
 
-      <div className="list-results">
+      <main className="list-results">
+        <h1>Resultados das corridas da Fórmula 1™</h1>
+        <p className="page-intro">{pageDescription}</p>
+
         <h2 className="pilots-title">Sessões por Ano</h2>
 
         <div className="events-controls">
-          {/* PESQUISA */}
+          {/* Pesquisa */}
           <input
             type="search"
             placeholder="Pesquisar sessão, circuito, país..."
@@ -317,24 +329,24 @@ export default function Results() {
             }}
           />
 
-          {/* FILTRO POR ANO */}
+          {/* Filtro por Ano */}
           <select
             className="filter-years"
             value={selectedYears}
             onChange={(e) => {
-              const options = [...e.target.options]
-                .filter(o => o.selected)
-                .map(o => Number(o.value));
+              const options = [...e.target.options].filter((o) => o.selected).map((o) => Number(o.value));
               setSelectedYears(options);
               setCurrentPage(1);
             }}
           >
             {allYears.map((y) => (
-              <option value={y} key={y}>{y}</option>
+              <option value={y} key={y}>
+                {y}
+              </option>
             ))}
           </select>
 
-          {/* FILTRO POR TIPO */}
+          {/* Filtro por Tipo */}
           <div className="filter-types">
             {sessionTypeOptions.map((t) => (
               <label key={t.id}>
@@ -344,10 +356,8 @@ export default function Results() {
                   checked={selectedTypes.includes(t.id)}
                   onChange={(e) => {
                     const value = e.target.value;
-                    setSelectedTypes(prev =>
-                      prev.includes(value)
-                        ? prev.filter(x => x !== value)
-                        : [...prev, value]
+                    setSelectedTypes((prev) =>
+                      prev.includes(value) ? prev.filter((x) => x !== value) : [...prev, value]
                     );
                     setCurrentPage(1);
                   }}
@@ -358,11 +368,10 @@ export default function Results() {
           </div>
         </div>
 
-        {/* RENDERIZAÇÃO DAS SESSÕES */}
+        {/* Renderização das Sessões */}
         {paginatedStructure.map(({ year, groups }) => (
           <section className="year-block" key={year}>
             <h3 className="year-title">{year}</h3>
-
             <div className="year-groups">
               {groups.map((g) => (
                 <div className="sessions-row" key={g.key}>
@@ -381,9 +390,7 @@ export default function Results() {
                         onClick={() => openModal(s.session_key)}
                       >
                         <div className="session-header">
-                          <span className="session-name">
-                            {translateSessionType(s.session_name)}
-                          </span>
+                          <span className="session-name">{translateSessionType(s.session_name)}</span>
                           <button
                             className="session-toggle"
                             onClick={(ev) => {
@@ -405,18 +412,16 @@ export default function Results() {
                               s.session_type?.toLowerCase().includes("race")
                                 ? "badge-race"
                                 : s.session_type?.toLowerCase().includes("quali")
-                                  ? "badge-quali"
-                                  : s.session_type?.toLowerCase().includes("sprint")
-                                    ? "badge-sprint"
-                                    : ""
+                                ? "badge-quali"
+                                : s.session_type?.toLowerCase().includes("sprint")
+                                ? "badge-sprint"
+                                : ""
                             }`}
                           >
                             {translateSessionType(s.session_type)}
                           </span>
 
-                          <span className="session-date">
-                            {formatDatePT(s.date_start)}
-                          </span>
+                          <span className="session-date">{formatDatePT(s.date_start)}</span>
                         </div>
                       </div>
                     ))}
@@ -427,22 +432,14 @@ export default function Results() {
           </section>
         ))}
 
-        {/* PAGINAÇÃO */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
-        />
-      </div>
+        {/* Paginação */}
+        <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      </main>
 
       <Footer />
 
       {modalSessionKey && sessionResults[modalSessionKey] && (
-        <ResultsPilots
-          modalSessionKey={modalSessionKey}
-          sessionResults={sessionResults}
-          closeModal={closeModal}
-        />
+        <ResultsPilots modalSessionKey={modalSessionKey} sessionResults={sessionResults} closeModal={closeModal} />
       )}
     </>
   );
