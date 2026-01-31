@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "a018eede5458819151875e6f1f76e9c4",
-    "previewModeSigningKey": "ebeb7afc5bad1bbe1fa379807bf5a8dc6c5d4d23d0c841b3a4613d718ec27d5b",
-    "previewModeEncryptionKey": "13bd1f085ab803534f86ecdd3d8d5a3ad304f3c259de28c408736d29aa775d1b"
-  }
-}
+{"version":4,"routes":{"/artigo/comeco-blog":{},"/artigo/datas-lancamento-carros-2026":{},"/artigo/divulgacao-audi":{},"/artigo/motores-temporada-2026":{},"/artigo/problemas-sergio-perez-e-red-bull":{},"/artigo/reflexoes-hamilton-2025":{},"/artigo/rush-vs-f1-o-filme-a-batalha-dos-loiros":{},"/artigo/celula-sobrevivencia-cofre-piloto":{},"/artigo/como-funciona-drs":{},"/artigo/palavroes-na-pista":{},"/artigo/pneus-na-pista":{}},"dynamicRoutes":{"/artigo/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/artigo/[id]","routeRegex":"^\\/artigo\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"11fafaa4bff38b5e620d386d43e550d1","previewModeSigningKey":"e261cbac1b479a713ab183c918a3915b4d19f589b0da5a4af2cdf9d02d2f57b6","previewModeEncryptionKey":"735aef5ebe843111b873f37db75f7a4eab7a1364aa8aed823de2d603436a1171"}}

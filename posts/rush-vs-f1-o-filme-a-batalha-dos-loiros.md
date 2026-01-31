@@ -25,10 +25,10 @@ tags:
 <p><strong>F1: O Filme</strong> traz Brad Pitt, que, ao contrário do Hunt de Chris, já vem com aquele charme hollywoodiano natural que faz todo mundo esquecer que ele está dirigindo a 320 km/h em pistas reais. Aqui, ele é Sonny Hayes, piloto/redentor/herói moderno que resolve todos os problemas de equipe, conquista corações e ainda sobra tempo para sorrir para a câmera.</p>
 
 <h2>📺 Trailer de F1: O Filme (2025)</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4ENfO8ReiS4" title="Trailer F1: O Filme" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="360" height="315" height="315" src="https://www.youtube.com/embed/4ENfO8ReiS4" title="Trailer F1: O Filme" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h2>📺 Trailer de Rush: No Limite da Emoção (2013)</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ZiDphkXCZsQ" title="Trailer Rush" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="360" height="315"height="315" src="https://www.youtube.com/embed/ZiDphkXCZsQ" title="Trailer Rush" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h2>📊 Recepção e impacto</h2>
 

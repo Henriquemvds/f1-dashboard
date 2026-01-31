@@ -131,7 +131,7 @@ export default function ArticleContent({ content, collectionType }) {
             name: "F1 Dash",
             logo: {
               "@type": "ImageObject",
-              url: "https://www.blog-f1-dashboard.com/logo.png",
+              url: " https://www.blog-f1-dashboard.com/logo-f1-meta.png",
             },
           },
           description,
