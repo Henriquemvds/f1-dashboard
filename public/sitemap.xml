@@ -18,7 +18,7 @@
 
   <!-- Páginas principais -->
   <url>
-    <loc>https://www.blog-f1-dashboard.com/circuits</loc>
+    <loc>https://www.blog-f1-dashboard.com/circuitos</loc>
     <lastmod>2026-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -52,4 +52,120 @@
     <priority>0.7</priority>
   </url>
 
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/celula-sobrevivencia-cofre-piloto</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/como-funciona-drs</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+ <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/palavroes-na-pista</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/pneus-na-pista</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/pneus-na-pista</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/gabriel-bortoleto</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/isack-hadjar</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/lando-norris</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+<url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/max-verstappen</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+<url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/oscar-piastri</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/comeco-blog</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/datas-lancamento-carros-2026</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/divulgacao-audi</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/motores-temporada-2026</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/problemas-sergio-perez-e-red-bull</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/reflexoes-hamilton-2025</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+<url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/rush-vs-f1-o-filme-a-batalha-dos-loiros</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
 </urlset>

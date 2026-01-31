@@ -37,7 +37,7 @@ export default function Home({ initialPosts }) {
   const pageDescription =
     posts.length > 0
       ? `Últimos artigos: ${posts.slice(0, 3).map((p) => p.title).join(" • ")}`
-      : "Notícias, análises e opiniões sobre Fórmula 1™ no F1 Dash.";
+      : "Notícias, análises e opiniões sobre as corridas da Fórmula 1™.";
 
   return (
     <div>
@@ -50,6 +50,12 @@ export default function Home({ initialPosts }) {
 
       <div className="home-container">
         <section className="blog-grid">
+          <section className="hero">
+            <div className="hero-content">
+              <h1>Guia Para Iniciantes</h1>
+              <p>Notícias, análises e opiniões sobre as corridas da Fórmula 1™</p>
+            </div>
+          </section>
           <h2>Últimos Artigos</h2>
 
           {currentPosts.length === 0 && <p>Nenhum artigo encontrado.</p>}
