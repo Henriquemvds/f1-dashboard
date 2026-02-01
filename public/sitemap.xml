@@ -203,5 +203,18 @@
     <priority>0.9</priority>
   </url>
   
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/analise-temporada-senna</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/mclaren-com-medo</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
   
 </urlset>
