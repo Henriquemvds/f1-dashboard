@@ -8,7 +8,7 @@ banner: "https://github.com/Henriquemvds/images-blog-f1-dashboard/blob/main/imag
 tags:
   - Tretas no Paddock
   - FIA
-  - Maclaren
+  - Mclaren
   - Adaptação
   - Testes
   - Tecnologia
