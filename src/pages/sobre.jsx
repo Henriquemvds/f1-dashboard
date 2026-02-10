@@ -7,7 +7,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Sobre – F1™ Dash</title>
+        <title>Sobre – Blog F1™ Dash</title>
         <meta
           name="description"
           content="Plataforma dedicada aos fãs da Fórmula 1™, com dados de pilotos, equipes e corridas. Interface moderna e responsiva."

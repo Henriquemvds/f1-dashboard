@@ -34,7 +34,7 @@ export default function Home({ initialPosts }) {
   const totalPages = Math.ceil(filtered.length / postsPerPage);
 
   // SEO
-  const pageTitle = "F1 Dash | Notícias e análises de corridas de Fórmula 1";
+  const pageTitle = "Blog F1 Dash | Notícias e análises de corridas de Fórmula 1";
   const pageDescription =
     posts.length > 0
       ? `Últimos artigos sobre Fórmula 1: ${posts.slice(0, 3).map((p) => p.title).join(", ")}`
@@ -76,7 +76,7 @@ export default function Home({ initialPosts }) {
             inLanguage: "pt-BR",
             isPartOf: {
               "@type": "WebSite",
-              name: "F1 Dash",
+              name: "Blog F1 Dash",
               url: siteUrl
             }
           })}

@@ -96,7 +96,7 @@ export default function Circuits() {
             inLanguage: "pt-BR",
             isPartOf: {
               "@type": "WebSite",
-              name: "F1™ Dash",
+              name: "Blog F1 Dash",
               url: "https://www.blog-f1-dashboard.com/"
             }
           })}

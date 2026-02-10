@@ -79,7 +79,7 @@ export default function Guide({ allPosts }) {
             inLanguage: "pt-BR",
             isPartOf: {
               "@type": "WebSite",
-              name: "F1 Dash",
+              name: "Blog F1 Dash",
               url: siteUrl,
             },
           })}
