@@ -56,7 +56,7 @@
 }
 
 /* ================================
-   CARD
+   CARD VERTICAL (PADRÃO)
 ==================================*/
 .card {
   background: rgba(255, 255, 255, 0.05);
@@ -65,6 +65,9 @@
   margin-top: 22px;
   transition: transform 0.25s ease, border 0.25s ease;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -76,32 +79,41 @@
   width: 100%;
   border-radius: 12px;
   margin-bottom: 12px;
-  height: 180px;
+  height: 340px; /* mais alto no desktop */
   object-fit: cover;
+  filter: brightness(1); /* imagem mais clara */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1); /* destaque ao passar o mouse */
 }
 
 .card h3 {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   margin-bottom: 10px;
+  font-weight: 600;
+  color: #fff;
 }
 
 .card p {
-  font-size: 0.95rem;
-  opacity: 0.85;
-  line-height: 1.55;
-  margin-bottom: 12px;
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  color: #ddd;
 }
 
 .buttonMore {
   background: #ff0000;
   color: white;
-  padding: 9px 16px;
+  padding: 10px 18px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: background 0.25s ease;
-
 }
 
 .buttonMore:hover {
@@ -109,62 +121,42 @@
 }
 
 /* ================================
-   SPECIAL CARDS
+   CARD HORIZONTAL (DESKTOP)
 ==================================*/
-.special-card {
+.card-horizontal {
   display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  margin-top: 25px;
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 8px;
-  cursor: pointer;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+  align-items: flex-start;
 }
 
-.special-card:hover {
-  transform: translateY(-3px);
-  border-color: #ff3c3c;
-}
-
-.special-card img {
-  width: 110px;
-  height: 78px;
+.card-horizontal img {
+  width: 50%; /* metade do card */
+  height: auto;
+  max-height: 280px;
   border-radius: 12px;
   object-fit: cover;
-  flex-shrink: 0;
-  margin-right: 15px;
-  will-change: transform;
+  filter: brightness(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.special-card div {
-  padding: 6px 5px;
+.card-horizontal img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
-.special-card h3 {
-  margin: 0;
-  font-size: 1.15rem;
+.card-horizontal .card-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 16px;
 }
 
-.special-card p {
-  margin-top: 5px;
-  font-size: 0.9rem;
-  opacity: 0.9;
-  line-height: 1.45;
-}
+/* ================================
+   RESPONSIVIDADE
+==================================*/
 
-
-/* ==========================================================
-   📱 RESPONSIVIDADE
-   ======================
-   - Tablet (1024px)
-   - Celular Normal (768px)
-   - Celular Compacto (480px)
-==========================================================*/
-
-/* 📱 Tablet — até 1024px */
+/* Tablet — até 1024px */
 @media (max-width: 1024px) {
   .hero {
     padding: 100px 30px;
@@ -174,19 +166,27 @@
     font-size: 2.3rem;
   }
 
-  .card img {
-    height: 165px;
+  .card img, .card-horizontal img {
+    height: 200px;
   }
 
-  .special-card img {
-    width: 100px;
-    height: 70px;
+  .card-horizontal {
+    flex-direction: column;
+  }
+
+  .card-horizontal img {
+    width: 100%;
+    max-height: 220px;
+  }
+
+  .card-horizontal .card-content {
+    width: 100%;
+    padding-left: 0;
   }
 }
 
-/* 📱 Celular Normal — até 768px */
+/* Celular Normal — até 768px */
 @media (max-width: 768px) {
-
   .hero {
     padding: 90px 25px;
   }
@@ -207,33 +207,23 @@
     padding: 16px;
   }
 
-  .card img {
+  .card img, .card-horizontal img {
     height: 150px;
   }
 
   .card h3 {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
 
-  .special-card img {
-    width: 90px;
-    height: 64px;
-  }
-
-  .special-card h3 {
-    font-size: 1.05rem;
-  }
-
-  .special-card p {
-    font-size: 0.85rem;
+  .card p {
+    font-size: 0.95rem;
   }
 }
 
-/* 📱 Celular Compacto — até 480px */
+/* Celular Compacto — até 480px */
 @media (max-width: 480px) {
-
   .hero {
-   padding: 150px 25px;
+    padding: 150px 25px;
     background-image: url("../images/banner-formula-mobile1.png");
   }
 
@@ -249,29 +239,29 @@
     padding: 14px;
   }
 
-  .card img {
+  .card img, .card-horizontal img {
     height: 130px;
   }
 
   .card h3 {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
   }
 
-  .special-card {
-    padding: 6px;
+  .card p {
+    font-size: 0.85rem;
   }
 
-  .special-card img {
-    width: 80px;
-    height: 58px;
-    margin-right: 12px;
+  .card-horizontal {
+    flex-direction: column;
   }
 
-  .special-card h3 {
-    font-size: 0.95rem;
+  .card-horizontal img {
+    width: 100%;
+    max-height: 180px;
   }
 
-  .special-card p {
-    font-size: 0.8rem;
+  .card-horizontal .card-content {
+    width: 100%;
+    padding-left: 0;
   }
 }
