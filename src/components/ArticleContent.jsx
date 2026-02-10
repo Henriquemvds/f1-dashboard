@@ -128,7 +128,7 @@ export default function ArticleContent({ content, collectionType }) {
           },
           publisher: {
             "@type": "Organization",
-            name: "F1 Dash",
+            name: "Blog F1 Dash",
             logo: {
               "@type": "ImageObject",
               url: "https://www.blog-f1-dashboard.com/logo-f1-meta.png",
@@ -148,7 +148,7 @@ export default function ArticleContent({ content, collectionType }) {
   return (
     <div>
       <Head>
-        <title>{safeTitle} | F1™ Dash</title>
+        <title>{safeTitle} | Blog F1™ Dash</title>
 
         <link
           rel="canonical"
