@@ -34,7 +34,7 @@ export default function Home({ initialPosts }) {
   const totalPages = Math.ceil(filtered.length / postsPerPage);
 
   // SEO
-  const pageTitle = "Blog F1 Dash | Notícias e análises de corridas de Fórmula 1";
+  const pageTitle = "Notícias e análises de corridas de Fórmula 1 | Blog F1 Dash";
   const pageDescription =
     posts.length > 0
       ? `Últimos artigos sobre Fórmula 1: ${posts.slice(0, 3).map((p) => p.title).join(", ")}`
@@ -135,9 +135,19 @@ export default function Home({ initialPosts }) {
         <section className="blog-grid">
           <section className="hero">
             <div className="hero-content">
-              <h1>Notícias, Análises e Bastidores</h1>
-              <p>Últimas notícias e artigos sobre corridas de Fórmula 1™, análises detalhadas e curiosidades do mundo da F1™.</p>
+              <h1>Notícias da Fórmula 1™, Resultados e Análises das Corridas</h1>
+              <p>Últimas notícias e artigos sobre corridas de Fórmula 1™.</p>
             </div>
+          </section>
+
+          <section className="seo-intro">
+            <h2>Blog sobre Notícias da Fórmula 1™</h2>
+            <p>
+              O Blog F1 Dash traz notícias de carater pessoal da Fórmula 1™, análises
+              detalhadas das corridas, classificação do campeonato, resultados
+              dos GPs e bastidores das equipes como Ferrari, Red Bull, Mercedes
+              e McLaren.
+            </p>
           </section>
 
           <h2>Últimos Artigos</h2>

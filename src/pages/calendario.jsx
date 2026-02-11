@@ -46,10 +46,10 @@ export default function EventsCalendar() {
     }
     const first = events[0];
     const last = events[events.length - 1];
-    return `Calendário completo da Fórmula 1™ 2026: ${events.length} etapas, de ${first.gp} até ${last.gp}, com datas, circuitos e corridas sprint.`;
+    return `Calendário completo da Fórmula 1 2026: ${events.length} etapas, de ${first.gp} até ${last.gp}, com datas, circuitos e corridas sprint.`;
   }
 
-  const pageTitle = "Calendário F1™ 2026 | Datas de corridas, circuitos e Sprint";
+  const pageTitle = "Calendário F1 2026 | Datas de corridas, circuitos e Sprint";
   const pageDescription = buildCalendarDescription(EVENTS_2026);
   const siteUrl = "https://www.blog-f1-dashboard.com";
   const defaultImage = `https://www.blog-f1-dashboard.com/logo-f1-meta.png`;
