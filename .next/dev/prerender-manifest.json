@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/artigo/analise-temporada-senna":{},"/artigo/bottas-pagando-punicao-no-inicio-2026":{},"/artigo/comeco-blog":{},"/artigo/datas-lancamento-carros-2026":{},"/artigo/divulgacao-audi":{},"/artigo/mclaren-com-medo":{},"/artigo/mercedes-e-a-taxa-de-compressao-motor":{},"/artigo/motores-temporada-2026":{},"/artigo/oliver-bearman-incomodado-carro-2026":{},"/artigo/problemas-carros-2026":{},"/artigo/problemas-sergio-perez-e-red-bull":{},"/artigo/reflexoes-hamilton-2025":{},"/artigo/rush-vs-f1-o-filme-a-batalha-dos-loiros":{},"/artigo/williams-dificuldade-entrega-carro":{},"/artigo/celula-sobrevivencia-cofre-piloto":{},"/artigo/como-funciona-drs":{},"/artigo/energia-mom":{},"/artigo/palavroes-na-pista":{},"/artigo/piscas-na-pista":{},"/artigo/pneus-na-pista":{}},"dynamicRoutes":{"/artigo/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/artigo/[id]","routeRegex":"^\\/artigo\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"f5eff296946612ed74dcfca61f5265d8","previewModeSigningKey":"85bcdf70e04f3d8d962eb7aaadf0237fdfe66cbdb5d8eff1c090e5afa723c1e9","previewModeEncryptionKey":"bb311368eecf4b5c491819e1db1a696c773a0f9cfdf66e7ee51b28129a575d07"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "110e10570c1f0206f5f45dee4a6f3717",
+    "previewModeSigningKey": "d10cfc26692025818c7144acdd225992e9b134a8b86ecf1fc86009e883fb55de",
+    "previewModeEncryptionKey": "66cd59192253a74eb69f9dca9c9b12a8b0a9809767a20b04a6c608b106247c38"
+  }
+}

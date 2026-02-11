@@ -57,13 +57,13 @@ export default function Circuits() {
 
   function buildCircuitsDescription(meetings = []) {
     if (!meetings.length) {
-      return "Lista completa de circuitos da Fórmula 1™, com localização, tipo de pista e imagens oficiais.";
+      return "Lista completa de circuitos da Fórmula 1, com localização, tipo de pista e imagens oficiais.";
     }
     const recent = meetings.slice(0, 3).map(m => m.meeting_name).join(" • ");
     return `Circuitos da Fórmula 1™: ${recent} e outros. Detalhes sobre localização, tipo de pista e datas das corridas.`;
   }
 
-  const pageTitle = "Circuitos de Fórmula 1™ | Localização, tipo de pista e datas";
+  const pageTitle = "Circuitos de Fórmula 1 | Localização, tipo de pista e datas";
   const pageDescription = buildCircuitsDescription(meetings);
 
   return (
