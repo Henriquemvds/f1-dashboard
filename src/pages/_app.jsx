@@ -12,6 +12,7 @@ import "../styles/ResultsPilots.css"
 import "../styles/Guide.css";
 import "../styles/Circuits.css"
 import "../styles/BioDriver.css";
+import "../styles/FaqF1.css";
 import React from 'react';
 
 export default function MyApp({ Component, pageProps }) {
