@@ -1,0 +1,129 @@
+/* =========================
+   FAQ F1 - Base
+========================= */
+
+.faq-f1 {
+  max-width: 1000px;
+  margin: 10px auto;
+  padding: 0 20px;
+}
+
+.faq-f1 h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.faq-item {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: #e10600; /* vermelho F1 */
+  transform: translateY(-2px);
+}
+
+.faq-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+/* =========================
+   Tablet (até 1024px)
+========================= */
+
+@media (max-width: 1024px) {
+
+  .faq-f1 {
+    margin: 60px auto;
+  }
+
+  .faq-f1 h2 {
+    font-size: 1.8rem;
+  }
+
+  .faq-item {
+    padding: 20px 22px;
+  }
+
+  .faq-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .faq-item p {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================
+   Celular normal (até 768px)
+========================= */
+
+@media (max-width: 768px) {
+
+  .faq-f1 {
+    margin: 50px auto;
+    padding: 0 16px;
+  }
+
+  .faq-f1 h2 {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  .faq-item {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .faq-item h3 {
+    font-size: 1rem;
+  }
+
+  .faq-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+/* =========================
+   Celular compacto (até 360px)
+========================= */
+
+@media (max-width: 360px) {
+
+  .faq-f1 {
+    margin: 40px auto;
+    padding: 0 12px;
+  }
+
+  .faq-f1 h2 {
+    font-size: 1.3rem;
+  }
+
+  .faq-item {
+    padding: 14px;
+  }
+
+  .faq-item h3 {
+    font-size: 0.95rem;
+  }
+
+  .faq-item p {
+    font-size: 0.85rem;
+  }
+}

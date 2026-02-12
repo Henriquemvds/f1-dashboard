@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import Pagination from "../components/Pagination.jsx";
 import ArticleCard from "../components/Post.jsx";
+import FaqF1 from "../components/FaqF1.jsx";
 import { SelectTopics } from "../data/SelectTopics.js";
 
 export default function Home({ initialPosts }) {
@@ -143,7 +144,7 @@ export default function Home({ initialPosts }) {
           <section className="seo-intro">
             <h2>Blog sobre Notícias da Fórmula 1™</h2>
             <p>
-              O Blog F1 Dash traz notícias de carater pessoal da Fórmula 1™, análises
+              O Blog F1 Dash traz notícias de caráter pessoal da Fórmula 1™, análises
               detalhadas das corridas, classificação do campeonato, resultados
               dos GPs e bastidores das equipes como Ferrari, Red Bull, Mercedes
               e McLaren.
@@ -167,6 +168,7 @@ export default function Home({ initialPosts }) {
           />
         </section>
       </div>
+      <FaqF1 />
 
       <Footer />
     </div>
