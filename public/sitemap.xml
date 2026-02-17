@@ -289,4 +289,18 @@
     <priority>0.9</priority>
   </url>
   
+
+    <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/globo-capitalista-2026</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+   <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/erros-na-largada-pre-temporada-2026</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

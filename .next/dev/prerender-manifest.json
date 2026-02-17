@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "57c041f5b83c8885bc8a6874ca5dbc61",
-    "previewModeSigningKey": "274aa64dad5ea180255487a51c5dfdc6ca94a644f729d6c748fe490c6f61119b",
-    "previewModeEncryptionKey": "892f2026620403e4a69e6336619e977019045a0abd9b286784343b7676c7fe4c"
-  }
-}
+{"version":4,"routes":{"/artigo/analise-temporada-senna":{},"/artigo/bottas-pagando-punicao-no-inicio-2026":{},"/artigo/comeco-blog":{},"/artigo/datas-lancamento-carros-2026":{},"/artigo/divulgacao-audi":{},"/artigo/globo-capitalista-2026":{},"/artigo/mclaren-com-medo":{},"/artigo/mercedes-e-a-taxa-de-compressao-motor":{},"/artigo/motores-temporada-2026":{},"/artigo/oliver-bearman-incomodado-carro-2026":{},"/artigo/problemas-carros-2026":{},"/artigo/problemas-sergio-perez-e-red-bull":{},"/artigo/reflexoes-hamilton-2025":{},"/artigo/rush-vs-f1-o-filme-a-batalha-dos-loiros":{},"/artigo/williams-dificuldade-entrega-carro":{},"/artigo/celula-sobrevivencia-cofre-piloto":{},"/artigo/como-funciona-drs":{},"/artigo/energia-mom":{},"/artigo/palavroes-na-pista":{},"/artigo/piscas-na-pista":{},"/artigo/pneus-na-pista":{},"/artigo/erros-na-largada-pre-temporada-2026":{}},"dynamicRoutes":{"/artigo/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/artigo/[id]","routeRegex":"^\\/artigo\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"e3e91c6c16ae7713f5c35830c9dab9b9","previewModeSigningKey":"ce1f8dacb85040eb0304e26f76f0caa236a104646b04fa66b455fd015e6da087","previewModeEncryptionKey":"9563704bd38cfd07bf92eb367654a4afe15ef71272153121d9f1c2f5f1cd9086"}}
