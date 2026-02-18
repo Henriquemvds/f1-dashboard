@@ -1,8 +1,305 @@
-[00:00:03.241] Server  LOG     ✓ Ready in 2.1s
-[00:05:52.526] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+[00:00:03.302] Server  LOG     ✓ Ready in 2.3s
+[00:00:04.722] Server  ERROR   Error: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.
+Learn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor
+[00:00:04.741] Server  ERROR   ⨯ Error: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.
+Learn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor
+[00:00:04.776] Server  ERROR   ⨯ Error: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.
+Learn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor
+[00:00:05.486] Browser ERROR   uncaughtError: Error: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.
+Learn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor
+[00:00:21.604] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:00:21.674] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:00:22.236] Browser ERROR   uncaughtError: Error: ./src/pages/index.jsx:100:20
+Parsing ecmascript source code failed
+   98 |             <Link href="/guia">
+   99 |               <a className="view-all">Ver todos os artigos do Guia →
+> 100 |             </Link>
+      |                    ^
+> 101 |           </section>
+      | ^^^^^^^^^^^
+  102 |
+  103 |           <h2>Últimos Artigos</h2>
+  104 |
+
+Expected '</', got 'jsx text'
+
+
+[00:00:22.912] Browser ERROR   ./src/pages/index.jsx:100:20
+Parsing ecmascript source code failed
+   98 |             <Link href="/guia">
+   99 |               <a className="view-all">Ver todos os artigos do Guia →
+> 100 |             </Link>
+      |                    ^
+> 101 |           </section>
+      | ^^^^^^^^^^^
+  102 |
+  103 |           <h2>Últimos Artigos</h2>
+  104 |
+
+Expected '</', got 'jsx text'
+[00:00:22.912] Browser ERROR   ./src/pages/index.jsx:100:20
+Parsing ecmascript source code failed
+   98 |             <Link href="/guia">
+   99 |               <a className="view-all">Ver todos os artigos do Guia →
+> 100 |             </Link>
+      |                    ^
+> 101 |           </section>
+      | ^^^^^^^^^^^
+  102 |
+  103 |           <h2>Últimos Artigos</h2>
+  104 |
+
+Expected '</', got 'jsx text'
+[00:00:27.821] Browser ERROR   ./src/pages/index.jsx:100:20
+Parsing ecmascript source code failed
+   98 |             <Link href="/guia">
+   99 |               <a className="view-all">Ver todos os artigos do Guia →
+> 100 |             </Link>
+      |                    ^
+> 101 |           </section>
+      | ^^^^^^^^^^^
+  102 |
+  103 |           <h2>Últimos Artigos</h2>
+  104 |
+
+Expected '</', got 'jsx text'
+[00:00:29.867] Server  LOG     ✓ Compiled in 91ms
+[00:00:56.834] Server  ERROR   PageNotFoundError: Cannot find module for page: /guia/piscas-na-pista
+[00:01:03.219] Server  ERROR   PageNotFoundError: Cannot find module for page: /guia/safety-car
+[00:01:25.749] Server  ERROR   PageNotFoundError: Cannot find module for page: /guia/piscas-na-pista
+[00:01:35.867] Server  LOG     ✓ Compiled in 22ms
+[00:01:37.429] Server  LOG     ✓ Compiled in 15ms
+[00:01:41.775] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
     at title
     at head
     at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
     at html
     at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
     at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:03:14.326] Server  LOG     ✓ Compiled in 23ms
+[00:03:45.925] Server  LOG     ✓ Compiled in 19ms
+[00:04:47.557] Server  LOG     ✓ Compiled in 24ms
+[00:04:47.828] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:04:47.828] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:04:47.828] Browser ERROR   The above error occurred in the <Home> component:
+
+    at Home (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__3e0e6e06._.js?id=%255Bproject%255D%252Fsrc%252Fpages%252Findex.jsx+%255Bclient%255D+%2528ecmascript%2529:33:17)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__4a62a652._.js:491:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_8bac8163._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1117:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1894:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3085:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3184:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3392:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:04:51.268] Server  LOG     ✓ Compiled in 23ms
+[00:04:51.822] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:04:51.822] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:04:51.822] Browser ERROR   The above error occurred in the <Home> component:
+
+    at Home (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__3e0e6e06._.js?id=%255Bproject%255D%252Fsrc%252Fpages%252Findex.jsx+%255Bclient%255D+%2528ecmascript%2529:33:17)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__4a62a652._.js:491:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_8bac8163._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1117:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1894:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3085:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3184:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3392:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:04:55.407] Server  LOG     ✓ Compiled in 15ms
+[00:04:55.818] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:04:55.818] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:04:55.818] Browser ERROR   The above error occurred in the <Home> component:
+
+    at Home (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__3e0e6e06._.js?id=%255Bproject%255D%252Fsrc%252Fpages%252Findex.jsx+%255Bclient%255D+%2528ecmascript%2529:33:17)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__4a62a652._.js:491:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_8bac8163._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1117:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1894:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3085:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3184:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3392:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:04:58.708] Server  ERROR   ReferenceError: p is not defined
+[00:04:58.720] Server  ERROR   ⨯ ReferenceError: p is not defined
+[00:04:58.731] Server  ERROR   ⨯ ReferenceError: p is not defined
+[00:04:59.060] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:05:00.355] Server  ERROR   ReferenceError: p is not defined
+[00:05:00.364] Server  ERROR   ⨯ ReferenceError: p is not defined
+[00:05:00.375] Server  ERROR   ⨯ ReferenceError: p is not defined
+[00:05:00.577] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:05:06.413] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:05:06.655] Server  LOG     ✓ Compiled in 14ms
+[00:05:46.308] Server  LOG     ✓ Compiled in 56ms
+[00:05:46.829] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:05:46.829] Browser ERROR   uncaughtError: ReferenceError: p is not defined
+[00:05:46.829] Browser ERROR   The above error occurred in the <Home> component:
+
+    at Home (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__3e0e6e06._.js?id=%255Bproject%255D%252Fsrc%252Fpages%252Findex.jsx+%255Bclient%255D+%2528ecmascript%2529:33:17)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__4a62a652._.js:491:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_8bac8163._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1117:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1894:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3085:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3184:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3392:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:05:48.619] Server  LOG     ✓ Compiled in 18ms
+[00:06:06.406] Browser LOG     Refreshing page data due to server-side change
+[00:06:06.624] Browser ERROR   uncaughtError: Error: ./src/pages/index.jsx:95:19
+Parsing ecmascript source code failed
+  93 |                     <img src={post.image || post.banner} alt={post.title} />
+  94 |                     <h4>{post.title}</h4
+> 95 |                   </Link>
+     |                   ^
+  96 |                 </li>
+  97 |               ))}
+  98 |             </ul>
+
+Expression expected
+
+
+[00:06:06.921] Browser ERROR   ./src/pages/index.jsx:95:19
+Parsing ecmascript source code failed
+  93 |                     <img src={post.image || post.banner} alt={post.title} />
+  94 |                     <h4>{post.title}</h4
+> 95 |                   </Link>
+     |                   ^
+  96 |                 </li>
+  97 |               ))}
+  98 |             </ul>
+
+Expression expected
+[00:06:06.921] Browser ERROR   ./src/pages/index.jsx:95:20
+Parsing ecmascript source code failed
+  93 |                     <img src={post.image || post.banner} alt={post.title} />
+  94 |                     <h4>{post.title}</h4
+> 95 |                   </Link>
+     |                    ^^^^^^
+  96 |                 </li>
+  97 |               ))}
+  98 |             </ul>
+
+Unterminated regexp literal
+[00:06:06.921] Browser ERROR   ./src/pages/index.jsx
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/src/pages/index.jsx [ssr] (ecmascript)
+
+Caused by:
+- CJS module can't be async.
+
+Debug info:
+- An error occurred while generating the chunk item [project]/src/pages/index.jsx [ssr] (ecmascript)
+- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
+- Execution of EcmascriptChunkItemContent::new failed
+- CJS module can't be async.
+[00:06:06.921] Browser ERROR   ./src/pages/index.jsx:95:19
+Parsing ecmascript source code failed
+  93 |                     <img src={post.image || post.banner} alt={post.title} />
+  94 |                     <h4>{post.title}</h4
+> 95 |                   </Link>
+     |                   ^
+  96 |                 </li>
+  97 |               ))}
+  98 |             </ul>
+
+Expression expected
+[00:06:06.921] Browser ERROR   ./src/pages/index.jsx:95:20
+Parsing ecmascript source code failed
+  93 |                     <img src={post.image || post.banner} alt={post.title} />
+  94 |                     <h4>{post.title}</h4
+> 95 |                   </Link>
+     |                    ^^^^^^
+  96 |                 </li>
+  97 |               ))}
+  98 |             </ul>
+
+Unterminated regexp literal
+[00:06:06.921] Browser ERROR   ./src/pages/index.jsx
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/src/pages/index.jsx [ssr] (ecmascript)
+
+Caused by:
+- CJS module can't be async.
+
+Debug info:
+- An error occurred while generating the chunk item [project]/src/pages/index.jsx [ssr] (ecmascript)
+- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
+- Execution of EcmascriptChunkItemContent::new failed
+- CJS module can't be async.
+[00:06:07.985] Server  LOG     ✓ Compiled in 8ms
+[00:06:10.959] Server  LOG     ✓ Compiled in 18ms
+[00:06:14.627] Server  LOG     ✓ Compiled in 16ms
+[00:07:19.530] Server  LOG     ✓ Compiled in 19ms
+[00:07:30.313] Server  LOG     ✓ Compiled in 15ms
+[00:07:32.600] Server  LOG     ✓ Compiled in 29ms
+[00:08:24.802] Server  LOG     ✓ Compiled in 71ms
+[00:08:28.647] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:10:04.043] Server  LOG     ✓ Compiled in 142ms
+[00:10:20.934] Server  LOG     ✓ Compiled in 21ms
+[00:11:09.892] Server  LOG     ✓ Compiled in 14ms
+[00:11:31.876] Server  LOG     ✓ Compiled in 13ms
+[00:11:36.289] Server  LOG     ✓ Compiled in 25ms
+[00:11:48.180] Server  LOG     ✓ Compiled in 25ms
+[00:11:54.513] Server  LOG     ✓ Compiled in 26ms
+[00:12:06.672] Server  LOG     ✓ Compiled in 25ms
+[00:12:10.306] Server  LOG     ✓ Compiled in 25ms
+[00:12:13.258] Server  LOG     ✓ Compiled in 53ms
+[00:12:21.371] Server  LOG     ✓ Compiled in 12ms
+[00:12:24.752] Server  LOG     ✓ Compiled in 9ms
+[00:12:35.400] Server  LOG     ✓ Compiled in 11ms
+[00:12:38.342] Server  LOG     ✓ Compiled in 29ms
+[00:12:47.269] Server  LOG     ✓ Compiled in 37ms
+[00:13:00.052] Server  LOG     ✓ Compiled in 19ms
+[00:13:10.077] Server  LOG     ✓ Compiled in 13ms
+[00:13:13.511] Server  LOG     ✓ Compiled in 12ms
+[00:13:16.631] Server  LOG     ✓ Compiled in 14ms
+[00:13:19.752] Server  LOG     ✓ Compiled in 11ms
+[00:13:26.859] Server  LOG     ✓ Compiled in 26ms
+[00:15:06.192] Server  LOG     ✓ Compiled in 17ms
+[00:15:12.988] Server  LOG     ✓ Compiled in 20ms
+[00:15:16.457] Server  LOG     ✓ Compiled in 12ms
+[00:15:20.154] Server  LOG     ✓ Compiled in 15ms
+[00:15:23.145] Server  LOG     ✓ Compiled in 12ms
+[00:15:26.265] Server  LOG     ✓ Compiled in 15ms
+[00:15:31.423] Server  LOG     ✓ Compiled in 11ms
+[00:15:33.926] Server  LOG     ✓ Compiled in 21ms
+[00:15:50.071] Server  LOG     ✓ Compiled in 37ms
+[00:17:22.646] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:17:22.908] Browser WARN    Image with src "/_next/static/media/LOGO-F1-PNG.10641826.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:18:46.201] Server  LOG     ✓ Compiled in 65ms
+[00:18:48.996] Server  LOG     ✓ Compiled in 14ms
+[00:19:06.407] Server  LOG     ✓ Compiled in 52ms
+[00:19:49.568] Server  LOG     ✓ Compiled in 10ms
+[00:19:52.673] Server  LOG     ✓ Compiled in 12ms
+[00:19:56.247] Server  LOG     ✓ Compiled in 17ms
+[00:20:02.339] Server  LOG     ✓ Compiled in 13ms
+[00:20:54.270] Server  LOG     ✓ Compiled in 100ms
+[00:21:34.991] Server  LOG     ✓ Compiled in 28ms
+[00:22:14.385] Server  LOG     ✓ Compiled in 21ms
+[00:22:18.959] Server  LOG     ✓ Compiled in 24ms
+[00:22:22.023] Server  LOG     ✓ Compiled in 11ms
+[00:22:23.750] Server  LOG     ✓ Compiled in 15ms
+[00:22:46.779] Server  LOG     ✓ Compiled in 14ms
+[00:23:01.772] Server  LOG     ✓ Compiled in 26ms
+[00:23:36.859] Server  LOG     ✓ Compiled in 13ms
+[00:23:40.238] Server  LOG     ✓ Compiled in 17ms
+[00:24:10.581] Server  LOG     ✓ Compiled in 12ms
+[00:24:12.155] Server  LOG     ✓ Compiled in 12ms
+[00:24:17.118] Server  LOG     ✓ Compiled in 12ms
