@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "20a0d5c5734fdb8f11798765cc658456",
-    "previewModeSigningKey": "c48d6aa2a4cbe598db3c51d4706e0e182177349a703bd090fc9d53f8bcbcd5b5",
-    "previewModeEncryptionKey": "dd58c250b06c8376f80e183013328254d78018e29747ef76b752abe4cf7a2682"
-  }
-}
+{"version":4,"routes":{"/artigo/agora-virou-formula-e":{},"/artigo/analise-temporada-senna":{},"/artigo/bottas-pagando-punicao-no-inicio-2026":{},"/artigo/comeco-blog":{},"/artigo/datas-lancamento-carros-2026":{},"/artigo/divulgacao-audi":{},"/artigo/erros-na-largada-pre-temporada-2026":{},"/artigo/globo-capitalista-2026":{},"/artigo/mclaren-com-medo":{},"/artigo/mercedes-e-a-taxa-de-compressao-motor":{},"/artigo/motores-temporada-2026":{},"/artigo/oliver-bearman-incomodado-carro-2026":{},"/artigo/problemas-carros-2026":{},"/artigo/problemas-sergio-perez-e-red-bull":{},"/artigo/reflexoes-hamilton-2025":{},"/artigo/rush-vs-f1-o-filme-a-batalha-dos-loiros":{},"/artigo/williams-dificuldade-entrega-carro":{},"/artigo/celula-sobrevivencia-cofre-piloto":{},"/artigo/como-funciona-drs":{},"/artigo/energia-mom":{},"/artigo/palavroes-na-pista":{},"/artigo/piscas-na-pista":{},"/artigo/pneus-na-pista":{},"/artigo/safety-car":{}},"dynamicRoutes":{"/artigo/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/artigo/[id]","routeRegex":"^\\/artigo\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"24ccdda11e179b4a582a6ab504a51c5c","previewModeSigningKey":"b53b906b3a8f500d1bed38ce5cfcd893c7d2bb6b7534d6b82ecfb6aa194d2012","previewModeEncryptionKey":"46b63690824dc651d221f831a3b591e91ca93b982f0f816b60f8ffaa54baf67e"}}
