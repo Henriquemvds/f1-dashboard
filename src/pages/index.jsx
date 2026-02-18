@@ -12,8 +12,9 @@ import ArticleCard from "../components/Post.jsx";
 import FaqF1 from "../components/FaqF1.jsx";
 import { SelectTopics } from "../data/SelectTopics.js";
 
-export default function Home({ initialPosts }) {
+export default function Home({ initialPosts, initialGuide }) {
   const [posts, setPosts] = useState(initialPosts);
+  const [guide, setGuide] = useState(initialGuide);
   const [filtered, setFiltered] = useState(initialPosts);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 15;
@@ -46,12 +47,10 @@ export default function Home({ initialPosts }) {
   return (
     <div>
       <Head>
-        {/* Meta Básico */}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <link rel="canonical" href={siteUrl} />
         <meta name="robots" content="index, follow" />
-
         {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
@@ -59,75 +58,11 @@ export default function Home({ initialPosts }) {
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:url" content={siteUrl} />
         <meta property="og:image" content={defaultImage} />
-
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={defaultImage} />
-
-        {/* CollectionPage Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: "Notícias, análises e opiniões sobre as corridas da Fórmula 1",
-            description: pageDescription,
-            url: siteUrl,
-            inLanguage: "pt-BR",
-            isPartOf: {
-              "@type": "WebSite",
-              name: "Blog F1 Dash",
-              url: siteUrl
-            }
-          })}
-        </script>
-
-        {/* ItemList Schema – últimos artigos */}
-        {posts.length > 0 && (
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              itemListElement: posts.slice(0, 10).map((post, index) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                url: `${siteUrl}/artigo/${post.slug}`,
-                name: post.title
-              }))
-            })}
-          </script>
-        )}
-
-        {/* BreadcrumbList Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: siteUrl
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Artigos",
-                item: siteUrl
-              }
-            ]
-          })}
-        </script>
-
-        {/* Paginação SEO */}
-        {currentPage < totalPages && (
-          <link rel="next" href={`/?page=${currentPage + 1}`} />
-        )}
-        {currentPage > 1 && (
-          <link rel="prev" href={`/?page=${currentPage - 1}`} />
-        )}
       </Head>
 
       <Navbar />
@@ -144,11 +79,28 @@ export default function Home({ initialPosts }) {
           <section className="seo-intro">
             <h2>Blog sobre Notícias da Fórmula 1™</h2>
             <p>
-              O Blog F1 Dash traz notícias de caráter pessoal da Fórmula 1™, análises
-              detalhadas das corridas, classificação do campeonato, resultados
-              dos GPs e bastidores das equipes como Ferrari, Red Bull, Mercedes
-              e McLaren.
+              O Blog F1 Dash traz notícias de caráter pessoal da Fórmula 1™, análises detalhadas das corridas, classificação do campeonato, resultados
+              dos GPs e bastidores das equipes como Ferrari, Red Bull, Mercedes e McLaren.
             </p>
+          </section>
+
+          <section className="highlight-guide">
+            <h2>🌟 Destaques do Guia para Iniciantes</h2>
+
+            <ul className="guide-list">
+              {guide.slice(0, 3).map((post) => (
+                <li key={post.slug} className="guide-item">
+                  <Link href={`/guia/${post.slug}`} className="guide-card">
+                    <img src={post.image || post.banner} alt={post.title} />
+                    <h4>{post.title}</h4>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link href="/guia" className="buttonMore">
+              Ver todos os artigos do Guia →
+            </Link>
           </section>
 
           <h2>Últimos Artigos</h2>
@@ -168,38 +120,45 @@ export default function Home({ initialPosts }) {
           />
         </section>
       </div>
-      <FaqF1 />
 
+      <FaqF1 />
       <Footer />
     </div>
   );
 }
 
 // ===============================
-// SSG com posts em Markdown
-// ===============================
+// SSG com posts em Markdown e guia
 export async function getStaticProps() {
   const postsDirectory = path.join(process.cwd(), "posts");
-  const filenames = fs.readdirSync(postsDirectory);
+  const guideDirectory = path.join(process.cwd(), "guide");
 
-  const posts = filenames.map((filename) => {
-    const filePath = path.join(postsDirectory, filename);
+  // Helper para serializar post
+  function serializePost(filePath, filename) {
     const fileContents = fs.readFileSync(filePath, "utf8");
-
     const { data, content } = matter(fileContents);
-
     return {
       slug: filename.replace(/\.md$/, ""),
       ...data,
-      content
+      content,
+      date: data.date ? new Date(data.date).toISOString() : null, // ✅ Serializa Date
     };
-  });
+  }
 
-  // Ordena por data decrescente
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  // Posts de notícias
+  const postFiles = fs.readdirSync(postsDirectory);
+  const initialPosts = postFiles
+    .map((filename) => serializePost(path.join(postsDirectory, filename), filename))
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Posts do guia
+  const guideFiles = fs.readdirSync(guideDirectory);
+  const initialGuide = guideFiles
+    .map((filename) => serializePost(path.join(guideDirectory, filename), filename))
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return {
-    props: { initialPosts: posts },
-    revalidate: 60
+    props: { initialPosts, initialGuide },
+    revalidate: 60,
   };
 }
