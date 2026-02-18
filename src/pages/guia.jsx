@@ -142,6 +142,22 @@ export default function Guide({ allPosts }) {
           </div>
         </section>
 
+        <section className="seo-intro">
+          <h2>Aprenda Fórmula 1™ com o Guia Completo</h2>
+          <p>
+            Este guia é feito para quem quer entender a Fórmula 1™ de verdade: desde as regras oficiais
+            até os detalhes técnicos dos carros, estratégias de corrida, gestão de pneus e energia,
+            e como funcionam os campeonatos de pilotos e construtores.
+            Aqui você encontra explicações passo a passo, artigos educativos e análises que tornam
+            cada corrida mais fácil de compreender, seja você iniciante ou fã que quer se aprofundar.
+          </p>
+          <p>
+            Navegue pelos artigos e aprenda sobre equipes como Ferrari, Red Bull, Mercedes e McLaren,
+            descubra os conceitos de undercut, DRS, Safety Car e muito mais. Este é o seu ponto de
+            partida para dominar o universo da Fórmula 1™ com clareza e confiança.
+          </p>
+        </section>
+
         <section className="blog-grid">
           <h2>Últimos Artigos do Guia</h2>
 
