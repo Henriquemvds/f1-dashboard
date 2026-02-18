@@ -90,7 +90,7 @@ export default function Home({ initialPosts, initialGuide }) {
             <ul className="guide-list">
               {guide.slice(0, 3).map((post) => (
                 <li key={post.slug} className="guide-item">
-                  <Link href={`/guia/${post.slug}`} className="guide-card">
+                  <Link href={`/artigo/${post.slug}`} className="guide-card">
                     <img src={post.image || post.banner} alt={post.title} />
                     <h4>{post.title}</h4>
                   </Link>
