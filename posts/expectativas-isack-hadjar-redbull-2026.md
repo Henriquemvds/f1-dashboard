@@ -3,8 +3,8 @@ title: "Expectativas para Isack Hadjar para 2026 na Red Bull"
 subtitle: "Podemos ter outro Lobo Solitário após aposentadoria de Max?"
 author: "Henrique Santos"
 date: "2026-03-03T21:13:50-03:00"
-image: "https://raw.githubusercontent.com/Henriquemvds/images-blog-f1-dashboard/refs/heads/main/images/post-28.avif"
-banner: "https://raw.githubusercontent.com/Henriquemvds/images-blog-f1-dashboard/refs/heads/main/images/post-28.avif"
+image: "https://github.com/Henriquemvds/images-blog-f1-dashboard/blob/main/images/post-29.webp?raw=true"
+banner: "https://github.com/Henriquemvds/images-blog-f1-dashboard/blob/main/images/post-29.webp?raw=true"
 tags:
   - Expectativas
   - Isack Hadjar
