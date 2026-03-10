@@ -2,7 +2,7 @@
 
 full_name: "Gabriel Lourenzo Bortoleto Oliveira"
 driver_number: "5"
-team_name: "Kick Sauber"
+team_name: "Audi"
 country: "Brazil"
 birthdate: "2004-10-14T21:35:50-03:00"
 birthplace: "Osasco, São Paulo"

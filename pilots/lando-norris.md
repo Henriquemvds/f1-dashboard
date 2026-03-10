@@ -1,7 +1,7 @@
 ---
 
 full_name: "Lando Norris"
-driver_number: "4"
+driver_number: "1"
 team_name: "McLaren"
 country: "United Kingdom"
 birthdate: "1999-11-13T20:16:54-02:00"
