@@ -2,7 +2,7 @@
 
 full_name: "Nico Hülkenberg"
 driver_number: "27"
-team_name: "Haas F1 Team"
+team_name: "Audi"
 country: "Germany"
 birthdate: "1987-08-19T00:00:00-03:00"
 birthplace: "Emmerich am Rhein, Germany"

@@ -2,7 +2,7 @@
 
 full_name: "Isack Alexandre Hadjar"
 driver_number: "6"
-team_name: "Racing Bulls"
+team_name: "Red Bull Racing"
 country: "France"
 birthdate: "2004-09-28T21:38:33-03:00"
 birthplace: "Paris, France"

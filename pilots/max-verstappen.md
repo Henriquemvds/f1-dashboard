@@ -1,7 +1,7 @@
 ---
 
 full_name: "Max Verstappen"
-driver_number: "1"
+driver_number: "3"
 team_name: "Red Bull Racing"
 country: "Netherlands"
 birthdate: "1997-11-30"
