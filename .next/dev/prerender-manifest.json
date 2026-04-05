@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "0c131cbbd1217f094323a9467f7b3cdf",
-    "previewModeSigningKey": "ad52a112f96f3389c2c3c5a0e502164c6a5749bd0aed1d80d27e7b016238df54",
-    "previewModeEncryptionKey": "44fe120144ee0e1db0adfe7147ad7e9e37867a46f1600776f6b95606abbd2475"
-  }
-}
+{"version":4,"routes":{"/piloto/alexander-albon":{},"/piloto/charles-leclerc":{},"/piloto/fernando-alonso":{},"/piloto/gabriel-bortoleto":{},"/piloto/isack-hadjar":{},"/piloto/kimi-antonelli":{},"/piloto/lance-stroll":{},"/piloto/lando-norris":{},"/piloto/max-verstappen":{},"/piloto/nico-hulkenberg":{},"/piloto/oscar-piastri":{},"/piloto/pierre-gasly":{},"/piloto/yuki-tsunoda":{},"/piloto/sergio-perez":{},"/piloto/liam-lawson":{},"/piloto/esteban-ocon":{},"/piloto/franco-colapinto":{},"/piloto/lewis-hamilton":{}},"dynamicRoutes":{"/piloto/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/piloto/[id]","routeRegex":"^\\/piloto\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"27dbbba3b176eaf90f8fca4c87b74072","previewModeSigningKey":"d8b63baa7e1e316b5af14dd152a0686369a68b84bb284dfacfe446b439fde095","previewModeEncryptionKey":"f6d07a353303768a5732f4b073c6ecaa25a90304e8f74bf1eb3a8693e9c86af2"}}
