@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../images/LOGO-F1-PNG.png";
 import { usePathname } from "next/navigation";
+import Head from "next/head";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -11,6 +12,14 @@ export default function Footer() {
 
   return (
     <footer className="site-footer">
+      <div>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          />
+        </Head>
+      </div>
       <div className="footer-content">
 
         <div className="footer-col footer-about">

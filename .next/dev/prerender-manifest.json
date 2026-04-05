@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/artigo/agora-virou-formula-e":{},"/artigo/analise-temporada-senna":{},"/artigo/audi-estreia-positiva":{},"/artigo/bahrein-atacada-temporada-ameacada":{},"/artigo/bottas-pagando-punicao-no-inicio-2026":{},"/artigo/comeco-blog":{},"/artigo/datas-lancamento-carros-2026":{},"/artigo/divulgacao-audi":{},"/artigo/energia-campeao-mundial-lando-norris":{},"/artigo/erros-na-largada-pre-temporada-2026":{},"/artigo/expectativas-isack-hadjar-redbull-2026":{},"/artigo/expectativas-kimi-antonelli":{},"/artigo/globo-capitalista-2026":{},"/artigo/impressoes-arvid-linblad":{},"/artigo/inicio-da-temporada-2026":{},"/artigo/mclaren-com-medo":{},"/artigo/mercedes-e-a-taxa-de-compressao-motor":{},"/artigo/motores-temporada-2026":{},"/artigo/oliver-bearman-incomodado-carro-2026":{},"/artigo/problemas-carros-2026":{},"/artigo/problemas-sergio-perez-e-red-bull":{},"/artigo/reflexoes-hamilton-2025":{},"/artigo/rush-vs-f1-o-filme-a-batalha-dos-loiros":{},"/artigo/williams-dificuldade-entrega-carro":{},"/artigo/bandeirada-simbolica":{},"/artigo/celula-sobrevivencia-cofre-piloto":{},"/artigo/como-funciona-drs":{},"/artigo/energia-mom":{},"/artigo/palavroes-na-pista":{},"/artigo/piscas-na-pista":{},"/artigo/pneus-na-pista":{},"/artigo/safety-car":{}},"dynamicRoutes":{"/artigo/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/artigo/[id]","routeRegex":"^\\/artigo\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"5dd75996a21394558626386f112f135b","previewModeSigningKey":"e4f3c0360e0ec1bc954b9c22f037052597276dc821ca1d6f06c02f21525efe55","previewModeEncryptionKey":"d6a365ab7ea62e3767bdff90f9e88a85849cf7bb8a6e5eddbf222be6071b1402"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "6c046259bcb934061df262fa7b73f139",
+    "previewModeSigningKey": "628d69c342d6a0af13524d04e94db6387852648f9fbfbe137b0b5ce1bc7c7448",
+    "previewModeEncryptionKey": "cb16472f85a7ef5c5c078a3a458facfebfbc1757247fd017feda776197a673c0"
+  }
+}
