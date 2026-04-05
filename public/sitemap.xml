@@ -343,4 +343,43 @@
     <priority>0.9</priority>
   </url>
 
+    <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/sergio-perez</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+      <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/liam-lawson</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+        <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/esteban-ocon</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
+     <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/franco-colapinto</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+      <url>
+    <loc>https://www.blog-f1-dashboard.com/piloto/lewis-hamilton</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
+
+
 </urlset>
