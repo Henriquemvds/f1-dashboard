@@ -1,20 +1,54 @@
-[00:00:11.650] Server  LOG     ✓ Ready in 9.2s
-[00:00:18.517] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+[00:00:04.330] Server  LOG     ✓ Ready in 3.1s
+[00:00:08.063] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:00:18.592] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+[00:00:08.865] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:00:11.700] Server  WARN    Warning: data for page "/" is 135 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
+See more info here: https://nextjs.org/docs/messages/large-page-data
+[00:37:37.181] Server  WARN    Warning: data for page "/" is 145 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
+See more info here: https://nextjs.org/docs/messages/large-page-data
+[00:37:37.776] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:37:45.045] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
     at title
     at head
     at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
     at html
     at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
     at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
-[00:00:25.849] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+[00:42:03.406] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:42:04.028] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:01:07.065] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+[00:44:22.007] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:44:22.576] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:02:40.700] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
-See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:12:34.625] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
-See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:12:48.310] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
-See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:44:25.186] Server  WARN    Warning: data for page "/" is 145 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
+See more info here: https://nextjs.org/docs/messages/large-page-data
+[00:44:30.663] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
+[00:44:37.699] Server  WARN    Warning: data for page "/" is 145 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
+See more info here: https://nextjs.org/docs/messages/large-page-data
+[00:45:03.492] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
+    at title
+    at head
+    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
+    at html
+    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
+    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
