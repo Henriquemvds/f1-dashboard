@@ -1,5 +1,5 @@
 ---
-title: "Melbourne recebeu o novato que ninguém sabia pronunciar"
+title: "Melbourne recebeu o novato que ninguém sabia pronunciar: Arvid Linblad"
 subtitle: "Arvid Linblad, a estreia inacreditável"
 author: "Henrique Santos"
 date: "2026-03-09T20:53:50-03:00"
@@ -12,7 +12,7 @@ tags:
   - Expectativas
 ---
 
-<h2>🏁 Melbourne recebeu o novato que ninguém sabia pronunciar</h2>
+<h2>🏁 Melbourne recebeu o novato que ninguém sabia pronunciar: Arvid Linblad!</h2>
 
 <p>
 A temporada 2026 da Fórmula 1™ começou e, entre os veteranos testando carros e estratégias, surgiu Arvid Lindblad, um jovem que decidiu marcar pontos logo na estreia. Começou em P9, terminou em P8 e aparentemente deixou todos surpresos com a sua habilidade de não se chocar com nada nem ninguém — pelo menos de forma séria. Afinal, pontuar na primeira corrida é o tipo de coisa que faz os fãs mais antigos ficarem desconfiados de que alguém no paddock está trapaceando.
