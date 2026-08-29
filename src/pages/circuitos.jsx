@@ -141,56 +141,163 @@ export default function Circuits() {
 
       {sortedYears.length === 0 && <p>Nenhum meeting encontrado.</p>}
 
-      <div className="list-circuits">
-        {sortedYears.map((year) => (
-          <section className="year-block-circuits" key={year}>
-            <h2 className="year-title-circuits" onClick={() => toggleYear(year)}>
-              Circuitos de {year} {expandedYears[year] ? "▼" : "►"}
-            </h2>
+    <div className="list-circuits">
+  {sortedYears.map((year) => (
+    <section className="year-block-circuits" key={year}>
 
-            {expandedYears[year] && (
-              <div className="circuits-grid-2x2">
-                {meetingsByYear[year].map((m) => (
-                  <div
-                    className="circuit-card"
-                    key={m.meeting_key}
-                    itemScope
-                    itemType="https://schema.org/SportsEvent"
-                  >
-                    <div className="circuit-header">
-                      <span className="circuit-name">{m.meeting_name}</span>
-                      {m.country_flag && (
-                        <img
-                          className="circuit-flag"
-                          src={m.country_flag}
-                          alt={`${m.country_name} flag`}
-                        />
-                      )}
-                    </div>
-                    <p className="circuit-meta">{m.location}, {m.country_name}</p>
-                    <p className="circuit-info">
-                      Circuito: {m.circuit_short_name} ({translateCircuitType(m.circuit_type)})
-                    </p>
-                    {m.circuit_image && (
-                      <img
-                        className="circuit-image"
-                        src={m.circuit_image}
-                        alt={`${m.circuit_short_name} track`}
-                      />
-                    )}
-                    <p className="circuit-info">
-                      Início: {new Date(m.date_start).toLocaleString()} <br />
-                      Fim: {new Date(m.date_end).toLocaleString()} <br />
-                      GMT Offset: {m.gmt_offset}
-                    </p>
-                  </div>
-                ))}
+      <h2
+        className="year-title-circuits"
+        onClick={() => toggleYear(year)}
+      >
+        <span>
+          Circuitos de {year}
+        </span>
+
+        <span className="year-arrow">
+          {expandedYears[year] ? "▼" : "►"}
+        </span>
+      </h2>
+
+      {expandedYears[year] && (
+        <div className="circuits-grid-2x2">
+
+          {meetingsByYear[year].map((m) => (
+
+            <div
+              className="circuit-card"
+              key={m.meeting_key}
+              itemScope
+              itemType="https://schema.org/SportsEvent"
+            >
+
+              {/* =====================================
+                  IMAGEM DO CIRCUITO
+              ====================================== */}
+              <div className="circuit-visual">
+
+                {m.circuit_image && (
+                  <img
+                    className="circuit-image"
+                    src={m.circuit_image}
+                    alt={`${m.circuit_short_name} track`}
+                  />
+                )}
+
               </div>
-            )}
-          </section>
-        ))}
-      </div>
 
+
+              {/* =====================================
+                  CONTEÚDO DO CIRCUITO
+              ====================================== */}
+              <div className="circuit-content">
+
+                {/* HEADER */}
+                <div className="circuit-header">
+
+                  <div className="circuit-title-area">
+
+                    <span className="circuit-name">
+                      {m.meeting_name}
+                    </span>
+
+                  </div>
+
+                  {m.country_flag && (
+                    <img
+                      className="circuit-flag"
+                      src={m.country_flag}
+                      alt={`${m.country_name} flag`}
+                    />
+                  )}
+
+                </div>
+
+
+                {/* LOCALIZAÇÃO */}
+                <p className="circuit-meta">
+                  {m.location}, {m.country_name}
+                </p>
+
+
+                {/* CIRCUITO */}
+                <div className="circuit-track-info">
+
+                  <span className="circuit-label">
+                    Circuito
+                  </span>
+
+                  <span className="circuit-track-name">
+                    {m.circuit_short_name}
+                  </span>
+
+                  <span className="circuit-type">
+                    ({translateCircuitType(m.circuit_type)})
+                  </span>
+
+                </div>
+
+
+                {/* DATAS */}
+                <div className="circuit-dates">
+
+                  <div className="circuit-date">
+                    <span className="date-icon">📅</span>
+
+                    <div>
+                      <span className="date-label">
+                        Início
+                      </span>
+
+                      <span className="date-value">
+                        {new Date(m.date_start).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div className="circuit-date">
+                    <span className="date-icon">📅</span>
+
+                    <div>
+                      <span className="date-label">
+                        Fim
+                      </span>
+
+                      <span className="date-value">
+                        {new Date(m.date_end).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div className="circuit-date">
+                    <span className="date-icon">◷</span>
+
+                    <div>
+                      <span className="date-label">
+                        GMT Offset
+                      </span>
+
+                      <span className="date-value">
+                        {m.gmt_offset}
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+      )}
+
+    </section>
+  ))}
+</div>
       <Footer />
     </div>
   );
