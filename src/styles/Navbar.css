@@ -19,67 +19,75 @@
 }
 
 /* === LOGO === */
+/* === LOGO === */
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: 14px;
-  user-select: none;
+  gap: 24px;
 }
 
 .logo-f1 {
-  width: 250px;
-  height: auto;
-}
-
-.navbar-logo:hover .car {
-  transform: scale(1.08) rotate(-3deg);
+  width: auto;
+  height: 65px;
+  object-fit: contain;
 }
 
 .logo-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
+  gap: 4px;
 }
 
 .logo-text h1 {
-  display: flex;
-  align-items: baseline;
-  font-family: "Orbitron", sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
   margin: 0;
   padding: 0;
-  position: relative;
-  z-index: 2;
+  line-height: 1;
 }
 
 .title-f1 {
-  font-size: 1.8rem;
-  color: #ff1e00;
-  text-shadow: 0 0 6px #ff1e00, 0 0 12px rgba(255, 0, 0, 0.8);
-  margin-right: 4px;
+  font-family: "Orbitron", "sans-serif";
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ff0000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Efeito de brilho vermelho (Glow) idêntico ao da foto */
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.4);
 }
 
-.logo-dash {
-  font-size: 1.2rem;
-  background: linear-gradient(to right, #fff, #aaa);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+.subtitle-f1 {
+  margin: 0;
+  color: #b0b0b0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
 }
 
-/* === Tire Trail === */
-.tire-trail {
-  margin-top: 4px;
-  width: 100%;
-  height: 6px;
-  background: repeating-linear-gradient(90deg, #222 0 6px, #111 6px 12px);
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-  animation: tireMove 1s linear infinite;
+/* === REDES SOCIAIS === */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.social-links a {
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-links svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-links a:hover {
+  color: #ff0000;
+  transform: translateY(-1px);
 }
 
 @keyframes tireMove {
@@ -348,7 +356,11 @@
 /* =========================== RESPONSIVIDADE =============================== */
 /* ========================================================================= */
 
-/* --- Tablets --- */
+/* ========================================================================= */
+/* =========================== RESPONSIVIDADE =============================== */
+/* ========================================================================= */
+
+/* --- Tablets (max 992px) --- */
 @media (max-width: 992px) {
   .navbar-top {
     padding: 15px 25px;
@@ -358,53 +370,66 @@
     padding: 10px 25px;
   }
 
+  /* Reduz o espaçamento entre itens do menu para caber em telas médias */
   .navbar-links {
-    gap: 20px;
+    gap: 18px; 
   }
 
-  
+  .title-f1 {
+    font-size: 1.2rem;
+  }
+
+  .subtitle-f1 {
+    font-size: 0.75rem;
+  }
 }
 
-/* --- Mobile --- */
+/* --- Mobile (max 768px) --- */
 @media (max-width: 768px) {
-
   .navbar-top {
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 25px;
+    align-items: center;
+    padding: 15px 20px;
   }
 
-  .logo-f1  { width: 120px; }
-  .title-f1 { font-size: 1.2rem; }
-  .logo-dash { font-size: 1.4rem; }
+  .logo-f1 {
+    height: 45px;
+  }
 
-  .tire-trail { height: 7px; }
+  .title-f1 {
+    font-size: 1.05rem;
+  }
 
-  /* AQUI CORRIGIMOS — links e dropdown ficam IGUAIS */
-  .navbar-links a,
-  .dropdown-toggle {
-    font-size: 1.2rem;
+  .subtitle-f1 {
+    font-size: 0.7rem;
+  }
+
+  .social-links svg {
+    width: 16px;
+    height: 16px;
   }
 
   .menu-toggle {
     display: block;
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
+  /* Esconde a barra inferior Desktop */
   .navbar-bottom {
-    flex-direction: column;
-    align-items: flex-start;
     padding: 0;
   }
 
+  /* Gaveta do menu vertical acionada no Mobile */
   .navbar-links {
     display: none;
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    padding: 12px 0;
-    text-align: left;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(13, 13, 13, 0.98);
+    padding: 15px 20px;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .navbar-links.active {
@@ -412,36 +437,72 @@
     animation: fadeSlide 0.3s ease forwards;
   }
 
-  @keyframes fadeSlide {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
+  .navbar-links li {
+    width: 100%;
   }
 
+  .navbar-links a {
+    font-size: 1.05rem;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  /* Oculta a linha animada horizontal no menu mobile */
+  .navbar-links a::after {
+    display: none;
+  }
+
+  /* Comportamento do Dropdown interno no mobile */
   .dropdown-menu {
+    position: static;
     border: none;
-    padding-left: 20px;
+    background: transparent;
+    padding-left: 15px;
+    box-shadow: none;
   }
 
   .dropdown-menu li a {
-    padding: 6px 0;
-    font-size: 1.15rem; /* Ajustado para ficar proporcional */
+    padding: 8px 0;
+    font-size: 1rem;
   }
 }
 
-/* --- Celulares muito pequenos --- */
+/* --- Celulares Pequenos (max 480px) --- */
 @media (max-width: 480px) {
-  .navbar-top { padding: 18px 18px; }
-
-  .logo-f1  { width: 120px; }
-  .title-f1 { font-size: 1.2rem; }
-  .logo-dash { font-size: 1.5rem; }
-
-  .tire-trail { height: 8px; }
-
-  .navbar-links a,
-  .dropdown-toggle {
-    font-size: 1.3rem;
+  .navbar-top {
+    padding: 12px 15px;
   }
 
-  .menu-toggle { font-size: 2.6rem; }
+  /* Esconde o subtítulo em telas muito estreitas para otimizar espaço */
+  .subtitle-f1 {
+    display: none; 
+  }
+
+  .title-f1 {
+    font-size: 0.95rem;
+  }
+
+  .social-links {
+    gap: 10px;
+  }
+
+  .navbar-links a {
+    font-size: 1rem;
+  }
+
+  .menu-toggle {
+    font-size: 2.2rem;
+  }
+}
+
+/* === ANIMAÇÃO DA GAVETA MOBILE === */
+@keyframes fadeSlide {
+  from { 
+    opacity: 0; 
+    transform: translateY(-8px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
