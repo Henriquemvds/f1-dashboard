@@ -25,24 +25,35 @@ export default function Navbar() {
   return (
     <header className="navbar-header">
       <div className="navbar-top">
-        <div className="navbar-logo">
-          <Link href="/" onClick={handleHomeClick} title="Voltar para a página inicial do blog Um Olhar pelo Paddock">
-            <Image 
-              src={logo} 
-              alt="Logo do blog Um Olhar pelo Paddock – Notícias e análises de F1™" 
-              className="logo-f1" 
-              width={120} // ajuste conforme necessário
-              height={50} // ajuste conforme necessário
-            />
-          </Link>
-          <div className="logo-text">
-            <h1>
-              <span className="title-f1">Um Olhar pelo Paddock</span>
-            </h1>
-            <div className="tire-trail"></div>
-          </div>
-        </div>
+      <div className="navbar-logo">
+  <Link href="/" onClick={handleHomeClick} title="Voltar para a página inicial do blog Um Olhar pelo Paddock">
+    <Image 
+      src={logo} 
+      alt="Logo GT DASH" 
+      className="logo-f1" 
+      width={180} 
+      height={70} 
+      priority
+    />
+  </Link>
 
+  <div className="logo-text">
+    <h1>
+      <span className="title-f1">UM OLHAR PELO PADDOCK</span>
+    </h1>
+    <p className="subtitle-f1">Notícias, resultados e tudo sobre o mundo da Fórmula 1</p>
+
+    {/* Redes Sociais */}
+    <div className="social-links">
+       <a href="https://www.instagram.com/henrique.mv/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+      <a href="https://github.com/Henriquemvds" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-github"></i>
+            </a>
+    </div>
+  </div>
+</div>
         <button
           className="menu-toggle"
           aria-label="Abrir ou fechar menu principal"
@@ -107,7 +118,7 @@ export default function Navbar() {
         <span>Guia Para Iniciantes</span>
       </Link>
     </li>
-    
+
 <li>
   <Link href="/circuitos" title="Circuitos – Detalhes sobre os autódromos de Fórmula 1™">
     {/* Bandeira Quadriculada */}
