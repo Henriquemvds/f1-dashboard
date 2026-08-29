@@ -3,5 +3,5 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/artigo/[id]": "pages/artigo/[id].js",
-  "/piloto/[id]": "pages/piloto/[id].js"
+  "/circuitos": "pages/circuitos.js"
 }
