@@ -88,35 +88,100 @@
 }
 
 /* === MENU INFERIOR === */
+/* === MENU INFERIOR === */
 .navbar-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
+  background-color: #0d0d0d; /* Fundo preto sólido escuro */
+  border-top: 1px solid #b80000; /* Linha vermelha superior sutil */
+  padding: 10px 40px;
+  width: 100%;
 }
 
 /* === LINKS === */
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 35px; /* Maior espaçamento entre itens */
   align-items: center;
   margin: 0;
   padding: 0;
-  transition: all 0.3s ease-in-out;
 }
 
+/* === LINKS === */
 .navbar-links a {
   text-decoration: none;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s;
+  color: #e0e0e0;
+  font-weight: 400;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-.navbar-links a:hover,
+/* Criando a linha inferior invisível por padrão */
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff2a2a;
+  border-radius: 2px;
+  
+  /* Configuração para a animação da esquerda para a direita */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Item Hover (Opcional: faz a linha aparecer também ao passar o mouse) */
+.navbar-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Item Ativo (Mantém a linha visível e expandida) */
 .navbar-links a.active {
-  color: #ff3c00;
+  color: #ff2a2a;
+}
+
+.navbar-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Tamanho fixo dos ícones */
+.navbar-links a .nav-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Hover nos links */
+.navbar-links a:hover {
+  color: #ffffff;
+}
+
+/* Item Ativo (Destaque Vermelho igual da imagem) */
+.navbar-links a.active {
+  color: #ff2a2a;
+}
+
+.navbar-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff2a2a;
+  border-radius: 2px;
+}
+
+.navbar-links a .nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 /* ========================================================================= */

@@ -1,39 +1,23 @@
-[00:00:04.951] Server  LOG     ✓ Ready in 3.5s
-[00:00:20.592] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+[00:00:04.513] Server  LOG     ✓ Ready in 3.2s
+[00:05:31.977] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:00:20.611] Server  WARN    Warning: data for page "/" is 145 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
+[00:05:32.023] Server  WARN    Warning: data for page "/" is 145 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
 See more info here: https://nextjs.org/docs/messages/large-page-data
-[00:00:22.579] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
+[00:05:34.721] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:00:24.555] Server  ERROR   Warning: A title element received an array with more than 1 element as children. In browsers title Elements can only have Text Nodes as children. If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in the title and hydration will likely fail and fall back to client rendering
-    at title
-    at head
-    at Head (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:372:8)
-    at html
-    at Html (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:932:19)
-    at Document (C:\Users\Pichau\Desktop\Arquivos de programação\Projetos\f1-dashboard\node_modules\next\src\pages\_document.tsx:951:16)
-[00:00:29.874] Server  LOG     ○ Compiling /circuitos ...
-[00:00:41.782] Server  LOG     ✓ Compiled in 168ms
-[00:01:17.633] Server  LOG     ✓ Compiled in 23ms
-[00:01:21.387] Server  LOG     ✓ Compiled in 19ms
-[00:02:36.393] Server  LOG     ✓ Compiled in 34ms
-[00:02:39.221] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"). Use Document instead. 
-See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:02:48.205] Server  LOG     ✓ Compiled in 16ms
-[00:02:55.205] Server  LOG     ✓ Compiled in 25ms
-[00:02:59.919] Server  LOG     ✓ Compiled in 22ms
-[00:03:03.211] Server  LOG     ✓ Compiled in 40ms
-[00:03:19.954] Server  LOG     ✓ Compiled in 19ms
-[00:03:51.847] Server  LOG     ✓ Compiled in 67ms
-[00:03:52.037] Browser ERROR   Warning: validateDOMNesting(...): %s cannot appear as a descendant of <%s>.%s <p> p 
-    at p
-    at p
+[00:07:51.059] Server  LOG     ✓ Compiled in 54ms
+[00:08:09.289] Server  LOG     ✓ Compiled in 27ms
+[00:08:18.172] Server  LOG     ✓ Compiled in 27ms
+[00:08:30.459] Server  WARN    Warning: data for page "/" is 145 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
+See more info here: https://nextjs.org/docs/messages/large-page-data
+[00:08:30.950] Browser WARN    Image with src "/_next/static/media/LOGO-F1-PNG.10641826.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:08:37.488] Browser ERROR   Warning: The `%s` prop supplied to <select> must be a scalar value if `multiple` is false.%s%s value 
+
+Check the render method of `Results`. 
+    at select
     at div
-    at div
-    at section
-    at div
-    at div
-    at Circuits (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__1f84da6b._.js?id=%255Bproject%255D%252Fsrc%252Fpages%252Fcircuitos.jsx+%255Bclient%255D+%2528ecmascript%2529:24:176)
+    at main
+    at Results (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__89cb177f._.js:1730:188)
     at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__4a62a652._.js:491:18)
     at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_8bac8163._.js:5355:43)
     at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_75b597d7._.js:1117:9)
@@ -41,7 +25,7 @@ See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-comp
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3085:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3184:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_5a8a528e._.js:3392:17)
-[00:03:59.828] Server  LOG     ✓ Compiled in 68ms
-[00:05:53.731] Server  LOG     ✓ Compiled in 63ms
-[00:07:32.593] Server  LOG     ✓ Compiled in 45ms
-[00:09:50.541] Server  LOG     ✓ Compiled in 35ms
+[00:10:29.222] Server  LOG     ✓ Compiled in 420ms
+[00:11:03.413] Server  LOG     ✓ Compiled in 88ms
+[00:13:05.497] Server  LOG     ✓ Compiled in 77ms
+[00:13:09.937] Server  LOG     ✓ Compiled in 74ms
