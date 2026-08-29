@@ -424,7 +424,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
+  <url>
+    <loc>https://www.blog-f1-dashboard.com/artigo/flavio-briatore-o-batman-com-suas-decisoes-com-colapinto</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
 
 </urlset>
