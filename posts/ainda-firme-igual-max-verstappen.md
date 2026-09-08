@@ -1,5 +1,5 @@
 ---
-title: "Ainda estou Firme igual o Max Verstappen na RedBull"
+title: "Ainda estou Firme igual o Max Verstappen na Red Bull"
 subtitle: "Sentiram minha falta, caros fãs? Ainda estou vivo, problemas de rotina e internet hehe"
 author: "Henrique Santos"
 date: "2026-08-28T20:50:50-03:00"
@@ -14,14 +14,14 @@ tags:
 ---
 
 
-<h2>🏎️ Ainda estou Firme igual o Max Verstappen na RedBull!</h2>
+<h2>🏎️ Ainda estou Firme igual o Max Verstappen na Red Bull!</h2>
 
 <p>
 Sentiram minha falta, caros fãs? Ainda estou vivo, problemas de rotina e internet hehe. Vida e trabalho pesado..... acontece. Agora vamos falar de Fórmula 1™!
 </p>
 
 <p>
-Provavelmente vocês já sabem que o Max Verstappen renovou contrato com RedBull, tornando a vida de George Russel aliviada, mas não para a própria equipe RedBull provavelmente pagando muito mais caro para esse desalmado Max Verstappen numa fase em que sua própria equipe não está dando conta das habilidades dele.
+Provavelmente vocês já sabem que o Max Verstappen renovou contrato com Red Bull, tornando a vida de George Russel aliviada, mas não para a própria equipe Red Bull provavelmente pagando muito mais caro para esse desalmado Max Verstappen numa fase em que sua própria equipe não está dando conta das habilidades dele.
 </p>
 
 <h2>🏎️ Christian Horner: Mesmo indesejado sabia criar boas máquinas?</h2>
@@ -53,7 +53,7 @@ Mas aparentemente Max não recebeu esse memorando.
 </p>
 
 <p>
-A renovação com a RedBull mostra que, pelo menos por enquanto, ele continua apostando no projeto. E isso é interessante porque não estamos falando de um piloto que precisa provar alguma coisa para alguém. Max já ganhou títulos, já colecionou recordes e já demonstrou diversas vezes que consegue extrair do carro até aquilo que provavelmente nem estava previsto no manual do proprietário.
+A renovação com a Red Bull mostra que, pelo menos por enquanto, ele continua apostando no projeto. E isso é interessante porque não estamos falando de um piloto que precisa provar alguma coisa para alguém. Max já ganhou títulos, já colecionou recordes e já demonstrou diversas vezes que consegue extrair do carro até aquilo que provavelmente nem estava previsto no manual do proprietário.
 </p>
 
 <p>
@@ -61,7 +61,7 @@ O problema é que talento não faz milagre infinito. Pode colocar Max Verstappen
 </p>
 
 <p>
-E talvez seja justamente aí que essa renovação fique mais interessante. A RedBull não está apenas mantendo um piloto. Está mantendo alguém que pode ser extremamente difícil de substituir quando a equipe finalmente conseguir colocar nas mãos dele um carro realmente competitivo.
+E talvez seja justamente aí que essa renovação fique mais interessante. A Red Bull não está apenas mantendo um piloto. Está mantendo alguém que pode ser extremamente difícil de substituir quando a equipe finalmente conseguir colocar nas mãos dele um carro realmente competitivo.
 </p>
 
 <p>
@@ -69,17 +69,17 @@ Porque se existe uma coisa que Max já deixou bastante clara, é que ele não pr
 </p>
 
 <p>
-Enquanto isso, George Russel pode respirar um pouco mais aliviado. Pelo menos não terá Max batendo na porta de outra equipe tão cedo. Já a RedBull provavelmente está olhando para a folha de pagamento e pensando se não seria mais barato contratar três engenheiros, dois psicólogos e um padre.
+Enquanto isso, George Russel pode respirar um pouco mais aliviado. Pelo menos não terá Max batendo na porta de outra equipe tão cedo. Já a Red Bull provavelmente está olhando para a folha de pagamento e pensando se não seria mais barato contratar três engenheiros, dois psicólogos e um padre.
 </p>
 
 <h2>🏁 No fim das contas...</h2>
 
 <p>
-Então temos um Max Verstappen que continua firme na RedBull, uma equipe tentando reencontrar o caminho das grandes máquinas, Laurent Mekies assumindo uma missão que certamente não veio com manual de instruções e um Christian Horner que, gostemos ou não, deixou uma sombra considerável sobre a estrutura que ajudou a comandar.
+Então temos um Max Verstappen que continua firme na Red Bull, uma equipe tentando reencontrar o caminho das grandes máquinas, Laurent Mekies assumindo uma missão que certamente não veio com manual de instruções e um Christian Horner que, gostemos ou não, deixou uma sombra considerável sobre a estrutura que ajudou a comandar.
 </p>
 
 <p>
-A grande questão agora é saber se a RedBull conseguirá entregar ao seu principal piloto um carro digno das habilidades dele. Porque manter Max é uma coisa. Fazer Max feliz dentro de um carro competitivo é outra história completamente diferente.
+A grande questão agora é saber se a Red Bull conseguirá entregar ao seu principal piloto um carro digno das habilidades dele. Porque manter Max é uma coisa. Fazer Max feliz dentro de um carro competitivo é outra história completamente diferente.
 </p>
 
 <p>
@@ -87,9 +87,9 @@ Por enquanto, sigo eu também firme e forte, sobrevivendo à rotina, ao trabalho
 </p>
 
 <p>
-E assim seguimos: Max continua na RedBull, George Russel pode respirar, a equipe precisa urgentemente descobrir onde foi parar aquela velha capacidade de construir um foguete com quatro rodas, e nós continuamos assistindo ao circo da Fórmula 1™ esperando a próxima curva, a próxima treta e, principalmente, o próximo rádio do Max reclamando que o carro está uma porcaria enquanto passa todo mundo.
+E assim seguimos: Max continua na Red Bull, George Russel pode respirar, a equipe precisa urgentemente descobrir onde foi parar aquela velha capacidade de construir um foguete com quatro rodas, e nós continuamos assistindo ao circo da Fórmula 1™ esperando a próxima curva, a próxima treta e, principalmente, o próximo rádio do Max reclamando que o carro está uma porcaria enquanto passa todo mundo.
 </p>
 
 <p>
-Porque, no final, aparentemente ninguém quer se aposentar ainda. Nem o Max. Nem a RedBull das confusões. E, aparentemente, nem eu deste blog. 😎🏎️
+Porque, no final, aparentemente ninguém quer se aposentar ainda. Nem o Max. Nem a Red Bull das confusões. E, aparentemente, nem eu deste blog. 😎🏎️
 </p>
