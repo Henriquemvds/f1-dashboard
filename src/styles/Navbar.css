@@ -351,17 +351,282 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* =========================================================
+   CARD — LÍDER DO MUNDIAL
+========================================================= */
+
+.world-leader-card {
+  position: relative;
+
+  width: 210px;
+  min-height: 150px;
+
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 18, 18, 0.96),
+      rgba(8, 8, 8, 0.96)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Linha vermelha superior */
+
+.world-leader-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: #e10600;
+}
+
+
+/* Brilho vermelho discreto */
+
+.world-leader-card::after {
+  content: "";
+
+  position: absolute;
+
+  right: -50px;
+  bottom: -60px;
+
+  width: 130px;
+  height: 130px;
+
+  background: rgba(225, 6, 0, 0.08);
+
+  border-radius: 50%;
+
+  filter: blur(25px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.world-leader-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(225, 6, 0, 0.55);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(225, 6, 0, 0.08);
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.leader-card-title {
+  position: relative;
+  z-index: 1;
+
+  color: #e10600;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+
+  margin-bottom: 13px;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES DO PILOTO
+========================================================= */
+
+.leader-main {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+/* =========================================================
+   POSIÇÃO
+========================================================= */
+
+.leader-position {
+  color: #e10600;
+
+  font-size: 42px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  font-style: italic;
+
+  letter-spacing: -3px;
+}
+
+
+/* =========================================================
+   NOME / EQUIPE
+========================================================= */
+
+.leader-driver {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+
+.leader-name {
+  color: #fff;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+
+.leader-team {
+  color: #aaa;
+
+  font-size: 11px;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   PONTUAÇÃO
+========================================================= */
+
+.leader-points {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 5px;
+
+  margin-top: 14px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.leader-points strong {
+  color: #fff;
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+.leader-points span {
+  color: #999;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+/* =========================================================
+   LOADING
+========================================================= */
+
+.leader-loading {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 110px;
+
+  color: #999;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   ERRO
+========================================================= */
+
+.leader-error {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 110px;
+
+  color: #ff6b6b;
+
+  font-size: 12px;
+
+  text-align: center;
+}
 
 /* ========================================================================= */
 /* =========================== RESPONSIVIDADE =============================== */
 /* ========================================================================= */
 
-/* ========================================================================= */
-/* =========================== RESPONSIVIDADE =============================== */
-/* ========================================================================= */
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
 
-/* --- Tablets (max 992px) --- */
+/* --- Tablets --- */
 @media (max-width: 992px) {
+
   .navbar-top {
     padding: 15px 25px;
   }
@@ -370,9 +635,8 @@
     padding: 10px 25px;
   }
 
-  /* Reduz o espaçamento entre itens do menu para caber em telas médias */
   .navbar-links {
-    gap: 18px; 
+    gap: 18px;
   }
 
   .title-f1 {
@@ -382,19 +646,54 @@
   .subtitle-f1 {
     font-size: 0.75rem;
   }
+
+  .world-leader-card {
+    width: 190px;
+    min-height: 135px;
+    padding: 15px;
+  }
+
+  .leader-position {
+    font-size: 36px;
+  }
+
+  .leader-name {
+    font-size: 14px;
+  }
 }
 
-/* --- Mobile (max 768px) --- */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 768px) {
+
   .navbar-top {
-    flex-direction: row;
-    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding: 15px 20px;
+    gap: 15px;
+  }
+
+  /* Logo + texto */
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
   }
 
   .logo-f1 {
     height: 45px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    flex: 1;
+    min-width: 0;
   }
 
   .title-f1 {
@@ -405,30 +704,104 @@
     font-size: 0.7rem;
   }
 
+  .social-links {
+    gap: 10px;
+  }
+
   .social-links svg {
     width: 16px;
     height: 16px;
   }
 
+
+  /* =====================================================
+     LÍDER DO MUNDIAL
+     ===================================================== */
+
+  .world-leader-card {
+    order: 3;
+
+    width: 100%;
+    max-width: 260px;
+
+    min-height: auto;
+
+    margin: 5px auto 0;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+  }
+
+  .leader-card-title {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+
+  .leader-main {
+    gap: 9px;
+  }
+
+  .leader-position {
+    font-size: 30px;
+    letter-spacing: -2px;
+  }
+
+  .leader-name {
+    font-size: 13px;
+  }
+
+  .leader-team {
+    font-size: 9px;
+  }
+
+  .leader-points {
+    margin-top: 9px;
+    padding-top: 7px;
+  }
+
+  .leader-points strong {
+    font-size: 17px;
+  }
+
+  .leader-points span {
+    font-size: 8px;
+  }
+
+
+  /* =====================================================
+     BOTÃO HAMBÚRGUER
+     ===================================================== */
+
   .menu-toggle {
     display: block;
     font-size: 2rem;
+    flex-shrink: 0;
   }
 
-  /* Esconde a barra inferior Desktop */
+
+  /* =====================================================
+     MENU
+     ===================================================== */
+
   .navbar-bottom {
     padding: 0;
   }
 
-  /* Gaveta do menu vertical acionada no Mobile */
   .navbar-links {
     display: none;
+
     flex-direction: column;
     align-items: flex-start;
+
     width: 100%;
+
     background-color: rgba(13, 13, 13, 0.98);
+
     padding: 15px 20px;
+
     gap: 10px;
+
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -447,17 +820,21 @@
     width: 100%;
   }
 
-  /* Oculta a linha animada horizontal no menu mobile */
   .navbar-links a::after {
     display: none;
   }
 
-  /* Comportamento do Dropdown interno no mobile */
+
+  /* Dropdown mobile */
   .dropdown-menu {
     position: static;
+
     border: none;
+
     background: transparent;
+
     padding-left: 15px;
+
     box-shadow: none;
   }
 
@@ -467,42 +844,77 @@
   }
 }
 
-/* --- Celulares Pequenos (max 480px) --- */
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
 @media (max-width: 480px) {
+
   .navbar-top {
     padding: 12px 15px;
-  }
-
-  /* Esconde o subtítulo em telas muito estreitas para otimizar espaço */
-  .subtitle-f1 {
-    display: none; 
-  }
-
-  .title-f1 {
-    font-size: 0.95rem;
-  }
-
-  .social-links {
     gap: 10px;
   }
 
-  .navbar-links a {
-    font-size: 1rem;
+  .navbar-logo {
+    gap: 10px;
+  }
+
+  .logo-f1 {
+    height: 38px;
+  }
+
+  .title-f1 {
+    font-size: 0.9rem;
+  }
+
+  .subtitle-f1 {
+    display: none;
+  }
+
+  .social-links {
+    gap: 8px;
+  }
+
+  .world-leader-card {
+    max-width: 230px;
+    padding: 10px 12px;
+  }
+
+  .leader-position {
+    font-size: 27px;
+  }
+
+  .leader-name {
+    font-size: 12px;
+  }
+
+  .leader-team {
+    font-size: 8px;
+  }
+
+  .leader-points strong {
+    font-size: 16px;
   }
 
   .menu-toggle {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
   }
 }
 
-/* === ANIMAÇÃO DA GAVETA MOBILE === */
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
+
 @keyframes fadeSlide {
-  from { 
-    opacity: 0; 
-    transform: translateY(-8px); 
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
