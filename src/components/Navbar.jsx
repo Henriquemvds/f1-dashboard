@@ -8,11 +8,15 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { SelectTopics } from "../data/SelectTopics.js";
 import logo from "../images/LOGO-F1-PNG.png";
+import axios from "axios";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState({ main: false, topics: false });
   const pathname = usePathname();
   const router = useRouter();
+  const [leader, setLeader] = useState(null);
+const [loadingLeader, setLoadingLeader] = useState(true);
+const [leaderError, setLeaderError] = useState(false);
 
   const handleHomeClick = (e) => {
     if (pathname === "/") {
@@ -20,7 +24,101 @@ export default function Navbar() {
       router.refresh(); // Atualiza a página no Next.js
     }
   };
+useEffect(() => {
+  const fetchWorldLeader = async () => {
+    try {
+      setLoadingLeader(true);
+      setLeaderError(false);
 
+      const [driversResponse, championshipResponse] = await Promise.all([
+        axios.get(
+          "https://api.openf1.org/v1/drivers?session_key=latest"
+        ),
+
+        axios.get(
+          "https://api.openf1.org/v1/championship_drivers?session_key=latest"
+        )
+      ]);
+
+      const drivers = driversResponse.data;
+      const championship = championshipResponse.data;
+
+      /*
+       * O campeonato já vem ordenado pela posição.
+       * Pegamos o primeiro colocado.
+       */
+      const championshipLeader = championship
+        .sort(
+          (a, b) =>
+            a.position_current - b.position_current
+        )[0];
+
+      /*
+       * Procuramos os dados desse piloto
+       * na API de drivers.
+       */
+      const driverData = drivers.find(
+        (driver) =>
+          driver.driver_number ===
+          championshipLeader.driver_number
+      );
+
+      if (!driverData) {
+        throw new Error(
+          "Piloto líder não encontrado."
+        );
+      }
+
+      /*
+       * Unificamos as duas APIs
+       */
+      setLeader({
+        position:
+          championshipLeader.position_current,
+
+        points:
+          championshipLeader.points_current,
+
+        driverNumber:
+          driverData.driver_number,
+
+        name:
+          driverData.full_name,
+
+        firstName:
+          driverData.first_name,
+
+        lastName:
+          driverData.last_name,
+
+        team:
+          driverData.team_name,
+
+        teamColour:
+          driverData.team_colour,
+
+        headshot:
+          driverData.headshot_url,
+
+        acronym:
+          driverData.name_acronym
+      });
+
+    } catch (error) {
+      console.error(
+        "Erro ao buscar líder do campeonato:",
+        error
+      );
+
+      setLeaderError(true);
+
+    } finally {
+      setLoadingLeader(false);
+    }
+  };
+
+  fetchWorldLeader();
+}, []);
 
   return (
     <header className="navbar-header">
@@ -54,6 +152,73 @@ export default function Navbar() {
     </div>
   </div>
 </div>
+
+<div className="world-leader-card">
+
+  {loadingLeader && (
+    <div className="leader-loading">
+      Carregando campeonato...
+    </div>
+  )}
+
+  {leaderError && !loadingLeader && (
+    <div className="leader-error">
+      Não foi possível carregar a liderança.
+    </div>
+  )}
+
+  {leader && !loadingLeader && !leaderError && (
+
+    <>
+
+      {/* TÍTULO */}
+      <div className="leader-card-title">
+        LÍDER DO MUNDIAL
+      </div>
+
+
+      {/* PILOTO */}
+      <div className="leader-main">
+
+        <span className="leader-position">
+          {leader.driverNumber}
+        </span>
+
+
+        <div className="leader-driver">
+
+          <strong className="leader-name">
+            {leader.name}
+          </strong>
+
+          <span className="leader-team">
+            {leader.team}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      {/* PONTOS */}
+      <div className="leader-points">
+
+        <strong>
+          {leader.points}
+        </strong>
+
+        <span>
+          PTS
+        </span>
+
+      </div>
+
+    </>
+
+  )}
+
+</div>
+
         <button
           className="menu-toggle"
           aria-label="Abrir ou fechar menu principal"
