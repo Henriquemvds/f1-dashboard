@@ -139,7 +139,7 @@ useEffect(() => {
     <h1>
       <span className="title-f1">UM OLHAR PELO PADDOCK</span>
     </h1>
-    <p className="subtitle-f1">Notícias, resultados e tudo sobre o mundo da Fórmula 1</p>
+    <p className="subtitle-f1">Curiosidade e opiniões, tudo sobre o mundo da Fórmula 1</p>
 
     {/* Redes Sociais */}
     <div className="social-links">

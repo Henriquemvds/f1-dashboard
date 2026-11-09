@@ -36,11 +36,11 @@ export default function Home({ initialPosts, initialGuide }) {
   const totalPages = Math.ceil(filtered.length / postsPerPage);
 
   // SEO
-  const pageTitle = "Notícias e análises de corridas de Fórmula 1 | Blog F1 Dash";
+  const pageTitle = "Curiosidade e opiniões de corridas de Fórmula 1 | Blog F1 Dash";
   const pageDescription =
     posts.length > 0
       ? `Últimos artigos sobre Fórmula 1: ${posts.slice(0, 3).map((p) => p.title).join(", ")}`
-      : "Notícias, análises e bastidores das corridas da Fórmula 1. Acompanhe resultados, análises e curiosidades do mundo da F1.";
+      : "Curiosidade e opiniões, bastidores das corridas da Fórmula 1. Acompanhe resultados, análises e curiosidades do mundo da F1.";
   const siteUrl = "https://www.blog-f1-dashboard.com";
   const defaultImage = `https://www.blog-f1-dashboard.com/logo-f1-meta.png`;
 
@@ -71,19 +71,34 @@ export default function Home({ initialPosts, initialGuide }) {
         <section className="blog-grid">
           <section className="hero">
             <div className="hero-content">
-              <h1>Notícias da Fórmula 1™, Resultados e Análises das Corridas</h1>
+              <h1>Curiosidades da Fórmula 1™, Resultados e Opiniões das Corridas</h1>
               <p>Últimas notícias e artigos sobre corridas de Fórmula 1™.</p>
             </div>
           </section>
-
+       
           <section className="seo-intro">
-            <h2>Blog sobre Notícias da Fórmula 1™</h2>
+            <h2>F1 Dash: Curiosidades e Análises sobre a Fórmula 1™</h2>
+
             <p>
-              O Blog F1 Dash traz notícias de caráter pessoal da Fórmula 1™, análises detalhadas das corridas, classificação do campeonato, resultados
-              dos GPs e bastidores das equipes como Ferrari, Red Bull, Mercedes e McLaren.
+              O <strong>F1 Dash</strong> é um espaço dedicado aos apaixonados por
+              <strong> Fórmula 1™</strong>, curiosidades,
+              opiniões e análises sobre o universo do automobilismo. Aqui você
+              acompanha a classificação do campeonato mundial de pilotos e
+              construtores, resultados dos Grandes Prêmios, calendário da temporada,
+              desempenho dos pilotos e os principais acontecimentos dentro e fora
+              das pistas.
+            </p>
+
+            <p>
+              Além de acompanhar equipes como Ferrari, Red Bull Racing, Mercedes
+              e McLaren, você encontra comentários sobre estratégias, bastidores,
+              rivalidades, decisões das equipes e momentos marcantes de cada corrida.
+              Nosso objetivo é apresentar diferentes perspectivas sobre a categoria,
+              combinando informação, análise e opinião pessoal para quem deseja
+              acompanhar a Fórmula 1 de uma maneira mais próxima e descontraída.
             </p>
           </section>
-
+       
           <section className="highlight-guide">
             <h2>🌟 Destaques do Guia para Iniciantes</h2>
 
