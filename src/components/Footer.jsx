@@ -24,10 +24,27 @@ export default function Footer() {
 
         <div className="footer-col footer-about">
           <Link href="/">
-            <Image src={logo} alt="F1 logo" className="logo-f1" width={120} height={50} />
+            <Image
+              src={logo}
+              alt="F1 Dash - Fórmula 1"
+              className="logo-f1"
+              width={120}
+              height={50}
+            />
           </Link>
-          <p>Sua central de estatísticas, temporadas e informações das corridas da Fórmula 1™.</p>
+
+          <p>
+            O <strong>F1 Dash</strong> é um espaço dedicado aos apaixonados por
+            <strong> Fórmula 1™</strong>, reunindo curiosidades, opiniões e análises sobre o universo do automobilismo.
+          </p>
+
+          <p>
+            O objetivo é aproximar você do mundo da Fórmula 1™, combinando
+            informação, análise e opinião em um só lugar, com uma experiência
+            dinâmica e descontraída para acompanhar cada detalhe da categoria.
+          </p>
         </div>
+
 
         <div className="footer-col footer-links">
           <h3>Links rápidos</h3>
